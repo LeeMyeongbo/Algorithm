@@ -1,0 +1,11 @@
+
+# 폴더 제외
+Debug/
+Release/
+.vs/
+
+# 확장자 제외
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
