@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -41,7 +41,7 @@ int DFS(int cur)
 int Possible()
 {
 	for (int i = 1; i <= N; i++)
-		if (scc_index[STD - i] == scc_index[STD + i])		// i¿Í -i°¡ °°Àº scc¶ó¸é ¼º¸³ x
+		if (scc_index[STD - i] == scc_index[STD + i])		// iì™€ -iê°€ ê°™ì€ sccë¼ë©´ ì„±ë¦½ x
 			return 0;
 	return 1;
 }

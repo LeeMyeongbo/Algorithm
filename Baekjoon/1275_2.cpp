@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define S 131072					// 2^17
 using namespace std;
 
 int N, Q, x, y, a;
-long long b, tree[2 * S];			// tree[1] ~ tree[S - 1] : ³»ºÎ³ëµå, tree[S] ~ tree[2 * S - 1] : ¸®ÇÁ³ëµå
+long long b, tree[2 * S];			// tree[1] ~ tree[S - 1] : ë‚´ë¶€ë…¸ë“œ, tree[S] ~ tree[2 * S - 1] : ë¦¬í”„ë…¸ë“œ
 
 long long init(int left, int right, int node)
 {
