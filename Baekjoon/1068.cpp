@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -32,7 +32,7 @@ int main()
 	cin >> E;
 
 	for (int i = 0; i < N; i++)
-		for (int j = 0; j < tree[i].size(); j++)			// E·Î ÇâÇÏ´Â °£¼± Á¦°Å
+		for (int j = 0; j < tree[i].size(); j++)			// Eë¡œ í–¥í•˜ëŠ” ê°„ì„  ì œê±°
 			if (tree[i][j] == E)
 				tree[i].erase(tree[i].begin() + j);
 	dfs(root);

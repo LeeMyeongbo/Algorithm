@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cmath>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -11,7 +11,7 @@ int main()
 	cin >> N;
 	for (long long i = 1; i < 10; i++) {
 		long long p1 = (long long)pow(10, i - 1);
-		long long p2 = (long long)pow(10, i);		// Ç×»ó ÀÚ·áÇüÀº ¸ÂÃç ÁÖÀÚ!
+		long long p2 = (long long)pow(10, i);		// í•­ìƒ ìžë£Œí˜•ì€ ë§žì¶° ì£¼ìž!
 		if (N >= p1 && N < p2) {
 			ans += i * (N - p1 + 1);
 			break;
