@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct TreeNode {
@@ -17,7 +17,7 @@ TreeNode n6 = { '+', &n4,  &n5 };
 TreeNode n7 = { '+', &n3,  &n6 };
 TreeNode *exp = &n7;
 
-// ¼ö½Ä °è»ê ÇÔ¼ö
+// ìˆ˜ì‹ ê³„ì‚° í•¨ìˆ˜
 int evaluate(TreeNode *root)
 {
 	if (root == NULL)
@@ -27,7 +27,7 @@ int evaluate(TreeNode *root)
 	else {
 		int op1 = evaluate(root->left);
 		int op2 = evaluate(root->right);
-		printf("%d %c %dÀ» °è»êÇÕ´Ï´Ù.\n", op1, root->data, op2);
+		printf("%d %c %dì„ ê³„ì‚°í•©ë‹ˆë‹¤.\n", op1, root->data, op2);
 		switch (root->data) {
 		case '+':
 			return op1 + op2;
@@ -44,6 +44,6 @@ int evaluate(TreeNode *root)
 // 
 int main(void)
 {
-	printf("¼ö½ÄÀÇ °ªÀº %dÀÔ´Ï´Ù. \n", evaluate(exp));
+	printf("ìˆ˜ì‹ì˜ ê°’ì€ %dì…ë‹ˆë‹¤. \n", evaluate(exp));
 	return 0;
 }

@@ -1,59 +1,59 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX_STACK_SIZE	500
-typedef char element; // ¹è¿­ ¿ä¼Ò´Â element Å¸ÀÔÀ¸·Î ¼±¾ğ
+typedef char element; // ë°°ì—´ ìš”ì†ŒëŠ” element íƒ€ì…ìœ¼ë¡œ ì„ ì–¸
 typedef struct
 {
 	element stack[MAX_STACK_SIZE];
 	int top;
-}StackType; // °ü·Ã µ¥ÀÌÅÍ¸¦ ±¸Á¶Ã¼·Î ¹­¾î¼­ ÇÔ¼öÀÇ ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş
+}StackType; // ê´€ë ¨ ë°ì´í„°ë¥¼ êµ¬ì¡°ì²´ë¡œ ë¬¶ì–´ì„œ í•¨ìˆ˜ì˜ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
 
-// ½ºÅÃ ÃÊ±âÈ­ ÇÔ¼ö
+// ìŠ¤íƒ ì´ˆê¸°í™” í•¨ìˆ˜
 void init(StackType* s)
 {
 	s->top = -1;
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(StackType* s)
 {
 	return (s->top == -1);
 }
 
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(StackType* s)
 {
 	return (s->top == (MAX_STACK_SIZE - 1));
 }
 
-// »ğÀÔÇÔ¼ö
+// ì‚½ì…í•¨ìˆ˜
 void push(StackType* s, element item)
 {
 	if (is_full(s)) {
-		fprintf(stderr, "½ºÅÃ Æ÷È­ ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ í¬í™” ì—ëŸ¬\n");
 		return;
 	}
 	else
 		s->stack[++(s->top)] = item;
 }
 
-// »èÁ¦ÇÔ¼ö
+// ì‚­ì œí•¨ìˆ˜
 element pop(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else
 		return s->stack[(s->top)--];
 }
 
-// ÇÇÅ©ÇÔ¼ö
+// í”¼í¬í•¨ìˆ˜
 element peek(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else
@@ -67,7 +67,7 @@ void main()
 	StackType* s = (StackType*)malloc(sizeof(StackType));
 	init(s);
 	int small = 0, medium = 0, big = 0;
-	printf("¹®Àå(°ıÈ£ Æ÷ÇÔÇØ¼­) ÀÔ·Â : ");
+	printf("ë¬¸ì¥(ê´„í˜¸ í¬í•¨í•´ì„œ) ì…ë ¥ : ");
 	scanf_s("%s", a, 100);
 	for (i = 0; i < 100; i++)
 	{

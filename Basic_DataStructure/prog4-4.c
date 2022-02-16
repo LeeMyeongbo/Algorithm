@@ -1,46 +1,46 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LIST_SIZE 100 // ¹è¿­ÀÇ ÃÖ´ëÅ©±â
+#define MAX_LIST_SIZE 100 // ë°°ì—´ì˜ ìµœëŒ€í¬ê¸°
 
 typedef int element;
 typedef struct {
-	int list[MAX_LIST_SIZE];	  // ¹è¿­ Á¤ÀÇ
-	int length;		  // ÇöÀç ¹è¿­¿¡ ÀúÀåµÈ ÀÚ·áµéÀÇ °³¼ö
+	int list[MAX_LIST_SIZE];	  // ë°°ì—´ ì •ì˜
+	int length;		  // í˜„ì¬ ë°°ì—´ì— ì €ì¥ëœ ìë£Œë“¤ì˜ ê°œìˆ˜
 } ArrayListType;
 
-// ¿À·ù Ã³¸® ÇÔ¼ö
+// ì˜¤ë¥˜ ì²˜ë¦¬ í•¨ìˆ˜
 void error(char *message)
 {
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
-// ¸®½ºÆ® ÃÊ±âÈ­
+// ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
 void init(ArrayListType *L)
 {
 	L->length = 0;
 }
-// ¸®½ºÆ®°¡ ºñ¾î ÀÖÀ¸¸é 1À» ¹İÈ¯
-// ±×·¸Áö ¾ÊÀ¸¸é 0À» ¹İÈ¯
+// ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ìˆìœ¼ë©´ 1ì„ ë°˜í™˜
+// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ 0ì„ ë°˜í™˜
 int is_empty(ArrayListType *L)
 {
 	return L->length == 0;
 }
-// ¸®½ºÆ®°¡ °¡µæ Â÷ ÀÖÀ¸¸é 1À» ¹İÈ¯
-// ±×·¸Áö ¸¹À¸¸é 1À» ¹İÈ¯
+// ë¦¬ìŠ¤íŠ¸ê°€ ê°€ë“ ì°¨ ìˆìœ¼ë©´ 1ì„ ë°˜í™˜
+// ê·¸ë ‡ì§€ ë§ìœ¼ë©´ 1ì„ ë°˜í™˜
 int is_full(ArrayListType *L)
 {
 	return L->length == MAX_LIST_SIZE;
 }
-// ¸®½ºÆ® Ãâ·Â
+// ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 void display(ArrayListType *L)
 {
 	int i;
 	for (i = 0; i<L->length; i++)
 		printf("%d\n", L->list[i]);
 }
-// position: »ğÀÔÇÏ°íÀÚ ÇÏ´Â À§Ä¡
-// item: »ğÀÔÇÏ°íÀÚ ÇÏ´Â ÀÚ·á
+// position: ì‚½ì…í•˜ê³ ì í•˜ëŠ” ìœ„ì¹˜
+// item: ì‚½ì…í•˜ê³ ì í•˜ëŠ” ìë£Œ
 void add(ArrayListType *L, int position, element item)
 {
 	if (!is_full(L) && (position >= 0) &&
@@ -52,10 +52,10 @@ void add(ArrayListType *L, int position, element item)
 		L->length++;
 	}
 }
-// position: »èÁ¦ÇÏ°íÀÚ ÇÏ´Â À§Ä¡
-// ¹İÈ¯°ª: »èÁ¦µÇ´Â ÀÚ·á
-// position: »èÁ¦ÇÏ°íÀÚ ÇÏ´Â À§Ä¡
-// ¹İÈ¯°ª: »èÁ¦µÇ´Â ÀÚ·á
+// position: ì‚­ì œí•˜ê³ ì í•˜ëŠ” ìœ„ì¹˜
+// ë°˜í™˜ê°’: ì‚­ì œë˜ëŠ” ìë£Œ
+// position: ì‚­ì œí•˜ê³ ì í•˜ëŠ” ìœ„ì¹˜
+// ë°˜í™˜ê°’: ì‚­ì œë˜ëŠ” ìë£Œ
 
 element delete(ArrayListType *L, int position)
 {
@@ -63,7 +63,7 @@ element delete(ArrayListType *L, int position)
 	element item;
 
 	if (position < 0 || position >= L->length)
-		error("À§Ä¡ ¿À·ù");
+		error("ìœ„ì¹˜ ì˜¤ë¥˜");
 	item = L->list[position];
 	for (i = position; i<(L->length - 1); i++)
 		L->list[i] = L->list[i + 1];
@@ -75,16 +75,16 @@ int main()
 	ArrayListType list1;
 	ArrayListType *plist;
 
-	// ListType¸¦ Á¤ÀûÀ¸·Î »ı¼ºÇÏ°í ListType¸¦ °¡¸®Å°´Â
-	// Æ÷ÀÎÅÍ¸¦ ÇÔ¼öÀÇ ÆÄ¶ó¹ÌÅÍ·Î Àü´ŞÇÑ´Ù.
+	// ListTypeë¥¼ ì •ì ìœ¼ë¡œ ìƒì„±í•˜ê³  ListTypeë¥¼ ê°€ë¦¬í‚¤ëŠ”
+	// í¬ì¸í„°ë¥¼ í•¨ìˆ˜ì˜ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬í•œë‹¤.
 	init(&list1);
 	add(&list1, 0, 10);
 	add(&list1, 0, 20);
 	add(&list1, 0, 30);
 	display(&list1);
 
-	// ListType¸¦ µ¿ÀûÀ¸·Î »ı¼ºÇÏ°í ListType¸¦ °¡¸®Å°´Â 
-	// Æ÷ÀÎÅÍ¸¦ ÇÔ¼öÀÇ ÆÄ¶ó¹ÌÅÍ·Î Àü´ŞÇÑ´Ù.
+	// ListTypeë¥¼ ë™ì ìœ¼ë¡œ ìƒì„±í•˜ê³  ListTypeë¥¼ ê°€ë¦¬í‚¤ëŠ” 
+	// í¬ì¸í„°ë¥¼ í•¨ìˆ˜ì˜ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬í•œë‹¤.
 	plist = (ArrayListType *)malloc(sizeof(ArrayListType));
 	init(plist);
 	add(plist, 0, 10);

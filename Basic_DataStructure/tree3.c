@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
 
@@ -49,7 +49,7 @@ TreeNode *root = &n6;
 
 int main(void)
 {
-	printf("ÁßÀ§ ¼øÈ¸=");
+	printf("ì¤‘ìœ„ ìˆœíšŒ=");
 	inorder_iter(root);
 	printf("\n");
 	return 0;

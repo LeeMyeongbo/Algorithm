@@ -1,11 +1,11 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #define TRUE 1
 #define FALSE 0
 
 typedef struct TreeNode {
 	int data;
 	struct TreeNode *left, *right;
-	int is_thread;	// ½º·¹µåÀÌ¸é TRUE
+	int is_thread;	// ìŠ¤ë ˆë“œì´ë©´ TRUE
 } TreeNode;
 
 
@@ -23,13 +23,13 @@ TreeNode * exp = &n7;
 
 TreeNode * find_successor(TreeNode * p)
 {
-	// q´Â pÀÇ ¿À¸¥ÂÊ Æ÷ÀÎÅÍ
+	// qëŠ” pì˜ ì˜¤ë¥¸ìª½ í¬ì¸í„°
 	TreeNode * q = p->right;
-	// ¸¸¾à ¿À¸¥ÂÊ Æ÷ÀÎÅÍ°¡ NULLÀÌ°Å³ª ½º·¹µåÀÌ¸é ¿À¸¥ÂÊ Æ÷ÀÎÅÍ¸¦ ¹İÈ¯
+	// ë§Œì•½ ì˜¤ë¥¸ìª½ í¬ì¸í„°ê°€ NULLì´ê±°ë‚˜ ìŠ¤ë ˆë“œì´ë©´ ì˜¤ë¥¸ìª½ í¬ì¸í„°ë¥¼ ë°˜í™˜
 	if (q == NULL || p->is_thread == TRUE)
 		return q;
 
-	// ¸¸¾à ¿À¸¥ÂÊ ÀÚ½ÄÀÌ¸é ´Ù½Ã °¡Àå ¿ŞÂÊ ³ëµå·Î ÀÌµ¿
+	// ë§Œì•½ ì˜¤ë¥¸ìª½ ìì‹ì´ë©´ ë‹¤ì‹œ ê°€ì¥ ì™¼ìª½ ë…¸ë“œë¡œ ì´ë™
 	while (q->left != NULL) q = q->left;
 	return q;
 }
@@ -39,19 +39,19 @@ void thread_inorder(TreeNode * t)
 	TreeNode * q;
 
 	q = t;
-	while (q->left) q = q->left;// °¡Àå ¿ŞÂÊ ³ëµå·Î °£´Ù.
+	while (q->left) q = q->left;// ê°€ì¥ ì™¼ìª½ ë…¸ë“œë¡œ ê°„ë‹¤.
 	do {
-		printf("%c -> ", q->data);// µ¥ÀÌÅÍ Ãâ·Â
-		q = find_successor(q); // ÈÄ¼ÓÀÚ ÇÔ¼ö È£Ãâ
-	} while (q);			// NULLÀÌ ¾Æ´Ï¸é
+		printf("%c -> ", q->data);// ë°ì´í„° ì¶œë ¥
+		q = find_successor(q); // í›„ì†ì í•¨ìˆ˜ í˜¸ì¶œ
+	} while (q);			// NULLì´ ì•„ë‹ˆë©´
 }
 int main(void)
 {
-	// ½º·¹µå ¼³Á¤ 
+	// ìŠ¤ë ˆë“œ ì„¤ì • 
 	n1.right = &n3;
 	n2.right = &n7;
 	n4.right = &n6;
-	// ÁßÀ§ ¼øÈ¸
+	// ì¤‘ìœ„ ìˆœíšŒ
 	thread_inorder(exp);
 	printf("\n");
 	return 0;

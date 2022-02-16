@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef int element;
@@ -17,41 +17,41 @@ void add_node(ListNode** phead, ListNode** ptail, ListNode* new_node)
 		(*ptail)->link = new_node;
 	*ptail = new_node;
 }
-// phead : ¸®½ºÆ®ÀÇ Çìµå Æ÷ÀÎÅÍÀÇ Æ÷ÀÎÅÍ
-// p:¼±Çà ³ëµå
-// new_node : »ğÀÔµÉ ³ëµå
+// phead : ë¦¬ìŠ¤íŠ¸ì˜ í—¤ë“œ í¬ì¸í„°ì˜ í¬ì¸í„°
+// p:ì„ í–‰ ë…¸ë“œ
+// new_node : ì‚½ì…ë  ë…¸ë“œ
 void insert_node(ListNode** phead, ListNode* p, ListNode* new_node)
 {
-	if (*phead == NULL) // °ø¹é ¸®½ºÆ®ÀÎ °æ¿ì
+	if (*phead == NULL) // ê³µë°± ë¦¬ìŠ¤íŠ¸ì¸ ê²½ìš°
 	{
 		new_node->link = NULL;
 		*phead = new_node;
 	}
-	else if (p == NULL) // p°¡ nullÀÌ¸é Ã¹ ¹øÂ° ³ëµå·Î »ğÀÔ
+	else if (p == NULL) // pê°€ nullì´ë©´ ì²« ë²ˆì§¸ ë…¸ë“œë¡œ ì‚½ì…
 	{
 		new_node->link = *phead;
 		*phead = new_node;
 	}
-	else // p ´ÙÀ½¿¡ »ğÀÔ
+	else // p ë‹¤ìŒì— ì‚½ì…
 	{
 		new_node->link = p->link;
 		p->link = new_node;
 	}
 }
 
-// phead : Çìµå Æ÷ÀÎÅÍ¿¡ ´ëÇÑ Æ÷ÀÎÅÍ
-// p : »èÁ¦µÉ ³ëµåÀÇ ¼±Çà ³ëµå
-// removed : »èÁ¦µÉ ³ëµå
+// phead : í—¤ë“œ í¬ì¸í„°ì— ëŒ€í•œ í¬ì¸í„°
+// p : ì‚­ì œë  ë…¸ë“œì˜ ì„ í–‰ ë…¸ë“œ
+// removed : ì‚­ì œë  ë…¸ë“œ
 void remove_node(ListNode** phead, ListNode* p)
 {
-	if (p == NULL) // ¸Ç Ã³À½ ³ëµå¸¦ »èÁ¦ÇÒ °æ¿ì
+	if (p == NULL) // ë§¨ ì²˜ìŒ ë…¸ë“œë¥¼ ì‚­ì œí•  ê²½ìš°
 		*phead = (*phead)->link;
 	else
 		p->link = (p->link)->link;
 }
 
-// ¹æ¹®¿¬»ê : ¸®½ºÆ® »óÀÇ ³ëµå¸¦ ¼øÂ÷ÀûÀ¸·Î ¹æ¹® (¹İº¹°ú ¼øÈ¯ÀÌ ÀÖÀ½)
-// ¹İº¹ ¹öÀü
+// ë°©ë¬¸ì—°ì‚° : ë¦¬ìŠ¤íŠ¸ ìƒì˜ ë…¸ë“œë¥¼ ìˆœì°¨ì ìœ¼ë¡œ ë°©ë¬¸ (ë°˜ë³µê³¼ ìˆœí™˜ì´ ìˆìŒ)
+// ë°˜ë³µ ë²„ì „
 void display(ListNode* head)
 {
 	ListNode* p = head;
@@ -63,7 +63,7 @@ void display(ListNode* head)
 	printf("NULL\n");
 }
 
-// ¼øÈ¯ ¹öÀü
+// ìˆœí™˜ ë²„ì „
 void display_recur(ListNode* head)
 {
 	ListNode* p = head;
@@ -75,20 +75,20 @@ void display_recur(ListNode* head)
 	printf("NULL\n");
 }
 
-// Å½»ö ¿¬»ê : Æ¯Á¤ µ¥ÀÌÅÍ°ªÀ» °®´Â ³ëµå¸¦ Ã£´Â ¿¬»ê
+// íƒìƒ‰ ì—°ì‚° : íŠ¹ì • ë°ì´í„°ê°’ì„ ê°–ëŠ” ë…¸ë“œë¥¼ ì°¾ëŠ” ì—°ì‚°
 ListNode* search(ListNode* head, int x)
 {
 	ListNode* p;
 	p = head;
 	while (p != NULL)
 	{
-		if (p->data == x) return p; // Å½»ö ¼º°ø
+		if (p->data == x) return p; // íƒìƒ‰ ì„±ê³µ
 		p = p->link;
 	}
-	return p; // Å½»ö ½ÇÆĞÀÏ °æ¿ì NULL ¹İÈ¯
+	return p; // íƒìƒ‰ ì‹¤íŒ¨ì¼ ê²½ìš° NULL ë°˜í™˜
 }
 
-// ÇÕº´ ¿¬»ê : 2°³ÀÇ ¸®½ºÆ®¸¦ ÇÕÇÏ´Â ¿¬»ê
+// í•©ë³‘ ì—°ì‚° : 2ê°œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ í•©í•˜ëŠ” ì—°ì‚°
 ListNode* concat(ListNode* head1, ListNode* head2)
 {
 	ListNode* p;
@@ -104,24 +104,24 @@ ListNode* concat(ListNode* head1, ListNode* head2)
 	}
 }
 
-// ¿ª¼ø¿¬»ê : ¸®½ºÆ®ÀÇ ³ëµåµéÀ» ¿ª¼øÀ¸·Î ¸¸µå´Â ¿¬»ê
+// ì—­ìˆœì—°ì‚° : ë¦¬ìŠ¤íŠ¸ì˜ ë…¸ë“œë“¤ì„ ì—­ìˆœìœ¼ë¡œ ë§Œë“œëŠ” ì—°ì‚°
 ListNode* reverse(ListNode* head)
 {
-	// ¼øÈ¸ Æ÷ÀÎÅÍ·Î p,q,r »ç¿ë
+	// ìˆœíšŒ í¬ì¸í„°ë¡œ p,q,r ì‚¬ìš©
 	ListNode *p, *q, *r;
-	p = head; // p´Â ¿ª¼øÀ¸·Î ¸¸µé ¸®½ºÆ®
-	q = NULL; // q´Â ¿ª¼øÀ¸·Î ¸¸µé ³ëµå
+	p = head; // pëŠ” ì—­ìˆœìœ¼ë¡œ ë§Œë“¤ ë¦¬ìŠ¤íŠ¸
+	q = NULL; // qëŠ” ì—­ìˆœìœ¼ë¡œ ë§Œë“¤ ë…¸ë“œ
 	while (p != NULL)
 	{
-		r = q; // rÀº ¿ª¼øÀ¸·Î µÈ ¸®½ºÆ®. rÀº q, q´Â p¸¦ Â÷·Ê·Î µû¶ó°£´Ù.
+		r = q; // rì€ ì—­ìˆœìœ¼ë¡œ ëœ ë¦¬ìŠ¤íŠ¸. rì€ q, qëŠ” pë¥¼ ì°¨ë¡€ë¡œ ë”°ë¼ê°„ë‹¤.
 		q = p;
 		p = p->link;
 		q->link = r;
 	}
-	return q; // q´Â ¿ª¼øÀ¸·Î µÈ ¸®½ºÆ®ÀÇ Çìµå Æ÷ÀÎÅÍ
+	return q; // qëŠ” ì—­ìˆœìœ¼ë¡œ ëœ ë¦¬ìŠ¤íŠ¸ì˜ í—¤ë“œ í¬ì¸í„°
 }
 
-// Æ¯Á¤ µ¥ÀÌÅÍ°ªÀÇ ³ëµå °¹¼ö
+// íŠ¹ì • ë°ì´í„°ê°’ì˜ ë…¸ë“œ ê°¯ìˆ˜
 int check(ListNode* head, int x)
 {
 	ListNode* p = head;
@@ -135,26 +135,26 @@ int check(ListNode* head, int x)
 	return cnt;
 }
 
-// È¦¼ö ¹øÂ° ³ëµå »èÁ¦
+// í™€ìˆ˜ ë²ˆì§¸ ë…¸ë“œ ì‚­ì œ
 void deleteOddNode(ListNode** phead)
 {
 	int cnt = 1;
 	ListNode* p = *phead, * remain = NULL, * remove = NULL;
 	while (p!=NULL)
 	{
-		if (cnt == 1) // Ã¹ ¹øÂ°ÀÏ ¶§
+		if (cnt == 1) // ì²« ë²ˆì§¸ì¼ ë•Œ
 		{
 			remove = p;
 			p = p->link;
 			*phead = p;
 			free(remove);
 		}
-		else if (cnt % 2 == 0) // Â¦¼ö ¹øÂ°ÀÏ ¶§
+		else if (cnt % 2 == 0) // ì§ìˆ˜ ë²ˆì§¸ì¼ ë•Œ
 		{
 			remain = p;
 			p = p->link;
 		}
-		else // Ã¹ ¹øÂ°¸¦ Á¦¿ÜÇÑ È¦¼ö ¹øÂ°ÀÏ ¶§
+		else // ì²« ë²ˆì§¸ë¥¼ ì œì™¸í•œ í™€ìˆ˜ ë²ˆì§¸ì¼ ë•Œ
 		{
 			remove = p;
 			remain->link = remove->link;
@@ -165,7 +165,7 @@ void deleteOddNode(ListNode** phead)
 	}
 }
 
-// ¸ğµç µ¥ÀÌÅÍ°ªÀÇ ÇÕ
+// ëª¨ë“  ë°ì´í„°ê°’ì˜ í•©
 int sum(ListNode* head)
 {
 	ListNode* p = head;
@@ -191,7 +191,7 @@ void main()
 		add_node(&head, &tail, p);
 		if (i == 5) cur = p;
 	}
-	printf("°ªÀÌ 10ÀÎ ³ëµå °¹¼ö : %d\n", check(head, 10));
+	printf("ê°’ì´ 10ì¸ ë…¸ë“œ ê°¯ìˆ˜ : %d\n", check(head, 10));
 	display(head);
 
 	ListNode* p1 = (ListNode*)malloc(sizeof(ListNode));

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
 
@@ -17,41 +17,41 @@ TreeNode n5 = { 20, &n3,  &n4 };
 TreeNode n6 = { 15, &n2,  &n5 };
 TreeNode *root = &n6;
 
-// ÁßÀ§ ¼øÈ¸
+// ì¤‘ìœ„ ìˆœíšŒ
 void inorder(TreeNode *root) {
 	if (root != NULL) {
-		inorder(root->left);// ¿ŞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		printf("[%d] ", root->data);  // ³ëµå ¹æ¹®
-		inorder(root->right);// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		inorder(root->left);// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		printf("[%d] ", root->data);  // ë…¸ë“œ ë°©ë¬¸
+		inorder(root->right);// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
-// ÀüÀ§ ¼øÈ¸
+// ì „ìœ„ ìˆœíšŒ
 void preorder(TreeNode *root) {
 	if (root != NULL) {
-		printf("[%d] ", root->data);  // ³ëµå ¹æ¹®
-		preorder(root->left);// ¿ŞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		preorder(root->right);// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		printf("[%d] ", root->data);  // ë…¸ë“œ ë°©ë¬¸
+		preorder(root->left);// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		preorder(root->right);// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
-// ÈÄÀ§ ¼øÈ¸
+// í›„ìœ„ ìˆœíšŒ
 void postorder(TreeNode *root) {
 	if (root != NULL) {
-		postorder(root->left);// ¿ŞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		postorder(root->right);// ¿À¸¥ÂÊ¼­ºêÆ®¸®¼øÈ¸
-		printf("[%d] ", root->data);  // ³ëµå ¹æ¹®
+		postorder(root->left);// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		postorder(root->right);// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ìˆœíšŒ
+		printf("[%d] ", root->data);  // ë…¸ë“œ ë°©ë¬¸
 	}
 }
 int main(void)
 {
-	printf("ÁßÀ§ ¼øÈ¸=");
+	printf("ì¤‘ìœ„ ìˆœíšŒ=");
 	inorder(root);
 	printf("\n");
 
-	printf("ÀüÀ§ ¼øÈ¸=");
+	printf("ì „ìœ„ ìˆœíšŒ=");
 	preorder(root);
 	printf("\n");
 
-	printf("ÈÄÀ§ ¼øÈ¸=");
+	printf("í›„ìœ„ ìˆœíšŒ=");
 	postorder(root);
 	printf("\n");
 	return 0;

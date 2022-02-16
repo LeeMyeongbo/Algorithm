@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
 #define MAX_QUEUE_SIZE 100
 typedef int element;
@@ -12,45 +12,45 @@ void error(char *message)
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void init(QueueType *q)
 {
 	q->front = q->rear = 0;
 }
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(QueueType *q)
 {
 	return (q->front == q->rear);
 }
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(QueueType *q)
 {
 	return ((q->rear + 1) % MAX_QUEUE_SIZE == q->front);
 }
-// »ðÀÔ ÇÔ¼ö
+// ì‚½ìž… í•¨ìˆ˜
 void enqueue(QueueType *q, element item)
 {
 	if (is_full(q))
-		error("Å¥°¡ Æ÷È­»óÅÂÀÔ´Ï´Ù");
+		error("íê°€ í¬í™”ìƒíƒœìž…ë‹ˆë‹¤");
 	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
 	q->queue[q->rear] = item;
 }
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element dequeue(QueueType *q)
 {
 	if (is_empty(q))
-		error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù");
+		error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤");
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
 	return q->queue[q->front];
 }
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element peek(QueueType *q)
 {
 	if (is_empty(q))
-		error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù");
+		error("íê°€ ê³µë°±ìƒíƒœìž…ë‹ˆë‹¤");
 	return q->queue[(q->front + 1) % MAX_QUEUE_SIZE];
 }
-// ÁÖ ÇÔ¼ö
+// ì£¼ í•¨ìˆ˜
 void main()
 {
 	QueueType q;

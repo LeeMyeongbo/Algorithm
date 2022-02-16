@@ -1,22 +1,22 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
-typedef int element;	// ¿ä¼ÒÀÇ Å¸ÀÔ
+typedef int element;	// ìš”ì†Œì˜ íƒ€ìž…
 
-typedef struct DlistNode	// ³ëµåÀÇ Å¸ÀÔ(¾çÂÊ¿¡¼­ÀÇ »ðÀÔ, »èÁ¦¸¦ À§ÇØ ÀÌÁß ¿¬°á ¸®½ºÆ® ÀÌ¿ë)
+typedef struct DlistNode	// ë…¸ë“œì˜ íƒ€ìž…(ì–‘ìª½ì—ì„œì˜ ì‚½ìž…, ì‚­ì œë¥¼ ìœ„í•´ ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ ì´ìš©)
 {
 	element data;
 	struct DlistNode* llink;
 	struct DlistNode* rlink;
 }DlistNode;
 
-typedef struct DequeType// µ¦ÀÇ Å¸ÀÔ
+typedef struct DequeType// ë±ì˜ íƒ€ìž…
 {
 	DlistNode* head;
 	DlistNode* tail;
 }DequeType;
 
-// dq : »õ·Î Ãß°¡µÇ´Â ³ëµå
-// µÚ¿¡¼­ »ðÀÔ
+// dq : ìƒˆë¡œ ì¶”ê°€ë˜ëŠ” ë…¸ë“œ
+// ë’¤ì—ì„œ ì‚½ìž…
 void add_rear(DequeType* dq, element item)
 {
 	DlistNode* new_node = create_node(dq->tail, item, NULL);
@@ -27,7 +27,7 @@ void add_rear(DequeType* dq, element item)
 	dq->tail = new_node;
 }
 
-// ¾Õ¿¡¼­ »ðÀÔ
+// ì•žì—ì„œ ì‚½ìž…
 void add_front(DequeType* dq, element item)
 {
 	DlistNode* new_node = create_node(NULL, item, dq->head);
@@ -38,21 +38,21 @@ void add_front(DequeType* dq, element item)
 	dq->head = new_node;
 }
 
-// ¾Õ¿¡¼­ »èÁ¦
+// ì•žì—ì„œ ì‚­ì œ
 element delete_front(DequeType* dq)
 {
 	element item;
 	DlistNode* removed_node;
-	if (is_empty(dq)) error("°ø¹é µ¦¿¡¼­ »èÁ¦");
+	if (is_empty(dq)) error("ê³µë°± ë±ì—ì„œ ì‚­ì œ");
 	else
 	{
-		removed_node = dq->head; // »èÁ¦ÇÒ ³ëµå
-		item = removed_node->data; // µ¥ÀÌÅÍ ÃßÃâ
-		dq->head = dq->head->rlink; // ÇìµåÆ÷ÀÎÅÍ º¯°æ
-		free(removed_node); // ¸Þ¸ð¸® °ø°£ ¹Ý³³
-		if (dq->head == NULL) // °ø¹é»óÅÂÀÌ¸é
+		removed_node = dq->head; // ì‚­ì œí•  ë…¸ë“œ
+		item = removed_node->data; // ë°ì´í„° ì¶”ì¶œ
+		dq->head = dq->head->rlink; // í—¤ë“œí¬ì¸í„° ë³€ê²½
+		free(removed_node); // ë©”ëª¨ë¦¬ ê³µê°„ ë°˜ë‚©
+		if (dq->head == NULL) // ê³µë°±ìƒíƒœì´ë©´
 			dq->tail = NULL;
-		else                  // °ø¹é»óÅÂ°¡ ¾Æ´Ï¸é
+		else                  // ê³µë°±ìƒíƒœê°€ ì•„ë‹ˆë©´
 			dq->head->llink = NULL;
 	}
 	return item;

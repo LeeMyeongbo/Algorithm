@@ -1,9 +1,9 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX_LENGTH	30
 
-typedef struct TreeNode // Æ®¸®ÀÇ ³ëµåÅ¸ÀÔ
+typedef struct TreeNode // íŠ¸ë¦¬ì˜ ë…¸ë“œíƒ€ìž…
 {
 	char word[MAX_LENGTH];
 	char mean[MAX_LENGTH];
@@ -15,7 +15,7 @@ void init(TreeNode** root)
 	*root = NULL;
 }
 
-// ÀÔ·Â
+// ìž…ë ¥
 void insert_node(TreeNode** root, char word[], char mean[])
 {
 	TreeNode* t, *p;
@@ -48,18 +48,18 @@ void insert_node(TreeNode** root, char word[], char mean[])
 	}
 }
 
-// Ãâ·Â
+// ì¶œë ¥
 void show_inorder(TreeNode* root)
 {
 	if (root != NULL)
 	{
-		inorder(root->left);			// ¿ÞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		printf("´Ü¾î : %s\nÀÇ¹Ì : %s\n", root->word, root->mean);    // ³ëµå ¹æ¹®
-		inorder(root->right);			// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		inorder(root->left);			// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		printf("ë‹¨ì–´ : %s\nì˜ë¯¸ : %s\n", root->word, root->mean);    // ë…¸ë“œ ë°©ë¬¸
+		inorder(root->right);			// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
 
-// Å½»ö
+// íƒìƒ‰
 TreeNode* search(TreeNode* root, char word[])
 {
 	TreeNode* t = root;
@@ -72,16 +72,16 @@ TreeNode* search(TreeNode* root, char word[])
 		else
 			t = t->right;
 	}
-	printf("Ã£°íÀÚ ÇÏ´Â ´Ü¾î°¡ ¾ø½À´Ï´Ù.\n");
+	printf("ì°¾ê³ ìž í•˜ëŠ” ë‹¨ì–´ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 	return NULL;
 }
 
-// »èÁ¦
+// ì‚­ì œ
 void delete_node(TreeNode** root, char word[])
 {
 	TreeNode* p, *child, *succ, *succ_p, *temp;
-	TreeNode* t = *root; // t´Â »èÁ¦ÇÏ°íÀÚ ÇÏ´Â ³ëµå
-	TreeNode* p = NULL; // p´Â tÀÇ ºÎ¸ð³ëµå
+	TreeNode* t = *root; // tëŠ” ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ë…¸ë“œ
+	TreeNode* p = NULL; // pëŠ” tì˜ ë¶€ëª¨ë…¸ë“œ
 	while (t != NULL && strcmp(t->word, word) != 0)
 	{
 		p = t;
@@ -89,10 +89,10 @@ void delete_node(TreeNode** root, char word[])
 	}
 	if (t == NULL)
 	{
-		printf("»èÁ¦ÇÏ°íÀÚ ÇÏ´Â ´Ü¾î°¡ ¾ø½À´Ï´Ù.\n");
+		printf("ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ë‹¨ì–´ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		return;
 	}
-	if (t->left == NULL && t->right == NULL) // »èÁ¦ÇÏ·Á´Â ³ëµå°¡ ´Ü¸» ³ëµåÀÏ °æ¿ì
+	if (t->left == NULL && t->right == NULL) // ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ ë‹¨ë§ ë…¸ë“œì¼ ê²½ìš°
 	{
 		temp = t;
 		if (p->right == t)
@@ -101,7 +101,7 @@ void delete_node(TreeNode** root, char word[])
 			p->left = NULL;
 		free(temp);
 	}
-	else if (t->left == NULL || t->right == NULL) // »èÁ¦ÇÏ·Á´Â ³ëµå°¡ ÇÏ³ªÀÇ ÀÚ½Ä ³ëµå¸¸ °¡Áú °æ¿ì
+	else if (t->left == NULL || t->right == NULL) // ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ í•˜ë‚˜ì˜ ìžì‹ ë…¸ë“œë§Œ ê°€ì§ˆ ê²½ìš°
 	{
 		temp = t;
 		child = t->left != NULL ? t->left : t->right;
@@ -111,7 +111,7 @@ void delete_node(TreeNode** root, char word[])
 			p->left = child;
 		free(temp);
 	}
-	else // »èÁ¦ÇÏ·Á´Â ³ëµå°¡ µÎ ÀÚ½Ä ³ëµå¸¦ °¡Áú °æ¿ì
+	else // ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ ë‘ ìžì‹ ë…¸ë“œë¥¼ ê°€ì§ˆ ê²½ìš°
 	{
 		succ_p = t;
 		succ = t->left;

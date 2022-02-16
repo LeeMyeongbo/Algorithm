@@ -1,39 +1,39 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 
 #define MAX_STACK_SIZE	500
-typedef char element; // ¹è¿­ ¿ä¼Ò´Â element Å¸ÀÔÀ¸·Î ¼±¾ğ
+typedef char element; // ë°°ì—´ ìš”ì†ŒëŠ” element íƒ€ì…ìœ¼ë¡œ ì„ ì–¸
 typedef struct
 {
 	element px[MAX_STACK_SIZE];
 	element py[MAX_STACK_SIZE];
 	int top;
-}StackType; // °ü·Ã µ¥ÀÌÅÍ¸¦ ±¸Á¶Ã¼·Î ¹­¾î¼­ ÇÔ¼öÀÇ ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş
+}StackType; // ê´€ë ¨ ë°ì´í„°ë¥¼ êµ¬ì¡°ì²´ë¡œ ë¬¶ì–´ì„œ í•¨ìˆ˜ì˜ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬
 
-// ½ºÅÃ ÃÊ±âÈ­ ÇÔ¼ö
+// ìŠ¤íƒ ì´ˆê¸°í™” í•¨ìˆ˜
 void init(StackType* s)
 {
 	s->top = -1;
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(StackType* s)
 {
 	return (s->top == -1);
 }
 
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(StackType* s)
 {
 	return (s->top == (MAX_STACK_SIZE - 1));
 }
 
-// »ğÀÔÇÔ¼ö
+// ì‚½ì…í•¨ìˆ˜
 void push(StackType* s, element item1, element item2)
 {
 	if (is_full(s)) {
-		fprintf(stderr, "½ºÅÃ Æ÷È­ ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ í¬í™” ì—ëŸ¬\n");
 		return;
 	}
 	else
@@ -43,22 +43,22 @@ void push(StackType* s, element item1, element item2)
 	}
 }
 
-// »èÁ¦ÇÔ¼ö
+// ì‚­ì œí•¨ìˆ˜
 void pop(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else
 		(s->top)--;
 }
 
-// ÇÇÅ©ÇÔ¼ö
+// í”¼í¬í•¨ìˆ˜
 void peek(StackType* s)
 {
 	if (is_empty(s)) {
-		fprintf(stderr, "½ºÅÃ °ø¹é ¿¡·¯\n");
+		fprintf(stderr, "ìŠ¤íƒ ê³µë°± ì—ëŸ¬\n");
 		exit(1);
 	}
 	else
@@ -85,7 +85,7 @@ void main()
 	while (i<=8 && j<=9)
 	{
 		system("cls");
-		miro[i][j] = 2; // ÇöÀç À§Ä¡¸¦ 2·Î Ã³¸®
+		miro[i][j] = 2; // í˜„ì¬ ìœ„ì¹˜ë¥¼ 2ë¡œ ì²˜ë¦¬
 		for (int a = 0; a < 10; a++)
 		{
 			for (int b = 0; b < 10; b++)
@@ -93,20 +93,20 @@ void main()
 			printf("\n");
 		}
 		if (i == 8 && j == 9) break;
-		if (miro[i + 1][j] == 0) // ¸¸¾à ÇöÀç À§Ä¡¿¡¼­ ¾Æ·¡ÂÊÀÌ 0ÀÌ¶ó¸é
+		if (miro[i + 1][j] == 0) // ë§Œì•½ í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì•„ë˜ìª½ì´ 0ì´ë¼ë©´
 			push(pos, ++i, j);
-		else if (miro[i][j + 1] == 0) // ¸¸¾à ÇöÀç À§Ä¡¿¡¼­ ¿À¸¥ÂÊÀÌ 0ÀÌ¶ó¸é
+		else if (miro[i][j + 1] == 0) // ë§Œì•½ í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì˜¤ë¥¸ìª½ì´ 0ì´ë¼ë©´
 			push(pos, i, ++j);
-		else if (miro[i - 1][j] == 0) // ¸¸¾à ÇöÀç À§Ä¡¿¡¼­ À§ÂÊÀÌ 0ÀÌ¶ó¸é
+		else if (miro[i - 1][j] == 0) // ë§Œì•½ í˜„ì¬ ìœ„ì¹˜ì—ì„œ ìœ„ìª½ì´ 0ì´ë¼ë©´
 			push(pos, --i, j);
-		else if (miro[i][j - 1] == 0) // ¸¸¾à ÇöÀç À§Ä¡¿¡¼­ ¿ŞÂÊÀÌ 0ÀÌ¶ó¸é
+		else if (miro[i][j - 1] == 0) // ë§Œì•½ í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì™¼ìª½ì´ 0ì´ë¼ë©´
 			push(pos, i, --j);
-		else // ÁÖÀ§¿¡ 0ÀÌ ¾øÀ» °æ¿ì
+		else // ì£¼ìœ„ì— 0ì´ ì—†ì„ ê²½ìš°
 		{
 			while (1)
 			{
 				system("cls");
-				miro[pos->px[pos->top]][pos->py[pos->top]] = 3; // ÇöÀç À§Ä¡ÇÑ °÷À» 3À¸·Î Ã³¸®
+				miro[pos->px[pos->top]][pos->py[pos->top]] = 3; // í˜„ì¬ ìœ„ì¹˜í•œ ê³³ì„ 3ìœ¼ë¡œ ì²˜ë¦¬
 				for (int a = 0; a < 10; a++)
 				{
 					for (int b = 0; b < 10; b++)
@@ -116,16 +116,16 @@ void main()
 				if (miro[pos->px[pos->top] + 1][pos->py[pos->top]] == 0 ||
 					miro[pos->px[pos->top]][pos->py[pos->top] + 1] == 0 ||
 					miro[pos->px[pos->top] - 1][pos->py[pos->top]] == 0 ||
-					miro[pos->px[pos->top]][pos->py[pos->top] - 1] == 0) // ÇöÀç À§Ä¡¿¡¼­ À§, ¾Æ·¡, ¿À¸¥ÂÊ, ¿ŞÂÊ Áß 0ÀÌ ÀÖ´Ù¸é
+					miro[pos->px[pos->top]][pos->py[pos->top] - 1] == 0) // í˜„ì¬ ìœ„ì¹˜ì—ì„œ ìœ„, ì•„ë˜, ì˜¤ë¥¸ìª½, ì™¼ìª½ ì¤‘ 0ì´ ìˆë‹¤ë©´
 				{
 					i = pos->px[pos->top]; 
 					j = pos->py[pos->top]; 
 					break;
 				}
-				pop(pos); // ¹Ù·Î Àü À§Ä¡·Î µÇµ¹¸²
+				pop(pos); // ë°”ë¡œ ì „ ìœ„ì¹˜ë¡œ ë˜ëŒë¦¼
 				if (is_empty(pos))
 				{
-					printf("°æ·Î°¡ ¾ø½À´Ï´Ù.\n");
+					printf("ê²½ë¡œê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 					return;
 				}
 				Sleep(500);
@@ -133,5 +133,5 @@ void main()
 		}
 		Sleep(500);
 	}
-	printf("±æ Ã£±â ¿Ï·á\n");
+	printf("ê¸¸ ì°¾ê¸° ì™„ë£Œ\n");
 }

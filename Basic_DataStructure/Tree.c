@@ -1,84 +1,84 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
-typedef struct TreeNode // Æ®¸®ÀÇ ³ëµåÅ¸ÀÔ
+typedef struct TreeNode // íŠ¸ë¦¬ì˜ ë…¸ë“œíƒ€ìž…
 {
 	int data;
 	struct TreeNode* left, * right;
 } TreeNode;
 
-typedef struct QueueNode  // Å¥ÀÇ ³ëµåÀÇ Å¸ÀÔ 
+typedef struct QueueNode  // íì˜ ë…¸ë“œì˜ íƒ€ìž… 
 {
 	TreeNode* item;
 	struct QueueNode* link;
 } QueueNode;
 
-typedef struct Position // Å¥ ³ëµåÀÇ ¸Ç ¾Õ(front), ¸Ç µÚ(rear)¸¦ °¡¸®Å´
+typedef struct Position // í ë…¸ë“œì˜ ë§¨ ì•ž(front), ë§¨ ë’¤(rear)ë¥¼ ê°€ë¦¬í‚´
 {
 	QueueNode* front, * rear;
 } QueueType;
 
-// ¿À·ù ÇÔ¼ö
+// ì˜¤ë¥˜ í•¨ìˆ˜
 void error(char* message)
 {
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
 
-// Å¥ ÃÊ±âÈ­ ÇÔ¼ö
+// í ì´ˆê¸°í™” í•¨ìˆ˜
 void init_q(QueueType* q)
 {
 	q->front = q->rear = NULL;
 }
 
-// Å¥ °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// í ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(QueueType* q)
 {
 	return (q->front == NULL);
 }
 
-// Å¥ »ðÀÔ ÇÔ¼ö
+// í ì‚½ìž… í•¨ìˆ˜
 void enqueue(QueueType* q, TreeNode* item)
 {
 	QueueNode* temp = (QueueNode*)malloc(sizeof(QueueNode));
 	if (temp == NULL)
-		error("¸Þ¸ð¸®¸¦ ÇÒ´çÇÒ ¼ö ¾ø½À´Ï´Ù");
+		error("ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 	else 
 	{
-		temp->item = item; 			// µ¥ÀÌÅÍ ÀúÀå
-		temp->link = NULL; 			// ¸µÅ© ÇÊµå¸¦ NULL
-		if (is_empty(q))			// Å¥°¡ °ø¹éÀÌ¸é
+		temp->item = item; 			// ë°ì´í„° ì €ìž¥
+		temp->link = NULL; 			// ë§í¬ í•„ë“œë¥¼ NULL
+		if (is_empty(q))			// íê°€ ê³µë°±ì´ë©´
 		{ 		
 			q->front = temp;
 			q->rear = temp;
 		}
-		else						// Å¥°¡ °ø¹éÀÌ ¾Æ´Ï¸é
+		else						// íê°€ ê³µë°±ì´ ì•„ë‹ˆë©´
 		{ 		
-			q->rear->link = temp;   // ¼ø¼­°¡ Áß¿ä
+			q->rear->link = temp;   // ìˆœì„œê°€ ì¤‘ìš”
 			q->rear = temp;
 		}
 	}
 }
 
-// Å¥ »èÁ¦ ÇÔ¼ö
+// í ì‚­ì œ í•¨ìˆ˜
 TreeNode* dequeue(QueueType* q)
 {
 	QueueNode* temp = q->front;
 	TreeNode* item;
-	if (is_empty(q))				// °ø¹é»óÅÂ
-		error("Å¥°¡ ºñ¾î ÀÖÀ¾´Ï´Ù");
+	if (is_empty(q))				// ê³µë°±ìƒíƒœ
+		error("íê°€ ë¹„ì–´ ìžˆìë‹ˆë‹¤");
 	else 
 	{
-		item = temp->item; 			// µ¥ÀÌÅÍ¸¦ ²¨³½´Ù.
-		q->front = q->front->link;  // front¸¦ ´ÙÀ½³ëµå¸¦ °¡¸®Å°µµ·Ï ÇÑ´Ù.
-		if (q->front == NULL) 		// °ø¹é »óÅÂ
+		item = temp->item; 			// ë°ì´í„°ë¥¼ êº¼ë‚¸ë‹¤.
+		q->front = q->front->link;  // frontë¥¼ ë‹¤ìŒë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ë„ë¡ í•œë‹¤.
+		if (q->front == NULL) 		// ê³µë°± ìƒíƒœ
 			q->rear = NULL;
-		free(temp); 				// µ¿Àû¸Þ¸ð¸® ÇØÁ¦
-		return item; 				// µ¥ÀÌÅÍ ¹ÝÈ¯
+		free(temp); 				// ë™ì ë©”ëª¨ë¦¬ í•´ì œ
+		return item; 				// ë°ì´í„° ë°˜í™˜
 	}
 }
 
-//// Æ®¸® ³ëµå¸¦ °¡¸®Å°´Â Æ÷ÀÎÅÍÀÇ ÃÊ±âÈ­
+//// íŠ¸ë¦¬ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í¬ì¸í„°ì˜ ì´ˆê¸°í™”
 //void init(TreeNode** p)
 //{
 //	*p = (TreeNode*)malloc(sizeof(TreeNode));
@@ -86,7 +86,7 @@ TreeNode* dequeue(QueueType* q)
 //	(*p)->right = NULL;
 //}
 //
-//// °èÃþÈ­ (p : ºÎ¸ð ³ëµå, c : ÀÚ½Ä ³ëµå)
+//// ê³„ì¸µí™” (p : ë¶€ëª¨ ë…¸ë“œ, c : ìžì‹ ë…¸ë“œ)
 //void insert(TreeNode* p, TreeNode* c)
 //{
 //	if (p->left == NULL)
@@ -94,69 +94,69 @@ TreeNode* dequeue(QueueType* q)
 //	else if (p->right == NULL)
 //		p->right = c;
 //	else
-//		printf("°èÃþÈ­ÇÒ ¼ö ¾ø½À´Ï´Ù.\n");
+//		printf("ê³„ì¸µí™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
 //}
 //
-//// ÇØ´ç ³ëµå ÃÊ±âÈ­ ¹× µ¥ÀÌÅÍ Ãß°¡
+//// í•´ë‹¹ ë…¸ë“œ ì´ˆê¸°í™” ë° ë°ì´í„° ì¶”ê°€
 //void addData(TreeNode** node, int data)
 //{
 //	init(node);
 //	(*node)->data = data;
 //}
 
-// ÁßÀ§ ¼øÈ¸
+// ì¤‘ìœ„ ìˆœíšŒ
 void inorder(TreeNode* root) 
 {
 	if (root != NULL) 
 	{
-		inorder(root->left);			// ¿ÞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		printf("[%d] ", root->data);    // ³ëµå ¹æ¹®
-		inorder(root->right);			// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		inorder(root->left);			// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		printf("[%d] ", root->data);    // ë…¸ë“œ ë°©ë¬¸
+		inorder(root->right);			// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
 
-// ÀüÀ§ ¼øÈ¸
+// ì „ìœ„ ìˆœíšŒ
 void preorder(TreeNode* root) 
 {
 	if (root != NULL) 
 	{
-		printf("[%d] ", root->data);	// ³ëµå ¹æ¹®
-		preorder(root->left);			// ¿ÞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		preorder(root->right);			// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		printf("[%d] ", root->data);	// ë…¸ë“œ ë°©ë¬¸
+		preorder(root->left);			// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		preorder(root->right);			// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
 
-// ÈÄÀ§ ¼øÈ¸
+// í›„ìœ„ ìˆœíšŒ
 void postorder(TreeNode* root) 
 {
 	if (root != NULL) 
 	{
-		postorder(root->left);			// ¿ÞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		postorder(root->right);			// ¿À¸¥ÂÊ¼­ºêÆ®¸®¼øÈ¸
-		printf("[%d] ", root->data);    // ³ëµå ¹æ¹®
+		postorder(root->left);			// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		postorder(root->right);			// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ìˆœíšŒ
+		printf("[%d] ", root->data);    // ë…¸ë“œ ë°©ë¬¸
 	}
 }
 
-// ·¹º§ ¼øÈ¸
+// ë ˆë²¨ ìˆœíšŒ
 void levelorder(TreeNode* root)
 {
 	QueueType* q = (QueueType*)malloc(sizeof(QueueType));
 	init_q(q); 
-	enqueue(q, root); // ¸Ç Ã³À½ Å¥¿¡ root³ëµå ³ÖÀ½
+	enqueue(q, root); // ë§¨ ì²˜ìŒ íì— rootë…¸ë“œ ë„£ìŒ
 	TreeNode* temp = root;
 	while (!is_empty(q))
 	{
-		temp = dequeue(q); // Å¥¿¡¼­ ¸Ç ¾Õ¿¡ ÀÖ´Â ³ëµå¸¦ »èÁ¦ÇÏ°í »èÁ¦µÈ ³ëµå¸¦ temp¿¡ ÀúÀå
+		temp = dequeue(q); // íì—ì„œ ë§¨ ì•žì— ìžˆëŠ” ë…¸ë“œë¥¼ ì‚­ì œí•˜ê³  ì‚­ì œëœ ë…¸ë“œë¥¼ tempì— ì €ìž¥
 		if (temp->left != NULL)
-			enqueue(q, temp->left); // »èÁ¦µÈ ³ëµåÀÇ left°¡ nullÀÌ ¾Æ´Ï¸é Å¥¿¡ ÀúÀå
+			enqueue(q, temp->left); // ì‚­ì œëœ ë…¸ë“œì˜ leftê°€ nullì´ ì•„ë‹ˆë©´ íì— ì €ìž¥
 		if (temp->right != NULL)
-			enqueue(q, temp->right); // »èÁ¦µÈ ³ëµåÀÇ right°¡ nullÀÌ ¾Æ´Ï¸é Å¥¿¡ ÀúÀå
-		printf("[%d] ", temp->data); // »èÁ¦µÈ ³ëµåÀÇ data Ãâ·Â
+			enqueue(q, temp->right); // ì‚­ì œëœ ë…¸ë“œì˜ rightê°€ nullì´ ì•„ë‹ˆë©´ íì— ì €ìž¥
+		printf("[%d] ", temp->data); // ì‚­ì œëœ ë…¸ë“œì˜ data ì¶œë ¥
 	}
 	free(q);
 }
 
-// ³ëµå °³¼ö
+// ë…¸ë“œ ê°œìˆ˜
 int get_node_count(TreeNode* node)
 {
 	int count = 0;
@@ -165,7 +165,7 @@ int get_node_count(TreeNode* node)
 	return count;
 }
 
-// ´Ü¸» ³ëµå °³¼ö 
+// ë‹¨ë§ ë…¸ë“œ ê°œìˆ˜ 
 int get_leaf_count(TreeNode* node)
 {
 	int count = 0;
@@ -179,7 +179,7 @@ int get_leaf_count(TreeNode* node)
 	return count;
 }
 
-// ³ôÀÌ ±¸ÇÏ±â
+// ë†’ì´ êµ¬í•˜ê¸°
 int get_height(TreeNode* node)
 {
 	int height = 0;
@@ -188,7 +188,7 @@ int get_height(TreeNode* node)
 	return height;
 }
 
-// ¼øÈ¯ÀûÀÎ Å½»ö ÇÔ¼ö
+// ìˆœí™˜ì ì¸ íƒìƒ‰ í•¨ìˆ˜
 TreeNode* search1(TreeNode* node, int key)
 {
 	if (node == NULL) return NULL;
@@ -199,7 +199,7 @@ TreeNode* search1(TreeNode* node, int key)
 		return search1(node->right, key); // 3
 }
 
-// ¹Ýº¹ÀûÀÎ Å½»ö ÇÔ¼ö
+// ë°˜ë³µì ì¸ íƒìƒ‰ í•¨ìˆ˜
 TreeNode* search2(TreeNode* node, int key)
 {
 	while (node != NULL)
@@ -210,19 +210,19 @@ TreeNode* search2(TreeNode* node, int key)
 		else
 			node = node->right;
 	}
-	return NULL; // Å½»ö¿¡ ½ÇÆÐÇßÀ» °æ¿ì NULL ¹ÝÈ¯
+	return NULL; // íƒìƒ‰ì— ì‹¤íŒ¨í–ˆì„ ê²½ìš° NULL ë°˜í™˜
 }
 
-// key¸¦ ÀÌÁø Å½»ö Æ®¸® root¿¡ »ðÀÔ
-// key°¡ ÀÌ¹Ì root¾È¿¡ ÀÖÀ¸¸é »ðÀÔµÇÁö ¾ÊÀ½
+// keyë¥¼ ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ rootì— ì‚½ìž…
+// keyê°€ ì´ë¯¸ rootì•ˆì— ìžˆìœ¼ë©´ ì‚½ìž…ë˜ì§€ ì•ŠìŒ
 void add(TreeNode** root, int key)
 {
-	TreeNode* p, *t; // p´Â ºÎ¸ð³ëµå, t´Â ÇöÀç³ëµå
-	TreeNode* n; // nÀº ÇöÀç³ëµå
+	TreeNode* p, *t; // pëŠ” ë¶€ëª¨ë…¸ë“œ, tëŠ” í˜„ìž¬ë…¸ë“œ
+	TreeNode* n; // nì€ í˜„ìž¬ë…¸ë“œ
 	t = *root;
 	p = NULL;
 
-	// Å½»ö ¸ÕÀú ¼öÇà
+	// íƒìƒ‰ ë¨¼ì € ìˆ˜í–‰
 	while (t != NULL)
 	{
 		if (key == t->data) return;
@@ -232,15 +232,15 @@ void add(TreeNode** root, int key)
 		else
 			t = t->right;
 	}
-	// key°¡ Æ®¸® ¾È¿¡ ¾øÀ¸¹Ç·Î »ðÀÔ
+	// keyê°€ íŠ¸ë¦¬ ì•ˆì— ì—†ìœ¼ë¯€ë¡œ ì‚½ìž…
 	n = (TreeNode*)malloc(sizeof(TreeNode));
 	if (n == NULL) return;
 
-	// µ¥ÀÌÅÍ º¹»ç
+	// ë°ì´í„° ë³µì‚¬
 	n->data = key;
 	n->left = n->right = NULL;
 
-	// ºÎ¸ð ³ëµå¿Í ¸µÅ© ¿¬°á
+	// ë¶€ëª¨ ë…¸ë“œì™€ ë§í¬ ì—°ê²°
 	if (p != NULL)
 	{
 		if (key < p->data)
@@ -252,40 +252,40 @@ void add(TreeNode** root, int key)
 		*root = n;
 }
 
-/*// ¼øÈ¯ ¹æ½Ä
+/*// ìˆœí™˜ ë°©ì‹
 TreeNode* insert_node(TreeNode* node, int key)
 {
-	// Æ®¸®°¡ °ø¹éÀÌ¸é »õ·Î¿î ³ëµå ¹ÝÈ¯
+	// íŠ¸ë¦¬ê°€ ê³µë°±ì´ë©´ ìƒˆë¡œìš´ ë…¸ë“œ ë°˜í™˜
 	if (node == NULL) return new_node(key);
 	
-	// ±×·¸Áö ¾ÊÀ¸¸é ¼øÈ¯ÀûÀ¸·Î Æ®¸® ³»·Á°¨
+	// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìˆœí™˜ì ìœ¼ë¡œ íŠ¸ë¦¬ ë‚´ë ¤ê°
 	if (key < node->data)
 		node->left = insert_node(node->left, key);
 	else if (key > node->data)
 		node->right = insert_node(node->right, key);
 
-	// º¯°æµÈ ·çÆ® Æ÷ÀÎÅÍ ¹ÝÈ¯
+	// ë³€ê²½ëœ ë£¨íŠ¸ í¬ì¸í„° ë°˜í™˜
 	return node;
 } 
 
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 void delete_node(TreeNode** root, int key)
 {
-	TreeNode* p, *child, *succ, *succ_p, *t; // key¸¦ °®´Â ³ëµå t Å½»ö, p´Â tÀÇ ºÎ¸ð³ëµå
+	TreeNode* p, *child, *succ, *succ_p, *t; // keyë¥¼ ê°–ëŠ” ë…¸ë“œ t íƒìƒ‰, pëŠ” tì˜ ë¶€ëª¨ë…¸ë“œ
 	p = NULL;
 	t = *root;
 
-	// key¸¦ °®´Â ³ëµå t Å½»ö
+	// keyë¥¼ ê°–ëŠ” ë…¸ë“œ t íƒìƒ‰
 	while (t != NULL && t->data != key)
 	{
 		p = t;
 		t = (key < t->data) ? t->left : t->right;
 	}
 
-	// Å½»öÀÌ Á¾·áµÈ ½ÃÁ¡¿¡ t°¡ NULLÀÌ¸é Æ®¸® ¾È¿¡ key°¡ ¾øÀ½
-	if (t == NULL) // Å½»öÇÏ´Â Æ®¸®¿£ ¾ø´Â °ª
+	// íƒìƒ‰ì´ ì¢…ë£Œëœ ì‹œì ì— tê°€ NULLì´ë©´ íŠ¸ë¦¬ ì•ˆì— keyê°€ ì—†ìŒ
+	if (t == NULL) // íƒìƒ‰í•˜ëŠ” íŠ¸ë¦¬ì—” ì—†ëŠ” ê°’
 	{
-		printf("Ã£´Â °ªÀÌ ¾ø½À´Ï´Ù.\n");
+		printf("ì°¾ëŠ” ê°’ì´ ì—†ìŠµë‹ˆë‹¤.\n");
 		return;
 	}
 } */

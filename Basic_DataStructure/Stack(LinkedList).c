@@ -1,17 +1,17 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
-typedef int element; // ¿ä¼ÒÀÇ Å¸ÀÔ
+typedef int element; // ìš”ì†Œì˜ íƒ€ì…
 
 typedef struct StackNode
 {
 	element item;
-	struct StackNode* link; // ³ëµåÀÇ Å¸ÀÔ
+	struct StackNode* link; // ë…¸ë“œì˜ íƒ€ì…
 }StackNode;
 
 typedef struct 
 {
-	StackNode* top; // ¿¬°áÀÇ ½ºÅÃÀÇ °ü·Ã µ¥ÀÌÅÍ
+	StackNode* top; // ì—°ê²°ì˜ ìŠ¤íƒì˜ ê´€ë ¨ ë°ì´í„°
 }LinkedStackType;
 
 void init(LinkedStackType* s)
@@ -19,7 +19,7 @@ void init(LinkedStackType* s)
 	s->top = NULL;
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(LinkedStackType* s)
 {
 	return (s->top == NULL);
@@ -30,7 +30,7 @@ void push(LinkedStackType* s, element item)
 	StackNode* temp = (StackNode*)malloc(sizeof(StackNode));
 	if (temp == NULL)
 	{
-		fprint(stderr, "¸Ş¸ğ¸® ÇÒ´ç¿¡·¯\n");
+		fprint(stderr, "ë©”ëª¨ë¦¬ í• ë‹¹ì—ëŸ¬\n");
 		return;
 	}
 	else
@@ -45,15 +45,15 @@ element pop(LinkedStackType* s)
 {
 	if (is_empty(s))
 	{
-		fprintf(stderr, "½ºÅÃÀÌ ºñ¾îÀÖÀ½\n");
+		fprintf(stderr, "ìŠ¤íƒì´ ë¹„ì–´ìˆìŒ\n");
 		exit(1);
 	}
 	else
 	{
-		StackNode* temp = s->top; // »èÁ¦ÇÒ ³ëµå Æ÷ÀÎÅÍº¯¼ö·Î »ı¼º
-		int item = temp->item; // tempÀÇ ¿ä¼Ò°ªÀ» item º¯¼ö¿¡ ´ëÀÔ
-		s->top = s->top->link; // topÀÇ À§Ä¡ º¯°æ
-		free(temp); // temp Á¦°Å
-		return item; // ¿ä¼Ò°ª ¹İÈ¯
+		StackNode* temp = s->top; // ì‚­ì œí•  ë…¸ë“œ í¬ì¸í„°ë³€ìˆ˜ë¡œ ìƒì„±
+		int item = temp->item; // tempì˜ ìš”ì†Œê°’ì„ item ë³€ìˆ˜ì— ëŒ€ì…
+		s->top = s->top->link; // topì˜ ìœ„ì¹˜ ë³€ê²½
+		free(temp); // temp ì œê±°
+		return item; // ìš”ì†Œê°’ ë°˜í™˜
 	}
 }

@@ -1,84 +1,84 @@
-//	LinkedQueue.c
+ï»¿//	LinkedQueue.c
 
 #include <stdio.h>
-#include <malloc.h>¡¡ 
+#include <malloc.h>ã€€ 
 
-typedef int element;	// ¿ä¼ÒÀÇ Å¸ÀÔ
-typedef struct QueueNode {	// Å¥ÀÇ ³ëµåÀÇ Å¸ÀÔ 
+typedef int element;	// ìš”ì†Œì˜ íƒ€ì…
+typedef struct QueueNode {	// íì˜ ë…¸ë“œì˜ íƒ€ì… 
 	element item;
 	struct QueueNode *link;
 } QueueNode;
-typedef struct {		// Å¥ ADT ±¸Çö
+typedef struct {		// í ADT êµ¬í˜„
 	QueueNode *front, *rear;
 } QueueType;
-// ¿À·ù ÇÔ¼ö
+// ì˜¤ë¥˜ í•¨ìˆ˜
 void error(char *message)
 {
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void init(QueueType *q)
 {
 	q->front = q->rear = NULL;
 }
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(QueueType *q)
 {
 	return (q->front == NULL);
 }
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(QueueType *q)
 {
 	return 0;
 }
-// »ğÀÔ ÇÔ¼ö
+// ì‚½ì… í•¨ìˆ˜
 void enqueue(QueueType *q, element item)
 {
 	QueueNode *temp = (QueueNode *)malloc(sizeof(QueueNode));
 	if (temp == NULL)
-		error("¸Ş¸ğ¸®¸¦ ÇÒ´çÇÒ ¼ö ¾ø½À´Ï´Ù");
+		error("ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
 	else {
-		temp->item = item; 		// µ¥ÀÌÅÍ ÀúÀå
-		temp->link = NULL; 		// ¸µÅ© ÇÊµå¸¦ NULL
-		if (is_empty(q)) { 		// Å¥°¡ °ø¹éÀÌ¸é
+		temp->item = item; 		// ë°ì´í„° ì €ì¥
+		temp->link = NULL; 		// ë§í¬ í•„ë“œë¥¼ NULL
+		if (is_empty(q)) { 		// íê°€ ê³µë°±ì´ë©´
 			q->front = temp;
 			q->rear = temp;
 		}
-		else { 		// Å¥°¡ °ø¹éÀÌ ¾Æ´Ï¸é
-			q->rear->link = temp;  // ¼ø¼­°¡ Áß¿ä
+		else { 		// íê°€ ê³µë°±ì´ ì•„ë‹ˆë©´
+			q->rear->link = temp;  // ìˆœì„œê°€ ì¤‘ìš”
 			q->rear = temp;
 		}
 	}
 }
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element dequeue(QueueType *q)
 {
 	QueueNode *temp = q->front;
 	element item;
-	if (is_empty(q))			// °ø¹é»óÅÂ
-		error("Å¥°¡ ºñ¾î ÀÖÀ¾´Ï´Ù");
+	if (is_empty(q))			// ê³µë°±ìƒíƒœ
+		error("íê°€ ë¹„ì–´ ìˆìë‹ˆë‹¤");
 	else {
-		item = temp->item; 		// µ¥ÀÌÅÍ¸¦ ²¨³½´Ù.
-		q->front = q->front->link; // front¸¦ ´ÙÀ½³ëµå¸¦ °¡¸®Å°µµ·Ï ÇÑ´Ù.
-		if (q->front == NULL) 	// °ø¹é »óÅÂ
+		item = temp->item; 		// ë°ì´í„°ë¥¼ êº¼ë‚¸ë‹¤.
+		q->front = q->front->link; // frontë¥¼ ë‹¤ìŒë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ë„ë¡ í•œë‹¤.
+		if (q->front == NULL) 	// ê³µë°± ìƒíƒœ
 			q->rear = NULL;
-		free(temp); 			// µ¿Àû¸Ş¸ğ¸® ÇØÁ¦
-		return item; 			// µ¥ÀÌÅÍ ¹İÈ¯
+		free(temp); 			// ë™ì ë©”ëª¨ë¦¬ í•´ì œ
+		return item; 			// ë°ì´í„° ë°˜í™˜
 	}
 }
-// peek ÇÔ¼ö
+// peek í•¨ìˆ˜
 element peek(QueueType *q)
 {
 	element item;
 	if (is_empty(q))
-		error("Å¥°¡ ºñ¾î ÀÖÀ¾´Ï´Ù");
+		error("íê°€ ë¹„ì–´ ìˆìë‹ˆë‹¤");
 	else {
-		item = q->front->item;	// µ¥ÀÌÅÍ¸¦ ²¨³½´Ù.
-		return item; 			// µ¥ÀÌÅÍ ¹İÈ¯
+		item = q->front->item;	// ë°ì´í„°ë¥¼ êº¼ë‚¸ë‹¤.
+		return item; 			// ë°ì´í„° ë°˜í™˜
 	}
 }
-// ¿¬°áµÈ Å¥ Å×½ºÆ® ÇÔ¼ö
+// ì—°ê²°ëœ í í…ŒìŠ¤íŠ¸ í•¨ìˆ˜
 int main(void)
 {
 	QueueType q;

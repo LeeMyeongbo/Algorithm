@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef int element;
@@ -7,7 +7,7 @@ typedef struct TreeNode {
 	struct TreeNode *left, *right;
 } TreeNode;
 
-// ¼øÈ¯ÀûÀÎ Å½»ö ÇÔ¼ö
+// ìˆœí™˜ì ì¸ íƒìƒ‰ í•¨ìˆ˜
 TreeNode * search(TreeNode * node, int key)
 {
 	if (node == NULL) return NULL;
@@ -26,43 +26,43 @@ TreeNode * new_node(int item)
 }
 TreeNode * insert_node(TreeNode * node, int key)
 {
-	// Æ®¸®°¡ °ø¹éÀÌ¸é »õ·Î¿î ³ëµå¸¦ ¹İÈ¯ÇÑ´Ù. 
+	// íŠ¸ë¦¬ê°€ ê³µë°±ì´ë©´ ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ë°˜í™˜í•œë‹¤. 
 	if (node == NULL) return new_node(key);
 
-	// ±×·¸Áö ¾ÊÀ¸¸é ¼øÈ¯ÀûÀ¸·Î Æ®¸®¸¦ ³»·Á°£´Ù. 
+	// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìˆœí™˜ì ìœ¼ë¡œ íŠ¸ë¦¬ë¥¼ ë‚´ë ¤ê°„ë‹¤. 
 	if (key < node->key)
 		node->left = insert_node(node->left, key);
 	else if (key > node->key)
 		node->right = insert_node(node->right, key);
 
-	// º¯°æµÈ ·çÆ® Æ÷ÀÎÅÍ¸¦ ¹İÈ¯ÇÑ´Ù. 
+	// ë³€ê²½ëœ ë£¨íŠ¸ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤. 
 	return node;
 }
 TreeNode * min_value_node(TreeNode * node)
 {
 	TreeNode * current = node;
 
-	// ¸Ç ¿ŞÂÊ ´Ü¸» ³ëµå¸¦ Ã£À¸·¯ ³»·Á°¨
+	// ë§¨ ì™¼ìª½ ë‹¨ë§ ë…¸ë“œë¥¼ ì°¾ìœ¼ëŸ¬ ë‚´ë ¤ê°
 	while (current->left != NULL)
 		current = current->left;
 
 	return current;
 }
-// ÀÌÁø Å½»ö Æ®¸®¿Í Å°°¡ ÁÖ¾îÁö¸é Å°°¡ ÀúÀåµÈ ³ëµå¸¦ »èÁ¦ÇÏ°í 
-// »õ·Î¿î ·çÆ® ³ëµå¸¦ ¹İÈ¯ÇÑ´Ù. 
+// ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ì™€ í‚¤ê°€ ì£¼ì–´ì§€ë©´ í‚¤ê°€ ì €ì¥ëœ ë…¸ë“œë¥¼ ì‚­ì œí•˜ê³  
+// ìƒˆë¡œìš´ ë£¨íŠ¸ ë…¸ë“œë¥¼ ë°˜í™˜í•œë‹¤. 
 TreeNode * delete_node(TreeNode * root, int key)
 {
 	if (root == NULL) return root;
 
-	// ¸¸¾à Å°°¡ ·çÆ®º¸´Ù ÀÛÀ¸¸é ¿ŞÂÊ ¼­ºê Æ®¸®¿¡ ÀÖ´Â °ÍÀÓ
+	// ë§Œì•½ í‚¤ê°€ ë£¨íŠ¸ë³´ë‹¤ ì‘ìœ¼ë©´ ì™¼ìª½ ì„œë¸Œ íŠ¸ë¦¬ì— ìˆëŠ” ê²ƒì„
 	if (key < root->key)
 		root->left = delete_node(root->left, key);
-	// ¸¸¾à Å°°¡ ·çÆ®º¸´Ù Å©¸é ¿À¸¥ÂÊ ¼­ºê Æ®¸®¿¡ ÀÖ´Â °ÍÀÓ
+	// ë§Œì•½ í‚¤ê°€ ë£¨íŠ¸ë³´ë‹¤ í¬ë©´ ì˜¤ë¥¸ìª½ ì„œë¸Œ íŠ¸ë¦¬ì— ìˆëŠ” ê²ƒì„
 	else if (key > root->key)
 		root->right = delete_node(root->right, key);
-	// Å°°¡ ·çÆ®¿Í °°À¸¸é ÀÌ ³ëµå¸¦ »èÁ¦ÇÏ¸é µÊ
+	// í‚¤ê°€ ë£¨íŠ¸ì™€ ê°™ìœ¼ë©´ ì´ ë…¸ë“œë¥¼ ì‚­ì œí•˜ë©´ ë¨
 	else {
-		// Ã¹ ¹øÂ°³ª µÎ ¹øÂ° °æ¿ì
+		// ì²« ë²ˆì§¸ë‚˜ ë‘ ë²ˆì§¸ ê²½ìš°
 		if (root->left == NULL) {
 			TreeNode * temp = root->right;
 			free(root);
@@ -73,23 +73,23 @@ TreeNode * delete_node(TreeNode * root, int key)
 			free(root);
 			return temp;
 		}
-		// ¼¼ ¹øÂ° °æ¿ì
+		// ì„¸ ë²ˆì§¸ ê²½ìš°
 		TreeNode * temp = min_value_node(root->right);
 
-		// Áß¿Ü ¼øÈ¸½Ã ÈÄ°è ³ëµå¸¦ º¹»çÇÑ´Ù. 
+		// ì¤‘ì™¸ ìˆœíšŒì‹œ í›„ê³„ ë…¸ë“œë¥¼ ë³µì‚¬í•œë‹¤. 
 		root->key = temp->key;
-		// Áß¿Ü ¼øÈ¸½Ã ÈÄ°è ³ëµå¸¦ »èÁ¦ÇÑ´Ù. 
+		// ì¤‘ì™¸ ìˆœíšŒì‹œ í›„ê³„ ë…¸ë“œë¥¼ ì‚­ì œí•œë‹¤. 
 		root->right = delete_node(root->right, temp->key);
 	}
 	return root;
 }
 
-// ÁßÀ§ ¼øÈ¸
+// ì¤‘ìœ„ ìˆœíšŒ
 void inorder(TreeNode * root) {
 	if (root) {
-		inorder(root->left);// ¿ŞÂÊ¼­ºêÆ®¸® ¼øÈ¸
-		printf("[%d] ", root->key);  // ³ëµå ¹æ¹®
-		inorder(root->right);// ¿À¸¥ÂÊ¼­ºêÆ®¸® ¼øÈ¸
+		inorder(root->left);// ì™¼ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
+		printf("[%d] ", root->key);  // ë…¸ë“œ ë°©ë¬¸
+		inorder(root->right);// ì˜¤ë¥¸ìª½ì„œë¸ŒíŠ¸ë¦¬ ìˆœíšŒ
 	}
 }
 
@@ -105,12 +105,12 @@ int main(void)
 	root = insert_node(root, 50);
 	root = insert_node(root, 60);
 
-	printf("ÀÌÁø Å½»ö Æ®¸® ÁßÀ§ ¼øÈ¸ °á°ú \n");
+	printf("ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ ì¤‘ìœ„ ìˆœíšŒ ê²°ê³¼ \n");
 	inorder(root);
 	printf("\n\n");
 	if (search(root, 30) != NULL)
-		printf("ÀÌÁø Å½»ö Æ®¸®¿¡¼­ 30À» ¹ß°ßÇÔ \n");
+		printf("ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ì—ì„œ 30ì„ ë°œê²¬í•¨ \n");
 	else
-		printf("ÀÌÁø Å½»ö Æ®¸®¿¡¼­ 30À» ¹ß°ß¸øÇÔ \n");
+		printf("ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ì—ì„œ 30ì„ ë°œê²¬ëª»í•¨ \n");
 	return 0;
 }

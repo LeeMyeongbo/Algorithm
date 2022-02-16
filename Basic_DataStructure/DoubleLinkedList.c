@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef int element;
@@ -9,7 +9,7 @@ typedef struct DlistNode
 	struct DlistNode *rlink;
 }DlistNode;
 
-// ³ëµå new_node¸¦ ³ëµå beforeÀÇ ¿À¸¥ÂÊ¿¡ »ðÀÔ
+// ë…¸ë“œ new_nodeë¥¼ ë…¸ë“œ beforeì˜ ì˜¤ë¥¸ìª½ì— ì‚½ìž…
 void dinsert_node(DlistNode* before, DlistNode* new_node)
 {
 	new_node->llink = before; // 1
@@ -18,7 +18,7 @@ void dinsert_node(DlistNode* before, DlistNode* new_node)
 	before->rlink = new_node; // 4
 }
 
-// ³ëµå removed¸¦ »èÁ¦ÇÑ´Ù.
+// ë…¸ë“œ removedë¥¼ ì‚­ì œí•œë‹¤.
 void dremoved_node(DlistNode* phead_node, DlistNode* removed)
 {
 	if (removed == phead_node) return;

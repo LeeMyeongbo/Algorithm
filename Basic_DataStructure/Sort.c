@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 10
 #define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
@@ -7,104 +7,104 @@
 #define MAX_QUEUE_SIZE 100
 
 typedef int element;
-typedef struct { // Å¥ Å¸ÀÔ
+typedef struct { // í íƒ€ì…
 	element  data[MAX_QUEUE_SIZE];
 	int  front, rear;
 } QueueType;
 
-// ¿À·ù ÇÔ¼ö
+// ì˜¤ë¥˜ í•¨ìˆ˜
 void error(char *message)
 {
 	fprintf(stderr, "%s\n", message);
 	exit(1);
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 void init_queue(QueueType *q)
 {
 	q->front = q->rear = 0;
 }
 
-// °ø¹é »óÅÂ °ËÃâ ÇÔ¼ö
+// ê³µë°± ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_empty(QueueType *q)
 {
 	return (q->front == q->rear);
 }
 
-// Æ÷È­ »óÅÂ °ËÃâ ÇÔ¼ö
+// í¬í™” ìƒíƒœ ê²€ì¶œ í•¨ìˆ˜
 int is_full(QueueType *q)
 {
 	return ((q->rear + 1) % MAX_QUEUE_SIZE == q->front);
 }
 
-// »ğÀÔ ÇÔ¼ö
+// ì‚½ì… í•¨ìˆ˜
 void enqueue(QueueType *q, element item)
 {
 	if (is_full(q))
-		error("Å¥°¡ Æ÷È­»óÅÂÀÔ´Ï´Ù");
+		error("íê°€ í¬í™”ìƒíƒœì…ë‹ˆë‹¤");
 	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
 	q->data[q->rear] = item;
 }
 
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element dequeue(QueueType *q)
 {
 	if (is_empty(q))
-		error("Å¥°¡ °ø¹é»óÅÂÀÔ´Ï´Ù");
+		error("íê°€ ê³µë°±ìƒíƒœì…ë‹ˆë‹¤");
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
 	return q->data[q->front];
 }
 
 int list[MAX_SIZE];
 int n;
-int sorted[MAX_SIZE]; // ÇÕº´ Á¤·ÄÀ» À§ÇÑ Ãß°¡ °ø°£
+int sorted[MAX_SIZE]; // í•©ë³‘ ì •ë ¬ì„ ìœ„í•œ ì¶”ê°€ ê³µê°„
 
-// ¼±ÅÃÁ¤·Ä (¾ÈÁ¤¼º ¸¸Á· x)
+// ì„ íƒì •ë ¬ (ì•ˆì •ì„± ë§Œì¡± x)
 void selection_sort(int list[], int n)
 {
 	int i, j, least, temp;
 	for (i = 0; i < n - 1; i++) {
 		least = i;
-		for (j = i + 1; j < n; j++) 	// ÃÖ¼Ò°ª Å½»ö
+		for (j = i + 1; j < n; j++) 	// ìµœì†Œê°’ íƒìƒ‰
 			if (list[j] < list[least]) 
 				least = j;
 		SWAP(list[i], list[least], temp);
 	}
 }
 
-// »ğÀÔÁ¤·Ä
-// 1. ÀÎµ¦½º 1ºÎÅÍ ½ÃÀÛ.(ÀÎµ¦½º 0Àº ÀÌ¹Ì Á¤·ÄµÈ °ÍÀ¸·Î)
-// 2. ÇöÀç »ğÀÔµÉ ¼ıÀÚÀÎ i¹øÂ° Á¤¼ö¸¦ key º¯¼ö·Î º¹»ç
-// 3. ÇöÀç Á¤·ÄµÈ ¹è¿­Àº i-1±îÁöÀÌ¹Ç·Î i-1¹øÂ°ºÎÅÍ ¿ª¼øÀ¸·Î Á¶»ç
-// 4. j°ªÀÌ À½¼ö°¡ ¾Æ´Ï¾î¾ß µÇ°í key°ªº¸´Ù Á¤·ÄµÈ ¹è¿­¿¡ ÀÖ´Â °ªÀÌ Å©¸é j¹øÂ°¸¦ j+1¹øÂ°·Î ÀÌµ¿
-// 5. j¸¦ ÇÏ³ª °¨¼Ò½ÃÅ´
-// 6. j¹øÂ° Á¤¼ö°¡ keyº¸´Ù ÀÛÀ¸¹Ç·Î j+1¹øÂ°°¡ key°ªÀÌ µé¾î°¥ À§Ä¡
+// ì‚½ì…ì •ë ¬
+// 1. ì¸ë±ìŠ¤ 1ë¶€í„° ì‹œì‘.(ì¸ë±ìŠ¤ 0ì€ ì´ë¯¸ ì •ë ¬ëœ ê²ƒìœ¼ë¡œ)
+// 2. í˜„ì¬ ì‚½ì…ë  ìˆ«ìì¸ ië²ˆì§¸ ì •ìˆ˜ë¥¼ key ë³€ìˆ˜ë¡œ ë³µì‚¬
+// 3. í˜„ì¬ ì •ë ¬ëœ ë°°ì—´ì€ i-1ê¹Œì§€ì´ë¯€ë¡œ i-1ë²ˆì§¸ë¶€í„° ì—­ìˆœìœ¼ë¡œ ì¡°ì‚¬
+// 4. jê°’ì´ ìŒìˆ˜ê°€ ì•„ë‹ˆì–´ì•¼ ë˜ê³  keyê°’ë³´ë‹¤ ì •ë ¬ëœ ë°°ì—´ì— ìˆëŠ” ê°’ì´ í¬ë©´ jë²ˆì§¸ë¥¼ j+1ë²ˆì§¸ë¡œ ì´ë™
+// 5. jë¥¼ í•˜ë‚˜ ê°ì†Œì‹œí‚´
+// 6. jë²ˆì§¸ ì •ìˆ˜ê°€ keyë³´ë‹¤ ì‘ìœ¼ë¯€ë¡œ j+1ë²ˆì§¸ê°€ keyê°’ì´ ë“¤ì–´ê°ˆ ìœ„ì¹˜
 void insertion_sort(int list[], int n)
 {
 	int i, j, key;
 	for (i = 1; i < n; i++) {
 		key = list[i];
 		for (j = i - 1; j >= 0 && list[j] > key; j--)
-			list[j + 1] = list[j];	 /* ·¹ÄÚµåÀÇ ¿À¸¥ÂÊ ÀÌµ¿ */
+			list[j + 1] = list[j];	 /* ë ˆì½”ë“œì˜ ì˜¤ë¥¸ìª½ ì´ë™ */
 		list[j + 1] = key;
 	}
 }
 
-// ¹öºíÁ¤·Ä
+// ë²„ë¸”ì •ë ¬
 void bubble_sort(int list[], int n)
 {
 	int i, j, temp;
 	for (i = n - 1; i > 0; i--) {
 		for (j = 0; j < i; j++)
-			/* ¾ÕµÚÀÇ ·¹ÄÚµå¸¦ ºñ±³ÇÑ ÈÄ ±³Ã¼ */
+			/* ì•ë’¤ì˜ ë ˆì½”ë“œë¥¼ ë¹„êµí•œ í›„ êµì²´ */
 			if (list[j] > list[j + 1])
 				SWAP(list[j], list[j + 1], temp);
 	}
 }
 
-// ¼Ğ Á¤·Ä
-// gap ¸¸Å­ ¶³¾îÁø ¿ä¼ÒµéÀ» »ğÀÔ Á¤·Ä
-// Á¤·ÄÀÇ ¹üÀ§´Â first¿¡¼­ last
+// ì…¸ ì •ë ¬
+// gap ë§Œí¼ ë–¨ì–´ì§„ ìš”ì†Œë“¤ì„ ì‚½ì… ì •ë ¬
+// ì •ë ¬ì˜ ë²”ìœ„ëŠ” firstì—ì„œ last
 inc_insertion_sort(int list[], int first, int last, int gap)
 {
 	int i, j, key;
@@ -121,21 +121,21 @@ void shell_sort(int list[], int n)   // n = size
 	int i, gap;
 	for (gap = n / 2; gap > 0; gap = gap / 2) {
 		if ((gap % 2) == 0) gap++;
-		for (i = 0; i < gap; i++)		// ºÎºĞ ¸®½ºÆ®ÀÇ °³¼ö´Â gap
+		for (i = 0; i < gap; i++)		// ë¶€ë¶„ ë¦¬ìŠ¤íŠ¸ì˜ ê°œìˆ˜ëŠ” gap
 			inc_insertion_sort(list, i, n - 1, gap);
 	}
 }
 
-// ÇÕº´Á¤·Ä
+// í•©ë³‘ì •ë ¬
 void merge(int list[], int left, int mid, int right)
 {
-	// i´Â Á¤·ÄµÈ ¿ŞÂÊ ¸®½ºÆ®¿¡ ´ëÇÑ ÀÎµ¦½º, j´Â Á¤·ÄµÈ ¿À¸¥ÂÊ ¸®½ºÆ®¿¡ ´ëÇÑ ÀÎµ¦½º, k´Â Á¤·ÄµÈ ¸®½ºÆ®¿¡ ´ëÇÑ ÀÎµ¦½º
+	// iëŠ” ì •ë ¬ëœ ì™¼ìª½ ë¦¬ìŠ¤íŠ¸ì— ëŒ€í•œ ì¸ë±ìŠ¤, jëŠ” ì •ë ¬ëœ ì˜¤ë¥¸ìª½ ë¦¬ìŠ¤íŠ¸ì— ëŒ€í•œ ì¸ë±ìŠ¤, këŠ” ì •ë ¬ëœ ë¦¬ìŠ¤íŠ¸ì— ëŒ€í•œ ì¸ë±ìŠ¤
 	int i, j, k, l;
 	i = left; 
 	j = mid + 1;
 	k = left;
 
-	// ºĞÇÒ Á¤·ÄµÈ listÀÇ ÇÕº´
+	// ë¶„í•  ì •ë ¬ëœ listì˜ í•©ë³‘
 	while (i <= mid && j <= right)
 	{
 		if (list[i] <= list[j])
@@ -143,14 +143,14 @@ void merge(int list[], int left, int mid, int right)
 		else
 			sorted[k++] = list[i++];
 	}
-	if (i > mid) // ³²¾Æ ÀÖ´Â ·¹ÄÚµåÀÇ ÀÏ°ı º¹»ç
+	if (i > mid) // ë‚¨ì•„ ìˆëŠ” ë ˆì½”ë“œì˜ ì¼ê´„ ë³µì‚¬
 		for (l = j; l <= right; l++)
 			sorted[k++] = list[l];
-	else // ³²¾Æ ÀÖ´Â ·¹ÄÚµåÀÇ ÀÏ°ı º¹»ç
+	else // ë‚¨ì•„ ìˆëŠ” ë ˆì½”ë“œì˜ ì¼ê´„ ë³µì‚¬
 		for (l = i; l <= mid; l++)
 			sorted[k++] = list[l];
 
-	// ¹è¿­ sortedÀÇ ¸®½ºÆ®¸¦ ¹è¿­ list·Î Àçº¹»ç
+	// ë°°ì—´ sortedì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°°ì—´ listë¡œ ì¬ë³µì‚¬
 	for (l = left; l <= right; l++)
 		list[l] = sorted[l];
 }
@@ -160,15 +160,15 @@ merge_sort(int list[], int left, int right)
 	int mid;
 	if (left < right)
 	{
-		int mid = (left + right) / 2; // ¸®½ºÆ®ÀÇ ±Õµî ºĞÇÒ
-		merge_sort(list, left, mid); // ºÎºĞ ¸®½ºÆ® Á¤·Ä
-		merge_sort(list, mid + 1, right); // ºÎºĞ ¸®½ºÆ® Á¤·Ä
-		merge(list, left, mid, right); // ÇÕº´
+		int mid = (left + right) / 2; // ë¦¬ìŠ¤íŠ¸ì˜ ê· ë“± ë¶„í• 
+		merge_sort(list, left, mid); // ë¶€ë¶„ ë¦¬ìŠ¤íŠ¸ ì •ë ¬
+		merge_sort(list, mid + 1, right); // ë¶€ë¶„ ë¦¬ìŠ¤íŠ¸ ì •ë ¬
+		merge(list, left, mid, right); // í•©ë³‘
 	}
 }
 
-// Äü Á¤·Ä
-int partition(int list[], int left, int right) // pivotÀÇ À§Ä¡ ¹İÈ¯ 
+// í€µ ì •ë ¬
+int partition(int list[], int left, int right) // pivotì˜ ìœ„ì¹˜ ë°˜í™˜ 
 {
 	int pivot, temp, low, high;
 	low = left;
@@ -193,26 +193,26 @@ void quick_sort(int list[], int left, int right)
 	if (left < right)
 	{
 		int q = partition(list, left, right);
-		quick_sort(list, left, q - 1); // pivot ¹Ù·Î ¾Õ ±îÁö¸¦ ¼øÈ¯È£Ãâ
-		quick_sort(list, q + 1, right); // pivot ¹Ù·Î µÚºÎÅÍ ¼øÈ¯È£Ãâ
+		quick_sort(list, left, q - 1); // pivot ë°”ë¡œ ì• ê¹Œì§€ë¥¼ ìˆœí™˜í˜¸ì¶œ
+		quick_sort(list, q + 1, right); // pivot ë°”ë¡œ ë’¤ë¶€í„° ìˆœí™˜í˜¸ì¶œ
 	}
 }
 
-// ±â¼ö Á¤·Ä
+// ê¸°ìˆ˜ ì •ë ¬
 int radix_sort(int list[], int n)
 {
 	int i, b, d, factor = 1;
 	QueueType queues[BUCKETS];
 
 	for (b = 0; b < BUCKETS; b++)
-		init_queue(&queues[b]); // Å¥µéÀÇ ÃÊ±âÈ­
+		init_queue(&queues[b]); // íë“¤ì˜ ì´ˆê¸°í™”
 	for (d = 0; d < DIGITS; d++)
 		for (i = 0; i < n; i++)
-			enqueue(&queues[(list[i] / factor) % 10], list[i]); // µ¥ÀÌÅÍµéÀ» ÀÚ¸®¼ö¿¡ µû¶ó Å¥¿¡ »ğÀÔ
-	for (b = i = 0; b < BUCKETS; b++) // ¹öÅ¶¿¡¼­ ²¨³»¾î list·Î ÇÕÄ£´Ù.
+			enqueue(&queues[(list[i] / factor) % 10], list[i]); // ë°ì´í„°ë“¤ì„ ìë¦¬ìˆ˜ì— ë”°ë¼ íì— ì‚½ì…
+	for (b = i = 0; b < BUCKETS; b++) // ë²„í‚·ì—ì„œ êº¼ë‚´ì–´ listë¡œ í•©ì¹œë‹¤.
 		while (!is_empty(&queues[b]))
 			list[i++] = dequeue(&queues[b]);
-	factor *= 10; // ±× ´ÙÀ½ ÀÚ¸®¼ö·Î °£´Ù.
+	factor *= 10; // ê·¸ ë‹¤ìŒ ìë¦¬ìˆ˜ë¡œ ê°„ë‹¤.
 }
 
 int main(void)
@@ -221,23 +221,23 @@ int main(void)
 	n = MAX_SIZE;
 	srand(time(NULL));
 
-	for (i = 0; i < n; i++)      	// ³­¼ö »ı¼º ¹× Ãâ·Â 
-		list[i] = rand() % 100; // ³­¼ö ¹ß»ı ¹üÀ§ 0~99
-	selection_sort(list, n); // ¼±ÅÃÁ¤·Ä È£Ãâ 
+	for (i = 0; i < n; i++)      	// ë‚œìˆ˜ ìƒì„± ë° ì¶œë ¥ 
+		list[i] = rand() % 100; // ë‚œìˆ˜ ë°œìƒ ë²”ìœ„ 0~99
+	selection_sort(list, n); // ì„ íƒì •ë ¬ í˜¸ì¶œ 
 	for (i = 0; i < n; i++)
 		printf("%d ", list[i]);
 	printf("\n");
 
-	for (i = 0; i < n; i++)      	// ³­¼ö »ı¼º ¹× Ãâ·Â 
-		list[i] = rand() % 100; // ³­¼ö ¹ß»ı ¹üÀ§ 0~99
-	insertion_sort(list, n); // »ğÀÔÁ¤·Ä È£Ãâ
+	for (i = 0; i < n; i++)      	// ë‚œìˆ˜ ìƒì„± ë° ì¶œë ¥ 
+		list[i] = rand() % 100; // ë‚œìˆ˜ ë°œìƒ ë²”ìœ„ 0~99
+	insertion_sort(list, n); // ì‚½ì…ì •ë ¬ í˜¸ì¶œ
 	for (i = 0; i < n; i++)
 		printf("%d ", list[i]);
 	printf("\n");
 
-	for (i = 0; i < n; i++)      	// ³­¼ö »ı¼º ¹× Ãâ·Â 
-		list[i] = rand() % 100; // ³­¼ö ¹ß»ı ¹üÀ§ 0~99
-	quick_sort(list, 0, n - 1); // Äü Á¤·Ä È£Ãâ
+	for (i = 0; i < n; i++)      	// ë‚œìˆ˜ ìƒì„± ë° ì¶œë ¥ 
+		list[i] = rand() % 100; // ë‚œìˆ˜ ë°œìƒ ë²”ìœ„ 0~99
+	quick_sort(list, 0, n - 1); // í€µ ì •ë ¬ í˜¸ì¶œ
 	for (i = 0; i < n; i++)
 		printf("%d ", list[i]);
 	printf("\n");

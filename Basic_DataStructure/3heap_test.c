@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
 #define MAX_ELEMENT 200
 typedef struct {
@@ -9,12 +9,12 @@ typedef struct {
 	int heap_size;
 } HeapType;
 
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 init(HeapType *h)
 {
 	h->heap_size = 0;
 }
-// È÷ÇÁ ³»¿ë Ãâ·Â ÇÔ¼ö
+// íˆí”„ ë‚´ìš© ì¶œë ¥ í•¨ìˆ˜
 print_heap(HeapType *h)
 {
 	int i;
@@ -29,20 +29,20 @@ print_heap(HeapType *h)
 	}
 	printf("\n===================");
 }
-// »ğÀÔ ÇÔ¼ö
+// ì‚½ì… í•¨ìˆ˜
 void insert_max_heap(HeapType *h, element item)
 {
 	int i;
 	i = ++(h->heap_size);
 
-	//  Æ®¸®¸¦ °Å½½·¯ ¿Ã¶ó°¡¸é¼­ ºÎ¸ğ ³ëµå¿Í ºñ±³ÇÏ´Â °úÁ¤
+	//  íŠ¸ë¦¬ë¥¼ ê±°ìŠ¬ëŸ¬ ì˜¬ë¼ê°€ë©´ì„œ ë¶€ëª¨ ë…¸ë“œì™€ ë¹„êµí•˜ëŠ” ê³¼ì •
 	while ((i != 1) && (item.key > h->heap[i / 2].key)) {
 		h->heap[i] = h->heap[i / 2];
 		i /= 2;
 	}
-	h->heap[i] = item;     // »õ·Î¿î ³ëµå¸¦ »ğÀÔ
+	h->heap[i] = item;     // ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ì‚½ì…
 }
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element delete_max_heap(HeapType *h)
 {
 	int parent, child;
@@ -53,12 +53,12 @@ element delete_max_heap(HeapType *h)
 	parent = 1;
 	child = 2;
 	while (child <= h->heap_size) {
-		// ÇöÀç ³ëµåÀÇ ÀÚ½Ä³ëµåÁß ´õ ÀÛÀº ÀÚ½Ä³ëµå¸¦ Ã£´Â´Ù.
+		// í˜„ì¬ ë…¸ë“œì˜ ìì‹ë…¸ë“œì¤‘ ë” ì‘ì€ ìì‹ë…¸ë“œë¥¼ ì°¾ëŠ”ë‹¤.
 		if ((child < h->heap_size) &&
 			(h->heap[child].key) < h->heap[child + 1].key)
 			child++;
 		if (temp.key >= h->heap[child].key) break;
-		// ÇÑ´Ü°è ¾Æ·¡·Î ÀÌµ¿
+		// í•œë‹¨ê³„ ì•„ë˜ë¡œ ì´ë™
 		h->heap[parent] = h->heap[child];
 		parent = child;
 		child *= 2;
@@ -66,7 +66,7 @@ element delete_max_heap(HeapType *h)
 	h->heap[parent] = temp;
 	return item;
 }
-// ¿ì¼± ¼øÀ§ Å¥ÀÎ È÷ÇÁ¸¦ ÀÌ¿ëÇÑ Á¤·Ä
+// ìš°ì„  ìˆœìœ„ íì¸ íˆí”„ë¥¼ ì´ìš©í•œ ì •ë ¬
 void heap_sort(element a[], int n)
 {
 	int i;
@@ -83,19 +83,19 @@ void heap_sort(element a[], int n)
 
 element test[] = { { 10 },{ 9 },{ 8 },{ 2 },{ 3 } };
 
-// ÁÖÇÔ¼ö 
+// ì£¼í•¨ìˆ˜ 
 void main()
 {
 	element e1 = { 10 }, e2 = { 5 }, e3 = { 30 };
 	element e4, e5, e6;
-	HeapType heap;	// È÷ÇÁ »ı¼º
-	init(&heap);		// ÃÊ±âÈ­
-						// »ğÀÔ
+	HeapType heap;	// íˆí”„ ìƒì„±
+	init(&heap);		// ì´ˆê¸°í™”
+						// ì‚½ì…
 	insert_max_heap(&heap, e1);
 	insert_max_heap(&heap, e2);
 	insert_max_heap(&heap, e3);
 	//	print_heap(&heap);
-	// »èÁ¦
+	// ì‚­ì œ
 	e4 = delete_max_heap(&heap);
 	printf("< %d > ", e4.key);
 	e5 = delete_max_heap(&heap);

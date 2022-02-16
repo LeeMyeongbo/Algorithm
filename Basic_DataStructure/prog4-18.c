@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
 #include <string.h>
@@ -10,14 +10,14 @@ typedef struct DlistNode {
 	struct DlistNode *rlink;
 } DlistNode;
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®¸¦ ÃÊ±âÈ­
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”
 void init(DlistNode *phead)
 {
 	phead->llink = phead;
 	phead->rlink = phead;
 }
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®ÀÇ ³ëµå¸¦ Ãâ·Â
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ì˜ ë…¸ë“œë¥¼ ì¶œë ¥
 void display(DlistNode *phead)
 {
 	DlistNode *p;
@@ -26,7 +26,7 @@ void display(DlistNode *phead)
 	}
 	printf("\n");
 }
-// ³ëµå new_node¸¦ ³ëµå beforeÀÇ ¿À¸¥ÂÊ¿¡ »ğÀÔÇÑ´Ù.
+// ë…¸ë“œ new_nodeë¥¼ ë…¸ë“œ beforeì˜ ì˜¤ë¥¸ìª½ì— ì‚½ì…í•œë‹¤.
 void dinsert_node(DlistNode *before, DlistNode *new_node)
 {
 	new_node->llink = before;
@@ -34,7 +34,7 @@ void dinsert_node(DlistNode *before, DlistNode *new_node)
 	before->rlink->llink = new_node;
 	before->rlink = new_node;
 }
-// ³ëµå removed¸¦ »èÁ¦ÇÑ´Ù.
+// ë…¸ë“œ removedë¥¼ ì‚­ì œí•œë‹¤.
 void dremove_node(DlistNode *phead_node,
 	DlistNode *removed)
 {
@@ -43,7 +43,7 @@ void dremove_node(DlistNode *phead_node,
 	removed->rlink->llink = removed->llink;
 	free(removed);
 }
-// ÀÌÁß ¿¬°á ¸®½ºÆ® Å×½ºÆ® ÇÁ·Î±×·¥
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ í…ŒìŠ¤íŠ¸ í”„ë¡œê·¸ë¨
 void main()
 {
 	DlistNode head_node;
@@ -54,7 +54,7 @@ void main()
 	for (i = 0; i<5; i++) {
 		p[i] = (DlistNode *)malloc(sizeof(DlistNode));
 		p[i]->data = i;
-		// Çìµå ³ëµåÀÇ ¿À¸¥ÂÊ¿¡ »ğÀÔ
+		// í—¤ë“œ ë…¸ë“œì˜ ì˜¤ë¥¸ìª½ì— ì‚½ì…
 		dinsert_node(&head_node, p[i]);
 	}
 	dremove_node(&head_node, p[4]);

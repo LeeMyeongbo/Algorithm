@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 typedef int element;
@@ -8,10 +8,10 @@ typedef struct ListNode
 	struct ListNode* link;
 }ListNode;
 
-// phead : ¸®½ºÆ®ÀÇ Çìµå Æ÷ÀÎÅÍÀÇ Æ÷ÀÎÅÍ
-// p : ¼±Çà ³ëµå
-// node : »ğÀÔµÉ ³ëµå
-// Ã³À½ ºÎºĞ¿¡ »ğÀÔ
+// phead : ë¦¬ìŠ¤íŠ¸ì˜ í—¤ë“œ í¬ì¸í„°ì˜ í¬ì¸í„°
+// p : ì„ í–‰ ë…¸ë“œ
+// node : ì‚½ì…ë  ë…¸ë“œ
+// ì²˜ìŒ ë¶€ë¶„ì— ì‚½ì…
 void insert_first(ListNode** phead, ListNode* node)
 {
 	if (*phead == NULL)
@@ -26,7 +26,7 @@ void insert_first(ListNode** phead, ListNode* node)
 	}
 }
 
-// ³¡ ºÎºĞ¿¡ »ğÀÔ
+// ë ë¶€ë¶„ì— ì‚½ì…
 void insert_last(ListNode** phead, ListNode* node)
 {
 	if (*phead == NULL)

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 
 #define MAX_VERTICES 50
@@ -9,11 +9,11 @@ typedef struct GraphNode
 } GraphNode;
 
 typedef struct GraphType {
-	int n;	// Á¤Á¡ÀÇ °³¼ö
+	int n;	// ì •ì ì˜ ê°œìˆ˜
 	GraphNode* adj_list[MAX_VERTICES];
 } GraphType;
 
-// ±×·¡ÇÁ ÃÊ±âÈ­ 
+// ê·¸ë˜í”„ ì´ˆê¸°í™” 
 void init(GraphType* g)
 {
 	int v;
@@ -22,22 +22,22 @@ void init(GraphType* g)
 		g->adj_list[v] = NULL;
 }
 
-// Á¤Á¡ »ğÀÔ ¿¬»ê
+// ì •ì  ì‚½ì… ì—°ì‚°
 void insert_vertex(GraphType* g, int v)
 {
 	if (((g->n) + 1) > MAX_VERTICES) {
-		fprintf(stderr, "±×·¡ÇÁ: Á¤Á¡ÀÇ °³¼ö ÃÊ°ú");
+		fprintf(stderr, "ê·¸ë˜í”„: ì •ì ì˜ ê°œìˆ˜ ì´ˆê³¼");
 		return;
 	}
 	g->n++;
 }
 
-// °£¼± »ğÀÔ ¿¬»ê, v¸¦ uÀÇ ÀÎÁ¢ ¸®½ºÆ®¿¡ »ğÀÔÇÑ´Ù.
+// ê°„ì„  ì‚½ì… ì—°ì‚°, vë¥¼ uì˜ ì¸ì ‘ ë¦¬ìŠ¤íŠ¸ì— ì‚½ì…í•œë‹¤.
 void insert_edge(GraphType* g, int u, int v)
 {
 	GraphNode* node;
 	if (u >= g->n || v >= g->n) {
-		fprintf(stderr, "±×·¡ÇÁ: Á¤Á¡ ¹øÈ£ ¿À·ù");
+		fprintf(stderr, "ê·¸ë˜í”„: ì •ì  ë²ˆí˜¸ ì˜¤ë¥˜");
 		return;
 	}
 	node = (GraphNode*)malloc(sizeof(GraphNode));
@@ -50,7 +50,7 @@ void print_adj_list(GraphType* g)
 {
 	for (int i = 0; i<g->n; i++) {
 		GraphNode* p = g->adj_list[i];
-		printf("Á¤Á¡ %dÀÇ ÀÎÁ¢ ¸®½ºÆ® ", i);
+		printf("ì •ì  %dì˜ ì¸ì ‘ ë¦¬ìŠ¤íŠ¸ ", i);
 		while (p!=NULL) {
 			printf("-> %d ", p->vertex);
 			p = p->link;

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #define MAX_ELEMENT 200
 typedef struct {
@@ -10,31 +10,31 @@ typedef struct {
 } HeapType;
 
 
-// »ı¼º ÇÔ¼ö
+// ìƒì„± í•¨ìˆ˜
 HeapType* create()
 {
 	return (HeapType*)malloc(sizeof(HeapType));
 }
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void init(HeapType* h)
 {
 	h->heap_size = 0;
 }
-// ÇöÀç ¿ä¼ÒÀÇ °³¼ö°¡ heap_sizeÀÎ È÷ÇÁ h¿¡ itemÀ» »ğÀÔÇÑ´Ù.
-// »ğÀÔ ÇÔ¼ö
+// í˜„ì¬ ìš”ì†Œì˜ ê°œìˆ˜ê°€ heap_sizeì¸ íˆí”„ hì— itemì„ ì‚½ì…í•œë‹¤.
+// ì‚½ì… í•¨ìˆ˜
 void insert_max_heap(HeapType* h, element item)
 {
 	int i;
 	i = ++(h->heap_size);
 
-	//  Æ®¸®¸¦ °Å½½·¯ ¿Ã¶ó°¡¸é¼­ ºÎ¸ğ ³ëµå¿Í ºñ±³ÇÏ´Â °úÁ¤
+	//  íŠ¸ë¦¬ë¥¼ ê±°ìŠ¬ëŸ¬ ì˜¬ë¼ê°€ë©´ì„œ ë¶€ëª¨ ë…¸ë“œì™€ ë¹„êµí•˜ëŠ” ê³¼ì •
 	while ((i != 1) && (item.key > h->heap[i / 2].key)) {
 		h->heap[i] = h->heap[i / 2];
 		i /= 2;
 	}
-	h->heap[i] = item;     // »õ·Î¿î ³ëµå¸¦ »ğÀÔ
+	h->heap[i] = item;     // ìƒˆë¡œìš´ ë…¸ë“œë¥¼ ì‚½ì…
 }
-// »èÁ¦ ÇÔ¼ö
+// ì‚­ì œ í•¨ìˆ˜
 element delete_max_heap(HeapType* h)
 {
 	int parent, child;
@@ -45,12 +45,12 @@ element delete_max_heap(HeapType* h)
 	parent = 1;
 	child = 2;
 	while (child <= h->heap_size) {
-		// ÇöÀç ³ëµåÀÇ ÀÚ½Ä³ëµå Áß ´õ ÀÛÀº ÀÚ½Ä³ëµå¸¦ Ã£´Â´Ù.
+		// í˜„ì¬ ë…¸ë“œì˜ ìì‹ë…¸ë“œ ì¤‘ ë” ì‘ì€ ìì‹ë…¸ë“œë¥¼ ì°¾ëŠ”ë‹¤.
 		if ((child < h->heap_size) &&
 			(h->heap[child].key) < h->heap[child + 1].key)
 			child++;
 		if (temp.key >= h->heap[child].key) break;
-		// ÇÑ ´Ü°è ¾Æ·¡·Î ÀÌµ¿
+		// í•œ ë‹¨ê³„ ì•„ë˜ë¡œ ì´ë™
 		h->heap[parent] = h->heap[child];
 		parent = child;
 		child *= 2;
@@ -65,15 +65,15 @@ int main(void)
 	element e4, e5, e6;
 	HeapType* heap;
 
-	heap = create(); 	// È÷ÇÁ »ı¼º
-	init(heap);	// ÃÊ±âÈ­
+	heap = create(); 	// íˆí”„ ìƒì„±
+	init(heap);	// ì´ˆê¸°í™”
 
-				// »ğÀÔ
+				// ì‚½ì…
 	insert_max_heap(heap, e1);
 	insert_max_heap(heap, e2);
 	insert_max_heap(heap, e3);
 
-	// »èÁ¦
+	// ì‚­ì œ
 	e4 = delete_max_heap(heap);
 	printf("< %d > ", e4.key);
 	e5 = delete_max_heap(heap);
