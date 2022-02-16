@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <map>
 #include <queue>
@@ -13,7 +13,7 @@ string str1, str2;
 vector<int> graph[201];
 queue<Node> q;
 
-bool BFS(int start)					// ½ÃÀÛÁ¡À¸·ÎºÎÅÍ ÀÎÁ¢ÇÑ °÷À¸·Î BFS ÁøÇàÇÏ¸ç 1, -1 ¹ø°¥¾Æ °¡¸ç ¸¶Å·
+bool BFS(int start)					// ì‹œìž‘ì ìœ¼ë¡œë¶€í„° ì¸ì ‘í•œ ê³³ìœ¼ë¡œ BFS ì§„í–‰í•˜ë©° 1, -1 ë²ˆê°ˆì•„ ê°€ë©° ë§ˆí‚¹
 {
 	q.push({ start, 1 });
 	visited[start] = 1;
@@ -27,7 +27,7 @@ bool BFS(int start)					// ½ÃÀÛÁ¡À¸·ÎºÎÅÍ ÀÎÁ¢ÇÑ °÷À¸·Î BFS ÁøÇàÇÏ¸ç 1, -1 ¹ø°¥¾
 				q.push({ i, -node.flag });
 				visited[i] = -node.flag;
 			}
-			else if (visited[i] == node.flag)	// ¸¸¾à ÀÎÁ¢ÇÑ °÷ÀÌ ÇöÀç À§Ä¡¿Í °°Àº °ªÀ¸·Î ¸¶Å·µÇ¾î ÀÖ´Ù? -> ÆÀ ¸ø ¸¸µë
+			else if (visited[i] == node.flag)	// ë§Œì•½ ì¸ì ‘í•œ ê³³ì´ í˜„ìž¬ ìœ„ì¹˜ì™€ ê°™ì€ ê°’ìœ¼ë¡œ ë§ˆí‚¹ë˜ì–´ ìžˆë‹¤? -> íŒ€ ëª» ë§Œë“¬
 				return false;
 		}
 	}
@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 	for (int test_case = 1; test_case <= T; ++test_case) {
 
 		cin >> K;
-		for (int i = 0; i < K; i++) {			// ¹®ÀÚ¿­¸¶´Ù Æ¯Á¤ Á¤¼ö °ªÀ¸·Î ¸ÅÇÎÇÏ¿© ±×·¡ÇÁ Çü¼º (A->1, B->2, ...)
+		for (int i = 0; i < K; i++) {			// ë¬¸ìžì—´ë§ˆë‹¤ íŠ¹ì • ì •ìˆ˜ ê°’ìœ¼ë¡œ ë§¤í•‘í•˜ì—¬ ê·¸ëž˜í”„ í˜•ì„± (A->1, B->2, ...)
 			cin >> str1 >> str2;
 			if (!v.count(str1))
 				v[str1] = ++vertice;

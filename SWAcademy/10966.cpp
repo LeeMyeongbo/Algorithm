@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -21,12 +21,12 @@ int BFS()
 			for (int d = 0; d < 4; d++) {
 				int R = r + dr[d];
 				int C = c + dc[d];
-				if (R >= 0 && R < N && C >= 0 && C < M && map[R][C] == 'L')		// À°Áö°¡ ÀÎÁ¢ÇÑ ¹Ù´Ù¸¸ ¸ðµÎ Å¥¿¡ ÀúÀå
+				if (R >= 0 && R < N && C >= 0 && C < M && map[R][C] == 'L')		// ìœ¡ì§€ê°€ ì¸ì ‘í•œ ë°”ë‹¤ë§Œ ëª¨ë‘ íì— ì €ìž¥
 					q.push({ r, c, 0 });
 			}
 		}
 	}
-	while (!q.empty()) {					// BFS µ¹¸®¸é ³¡!
+	while (!q.empty()) {					// BFS ëŒë¦¬ë©´ ë!
 		Node node = q.front();
 		q.pop();
 

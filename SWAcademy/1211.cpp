@@ -1,10 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 int T, Min = -1, Ans;
 int map[100][100];
 const int dr[] = { 0, 0, 1 }, dc[] = { 1, -1, 0 };       // 0 : 동, 1 : 서, 2 : 남
-
 int solve()
 {
     for (int x = 0; x < 100; x++) {

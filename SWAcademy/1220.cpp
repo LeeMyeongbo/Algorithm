@@ -1,40 +1,40 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N, map[100][100], cnt, Case;
 
 int Solve()
 {
-	for (int r = N - 1; r >= 0; r--) {			// S±ØÀ¸·Î ÀÌµ¿ÇÏ´Â °ÍÀº ¸Ç ¹Ø ÀÚ¼ºÃ¼¿¡¼­ºÎÅÍ ½ÃÀÛÇØ¼­ ¹ØÀ¸·Î ÃÖ´ëÇÑ ³»·Á°¡¸ç Å½»ö
+	for (int r = N - 1; r >= 0; r--) {			// Sê·¹ìœ¼ë¡œ ì´ë™í•˜ëŠ” ê²ƒì€ ë§¨ ë°‘ ìžì„±ì²´ì—ì„œë¶€í„° ì‹œìž‘í•´ì„œ ë°‘ìœ¼ë¡œ ìµœëŒ€í•œ ë‚´ë ¤ê°€ë©° íƒìƒ‰
 		for (int c = 0; c < N; c++) {
 			if (map[r][c] == 1) {
 				map[r][c] = 0;
 				int R = r + 1;
-				while (R < N && !map[R][c])		// ¸ÊÀ» ¹þ¾î³ª°Ô µÇ°Å³ª ´Ù¸¥ ÀÚ¼ºÃ¼ ¸¸³¯ ¶§±îÁö ¹Ýº¹
+				while (R < N && !map[R][c])		// ë§µì„ ë²—ì–´ë‚˜ê²Œ ë˜ê±°ë‚˜ ë‹¤ë¥¸ ìžì„±ì²´ ë§Œë‚  ë•Œê¹Œì§€ ë°˜ë³µ
 					R++;
 				if (R < N)
-					map[R - 1][c] = 1;			// ´Ù¸¥ ÀÚ¼ºÃ¼ ¸¸³µÀ» °æ¿ì¿¡´Â ¹Ù·Î À§¿¡ À§Ä¡½ÃÅ´
+					map[R - 1][c] = 1;			// ë‹¤ë¥¸ ìžì„±ì²´ ë§Œë‚¬ì„ ê²½ìš°ì—ëŠ” ë°”ë¡œ ìœ„ì— ìœ„ì¹˜ì‹œí‚´
 			}
 		}
 	}
-	for (int r = 0; r < N; r++) {				// N±ØÀ¸·Î ÀÌµ¿ÇÏ´Â °ÍÀº ¸Ç À§ ÀÚ¼ºÃ¼¿¡¼­ºÎÅÍ ½ÃÀÛÇØ¼­ À§·Î ÃÖ´ëÇÑ ¿Ã¶ó°¡¸ç Å½»ö
+	for (int r = 0; r < N; r++) {				// Nê·¹ìœ¼ë¡œ ì´ë™í•˜ëŠ” ê²ƒì€ ë§¨ ìœ„ ìžì„±ì²´ì—ì„œë¶€í„° ì‹œìž‘í•´ì„œ ìœ„ë¡œ ìµœëŒ€í•œ ì˜¬ë¼ê°€ë©° íƒìƒ‰
 		for (int c = 0; c < N; c++) {
 			if (map[r][c] == 2) {
 				map[r][c] = 0;
 				int R = r - 1;
-				while (R >= 0 && !map[R][c])	// ¸ÊÀ» ¹þ¾î³ª°Ô µÇ°Å³ª ´Ù¸¥ ÀÚ¼ºÃ¼ ¸¸³¯ ¶§±îÁö ¹Ýº¹
+				while (R >= 0 && !map[R][c])	// ë§µì„ ë²—ì–´ë‚˜ê²Œ ë˜ê±°ë‚˜ ë‹¤ë¥¸ ìžì„±ì²´ ë§Œë‚  ë•Œê¹Œì§€ ë°˜ë³µ
 					R--;
 				if (R >= 0)
-					map[R + 1][c] = 2;			// ´Ù¸¥ ÀÚ¼ºÃ¼ ¸¸³µÀ» °æ¿ì¿¡´Â ¹Ù·Î ¾Æ·¡¿¡ À§Ä¡½ÃÅ´
+					map[R + 1][c] = 2;			// ë‹¤ë¥¸ ìžì„±ì²´ ë§Œë‚¬ì„ ê²½ìš°ì—ëŠ” ë°”ë¡œ ì•„ëž˜ì— ìœ„ì¹˜ì‹œí‚´
 			}
 		}
 	}
 	int cur = 1;
 	for (int c = 0; c < N; c++)
-		for (int r = 0; r < N; r++) {			// ¡é ¹æÇâÀ¸·Î Å½»ö
+		for (int r = 0; r < N; r++) {			// â†“ ë°©í–¥ìœ¼ë¡œ íƒìƒ‰
 			if (!map[r][c])
 				continue;
-			if (map[r][c] == 2 && cur == 1)		// ÀÚ¼ºÃ¼°¡ N -> S·Î ¹Ù²ð ¶§¸¸ ±³Âø»óÅÂ °³¼ö Áõ°¡
+			if (map[r][c] == 2 && cur == 1)		// ìžì„±ì²´ê°€ N -> Së¡œ ë°”ë€” ë•Œë§Œ êµì°©ìƒíƒœ ê°œìˆ˜ ì¦ê°€
 				cnt++;
 			cur = map[r][c];
 		}

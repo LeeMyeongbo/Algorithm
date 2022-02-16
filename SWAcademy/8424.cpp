@@ -1,28 +1,28 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
-int test_case, T, N, x, y, pre[1001], cycle_start;		// cycle_start : »çÀÌÅ¬ÀÌ ÃÖÃÊ·Î ½ÃÀÛµÇ´Â Á¤Á¡, pre[i] : i¹ø Á¤Á¡ÀÇ ÀÌÀü Á¤Á¡
-bool cycle[1001];							// »çÀÌÅ¬À» ÀÌ·ç´Â Á¤Á¡ true·Î Ç¥½Ã
+int test_case, T, N, x, y, pre[1001], cycle_start;		// cycle_start : ì‚¬ì´í´ì´ ìµœì´ˆë¡œ ì‹œì‘ë˜ëŠ” ì •ì , pre[i] : ië²ˆ ì •ì ì˜ ì´ì „ ì •ì 
+bool cycle[1001];							// ì‚¬ì´í´ì„ ì´ë£¨ëŠ” ì •ì  trueë¡œ í‘œì‹œ
 vector<int> graph[1001];
 
-bool dfs(int c, int p)						// c : ÇöÀç Á¤Á¡, p : ¹Ù·Î ÀÌÀü Á¤Á¡
+bool dfs(int c, int p)						// c : í˜„ì¬ ì •ì , p : ë°”ë¡œ ì´ì „ ì •ì 
 {
 	pre[c] = p;
 	bool is_cycle = false;
 
 	for (int i : graph[c]) {
-		if (pre[i] == -1) {					// ¹æ¹®ÇÑ Àû ¾ø´Â Á¤Á¡ ¹æ¹® ½Ã
+		if (pre[i] == -1) {					// ë°©ë¬¸í•œ ì  ì—†ëŠ” ì •ì  ë°©ë¬¸ ì‹œ
 			bool cycling = dfs(i, c);
 			if (cycling)
 				cycle[c] = is_cycle = true;
 		}
-		else if (pre[i] > -1 && i != p && !cycle[i]) {	// ¹æ¹®ÇÑ ÀûÀº ÀÖ´Âµ¥ ¹Ù·Î ÀÌÀü¿¡ ¹æ¹®ÇÑ Á¤Á¡Àº ¾Æ´Ò ¶§ -> »çÀÌÅ¬ ¹ß°ß!
-			cycle[c] = is_cycle = true;					// cycle¿¡ ¼ÓÇÑ´Ù°í Ç¥½ÃÇÑ Àû ¾ø´Â Á¤Á¡ÀÌ¾î¾ßÁö cycle_start°¡ °»½Å ¾ÈµÊ!
-			cycle_start = i;				// »çÀÌÅ¬ ½ÃÀÛ Á¤Á¡ ÀúÀå
+		else if (pre[i] > -1 && i != p && !cycle[i]) {	// ë°©ë¬¸í•œ ì ì€ ìˆëŠ”ë° ë°”ë¡œ ì´ì „ì— ë°©ë¬¸í•œ ì •ì ì€ ì•„ë‹ ë•Œ -> ì‚¬ì´í´ ë°œê²¬!
+			cycle[c] = is_cycle = true;					// cycleì— ì†í•œë‹¤ê³  í‘œì‹œí•œ ì  ì—†ëŠ” ì •ì ì´ì–´ì•¼ì§€ cycle_startê°€ ê°±ì‹  ì•ˆë¨!
+			cycle_start = i;				// ì‚¬ì´í´ ì‹œì‘ ì •ì  ì €ì¥
 		}
 	}
-	if (cycle_start == c)					// »çÀÌÅ¬ ÃÖÃÊ ½ÃÀÛ Á¤Á¡±îÁö Àç±Í ºüÁ®³ª¿À¸é »çÀÌÅ¬ Å½»ö ¿Ï·á!
+	if (cycle_start == c)					// ì‚¬ì´í´ ìµœì´ˆ ì‹œì‘ ì •ì ê¹Œì§€ ì¬ê·€ ë¹ ì ¸ë‚˜ì˜¤ë©´ ì‚¬ì´í´ íƒìƒ‰ ì™„ë£Œ!
 		is_cycle = false;
 	return is_cycle;
 }
