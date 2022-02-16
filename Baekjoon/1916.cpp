@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -37,7 +37,7 @@ int main()
 	cin >> N >> M;
 	for (int i = 0; i < M; i++) {
 		cin >> start >> dest >> cost;
-		graph[start].push_back({ cost, dest });		// graph[Ãâ¹ßÁö]¿¡ (ºñ¿ë, µµÂøÁö) ÇüÅÂ·Î ÀúÀå
+		graph[start].push_back({ cost, dest });		// graph[ì¶œë°œì§€]ì— (ë¹„ìš©, ë„ì°©ì§€) í˜•íƒœë¡œ ì €ìž¥
 	}
 	cin >> Start_city >> End_city;
 	for (int i = 1; i <= N; i++)

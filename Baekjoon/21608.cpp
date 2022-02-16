@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <cmath>
 using namespace std;
@@ -17,13 +17,13 @@ int main()
 		cin >> student;
 		cin >> like[student][0] >> like[student][1] >> like[student][2] >> like[student][3];
 
-		vector<pair<pair<int, int>, int>> info, empty;		// (Ä­ À§Ä¡, ÀÎÁ¢ÇÑ Ä­ÀÇ ÁÁ¾ÆÇÏ´Â ÇĞ»ı ¼ö(empty´Â ºñ¾îÀÖ´Â Ä­ ¼ö))
+		vector<pair<pair<int, int>, int>> info, empty;		// (ì¹¸ ìœ„ì¹˜, ì¸ì ‘í•œ ì¹¸ì˜ ì¢‹ì•„í•˜ëŠ” í•™ìƒ ìˆ˜(emptyëŠ” ë¹„ì–´ìˆëŠ” ì¹¸ ìˆ˜))
 		for (int r = 1; r <= N; r++) {
 			for (int c = 1; c <= N; c++) {
-				if (map[r][c])					// ÀÌ¹Ì ´©±º°¡ ¾É¾ÒÀ¸¸é skip
+				if (map[r][c])					// ì´ë¯¸ ëˆ„êµ°ê°€ ì•‰ì•˜ìœ¼ë©´ skip
 					continue;
 				int sum = 0;
-				for (int dir = 0; dir < 4; dir++) {		// °¢ Ä­¸¶´Ù ÀÎÁ¢ÇÑ ÁÁ¾ÆÇÏ´Â ÇĞ»ı ¼ö Çì¾Æ¸²
+				for (int dir = 0; dir < 4; dir++) {		// ê° ì¹¸ë§ˆë‹¤ ì¸ì ‘í•œ ì¢‹ì•„í•˜ëŠ” í•™ìƒ ìˆ˜ í—¤ì•„ë¦¼
 					int R = r + dr[dir];
 					int C = c + dc[dir];
 					if (R >= 1 && R <= N && C >= 1 && C <= N) {
@@ -41,11 +41,11 @@ int main()
 				}
 			}
 		}
-		if (info.size() == 1) {			// 1¹ø Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ÀÚ¸®°¡ ÇÏ³ª¹Û¿¡ ¾øÀ¸¸é ±× ÀÚ¸®¿¡ ¾ÉÀ¸¸é µÊ
+		if (info.size() == 1) {			// 1ë²ˆ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìë¦¬ê°€ í•˜ë‚˜ë°–ì— ì—†ìœ¼ë©´ ê·¸ ìë¦¬ì— ì•‰ìœ¼ë©´ ë¨
 			map[info[0].first.first][info[0].first.second] = student;
 			continue;
 		}
-		for (int k = 0; k < (int)info.size(); k++) {		// 2°³ ÀÌ»óÀÏ ¶§ °¢ ÀÚ¸®¸¶´Ù ÀÎÁ¢ÇÑ ºó ÀÚ¸®¼ö Çì¾Æ¸²
+		for (int k = 0; k < (int)info.size(); k++) {		// 2ê°œ ì´ìƒì¼ ë•Œ ê° ìë¦¬ë§ˆë‹¤ ì¸ì ‘í•œ ë¹ˆ ìë¦¬ìˆ˜ í—¤ì•„ë¦¼
 			int r = info[k].first.first;
 			int c = info[k].first.second;
 			int sum = 0;

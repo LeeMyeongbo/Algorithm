@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
@@ -24,7 +24,7 @@ long long dijkstra()
 		if (dist > dij[cur])
 			continue;
 
-		for (int& i : graph[cur]) {		// ¿¬°áµÈ µµ½Ãµé ¸ğµÎ »ìÇÇ¸ç Á¡·É´çÇÏÁö ¾ÊÀº µµ½Ãµé¸¸ ´ÙÀÍ½ºÆ®¶ó µ¹¸²
+		for (int& i : graph[cur]) {		// ì—°ê²°ëœ ë„ì‹œë“¤ ëª¨ë‘ ì‚´í”¼ë©° ì ë ¹ë‹¹í•˜ì§€ ì•Šì€ ë„ì‹œë“¤ë§Œ ë‹¤ìµìŠ¤íŠ¸ë¼ ëŒë¦¼
 			if (!impossible[i] && (dij[i] == -1 || dij[i] > dij[cur] + weight[i])) {
 				dij[i] = dij[cur] + weight[i];
 				pq.push({ -dij[i], i });
@@ -38,9 +38,9 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 	cin >> N >> M >> K >> S >> p >> q;
-	fill(weight, weight + N, p);		// 1¹ø ~ N-1¹ø µµ½Ãµé ¸ğµÎ ¼÷¹Ú·á p¿øÀ¸·Î (N¹ø µµ½Ã´Â 0)
+	fill(weight, weight + N, p);		// 1ë²ˆ ~ N-1ë²ˆ ë„ì‹œë“¤ ëª¨ë‘ ìˆ™ë°•ë£Œ pì›ìœ¼ë¡œ (Në²ˆ ë„ì‹œëŠ” 0)
 
-	for (int i = 0; i < K; i++) {		// Á»ºñ°¡ Á¡·ÉÇÑ µµ½Ãµé Ã¼Å©ÇÏ°í BFS À§ÇØ Å¥¿¡ »ğÀÔ
+	for (int i = 0; i < K; i++) {		// ì¢€ë¹„ê°€ ì ë ¹í•œ ë„ì‹œë“¤ ì²´í¬í•˜ê³  BFS ìœ„í•´ íì— ì‚½ì…
 		cin >> z;
 		impossible[z] = true;
 		zombie_city.push({ z, 0 });
@@ -50,7 +50,7 @@ int main()
 		graph[u].push_back(graph);
 		graph[graph].push_back(u);
 	}
-	while (!zombie_city.empty()) {		// Á»ºñ Á¡·ÉµÈ µµ½Ãµé·ÎºÎÅÍ BFS µ¹¸®¸ç ÃÖ´Ü °Å¸®°¡ SÀÌ³»¿¡ ÀÖ´Â ºñÁ¡·É µµ½Ãµé ¸ğµÎ ¼÷¹Ú·á q·Î ÀüÈ¯
+	while (!zombie_city.empty()) {		// ì¢€ë¹„ ì ë ¹ëœ ë„ì‹œë“¤ë¡œë¶€í„° BFS ëŒë¦¬ë©° ìµœë‹¨ ê±°ë¦¬ê°€ Sì´ë‚´ì— ìˆëŠ” ë¹„ì ë ¹ ë„ì‹œë“¤ ëª¨ë‘ ìˆ™ë°•ë£Œ që¡œ ì „í™˜
 		int cur = zombie_city.front().first;
 		int dist = zombie_city.front().second;
 		zombie_city.pop();

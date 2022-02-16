@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -47,10 +47,10 @@ int Change(int index, int start, int end)
 
 pair<int, int> Find(int index, int start, int end)
 {
-	if (start > j || end < i)		// Æó±¸°£ [start, end]°¡ Æó±¸°£ [i, j] ¹Ù±ù¿¡ Á¸ÀçÇÒ °æ¿ì (10^9 + 1, 0) ¸®ÅÏ
+	if (start > j || end < i)		// íêµ¬ê°„ [start, end]ê°€ íêµ¬ê°„ [i, j] ë°”ê¹¥ì— ì¡´ìž¬í•  ê²½ìš° (10^9 + 1, 0) ë¦¬í„´
 		return { 1000000001, 0 };
 
-	if (start >= i && end <= j)		// Æó±¸°£ [start, end]°¡ Æó±¸°£ [i, j] ³»ºÎ¿¡ Á¸ÀçÇÒ °æ¿ì (ÇØ´ç ±¸°£ÀÇ ÃÖ¼Ú°ª, index) ¸®ÅÏ
+	if (start >= i && end <= j)		// íêµ¬ê°„ [start, end]ê°€ íêµ¬ê°„ [i, j] ë‚´ë¶€ì— ì¡´ìž¬í•  ê²½ìš° (í•´ë‹¹ êµ¬ê°„ì˜ ìµœì†Ÿê°’, index) ë¦¬í„´
 		return { seg_tree[index], Min_index[index] };
 
 	return min(Find(index * 2, start, (start + end) / 2), Find(index * 2 + 1, (start + end) / 2 + 1, end));

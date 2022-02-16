@@ -1,50 +1,50 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, K, map[12][12], horse[11], r, c, dir;				// horse[i] : i¹ø ¸»ÀÇ ÇöÀç ¹æÇâ ÀúÀå (0 : µ¿, 1 : ºÏ, 2 : ¼­, 3 : ³²)
-const int dr[] = { 0, -1, 0, 1 }, dc[] = { 1, 0, -1, 0 };	// µ¿ ºÏ ¼­ ³² ¼ø (¹İ´ë ¹æÇâ ÀüÈ¯ ½±°Ô ÇÏ±â À§ÇÔ)
-vector<int> cur[12][12];									// ÇöÀç ¸»µéÀÌ ¾îµğ ÀÖ´ÂÁö ÀúÀå
-pair<int, int> pos[11];										// 1¹ø ¸»ºÎÅÍ °¢ ¸»ÀÇ Çö À§Ä¡ ÀúÀå (Çà, ¿­)
+int N, K, map[12][12], horse[11], r, c, dir;				// horse[i] : ië²ˆ ë§ì˜ í˜„ì¬ ë°©í–¥ ì €ì¥ (0 : ë™, 1 : ë¶, 2 : ì„œ, 3 : ë‚¨)
+const int dr[] = { 0, -1, 0, 1 }, dc[] = { 1, 0, -1, 0 };	// ë™ ë¶ ì„œ ë‚¨ ìˆœ (ë°˜ëŒ€ ë°©í–¥ ì „í™˜ ì‰½ê²Œ í•˜ê¸° ìœ„í•¨)
+vector<int> cur[12][12];									// í˜„ì¬ ë§ë“¤ì´ ì–´ë”” ìˆëŠ”ì§€ ì €ì¥
+pair<int, int> pos[11];										// 1ë²ˆ ë§ë¶€í„° ê° ë§ì˜ í˜„ ìœ„ì¹˜ ì €ì¥ (í–‰, ì—´)
 
-void move_White(int h, int R, int C, int new_R, int new_C)	// Èò»ö Ä­À¸·Î move
+void move_White(int h, int R, int C, int new_R, int new_C)	// í°ìƒ‰ ì¹¸ìœ¼ë¡œ move
 {
 	for (int n : cur[R][C]) {
-		cur[new_R][new_C].push_back(n);		// Â÷·Ê´ë·Î ÀúÀå
+		cur[new_R][new_C].push_back(n);		// ì°¨ë¡€ëŒ€ë¡œ ì €ì¥
 		pos[n] = { new_R, new_C };
 	}
 	cur[R][C].clear();
 }
 
-void move_Red(int h, int R, int C, int new_R, int new_C)	// »¡°£»ö Ä­À¸·Î move
+void move_Red(int h, int R, int C, int new_R, int new_C)	// ë¹¨ê°„ìƒ‰ ì¹¸ìœ¼ë¡œ move
 {
 	while (!cur[R][C].empty()) {
 		int n = cur[R][C].back();
 
-		cur[new_R][new_C].push_back(n);		// ¿ªÀ¸·Î ÀúÀå
+		cur[new_R][new_C].push_back(n);		// ì—­ìœ¼ë¡œ ì €ì¥
 		pos[n] = { new_R, new_C };
 		cur[R][C].pop_back();
 	}
 }
 
-void move_Blue(int h, int R, int C)							// ÆÄ¶õ»ö Ä­À¸·Î move
+void move_Blue(int h, int R, int C)							// íŒŒë€ìƒ‰ ì¹¸ìœ¼ë¡œ move
 {
-	horse[h] = (horse[h] + 2) % 4;			// ¹æÇâ ¹İ´ë·Î ÀüÈ¯
+	horse[h] = (horse[h] + 2) % 4;			// ë°©í–¥ ë°˜ëŒ€ë¡œ ì „í™˜
 	int new_R = R + dr[horse[h]];
 	int new_C = C + dc[horse[h]];
 	if (new_R >= 0 && new_R < N && new_C >= 0 && new_C < N) {
 		if (!map[new_R][new_C])
-			move_White(h, R, C, new_R, new_C);				// ¿òÁ÷ÀÌ°íÀÚ ÇÏ´Â Ä­ÀÌ Èò»öÀÌ¶ó¸é move_White
+			move_White(h, R, C, new_R, new_C);				// ì›€ì§ì´ê³ ì í•˜ëŠ” ì¹¸ì´ í°ìƒ‰ì´ë¼ë©´ move_White
 		else if (map[new_R][new_C] == 1)
-			move_Red(h, R, C, new_R, new_C);				// ¿òÁ÷ÀÌ°íÀÚ ÇÏ´Â Ä­ÀÌ »¡°£»öÀÌ¶ó¸é move_Red
+			move_Red(h, R, C, new_R, new_C);				// ì›€ì§ì´ê³ ì í•˜ëŠ” ì¹¸ì´ ë¹¨ê°„ìƒ‰ì´ë¼ë©´ move_Red
 	}
 }
 
 bool Move(int h)
 {
 	int R = pos[h].first, C = pos[h].second;
-	if (cur[R][C].size() && cur[R][C][0] == h) {			// Çö À§Ä¡ÀÇ ¸Ç ¾Æ·¡¿¡ ¿òÁ÷ÀÌ°íÀÚ ÇÏ´Â ¸»ÀÌ Á¸ÀçÇÒ °æ¿ì
+	if (cur[R][C].size() && cur[R][C][0] == h) {			// í˜„ ìœ„ì¹˜ì˜ ë§¨ ì•„ë˜ì— ì›€ì§ì´ê³ ì í•˜ëŠ” ë§ì´ ì¡´ì¬í•  ê²½ìš°
 		int new_R = R + dr[horse[h]];
 		int new_C = C + dc[horse[h]];
 		if (new_R >= 0 && new_R < N && new_C >= 0 && new_C < N) {
@@ -68,8 +68,8 @@ bool Move(int h)
 int solve()
 {
 	for (int num = 1; num <= 1000; num++)
-		for (int h = 1; h <= K; h++)			// 1¹ø ¸»ºÎÅÍ K¹ø ¸»±îÁö Â÷·Ê·Î ¿òÁ÷¿© º½
-			if (!Move(h))						// 4°³ ÀÌ»óÀÇ ¸»ÀÌ ÇÑ Ä­¿¡ ½×ÀÌ¸é ¹Ù·Î Á¾·á
+		for (int h = 1; h <= K; h++)			// 1ë²ˆ ë§ë¶€í„° Kë²ˆ ë§ê¹Œì§€ ì°¨ë¡€ë¡œ ì›€ì§ì—¬ ë´„
+			if (!Move(h))						// 4ê°œ ì´ìƒì˜ ë§ì´ í•œ ì¹¸ì— ìŒ“ì´ë©´ ë°”ë¡œ ì¢…ë£Œ
 				return num;
 	return -1;
 }

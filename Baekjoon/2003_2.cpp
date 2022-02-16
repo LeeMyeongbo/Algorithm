@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 int A[10000], N, M, Ans;

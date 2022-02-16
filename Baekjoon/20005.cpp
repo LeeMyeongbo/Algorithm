@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -6,10 +6,10 @@ struct Node {
 	char id;
 	int r, c, time;
 };
-int m, n, p, dps[26], damage, HP;				// 0ºÎÅÍ 25±îÁö a~zÀÇ dps¸¦ dps ¹è¿­¿¡ ÀúÀå
+int m, n, p, dps[26], damage, HP;				// 0ë¶€í„° 25ê¹Œì§€ a~zì˜ dpsë¥¼ dps ë°°ì—´ì— ì €ì¥
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[1000][1001], id;
-bool visited[26][1000][1000], arrived[26];		// a°¡ º¸½º¸÷ À§Ä¡¿¡ µµ´ŞÇÏ¸é arrived[0] = true°¡ µÊ(b¸é 1, c¸é 2...)
+bool visited[26][1000][1000], arrived[26];		// aê°€ ë³´ìŠ¤ëª¹ ìœ„ì¹˜ì— ë„ë‹¬í•˜ë©´ arrived[0] = trueê°€ ë¨(bë©´ 1, cë©´ 2...)
 queue<Node> q;
 
 int solve()
@@ -19,7 +19,7 @@ int solve()
 		Node node = q.front();
 		q.pop();
 
-		if (Time < node.time) {					// ½Ã°£ÀÌ 1ÃÊ¾¿ Áö³¯ ¶§¸¶´Ù º¸½º¸÷¿¡ µµ´ŞÇÑ ³ğµé ¶§¸®°Ô ÇÔ
+		if (Time < node.time) {					// ì‹œê°„ì´ 1ì´ˆì”© ì§€ë‚  ë•Œë§ˆë‹¤ ë³´ìŠ¤ëª¹ì— ë„ë‹¬í•œ ë†ˆë“¤ ë•Œë¦¬ê²Œ í•¨
 			int total_damage = 0, people = 0;
 			for (int i = 0; i < p; i++) {
 				if (arrived[i]) {
@@ -29,11 +29,11 @@ int solve()
 			}
 			HP -= total_damage;
 			if (HP <= 0)
-				return people;					// º¸½º¸÷ µÚÁö¸é ¿©ÅÂ ¶§¸° ³ğµé ¼ö Çì¾Æ¸° °Å ¸®ÅÏ
-			Time++;								// ½Ã°£ÀÌ 1ÃÊ Èå¸£µµ·Ï ÇÔ
+				return people;					// ë³´ìŠ¤ëª¹ ë’¤ì§€ë©´ ì—¬íƒœ ë•Œë¦° ë†ˆë“¤ ìˆ˜ í—¤ì•„ë¦° ê±° ë¦¬í„´
+			Time++;								// ì‹œê°„ì´ 1ì´ˆ íë¥´ë„ë¡ í•¨
 		}
 		
-		if (map[node.r][node.c] == 'B') {		// µµÂøÇÏ°í 1ÃÊ µÚ¿¡ ¶§·Á¼­ ÇÇ°¡ ±ğÀÓ!(ÁÖÀÇ)
+		if (map[node.r][node.c] == 'B') {		// ë„ì°©í•˜ê³  1ì´ˆ ë’¤ì— ë•Œë ¤ì„œ í”¼ê°€ ê¹ì„!(ì£¼ì˜)
 			arrived[node.id - 'a'] = true;
 			continue;
 		}
@@ -47,8 +47,8 @@ int solve()
 			}
 		}
 	}
-	int total_damage = 0, people = 0;			// º¸½º¸÷ÀÌ µÚÁöÁöµµ ¾Ê¾Ò´Âµ¥ BFS Á¾·áµÉ ¼ö ÀÖÀ¸¹Ç·Î
-	for (int i = 0; i < p; i++) {				// º¸½º¸÷ ÀÚ¸®¿¡ µµ´ŞÇÑ ³ğµé ¼ö Çì¾Æ·Á¼­ ¸®ÅÏÇØ¾ß ÇÔ
+	int total_damage = 0, people = 0;			// ë³´ìŠ¤ëª¹ì´ ë’¤ì§€ì§€ë„ ì•Šì•˜ëŠ”ë° BFS ì¢…ë£Œë  ìˆ˜ ìˆìœ¼ë¯€ë¡œ
+	for (int i = 0; i < p; i++) {				// ë³´ìŠ¤ëª¹ ìë¦¬ì— ë„ë‹¬í•œ ë†ˆë“¤ ìˆ˜ í—¤ì•„ë ¤ì„œ ë¦¬í„´í•´ì•¼ í•¨
 		if (arrived[i]) {
 			total_damage += dps[i];
 			people++;

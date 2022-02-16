@@ -1,8 +1,8 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
-priority_queue<pair<int, int>> pq;		// (ÇöÀç ¼ıÀÚ, index) ÀúÀå
+priority_queue<pair<int, int>> pq;		// (í˜„ì¬ ìˆ«ì, index) ì €ì¥
 int L, N, A;
 
 int main() {

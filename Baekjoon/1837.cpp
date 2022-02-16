@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define MAX 1000000
 using namespace std;
 
@@ -6,7 +6,7 @@ bool is_comp[MAX + 1];
 string P;
 int K;
 
-void getPrime()							// ¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
+void getPrime()							// ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´
 {
 	for (int i = 2; i <= MAX; i++) {
 		if (!is_comp[i]) {
@@ -23,15 +23,15 @@ int main()
 	getPrime();
 	cin >> P >> K;
 
-	for (int i = 2; i < K; i++) {		// 2 ÀÌ»ó K ¹Ì¸¸ÀÇ ¸ğµç ¼Ò¼öµé¿¡ ´ëÇØ Å×½ºÆ®
+	for (int i = 2; i < K; i++) {		// 2 ì´ìƒ K ë¯¸ë§Œì˜ ëª¨ë“  ì†Œìˆ˜ë“¤ì— ëŒ€í•´ í…ŒìŠ¤íŠ¸
 		if (is_comp[i])
 			continue;
 
 		int pre = 0;
-		for (int j = 0; j < (int)P.length(); j++) {		// PÀÇ °¡Àå ³ôÀº ÀÚ¸®¼öºÎÅÍ Â÷·Ê·Î ³ª¸ÓÁö ¿¬»ê
-			int cur = (pre + P[j] - '0') % i;			// ÀÌÀü °ª + ÇöÀç ÀÚ¸® ¼ıÀÚ °ª¿¡¼­ modulus ¿¬»ê
+		for (int j = 0; j < (int)P.length(); j++) {		// Pì˜ ê°€ì¥ ë†’ì€ ìë¦¬ìˆ˜ë¶€í„° ì°¨ë¡€ë¡œ ë‚˜ë¨¸ì§€ ì—°ì‚°
+			int cur = (pre + P[j] - '0') % i;			// ì´ì „ ê°’ + í˜„ì¬ ìë¦¬ ìˆ«ì ê°’ì—ì„œ modulus ì—°ì‚°
 			
-			pre = cur * 10;								// x10 ÇØ¼­ ÀúÀå
+			pre = cur * 10;								// x10 í•´ì„œ ì €ì¥
 		}
 		if (!pre) {
 			cout << "BAD " << i;

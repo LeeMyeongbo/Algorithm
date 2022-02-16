@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cmath>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -14,11 +14,11 @@ int main()
 
 	while (1) {
 		long long v = right * right - left * left;
-		if (v > G && right == left + 1)		// ¼­·Î ¿¬¼ÓµÈ ÀÚ¿¬¼ö Á¦°öÀÇ Â÷°¡ Gº¸´Ù Å©¸é ÀÌ µÚ·Î´Â G°¡ ³ª¿Ã °¡´É¼º ¾øÀ¸¹Ç·Î Á¾·á
+		if (v > G && right == left + 1)		// ì„œë¡œ ì—°ì†ëœ ìì—°ìˆ˜ ì œê³±ì˜ ì°¨ê°€ Gë³´ë‹¤ í¬ë©´ ì´ ë’¤ë¡œëŠ” Gê°€ ë‚˜ì˜¬ ê°€ëŠ¥ì„± ì—†ìœ¼ë¯€ë¡œ ì¢…ë£Œ
 			break;
 		if (v > G)
-			left++;							// Á¦°öÀÇ Â÷°¡ Gº¸´Ù Å©¸é left + 1
-		else {								// ±×·¸Áö ¾ÊÀ¸¸é right + 1
+			left++;							// ì œê³±ì˜ ì°¨ê°€ Gë³´ë‹¤ í¬ë©´ left + 1
+		else {								// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ right + 1
 			if (v == G) {
 				cout << right << "\n";
 				possible = true;

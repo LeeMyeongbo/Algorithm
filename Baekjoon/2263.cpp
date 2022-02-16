@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <map>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -21,11 +21,11 @@ void Make_Tree(Tree*& cur, int left_end, int right_end)
 	if (left_end >= right_end)
 		return;
 
-	cur = new Tree(post[root]);					// ÈÄÀ§ ¼øÈ¸¿¡¼­´Â °¢ ¼­ºêÆ®¸®ÀÇ ·çÆ®¿¡ ÇØ´çÇÏ´Â Á¤Á¡ÀÇ index°¡ ¿À¸¥ÂÊ¿¡¼­ Â÷±ÙÂ÷±Ù ¿ŞÂÊÀ¸·Î ¿È
+	cur = new Tree(post[root]);					// í›„ìœ„ ìˆœíšŒì—ì„œëŠ” ê° ì„œë¸ŒíŠ¸ë¦¬ì˜ ë£¨íŠ¸ì— í•´ë‹¹í•˜ëŠ” ì •ì ì˜ indexê°€ ì˜¤ë¥¸ìª½ì—ì„œ ì°¨ê·¼ì°¨ê·¼ ì™¼ìª½ìœ¼ë¡œ ì˜´
 	int root_index = in[post[root--]];			
 
-	Make_Tree(cur->right, root_index + 1, right_end);	// °Å²Ù·Î ¿À¸¥ÂÊ ¼­ºêÆ®¸®ºÎÅÍ Â÷±ÙÂ÷±Ù ºĞÇÒ Á¤º¹
-	Make_Tree(cur->left, left_end, root_index);			// ¿À¸¥ÂÊ ¼­ºêÆ®¸® ¿Ï·áµÇ¸é ¿ŞÂÊ ¤¡
+	Make_Tree(cur->right, root_index + 1, right_end);	// ê±°ê¾¸ë¡œ ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ë¶€í„° ì°¨ê·¼ì°¨ê·¼ ë¶„í•  ì •ë³µ
+	Make_Tree(cur->left, left_end, root_index);			// ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ ì™„ë£Œë˜ë©´ ì™¼ìª½ ã„±
 }
 
 void preorder(Tree*& node)

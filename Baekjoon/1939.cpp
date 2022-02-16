@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -7,7 +7,7 @@
 using namespace std;
 
 int N, M, A, B, C, Start, End, Left = MAX, Right, ans;
-vector<pair<int, int>> graph[10001];			// (Áß·®, ¿¬°áµÈ Á¤Á¡)À¸·Î ÀúÀå
+vector<pair<int, int>> graph[10001];			// (ì¤‘ëŸ‰, ì—°ê²°ëœ ì •ì )ìœ¼ë¡œ ì €ì¥
 
 bool BFS(int weight)
 {
@@ -37,11 +37,11 @@ int Solve()
 {
 	while (Left <= Right) {
 		int middle = (Left + Right) / 2;
-		if (BFS(middle)) {					// middle ¸¸Å­ÀÇ Áß·®À¸·Î µµÂøÁ¡±îÁö ´Ù¸®¸¦ °Ç³Î ¼ö ÀÖ´Ù¸é left¸¦ ´õ Å©°Ô Á¶Á¤
+		if (BFS(middle)) {					// middle ë§Œí¼ì˜ ì¤‘ëŸ‰ìœ¼ë¡œ ë„ì°©ì ê¹Œì§€ ë‹¤ë¦¬ë¥¼ ê±´ë„ ìˆ˜ ìˆë‹¤ë©´ leftë¥¼ ë” í¬ê²Œ ì¡°ì •
 			ans = middle;
 			Left = middle + 1;
 		}
-		else								// °Ç³Î ¼ö ¾ø´Ù¸é right¸¦ ÀÛ°Ô Á¶Á¤
+		else								// ê±´ë„ ìˆ˜ ì—†ë‹¤ë©´ rightë¥¼ ì‘ê²Œ ì¡°ì •
 			Right = middle - 1;
 	}
 	return ans;

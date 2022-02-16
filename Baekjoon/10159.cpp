@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -26,7 +26,7 @@ int main()
 		reversed_graph[v2].push_back(v1);
 	}
 
-	for (int i = 1; i <= N; i++) {		// 1¹øºÎÅÍ N¹ø Á¤Á¡±îÁö Á¤¹æÇâ, ¿ª¹æÇâ dfs ¸ðµÎ µ¹¸®¸é¼­ ¹æ¹®ÇÑ Á¤Á¡ ¼ö¸¦ ÀüÃ¼ Á¤Á¡ ¼ö¿¡¼­ »­
+	for (int i = 1; i <= N; i++) {		// 1ë²ˆë¶€í„° Në²ˆ ì •ì ê¹Œì§€ ì •ë°©í–¥, ì—­ë°©í–¥ dfs ëª¨ë‘ ëŒë¦¬ë©´ì„œ ë°©ë¬¸í•œ ì •ì  ìˆ˜ë¥¼ ì „ì²´ ì •ì  ìˆ˜ì—ì„œ ëºŒ
 		dfs(i, i, graph);
 		dfs(i, i, reversed_graph);
 

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <cmath>
 using namespace std;
@@ -12,16 +12,16 @@ int BFS()
 	q.push({ N, 0 });
 
 	while (!q.empty()) {
-		// 1. Å¥¿¡¼­ ²¨³¿
+		// 1. íì—ì„œ êº¼ëƒ„
 		int cur = q.front().first;
 		int change = q.front().second;
 		q.pop();
 
-		// 2. ¸ñÀûÁöÀÎÁö È®ÀÎ
+		// 2. ëª©ì ì§€ì¸ì§€ í™•ì¸
 		if (K == change)
 			continue;
 
-		// 3. ¿¬°áµÈ °÷ ¼øÈ¸
+		// 3. ì—°ê²°ëœ ê³³ ìˆœíšŒ
 		char n[8] = "";
 		int p = (int)log10(cur);
 		int pos = p + 1;
@@ -35,13 +35,13 @@ int BFS()
 			for (int j = i + 1; j < pos; j++) {
 				swap(n[i], n[j]);
 
-				// 4. ¿¬°áµÈ °÷ °¥ ¼ö ÀÖ´ÂÁö È®ÀÎ
+				// 4. ì—°ê²°ëœ ê³³ ê°ˆ ìˆ˜ ìˆëŠ”ì§€ í™•ì¸
 				if (n[0] != '0') {
 					int new_n = atoi(n);
 					if (!visited[change + 1][new_n]) {
-						// 5. Ã¼Å©ÀÎ
+						// 5. ì²´í¬ì¸
 						visited[change + 1][new_n] = true;
-						// 6. Å¥ »ğÀÔ
+						// 6. í ì‚½ì…
 						q.push({ new_n, change + 1 });
 					}
 				}

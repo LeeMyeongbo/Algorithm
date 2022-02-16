@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, edge[123500], parent[123500];		// edge[i] : i¹ø Á¤Á¡À¸·Î ÇâÇÏ´Â ÁøÀÔ °£¼± ¼ö, parent[i] : i¹ø Á¤Á¡ÀÇ ºÎ¸ğ Á¤Á¡
-long long node[123500];						// int Çü ¹üÀ§ ³Ñ¾î¼³ ¼ö ÀÖÀ½
+int N, edge[123500], parent[123500];		// edge[i] : ië²ˆ ì •ì ìœ¼ë¡œ í–¥í•˜ëŠ” ì§„ì… ê°„ì„  ìˆ˜, parent[i] : ië²ˆ ì •ì ì˜ ë¶€ëª¨ ì •ì 
+long long node[123500];						// int í˜• ë²”ìœ„ ë„˜ì–´ì„¤ ìˆ˜ ìˆìŒ
 char c;
 queue<int> q;
 
@@ -12,7 +12,7 @@ long long Solve()
 {
 	for (int i = 1; i <= N; i++)
 		if (!edge[i])
-			q.push(i);						// À§»ó Á¤·Ä ¹æ½Ä (bottom-up)
+			q.push(i);						// ìœ„ìƒ ì •ë ¬ ë°©ì‹ (bottom-up)
 	
 	while (!q.empty()) {
 		int cur = q.front();
@@ -36,7 +36,7 @@ int main()
 	for (int i = 2; i <= N; i++) {
 		cin >> c >> node[i] >> parent[i];
 		if (c == 'W')
-			node[i] *= -1;						// ´Á´ë ¼ö¸¸Å­ ¾ç ¼ö°¡ ÁÙ¾îµå¹Ç·Î À½¼ö·Î ÀúÀå
+			node[i] *= -1;						// ëŠ‘ëŒ€ ìˆ˜ë§Œí¼ ì–‘ ìˆ˜ê°€ ì¤„ì–´ë“œë¯€ë¡œ ìŒìˆ˜ë¡œ ì €ì¥
 		edge[parent[i]]++;
 	}
 

@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, C, S, Sum, partial_sum[200001], ans[200000];		// partial_sum[i] : »ö±òÀÌ iÀÎ °øµéÀÇ Å©±â ÇÕ (Å©±â¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇßÀ» ¶§)
-vector<pair<pair<int, int>, int>> balls, tmp;			// tmp : Å©±â ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä ÈÄ °°Àº Å©±â°¡ ¿¬¼ÓÇØ¼­ ³ª¿Ã ¶§ ÀÓ½Ã ÀúÀå¿ë
+int N, C, S, Sum, partial_sum[200001], ans[200000];		// partial_sum[i] : ìƒ‰ê¹”ì´ iì¸ ê³µë“¤ì˜ í¬ê¸° í•© (í¬ê¸°ë¥¼ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆì„ ë•Œ)
+vector<pair<pair<int, int>, int>> balls, tmp;			// tmp : í¬ê¸° ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ í›„ ê°™ì€ í¬ê¸°ê°€ ì—°ì†í•´ì„œ ë‚˜ì˜¬ ë•Œ ì„ì‹œ ì €ì¥ìš©
 
 int main()
 {
@@ -13,9 +13,9 @@ int main()
 	cin >> N;
 	for (int i = 0; i < N; i++) {
 		cin >> C >> S;
-		balls.push_back({ {S, C}, i });					// ((Å©±â, »ö±ò), ¹øÈ£)·Î ÀúÀå
+		balls.push_back({ {S, C}, i });					// ((í¬ê¸°, ìƒ‰ê¹”), ë²ˆí˜¸)ë¡œ ì €ì¥
 	}
-	sort(balls.begin(), balls.end());					// ÀÔ·Â¹ŞÀº °øµéÀ» Å©±â ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	sort(balls.begin(), balls.end());					// ì…ë ¥ë°›ì€ ê³µë“¤ì„ í¬ê¸° ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	
 	tmp.push_back(balls[0]);
 	for (int i = 1; i < balls.size(); i++) {
@@ -23,8 +23,8 @@ int main()
 		int color = balls[i].first.second;
 		int index = balls[i].second;
 
-		if (size != tmp.back().first.first) {			// ÇöÀç °øÀÇ Å©±â°¡ ÀÌÀü °øÀÇ Å©±â¿Í °°Áö ¾Ê´Ù¸é
-			while (!tmp.empty()) {						// tmp ¿ÏÀüÈ÷ ºñ¿ì¸é¼­ ÀüÃ¼ ÇÕ ¹× partial_sum °»½Å
+		if (size != tmp.back().first.first) {			// í˜„ì¬ ê³µì˜ í¬ê¸°ê°€ ì´ì „ ê³µì˜ í¬ê¸°ì™€ ê°™ì§€ ì•Šë‹¤ë©´
+			while (!tmp.empty()) {						// tmp ì™„ì „íˆ ë¹„ìš°ë©´ì„œ ì „ì²´ í•© ë° partial_sum ê°±ì‹ 
 				int s = tmp.back().first.first;
 				int c = tmp.back().first.second;
 				partial_sum[c] += s;
@@ -32,7 +32,7 @@ int main()
 				tmp.pop_back();
 			}
 		}
-		ans[index] = Sum - partial_sum[color];			// ÀüÃ¼ Å©±â ÇÕ¿¡¼­ »ö±òÀÌ °°Àº °øµéÀÇ Å©±â ÇÕÀ» »« °ÍÀÌ ´ä
+		ans[index] = Sum - partial_sum[color];			// ì „ì²´ í¬ê¸° í•©ì—ì„œ ìƒ‰ê¹”ì´ ê°™ì€ ê³µë“¤ì˜ í¬ê¸° í•©ì„ ëº€ ê²ƒì´ ë‹µ
 		tmp.push_back(balls[i]);
 	}
 	for (int i = 0; i < N; i++)

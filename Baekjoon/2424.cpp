@@ -1,15 +1,15 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 struct Node {
-	bool sua;		// ÇöÀç ¿òÁ÷ÀÌ´Â °Ô ¼ö¾ÆÀÎÁö ÇØÀûÀÎÁö
+	bool sua;		// í˜„ì¬ ì›€ì§ì´ëŠ” ê²Œ ìˆ˜ì•„ì¸ì§€ í•´ì ì¸ì§€
 	int r, c;
 };
-int N, M, start_r, start_c, pirate_r, pirate_c, visited[700][700];	// visited[r][c] : ¼ö¾Æ´Â 1·Î, ÇØÀû ¹× ÇØÀûÀÌ ¹Ù¶óº¸´Â Ä­Àº 2·Î ÀúÀå
+int N, M, start_r, start_c, pirate_r, pirate_c, visited[700][700];	// visited[r][c] : ìˆ˜ì•„ëŠ” 1ë¡œ, í•´ì  ë° í•´ì ì´ ë°”ë¼ë³´ëŠ” ì¹¸ì€ 2ë¡œ ì €ì¥
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[700][701];
-bool pirate_visited[700][700];		// ÇØÀûµµ ÀÌµ¿ÇÏ¹Ç·Î ÇØÀû¿ë ¹æ¹® Ã¼Å©¿ë ¹è¿­ ¼±¾ğ
+bool pirate_visited[700][700];		// í•´ì ë„ ì´ë™í•˜ë¯€ë¡œ í•´ì ìš© ë°©ë¬¸ ì²´í¬ìš© ë°°ì—´ ì„ ì–¸
 queue<Node> q;
 
 bool Solve()
@@ -25,9 +25,9 @@ bool Solve()
 		q.pop();
 
 		if (node.sua) {
-			if (visited[node.r][node.c] == 2)			// ¼ö¾ÆÀÇ ÇöÀç À§Ä¡°¡ 2¶ó¸é ÀÌ¹Ì Á×Àº °Å
+			if (visited[node.r][node.c] == 2)			// ìˆ˜ì•„ì˜ í˜„ì¬ ìœ„ì¹˜ê°€ 2ë¼ë©´ ì´ë¯¸ ì£½ì€ ê±°
 				continue;
-			else if (map[node.r][node.c] == 'T')		// Á×Áö ¾Ê°í T¿¡ µµ´ŞÇß´Ù¸é ¼º°ø
+			else if (map[node.r][node.c] == 'T')		// ì£½ì§€ ì•Šê³  Tì— ë„ë‹¬í–ˆë‹¤ë©´ ì„±ê³µ
 				return true;
 		}
 
@@ -42,7 +42,7 @@ bool Solve()
 				q.push({ false, R, C });
 				pirate_visited[R][C] = true;
 				visited[R][C] = 2;
-				for (int di = 0; di < 4; di++) {		// Çö ÇØÀû À§Ä¡¿¡¼­ µ¿¼­³²ºÏÀ¸·Î »ìÇÇ¸ç ¼¶ ¸¸³¯ ¶§±îÁö È¤Àº ¸Ê ³¡±îÁö 2·Î Ã³¸®
+				for (int di = 0; di < 4; di++) {		// í˜„ í•´ì  ìœ„ì¹˜ì—ì„œ ë™ì„œë‚¨ë¶ìœ¼ë¡œ ì‚´í”¼ë©° ì„¬ ë§Œë‚  ë•Œê¹Œì§€ í˜¹ì€ ë§µ ëê¹Œì§€ 2ë¡œ ì²˜ë¦¬
 					int R_l = R + dr[di];
 					int C_l = C + dc[di];
 					while (R_l >= 0 && R_l < N && C_l >= 0 && C_l < M && map[R_l][C_l] != 'I') {

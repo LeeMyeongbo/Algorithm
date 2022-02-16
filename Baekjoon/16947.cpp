@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
@@ -10,7 +10,7 @@ void topological()
 {
 	queue<int> q;
 	for (int i = 1; i <= N; i++)
-		if (edges[i] == 1)				// ¿¬°áµÈ °£¼±ÀÌ ÇÏ³ªÀÎ Á¤Á¡¸¸ ÀúÀå
+		if (edges[i] == 1)				// ì—°ê²°ëœ ê°„ì„ ì´ í•˜ë‚˜ì¸ ì •ì ë§Œ ì €ìž¥
 			q.push(i);
 
 	while (!q.empty()) {
@@ -18,7 +18,7 @@ void topological()
 		q.pop();
 
 		for (int i : graph[cur]) {
-			if (!edges[i])				// ÀÌ¹Ì À§»óÁ¤·ÄÀÌ ¿Ï·áµÈ Á¡Àº skip
+			if (!edges[i])				// ì´ë¯¸ ìœ„ìƒì •ë ¬ì´ ì™„ë£Œëœ ì ì€ skip
 				continue;
 			edges[cur]--, edges[i]--;
 
@@ -35,7 +35,7 @@ void find()
 		if (!edges[i])
 			continue;
 
-		q.push({ i, 0 });				// ¼øÈ¯¼±ÀÇ °¢ ¿ªÀ¸·ÎºÎÅÍ Áö¼±ÀÇ °¢ ¿ª±îÁö °Å¸® ±¸ÇÔ
+		q.push({ i, 0 });				// ìˆœí™˜ì„ ì˜ ê° ì—­ìœ¼ë¡œë¶€í„° ì§€ì„ ì˜ ê° ì—­ê¹Œì§€ ê±°ë¦¬ êµ¬í•¨
 		while (!q.empty()) {
 			int cur = q.front().first;
 			int dis = q.front().second;

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -13,8 +13,8 @@ int Solve()
 
 	for (int i = 1; i < N; i++) {
 		if (lis.back() < A[i])
-			lis.push_back(A[i]);		// A[i]°¡ lisÀÇ ¸Ç ³¡¿¡ ÀÖ´Â ¼öº¸´Ù Å©¸é Ãß°¡
-		else {							// ±×·¸Áö ¾Ê´Ù¸é lowerbound ÀÚ¸®ÀÇ ¼ýÀÚ¸¦ A[i]·Î ±³Ã¼
+			lis.push_back(A[i]);		// A[i]ê°€ lisì˜ ë§¨ ëì— ìžˆëŠ” ìˆ˜ë³´ë‹¤ í¬ë©´ ì¶”ê°€
+		else {							// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´ lowerbound ìžë¦¬ì˜ ìˆ«ìžë¥¼ A[i]ë¡œ êµì²´
 			int index = lower_bound(lis.begin(), lis.end(), A[i]) - lis.begin();
 			lis[index] = A[i];
 		}

@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 #include <algorithm>
@@ -8,7 +8,7 @@ int N, group, num = -1, X1, Y1, X2, Y2;
 pair<pair<int, int>, pair<int, int>> line[3000];
 bool visited[3000];
 
-int CCW(pair<int, int>& p1, pair<int, int>& p2, pair<int, int>& p3)		// p1, p2 : ¼±ºÐ, p3 : Á¡
+int CCW(pair<int, int>& p1, pair<int, int>& p2, pair<int, int>& p3)		// p1, p2 : ì„ ë¶„, p3 : ì 
 {
 	int val1 = p1.first * p2.second + p2.first * p3.second + p3.first * p1.second;
 	int val2 = p1.second * p2.first + p2.second * p3.first + p3.second * p1.first;
@@ -26,23 +26,23 @@ bool is_Cross(int l, int c)
 	int t3 = CCW(line[l].first, line[l].second, line[c].first);
 	int t4 = CCW(line[l].first, line[l].second, line[c].second);
 
-	if (t1 * t2 == 0 && t3 * t4 == 0) {												// µÎ ¼±ºÐÀÇ ±â¿ï±â°¡ ÀÏÄ¡ÇÒ °æ¿ì
+	if (t1 * t2 == 0 && t3 * t4 == 0) {												// ë‘ ì„ ë¶„ì˜ ê¸°ìš¸ê¸°ê°€ ì¼ì¹˜í•  ê²½ìš°
 		if (line[c].first > line[c].second)
-			swap(line[c].first, line[c].second);									// second°¡ firstº¸´Ù Å©µµ·Ï ÇÔ
+			swap(line[c].first, line[c].second);									// secondê°€ firstë³´ë‹¤ í¬ë„ë¡ í•¨
 		if (line[l].first > line[l].second)
 			swap(line[l].first, line[l].second);
-		if (line[c].first <= line[l].second && line[l].first <= line[c].second)		// µÎ ¼±ºÐÀÌ ¼­·Î ¸¸³ª¸é true
-			return true;															// ±×°Ô ¾Æ´Ï¶ó¸é false
+		if (line[c].first <= line[l].second && line[l].first <= line[c].second)		// ë‘ ì„ ë¶„ì´ ì„œë¡œ ë§Œë‚˜ë©´ true
+			return true;															// ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ false
 	}
-	else if (t1 * t2 <= 0 && t3 * t4 <= 0)											// ±â¿ï±â°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é¼­ ¸¸³ª¸é true
+	else if (t1 * t2 <= 0 && t3 * t4 <= 0)											// ê¸°ìš¸ê¸°ê°€ ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ì„œ ë§Œë‚˜ë©´ true
 		return true;
-	return false;																	// ±×·¸Áö ¾ÊÀ¸¸é false
+	return false;																	// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ false
 }
 
 void Solve()
 {
 	queue<int> q;
-	for (int i = 0; i < N; i++) {						// ¹æ¹®ÇÏÁö ¾ÊÀº ¼±ºÐÀ» Ã£À¸¸é BFS·Î ÀÎÁ¢ÇÑ ¼±ºÐ ÃÖ´ëÇÑ Å½»ö
+	for (int i = 0; i < N; i++) {						// ë°©ë¬¸í•˜ì§€ ì•Šì€ ì„ ë¶„ì„ ì°¾ìœ¼ë©´ BFSë¡œ ì¸ì ‘í•œ ì„ ë¶„ ìµœëŒ€í•œ íƒìƒ‰
 		if (visited[i])
 			continue;
 		int n = 0;
@@ -56,13 +56,13 @@ void Solve()
 
 			n++;
 			for (int l = 0; l < N; l++) {
-				if (!visited[l] && is_Cross(l, c)) {	// ÇöÀç ¼±ºÐ°ú ¸¸³ª¸é¼­ ¹æ¹®ÇÑ Àû ¾ø´Â ¼±ºÐÀÌ¶ó¸é Å¥¿¡ »ðÀÔ
+				if (!visited[l] && is_Cross(l, c)) {	// í˜„ìž¬ ì„ ë¶„ê³¼ ë§Œë‚˜ë©´ì„œ ë°©ë¬¸í•œ ì  ì—†ëŠ” ì„ ë¶„ì´ë¼ë©´ íì— ì‚½ìž…
 					q.push(l);
 					visited[l] = true;
 				}
 			}
 		}
-		num = max(num, n);								// BFS ³¡³ª¸é ±×·ì ³» ¼±ºÐ ÃÖ´ë °³¼ö °»½Å
+		num = max(num, n);								// BFS ëë‚˜ë©´ ê·¸ë£¹ ë‚´ ì„ ë¶„ ìµœëŒ€ ê°œìˆ˜ ê°±ì‹ 
 	}
 	printf("%d\n%d", group, num);
 }

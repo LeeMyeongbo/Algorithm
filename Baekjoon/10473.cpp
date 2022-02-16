@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <cmath>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -9,13 +9,13 @@ priority_queue<int, vector<int>, greater<int>> q;
 double times[102][102], di[102];
 int n;
 
-void get_time()			// Ãâ¹ß ÁöÁ¡°ú °¢ ´ëÆ÷ & °¢ ´ëÆ÷³¢¸® °É¸®´Â ½Ã°£ÀÇ ÃÖ¼Ú°ª ÀúÀå
+void get_time()			// ì¶œë°œ ì§€ì ê³¼ ê° ëŒ€í¬ & ê° ëŒ€í¬ë¼ë¦¬ ê±¸ë¦¬ëŠ” ì‹œê°„ì˜ ìµœì†Ÿê°’ ì €ì¥
 {
-	for (int j = 1; j <= n + 1; j++)		// Ãâ¹ß ÁöÁ¡¿¡¼­´Â °¢ ´ëÆ÷±îÁö ¶Ù¾î°¥ ¼ö¹Û¿¡ ¾øÀ¸¹Ç·Î ¶Ù¾î°¡´Â µ¥ °É¸®´Â ½Ã°£¸¸ ÀúÀå
+	for (int j = 1; j <= n + 1; j++)		// ì¶œë°œ ì§€ì ì—ì„œëŠ” ê° ëŒ€í¬ê¹Œì§€ ë›°ì–´ê°ˆ ìˆ˜ë°–ì— ì—†ìœ¼ë¯€ë¡œ ë›°ì–´ê°€ëŠ” ë° ê±¸ë¦¬ëŠ” ì‹œê°„ë§Œ ì €ì¥
 		times[0][j] = times[j][0] = sqrt(pow(canon[0].first - canon[j].first, 2) + pow(canon[0].second - canon[j].second, 2)) / 5;
 	
-	for (int i = 1; i <= n + 1; i++) {		// ÇÑ ´ëÆ÷¿¡¼­ ´Ù¸¥ ´ëÆ÷±îÁö or µµÂø ÁöÁ¡±îÁö´Â
-		for (int j = 1; j <= n + 1; j++) {	// ´ëÆ÷Å¸°í ¶Ù¾î°¡´Âµ¥ °É¸®´Â ½Ã°£°ú ¶Ù¾î¼­¸¸ °¡´Â µ¥ °É¸®´Â ½Ã°£ÀÇ ÃÖ¼Ú°ªÀ» ÀúÀå
+	for (int i = 1; i <= n + 1; i++) {		// í•œ ëŒ€í¬ì—ì„œ ë‹¤ë¥¸ ëŒ€í¬ê¹Œì§€ or ë„ì°© ì§€ì ê¹Œì§€ëŠ”
+		for (int j = 1; j <= n + 1; j++) {	// ëŒ€í¬íƒ€ê³  ë›°ì–´ê°€ëŠ”ë° ê±¸ë¦¬ëŠ” ì‹œê°„ê³¼ ë›°ì–´ì„œë§Œ ê°€ëŠ” ë° ê±¸ë¦¬ëŠ” ì‹œê°„ì˜ ìµœì†Ÿê°’ì„ ì €ì¥
 			if (i == j)
 				continue;
 			double distance = sqrt(pow(canon[i].first - canon[j].first, 2) + pow(canon[i].second - canon[j].second, 2));
@@ -32,7 +32,7 @@ double Dijkstra()
 	q.push(0);
 	di[0] = 0;
 
-	while (!q.empty()) {			// ´ÙÀÍ½ºÆ®¶ó·Î Ãâ¹ßÁöÁ¡¿¡¼­ µµÂøÁöÁ¡±îÁö ÃÖ¼Ò ½Ã°£ µµÃâ
+	while (!q.empty()) {			// ë‹¤ìµìŠ¤íŠ¸ë¼ë¡œ ì¶œë°œì§€ì ì—ì„œ ë„ì°©ì§€ì ê¹Œì§€ ìµœì†Œ ì‹œê°„ ë„ì¶œ
 		int cur = q.top();
 		q.pop();
 

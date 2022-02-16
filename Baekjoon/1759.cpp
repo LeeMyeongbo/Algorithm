@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -7,29 +7,29 @@ int L, C;
 char word, password[16];
 vector<char> words;
 
-/*	DFS ´Ü°è
-	1. Ã¼Å©ÀÎ
-	2. ¸ñÀûÁöÀÎÁö È®ÀÎ
-	3. ¿¬°áµÈ °÷ ¼øÈ¸
-		4. °¢ ¿¬°áµÈ °÷ °¥ ¼ö ÀÖ´ÂÁö È®ÀÎ
-			5. °¥ ¼ö ÀÖÀ¸¸é °¨
-	6. Ã¼Å©¾Æ¿ô
+/*	DFS ë‹¨ê³„
+	1. ì²´í¬ì¸
+	2. ëª©ì ì§€ì¸ì§€ í™•ì¸
+	3. ì—°ê²°ëœ ê³³ ìˆœíšŒ
+		4. ê° ì—°ê²°ëœ ê³³ ê°ˆ ìˆ˜ ìˆëŠ”ì§€ í™•ì¸
+			5. ê°ˆ ìˆ˜ ìˆìœ¼ë©´ ê°
+	6. ì²´í¬ì•„ì›ƒ
 */
 
 void DFS(int depth, int cur, int consonant, int vowel)
 {
-	// 1. Ã¼Å©ÀÎ (¿©±â¼­´Â Àü¿ªº¯¼ö¿¡ Çö Å½»ö ÁßÀÎ ¹®ÀÚ ÀúÀå)
+	// 1. ì²´í¬ì¸ (ì—¬ê¸°ì„œëŠ” ì „ì—­ë³€ìˆ˜ì— í˜„ íƒìƒ‰ ì¤‘ì¸ ë¬¸ì ì €ì¥)
 	if (depth >= 0 && cur >= 0)
 		password[depth] = words[cur];
 
-	// 2. ¸ñÀûÁöÀÎÁö È®ÀÎ (¿©±â¼­´Â ¾ÏÈ£ ±æÀÌ°¡ LÀÌ µÇ±â¸¸ ÇÏ¸é ¸ñÀûÁöÀÓ!)
+	// 2. ëª©ì ì§€ì¸ì§€ í™•ì¸ (ì—¬ê¸°ì„œëŠ” ì•”í˜¸ ê¸¸ì´ê°€ Lì´ ë˜ê¸°ë§Œ í•˜ë©´ ëª©ì ì§€ì„!)
 	if (depth == L - 1) {
-		if (vowel >= 1 && consonant >= 2)	// ¿Ï¼ºµÈ ¾ÏÈ£°¡ ÀÚÀ½, ¸ğÀ½ Á¶°Ç ÃæÁ·ÇÏ¸é Ãâ·Â
+		if (vowel >= 1 && consonant >= 2)	// ì™„ì„±ëœ ì•”í˜¸ê°€ ììŒ, ëª¨ìŒ ì¡°ê±´ ì¶©ì¡±í•˜ë©´ ì¶œë ¥
 			printf("%s\n", password);
 		return;
 	}
 
-	// 3 ~ 5. ¿¬°áµÈ °÷ »ìÇÇ°í °¥ ¼ö ÀÖÀ¸¸é °¨ (ÀÌ ¹®Á¦´Â ÀÌ¹Ì Á¤·ÄÇØ ³õÀ½, ÀÚÀ½ ¸ğÀ½ °³¼ö¸¸ µûÁü)
+	// 3 ~ 5. ì—°ê²°ëœ ê³³ ì‚´í”¼ê³  ê°ˆ ìˆ˜ ìˆìœ¼ë©´ ê° (ì´ ë¬¸ì œëŠ” ì´ë¯¸ ì •ë ¬í•´ ë†“ìŒ, ììŒ ëª¨ìŒ ê°œìˆ˜ë§Œ ë”°ì§)
 	for (int i = cur + 1; i < C; i++) {
 		if (words[i] == 'a' || words[i] == 'e' || words[i] == 'i' || words[i] == 'o' || words[i] == 'u')
 			DFS(depth + 1, i, consonant, vowel + 1);
@@ -37,7 +37,7 @@ void DFS(int depth, int cur, int consonant, int vowel)
 			DFS(depth + 1, i, consonant + 1, vowel);
 	}
 
-	// 6. Ã¼Å©¾Æ¿ô (¿©±â¼­´Â Àü¿ªº¯¼ö¿¡ ÀúÀåµÇ¾ú´ø ¹®ÀÚ Áö¿ò)
+	// 6. ì²´í¬ì•„ì›ƒ (ì—¬ê¸°ì„œëŠ” ì „ì—­ë³€ìˆ˜ì— ì €ì¥ë˜ì—ˆë˜ ë¬¸ì ì§€ì›€)
 	if (depth >= 0 && cur >= 0)
 		password[depth] = 0;
 }
@@ -49,10 +49,10 @@ int main()
 		cin >> word;
 		words.push_back(word);
 	}
-	sort(words.begin(), words.end());		// ¹®ÀÚ ¿À¸§Â÷¼ø Á¤·Ä
+	sort(words.begin(), words.end());		// ë¬¸ì ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 
 	/*
-	for (int i = 0; i < C; i++) {			// starting point°¡ C°³
+	for (int i = 0; i < C; i++) {			// starting pointê°€ Cê°œ
 		if (words[i] == 'a' || words[i] == 'e' || words[i] == 'i' || words[i] == 'o' || words[i] == 'u')
 			DFS(0, i, 0, 1);
 		else

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <map>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -18,15 +18,15 @@ int main()
 	}
 	sort(Copy, Copy + N);
 	for (int i = 0; i < N; i++)
-		m.insert({ Copy[i], i });						// °ª°ú ÇØ´ç °ªÀÌ ¿Å±ä À§Ä¡ ÀúÀå
+		m.insert({ Copy[i], i });						// ê°’ê³¼ í•´ë‹¹ ê°’ì´ ì˜®ê¸´ ìœ„ì¹˜ ì €ì¥
 
 	for (int i = 0; i < N; i++) {
-		it = m.lower_bound(A[i]);						// *it = (ÇöÀç A[i], ÇöÀç A[i]°¡ ÀÌµ¿ÇÑ index)
+		it = m.lower_bound(A[i]);						// *it = (í˜„ì¬ A[i], í˜„ì¬ A[i]ê°€ ì´ë™í•œ index)
 
-		if (it->second > i)								// A[i]°¡ ¿Å±ä index°¡ ¿ø·¡ ÀÖ´ø indexº¸´Ù Å©´Ù¸é
-			to_higher++;								// Å« ¼ö´Â ¹öºí ¼ÒÆ® ÇÑ ¹ø¸¸¿¡ °¡°íÀÚ ÇÏ´Â index·Î ÀÌµ¿ÇÏ±â ¶§¹®
+		if (it->second > i)								// A[i]ê°€ ì˜®ê¸´ indexê°€ ì›ë˜ ìˆë˜ indexë³´ë‹¤ í¬ë‹¤ë©´
+			to_higher++;								// í° ìˆ˜ëŠ” ë²„ë¸” ì†ŒíŠ¸ í•œ ë²ˆë§Œì— ê°€ê³ ì í•˜ëŠ” indexë¡œ ì´ë™í•˜ê¸° ë•Œë¬¸
 		else
-			to_lower = max(to_lower, i - it->second);	// ÀÛÀº ¼ö´Â ¹öºí ¼ÒÆ® ÇÑ ¹ø¿¡ 1¹ø ¿ŞÂÊÀ¸·Î ÀÌµ¿
+			to_lower = max(to_lower, i - it->second);	// ì‘ì€ ìˆ˜ëŠ” ë²„ë¸” ì†ŒíŠ¸ í•œ ë²ˆì— 1ë²ˆ ì™¼ìª½ìœ¼ë¡œ ì´ë™
 		m.erase(m.lower_bound(A[i]));
 	}
 

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -7,7 +7,7 @@ using namespace std;
 
 int N, M, a, sa, b, sb, order, seq[2 * MAX + 1], scc_num, scc_index[2 * MAX + 1];
 bool complete[2 * MAX + 1];
-vector<int> graph[2 * MAX + 1];		// ²¨Á® ÀÖ´Â °Å´Â MAX º¸´Ù ÀÛ°í ÄÑÁ® ÀÖ´Â °Å´Â MAX º¸´Ù Å­
+vector<int> graph[2 * MAX + 1];		// êº¼ì ¸ ìˆëŠ” ê±°ëŠ” MAX ë³´ë‹¤ ì‘ê³  ì¼œì ¸ ìˆëŠ” ê±°ëŠ” MAX ë³´ë‹¤ í¼
 stack<int> s;
 
 int dfs(int cur)
@@ -51,21 +51,21 @@ int main()
 	cin >> N >> M;
 	for (int i = 0; i < N; i++) {
 		cin >> a >> sa >> b >> sb;
-		if (!sa && !sb) {							// µÎ ½ºÀ§Ä¡°¡ ¸ğµÎ ²¨Á® ÀÖ¾î¾ß ¹®ÀÌ ´İÈù´Ù¸é
-			graph[MAX + a].push_back(MAX - b);		// a°¡ ÄÑÁ® ÀÖÀ» ¶© b´Â ²¨Á®¾ß ÇÔ
-			graph[MAX + b].push_back(MAX - a);		// b°¡ ÄÑÁ® ÀÖÀ» ¶© a´Â ²¨Á®¾ß ÇÔ
+		if (!sa && !sb) {							// ë‘ ìŠ¤ìœ„ì¹˜ê°€ ëª¨ë‘ êº¼ì ¸ ìˆì–´ì•¼ ë¬¸ì´ ë‹«íŒë‹¤ë©´
+			graph[MAX + a].push_back(MAX - b);		// aê°€ ì¼œì ¸ ìˆì„ ë• bëŠ” êº¼ì ¸ì•¼ í•¨
+			graph[MAX + b].push_back(MAX - a);		// bê°€ ì¼œì ¸ ìˆì„ ë• aëŠ” êº¼ì ¸ì•¼ í•¨
 		}
-		else if (!sa && sb) {						// a´Â ²¨Á® ÀÖ¾î¾ß ´İÈ÷°í b´Â ÄÑÁ® ÀÖ¾î¾ß ´İÈù´Ù¸é
-			graph[MAX + a].push_back(MAX + b);		// a°¡ ÄÑÁ® ÀÖÀ» ¶© bµµ ÄÑÁ® ÀÖ¾î¾ß ÇÔ
-			graph[MAX - b].push_back(MAX - a);		// b°¡ ²¨Á® ÀÖÀ» ¶© aµµ ²¨Á® ÀÖ¾î¾ß ÇÔ
+		else if (!sa && sb) {						// aëŠ” êº¼ì ¸ ìˆì–´ì•¼ ë‹«íˆê³  bëŠ” ì¼œì ¸ ìˆì–´ì•¼ ë‹«íŒë‹¤ë©´
+			graph[MAX + a].push_back(MAX + b);		// aê°€ ì¼œì ¸ ìˆì„ ë• bë„ ì¼œì ¸ ìˆì–´ì•¼ í•¨
+			graph[MAX - b].push_back(MAX - a);		// bê°€ êº¼ì ¸ ìˆì„ ë• aë„ êº¼ì ¸ ìˆì–´ì•¼ í•¨
 		}
-		else if (sa && !sb) {						// a´Â ÄÑÁ® ÀÖ¾î¾ß ´İÈ÷°í b´Â ²¨Á® ÀÖ¾î¾ß ´İÈù´Ù¸é
-			graph[MAX - a].push_back(MAX - b);		// a°¡ ²¨Á® ÀÖÀ» ¶© bµµ ²¨Á® ÀÖ¾î¾ß ÇÔ
-			graph[MAX + b].push_back(MAX + a);		// b°¡ ÄÑÁ® ÀÖÀ» ¶© aµµ ÄÑÁ® ÀÖ¾î¾ß ÇÔ
+		else if (sa && !sb) {						// aëŠ” ì¼œì ¸ ìˆì–´ì•¼ ë‹«íˆê³  bëŠ” êº¼ì ¸ ìˆì–´ì•¼ ë‹«íŒë‹¤ë©´
+			graph[MAX - a].push_back(MAX - b);		// aê°€ êº¼ì ¸ ìˆì„ ë• bë„ êº¼ì ¸ ìˆì–´ì•¼ í•¨
+			graph[MAX + b].push_back(MAX + a);		// bê°€ ì¼œì ¸ ìˆì„ ë• aë„ ì¼œì ¸ ìˆì–´ì•¼ í•¨
 		}
-		else {										// µÎ ½ºÀ§Ä¡°¡ ¸ğµÎ ÄÑÁ® ÀÖ¾î¾ß ¹®ÀÌ ´İÈù´Ù¸é
-			graph[MAX - a].push_back(MAX + b);		// a°¡ ²¨Á® ÀÖÀ» ¶© b´Â ÄÑÁ®¾ß ÇÔ
-			graph[MAX - b].push_back(MAX + a);		// b°¡ ²¨Á® ÀÖÀ» ¶© a´Â ÄÑÁ®¾ß ÇÔ
+		else {										// ë‘ ìŠ¤ìœ„ì¹˜ê°€ ëª¨ë‘ ì¼œì ¸ ìˆì–´ì•¼ ë¬¸ì´ ë‹«íŒë‹¤ë©´
+			graph[MAX - a].push_back(MAX + b);		// aê°€ êº¼ì ¸ ìˆì„ ë• bëŠ” ì¼œì ¸ì•¼ í•¨
+			graph[MAX - b].push_back(MAX + a);		// bê°€ êº¼ì ¸ ìˆì„ ë• aëŠ” ì¼œì ¸ì•¼ í•¨
 		}
 	}
 	for (int i = MAX - M; i <= MAX + M; i++)

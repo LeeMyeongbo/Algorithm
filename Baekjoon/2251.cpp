@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -7,7 +7,7 @@ struct Node {
 	int a, b, c;
 };
 int A, B, C;
-bool visited[201][201][201], c_bottle[201];		// [A][B][C]·Î ¹æ¹®Ã¼Å©
+bool visited[201][201][201], c_bottle[201];		// [A][B][C]ë¡œ ë°©ë¬¸ì²´í¬
 queue<Node> q;
 
 void Solve()
@@ -22,37 +22,37 @@ void Solve()
 		if (!node.a && !c_bottle[node.c])
 			c_bottle[node.c] = true;
 
-		// A ¹°Åë¿¡ ¹°ÀÌ ÀÖÀ» ¶§ ¸ÕÀú B¹°Åë¿¡ ¹°À» ºÎ¾î º½
-		if (node.a && node.a + node.b <= B && !visited[0][node.a + node.b][node.c]) {		// B¹°Åë¿¡ A¹°ÅëÀÇ ¹°À» ¸ğµÎ ºÎ¾îµµ ¾È ³ÑÄ¥ °æ¿ì
+		// A ë¬¼í†µì— ë¬¼ì´ ìˆì„ ë•Œ ë¨¼ì € Bë¬¼í†µì— ë¬¼ì„ ë¶€ì–´ ë´„
+		if (node.a && node.a + node.b <= B && !visited[0][node.a + node.b][node.c]) {		// Bë¬¼í†µì— Aë¬¼í†µì˜ ë¬¼ì„ ëª¨ë‘ ë¶€ì–´ë„ ì•ˆ ë„˜ì¹  ê²½ìš°
 			visited[0][node.a + node.b][node.c] = true;
 			q.push({ 0, node.a + node.b, node.c });
 		}
-		else if (node.a && node.a + node.b > B && !visited[node.a - (B - node.b)][B][node.c]) {		// ³ÑÄ¥ °æ¿ì
+		else if (node.a && node.a + node.b > B && !visited[node.a - (B - node.b)][B][node.c]) {		// ë„˜ì¹  ê²½ìš°
 			visited[node.a - (B - node.b)][B][node.c] = true;
 			q.push({ node.a - (B - node.b), B, node.c });
 		}
 
-		// A ¹°Åë¿¡¼­ C¹°Åë¿¡ ¹°À» ºÎ¾î º½
-		if (node.a && node.a + node.c <= C && !visited[0][node.b][node.a + node.c]) {		// C¹°Åë¿¡ A¹°ÅëÀÇ ¹°À» ¸ğµÎ ºÎ¾îµµ ¾È ³ÑÄ¥ °æ¿ì
+		// A ë¬¼í†µì—ì„œ Cë¬¼í†µì— ë¬¼ì„ ë¶€ì–´ ë´„
+		if (node.a && node.a + node.c <= C && !visited[0][node.b][node.a + node.c]) {		// Cë¬¼í†µì— Aë¬¼í†µì˜ ë¬¼ì„ ëª¨ë‘ ë¶€ì–´ë„ ì•ˆ ë„˜ì¹  ê²½ìš°
 			visited[0][node.b][node.a + node.c] = true;
 			q.push({ 0, node.b, node.a + node.c });
 		}
-		else if (node.a && node.a + node.c > C && !visited[node.a - (C - node.c)][node.b][C]) {		// ³ÑÄ¥ °æ¿ì
+		else if (node.a && node.a + node.c > C && !visited[node.a - (C - node.c)][node.b][C]) {		// ë„˜ì¹  ê²½ìš°
 			visited[node.a - (C - node.c)][node.b][C] = true;
 			q.push({ node.a - (C - node.c), node.b, C });
 		}
 
-		// B ¹°Åë¿¡¼­ A¹°Åë¿¡ ¹° ºÎ¾î º½
-		if (node.b && node.b + node.a <= A && !visited[node.b + node.a][0][node.c]) {		//A¹°Åë¿¡ B¹°ÅëÀÇ ¹°À» ¸ğµÎ ºÎ¾îµµ ¾È ³ÑÄ¥ °æ¿ì
+		// B ë¬¼í†µì—ì„œ Aë¬¼í†µì— ë¬¼ ë¶€ì–´ ë´„
+		if (node.b && node.b + node.a <= A && !visited[node.b + node.a][0][node.c]) {		//Aë¬¼í†µì— Bë¬¼í†µì˜ ë¬¼ì„ ëª¨ë‘ ë¶€ì–´ë„ ì•ˆ ë„˜ì¹  ê²½ìš°
 			visited[node.b + node.a][0][node.c] = true;
 			q.push({ node.b + node.a, 0, node.c });
 		}
-		else if (node.b && node.b + node.a > A && !visited[A][node.b - (A - node.a)][node.c]) {		// ³ÑÄ¥ °æ¿ì
+		else if (node.b && node.b + node.a > A && !visited[A][node.b - (A - node.a)][node.c]) {		// ë„˜ì¹  ê²½ìš°
 			visited[A][node.b - (A - node.a)][node.c] = true;
 			q.push({ A, node.b - (A - node.a), node.c });
 		}
 
-		// B ¹°Åë¿¡¼­ C¹°Åë¿¡ ¹° ºÎ¾î º½
+		// B ë¬¼í†µì—ì„œ Cë¬¼í†µì— ë¬¼ ë¶€ì–´ ë´„
 		if (node.b && node.b + node.c <= C && !visited[node.a][0][node.b + node.c]) {
 			visited[node.a][0][node.b + node.c] = true;
 			q.push({ node.a, 0, node.b + node.c });
@@ -62,7 +62,7 @@ void Solve()
 			q.push({ node.a, node.b - (C - node.c), C });
 		}
 		
-		// C ¹°Åë¿¡¼­ A¹°Åë¿¡ ¹° ºÎ¾î º½
+		// C ë¬¼í†µì—ì„œ Aë¬¼í†µì— ë¬¼ ë¶€ì–´ ë´„
 		if (node.c && node.c + node.a <= A && !visited[node.c + node.a][node.b][0]) {
 			visited[node.c + node.a][node.b][0] = true;
 			q.push({ node.c + node.a, node.b, 0 });
@@ -72,7 +72,7 @@ void Solve()
 			q.push({ A, node.b, node.c - (A - node.a) });
 		}
 
-		// C ¹°Åë¿¡¼­ B¹°Åë¿¡ ¹° ºÎ¾î º½
+		// C ë¬¼í†µì—ì„œ Bë¬¼í†µì— ë¬¼ ë¶€ì–´ ë´„
 		if (node.c && node.c + node.b <= B && !visited[node.a][node.c + node.b][0]) {
 			visited[node.a][node.c + node.b][0] = true;
 			q.push({ node.a, node.c + node.b, 0 });

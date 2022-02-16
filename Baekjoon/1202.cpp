@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <queue>
@@ -8,13 +8,13 @@ struct compare {
 	bool operator()(pair<long long, long long> p1, pair<long long, long long> p2)
 	{
 		if (p1.second < p2.second || (p1.second == p2.second && p1.first > p2.first))
-			return true;			// °¡°İ ³ôÀº ¼ø´ë·Î ³ª¿Àµµ·Ï + °¡°İ °°´Ù¸é ¹«°Ô ÀÛÀº ¼ø´ë·Î ³ª¿Àµµ·Ï ÇÔ
+			return true;			// ê°€ê²© ë†’ì€ ìˆœëŒ€ë¡œ ë‚˜ì˜¤ë„ë¡ + ê°€ê²© ê°™ë‹¤ë©´ ë¬´ê²Œ ì‘ì€ ìˆœëŒ€ë¡œ ë‚˜ì˜¤ë„ë¡ í•¨
 		return false;
 	}
 };
 int N, K;
 long long C[300000], m, v, Ans;
-vector<pair<long long, long long>> jewel;		// (¹«°Ô, °¡°İ)À¸·Î ÀúÀå
+vector<pair<long long, long long>> jewel;		// (ë¬´ê²Œ, ê°€ê²©)ìœ¼ë¡œ ì €ì¥
 priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, compare> pq;
 
 long long solve()
@@ -25,10 +25,10 @@ long long solve()
 
 	for (int i = 0; i < K; i++) {
 		while (jdx < N && jewel[jdx].first <= C[i])
-			pq.push(jewel[jdx++]);				// ÇöÀç °¡¹æÀÌ °¨´çÇÒ ¼ö ÀÖ´Â ¹«°Ô¸é °è¼Ó ÀúÀå
+			pq.push(jewel[jdx++]);				// í˜„ì¬ ê°€ë°©ì´ ê°ë‹¹í•  ìˆ˜ ìˆëŠ” ë¬´ê²Œë©´ ê³„ì† ì €ì¥
 		
 		if (!pq.empty()) {
-			Ans += pq.top().second;				// ¹İº¹¹® µ¹¸ç popÇÒ ¶§¸¶´Ù ÇöÀç °¡¹æÀÌ ´ãÀ» ¼ö ÀÖ´Â ÃÖ´ë °¡°İÀÌ ³ª¿È
+			Ans += pq.top().second;				// ë°˜ë³µë¬¸ ëŒë©° popí•  ë•Œë§ˆë‹¤ í˜„ì¬ ê°€ë°©ì´ ë‹´ì„ ìˆ˜ ìˆëŠ” ìµœëŒ€ ê°€ê²©ì´ ë‚˜ì˜´
 			pq.pop();
 		}
 	}

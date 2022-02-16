@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 struct Tree {
@@ -11,18 +11,18 @@ Tree tree[200001];
 
 int dfs(Tree* node, long long cur)
 {
-	if (node->left && node->right) {				// ¾çÂÊ ÀÚ½ÄÀÌ ¸ğµÎ Á¸ÀçÇÒ °æ¿ì
+	if (node->left && node->right) {				// ì–‘ìª½ ìì‹ì´ ëª¨ë‘ ì¡´ì¬í•  ê²½ìš°
 		if (cur % 2)
-			return dfs(node->left, cur / 2 + 1);	// ÇöÀç ¼ö°¡ È¦¼öÀÏ °æ¿ì 2·Î ³ª´« °ÍÀÇ +1À» ÇÏ°í ¿ŞÂÊÀ¸·Î ÀÌµ¿
+			return dfs(node->left, cur / 2 + 1);	// í˜„ì¬ ìˆ˜ê°€ í™€ìˆ˜ì¼ ê²½ìš° 2ë¡œ ë‚˜ëˆˆ ê²ƒì˜ +1ì„ í•˜ê³  ì™¼ìª½ìœ¼ë¡œ ì´ë™
 		else
-			return dfs(node->right, cur / 2);		// Â¦¼ö¶ó¸é 2·Î ³ª´©°í ¿À¸¥ÂÊ ÀÌµ¿
+			return dfs(node->right, cur / 2);		// ì§ìˆ˜ë¼ë©´ 2ë¡œ ë‚˜ëˆ„ê³  ì˜¤ë¥¸ìª½ ì´ë™
 	}
 	else if (node->left)
-		return dfs(node->left, cur);		// ¿ŞÂÊ ÀÚ½Ä¹Û¿¡ ¾ø´Ù¸é ±×´ë·Î ¿ŞÂÊÀ¸·Î ÀÌµ¿
+		return dfs(node->left, cur);		// ì™¼ìª½ ìì‹ë°–ì— ì—†ë‹¤ë©´ ê·¸ëŒ€ë¡œ ì™¼ìª½ìœ¼ë¡œ ì´ë™
 	else if (node->right)
-		return dfs(node->right, cur);		// ¿À¸¥ÂÊ ¹Û¿¡ ¾ø´Ù¸é ±×´ë·Î ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+		return dfs(node->right, cur);		// ì˜¤ë¥¸ìª½ ë°–ì— ì—†ë‹¤ë©´ ê·¸ëŒ€ë¡œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
 	else
-		return node->cur;					// ¸®ÇÁ¿¡ ´Ù´Ù¸£¸é ÇöÀç ¸®ÇÁÀÇ index ¹İÈ¯
+		return node->cur;					// ë¦¬í”„ì— ë‹¤ë‹¤ë¥´ë©´ í˜„ì¬ ë¦¬í”„ì˜ index ë°˜í™˜
 }
 
 int main()
@@ -32,9 +32,9 @@ int main()
 	for (int i = 1; i <= N; i++) {
 		cin >> U >> V;
 		if (U != -1)
-			tree[i].left = tree + U;	// ¿ŞÂÊ ÀÚ½ÄÀÌ Á¸ÀçÇÑ´Ù¸é ÀúÀå
+			tree[i].left = tree + U;	// ì™¼ìª½ ìì‹ì´ ì¡´ì¬í•œë‹¤ë©´ ì €ì¥
 		if (V != -1)
-			tree[i].right = tree + V;	// ¿À¸¥ÂÊ ÀÚ½ÄÀÌ Á¸ÀçÇÑ´Ù¸é ÀúÀå
+			tree[i].right = tree + V;	// ì˜¤ë¥¸ìª½ ìì‹ì´ ì¡´ì¬í•œë‹¤ë©´ ì €ì¥
 		tree[i].cur = i;
 	}
 	cin >> K;

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
@@ -11,19 +11,19 @@ void dfs(int r, int c, int n, int cost)
 		ans = ans > cost ? cost : ans;
 		return;
 	}
-	else if (r == N - 1)		// °¡Àå ¹ØÀÇ ÇàÀ¸·Î ¿À¸é Á¾·á
+	else if (r == N - 1)		// ê°€ì¥ ë°‘ì˜ í–‰ìœ¼ë¡œ ì˜¤ë©´ ì¢…ë£Œ
 		return;
-	else if (c == N - 1) {		// °¡Àå ¿À¸¥ÂÊ ¿­·Î ¿À¸é ´ÙÀ½ ÇàÀÇ 1¿­ºÎÅÍ ½ÃÀÛ
+	else if (c == N - 1) {		// ê°€ì¥ ì˜¤ë¥¸ìª½ ì—´ë¡œ ì˜¤ë©´ ë‹¤ìŒ í–‰ì˜ 1ì—´ë¶€í„° ì‹œì‘
 		dfs(r + 1, 1, n, cost);
 		return;
 	}
-	// ÇöÀç ÀÚ¸®¿¡ ²ÉÀ» ³õÀ» ¼ö ÀÖ´Â °æ¿ì ³õ°í ´ÙÀ½ À§Ä¡ Å½»ö ¤¡¤¡
+	// í˜„ì¬ ìë¦¬ì— ê½ƒì„ ë†“ì„ ìˆ˜ ìˆëŠ” ê²½ìš° ë†“ê³  ë‹¤ìŒ ìœ„ì¹˜ íƒìƒ‰ ã„±ã„±
 	else if (!visited[r][c] && !visited[r - 1][c] && !visited[r][c - 1] && !visited[r + 1][c] && !visited[r][c + 1]) {
 		visited[r][c] = visited[r - 1][c] = visited[r + 1][c] = visited[r][c - 1] = visited[r][c + 1] = true;
 		dfs(r, c + 1, n + 1, cost + map[r][c] + map[r - 1][c] + map[r + 1][c] + map[r][c - 1] + map[r][c + 1]);
 		visited[r][c] = visited[r - 1][c] = visited[r + 1][c] = visited[r][c - 1] = visited[r][c + 1] = false;
 	}
-	// Çö À§Ä¡¿¡ ²ÉÀ» ³õÀº °æ¿ì¸¦ Å½»öÇßÀ¸¸é ³õÁö ¾ÊÀº »óÅÂ·Î ´ÙÀ½ À§Ä¡ Å½»öµµ ¤¡¤¡
+	// í˜„ ìœ„ì¹˜ì— ê½ƒì„ ë†“ì€ ê²½ìš°ë¥¼ íƒìƒ‰í–ˆìœ¼ë©´ ë†“ì§€ ì•Šì€ ìƒíƒœë¡œ ë‹¤ìŒ ìœ„ì¹˜ íƒìƒ‰ë„ ã„±ã„±
 	dfs(r, c + 1, n, cost);
 }
 

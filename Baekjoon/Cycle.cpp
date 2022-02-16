@@ -1,19 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
-int N, x, y, chk[1001], ans;		                // chk[i] : i¹ø Á¤Á¡ÀÇ ±íÀÌ
+int N, x, y, chk[1001], ans;		                // chk[i] : ië²ˆ ì •ì ì˜ ê¹Šì´
 vector<int> graph[1001];
 
-void DFS(int prev, int cur, int depth) {            // prev : ÀÌÀü Á¤Á¡, cur : ÇöÀç Á¤Á¡, depth : ±íÀÌ
+void DFS(int prev, int cur, int depth) {            // prev : ì´ì „ ì •ì , cur : í˜„ì¬ ì •ì , depth : ê¹Šì´
     chk[cur] = depth;
 
     for (int next : graph[cur]) {
         if (ans)
-            return;                                 // ans°¡ 0ÀÌ ¾Æ´Ï¸é ÀÌ¹Ì »çÀÌÅ¬ Ã£Àº °Å
+            return;                                 // ansê°€ 0ì´ ì•„ë‹ˆë©´ ì´ë¯¸ ì‚¬ì´í´ ì°¾ì€ ê±°
 
-        if (chk[next]) {                            // ¹æ¹®ÇÑ ÀûÀÌ ÀÖ´Âµ¥ 
-            if (next != prev) {                     // ÀÌÀü¿¡ ¹æ¹®ÇÑ Á¤Á¡ÀÌ ¾Æ´Ï¶ó¸é »çÀÌÅ¬!
+        if (chk[next]) {                            // ë°©ë¬¸í•œ ì ì´ ìˆëŠ”ë° 
+            if (next != prev) {                     // ì´ì „ì— ë°©ë¬¸í•œ ì •ì ì´ ì•„ë‹ˆë¼ë©´ ì‚¬ì´í´!
                 ans = chk[cur] - chk[next] + 1;
                 return;
             }
@@ -23,7 +23,7 @@ void DFS(int prev, int cur, int depth) {            // prev : ÀÌÀü Á¤Á¡, cur : Ç
     }
 }
 
-int main(int argc, char** argv)                     // È¤Àº À§»óÁ¤·ÄÀ» È°¿ëÇØµµ µÊ!!
+int main(int argc, char** argv)                     // í˜¹ì€ ìœ„ìƒì •ë ¬ì„ í™œìš©í•´ë„ ë¨!!
 {
 	cin >> N;
 	for (int i = 0; i < N; i++) {
@@ -33,6 +33,6 @@ int main(int argc, char** argv)                     // È¤Àº À§»óÁ¤·ÄÀ» È°¿ëÇØµµ 
 	}
 	DFS(0, 1, 1);
 
-	cout << "»çÀÌÅ¬ ±æÀÌ : " << ans << endl;
+	cout << "ì‚¬ì´í´ ê¸¸ì´ : " << ans << endl;
 	return 0;
 }

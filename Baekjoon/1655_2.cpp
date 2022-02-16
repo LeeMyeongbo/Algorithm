@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <algorithm>
 using namespace std;
@@ -25,12 +25,12 @@ int main()
 		int dsc_size = dsc_pq.size();
 		int asc_size = asc_pq.size();
 
-		if (dsc_size - asc_size > 1) {			// ÃÖ´ë ÈüÀÇ Å©±â°¡ ÃÖ¼Ò Èü Å©±â + 1À» ³Ñ¾î¼³ °æ¿ì
+		if (dsc_size - asc_size > 1) {			// ìµœëŒ€ í™ì˜ í¬ê¸°ê°€ ìµœì†Œ í™ í¬ê¸° + 1ì„ ë„˜ì–´ì„¤ ê²½ìš°
 			asc_pq.push(dsc_pq.top());
 			dsc_pq.pop();
 			dsc_size--, asc_size++;
 		}
-		else if (asc_size - dsc_size > 0) {		// ÃÖ¼Ò Èü Å©±â°¡ ÃÖ¼Ò Èü Å©±â¸¦ ³Ñ¾î¼³ °æ¿ì
+		else if (asc_size - dsc_size > 0) {		// ìµœì†Œ í™ í¬ê¸°ê°€ ìµœì†Œ í™ í¬ê¸°ë¥¼ ë„˜ì–´ì„¤ ê²½ìš°
 			dsc_pq.push(asc_pq.top());
 			asc_pq.pop();
 			dsc_size++, asc_size--;

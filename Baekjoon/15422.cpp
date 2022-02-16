@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -18,7 +18,7 @@ struct Node {
 	int cur, flight;
 };
 int n, m, f, s, t, i, j, c;
-long long di[2][50000];			// [0][i] : ºñÇàÆíÀ» °ÅÄ¡Áö ¾ÊÀº, [1][i] : ºñÇàÆíÀ» 1¹ø °ÅÄ£ »óÅÂ¿¡¼­ i Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®
+long long di[2][50000];			// [0][i] : ë¹„í–‰í¸ì„ ê±°ì¹˜ì§€ ì•Šì€, [1][i] : ë¹„í–‰í¸ì„ 1ë²ˆ ê±°ì¹œ ìƒíƒœì—ì„œ i ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬
 vector<pair<int, int>> graph[50000];
 priority_queue<Node, vector<Node>, compare<Node>> q;
 
@@ -36,19 +36,19 @@ long long Solve()
 		if (node.sum > di[node.flight][node.cur] || node.cur == t)
 			continue;
 		for (auto p : graph[node.cur]) {
-			// µµ·Î¸¦ °ÅÃÄ°¡°í ÇØ´ç Á¤Á¡À¸·Î °¥ ¼ö ÀÖ´Â °æ¿ì
+			// ë„ë¡œë¥¼ ê±°ì³ê°€ê³  í•´ë‹¹ ì •ì ìœ¼ë¡œ ê°ˆ ìˆ˜ ìˆëŠ” ê²½ìš°
 			if (p.first && di[node.flight][p.second] > di[node.flight][node.cur] + p.first) {
 				di[node.flight][p.second] = di[node.flight][node.cur] + p.first;
 				q.push({ di[node.flight][p.second], p.second, node.flight });
 			}
-			// ºñÇàÆíÀ» °ÅÃÄ°¥ ¼ö ÀÖ°í ÇØ´ç Á¤Á¡À¸·Î °¥ ¼ö ÀÖ´Â °æ¿ì (ºñÇàÆíÀ» ÇÑ ¹øµµ ÀÌ¿ëÇÑ ÀûÀÌ ¾ø¾î¾ß °¡´É)
+			// ë¹„í–‰í¸ì„ ê±°ì³ê°ˆ ìˆ˜ ìˆê³  í•´ë‹¹ ì •ì ìœ¼ë¡œ ê°ˆ ìˆ˜ ìˆëŠ” ê²½ìš° (ë¹„í–‰í¸ì„ í•œ ë²ˆë„ ì´ìš©í•œ ì ì´ ì—†ì–´ì•¼ ê°€ëŠ¥)
 			else if (!p.first && !node.flight && di[1][p.second] > di[0][node.cur]) {
 				di[1][p.second] = di[0][node.cur];
 				q.push({ di[1][p.second], p.second, 1 });
 			}
 		}
 	}
-	return min(di[0][t], di[1][t]);		// tÁ¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®(ºñÇàÆí 0¹ø or 1¹ø °ÅÄ£ °Í Áß ÃÖ¼Ú°ª) ¸®ÅÏ
+	return min(di[0][t], di[1][t]);		// tì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬(ë¹„í–‰í¸ 0ë²ˆ or 1ë²ˆ ê±°ì¹œ ê²ƒ ì¤‘ ìµœì†Ÿê°’) ë¦¬í„´
 }
 
 int main()

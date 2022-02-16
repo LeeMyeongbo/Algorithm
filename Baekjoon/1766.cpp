@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, v1, v2, edge[32001];		// edge[i] : i¹ø Á¤Á¡ÀÇ ÁøÀÔ °£¼± ¼ö
+int N, M, v1, v2, edge[32001];		// edge[i] : ië²ˆ ì •ì ì˜ ì§„ì… ê°„ì„  ìˆ˜
 vector<int> graph[32001];
-priority_queue<int, vector<int>, greater<int>> q;		// ÃÖ¼Ò Èü (µÇµµ·Ï ½¬¿î ¹®Á¦ºÎÅÍ Ç®¾î¾ß ÇÏ¹Ç·Î)
+priority_queue<int, vector<int>, greater<int>> q;		// ìµœì†Œ í™ (ë˜ë„ë¡ ì‰¬ìš´ ë¬¸ì œë¶€í„° í’€ì–´ì•¼ í•˜ë¯€ë¡œ)
 
 void Solve()
 {
@@ -20,8 +20,8 @@ void Solve()
 
 		cout << cur << " ";
 		for (int i : graph[cur]) {
-			edge[i]--;					// Çö Á¤Á¡(cur)¿¡¼­ÀÇ ÁøÃâ °£¼±µé ¸ğµÎ Á¦°Å
-			if (!edge[i])				// Á¤Á¡ i·ÎÀÇ ÁøÀÔ °£¼±µéÀÌ ¸ğµÎ Á¦°ÅµÇ¸é Èü¿¡ i ÀúÀå
+			edge[i]--;					// í˜„ ì •ì (cur)ì—ì„œì˜ ì§„ì¶œ ê°„ì„ ë“¤ ëª¨ë‘ ì œê±°
+			if (!edge[i])				// ì •ì  ië¡œì˜ ì§„ì… ê°„ì„ ë“¤ì´ ëª¨ë‘ ì œê±°ë˜ë©´ í™ì— i ì €ì¥
 				q.push(i);
 		}
 	}

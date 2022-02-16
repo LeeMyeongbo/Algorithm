@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <cstring>
 #define MAX 1000000000
@@ -9,9 +9,9 @@ int V, E, graph[401][401], a, b, c, ans = MAX;
 
 int Solve()
 {
-	for (int pass = 1; pass <= V; pass++) {					// °ÅÃÄ°¡´Â Á¤Á¡
-		for (int start = 1; start <= V; start++) {			// Ãâ¹ß Á¤Á¡
-			for (int end = 1; end <= V; end++) {			// µµÂø Á¤Á¡
+	for (int pass = 1; pass <= V; pass++) {					// ê±°ì³ê°€ëŠ” ì •ì 
+		for (int start = 1; start <= V; start++) {			// ì¶œë°œ ì •ì 
+			for (int end = 1; end <= V; end++) {			// ë„ì°© ì •ì 
 				graph[start][end] = min(graph[start][end], graph[start][pass] + graph[pass][end]);
 			}
 		}

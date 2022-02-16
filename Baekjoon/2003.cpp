@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
@@ -8,7 +8,7 @@ int Solve()
 {
 	int left = 0, right = 1, sum = A[left], ans = 0;
 
-	while (right < N && left < N) {		// left = right ÀÎ ÁöÁ¡ -> sumÀÌ 0ÀÎ »óÅÂ
+	while (right < N && left < N) {		// left = right ì¸ ì§€ì  -> sumì´ 0ì¸ ìƒíƒœ
 		if (sum < M)
 			sum += A[right++];
 		else {
@@ -17,7 +17,7 @@ int Solve()
 			sum -= A[left++];
 		}
 	}
-	while (left < N) {					// ³²Àº left ¿À¸¥ÂÊÀ¸·Î ¸¶Àú ÀÌµ¿ÇÏ¸ç È®ÀÎ
+	while (left < N) {					// ë‚¨ì€ left ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë§ˆì € ì´ë™í•˜ë©° í™•ì¸
 		if (sum == M)
 			ans++;
 		sum -= A[left++];

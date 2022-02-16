@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #define MAX 17
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);

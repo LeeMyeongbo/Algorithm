@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <map>
 using namespace std;
@@ -10,7 +10,7 @@ map<string, int> eco;
 int main()
 {
 	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-	cout.precision(4);																// ¼Ò¼öÁ¡ 4ÀÚ¸®±îÁö Ç¥ÇöÇÏ±â À§ÇÔ
+	cout.precision(4);																// ì†Œìˆ˜ì  4ìë¦¬ê¹Œì§€ í‘œí˜„í•˜ê¸° ìœ„í•¨
 
 	while (true) {
 		getline(cin, name);
@@ -20,6 +20,6 @@ int main()
 		tot++;
 	}
 	for (auto iter = eco.begin(); iter != eco.end(); iter++)
-		cout << fixed << iter->first << ' ' << iter->second / tot * 100. << "\n";	// fixed : ¼Ò¼öÁ¡ °íÁ¤
+		cout << fixed << iter->first << ' ' << iter->second / tot * 100. << "\n";	// fixed : ì†Œìˆ˜ì  ê³ ì •
 	return 0;
 }

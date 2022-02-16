@@ -1,18 +1,18 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int N, M, K, a, b;
 long long A[1000001], tree[4000004], c;
 
-long long init(int index, int start, int end)		// ¼¼±×¸ÕÆ® Æ®¸® Çü¼º
+long long init(int index, int start, int end)		// ì„¸ê·¸ë¨¼íŠ¸ íŠ¸ë¦¬ í˜•ì„±
 {
 	if (start == end)
 		return tree[index] = A[start];
 	return tree[index] = init(index * 2, start, (start + end) / 2) + init(index * 2 + 1, (start + end) / 2 + 1, end);
 }
 
-long long update(int index, int start, int end)		// b¿¡ ÇØ´çÇÏ´Â ÀÚ¸®ÀÇ °ª º¯°æ
+long long update(int index, int start, int end)		// bì— í•´ë‹¹í•˜ëŠ” ìžë¦¬ì˜ ê°’ ë³€ê²½
 {
 	if (start > b || end < b)
 		return tree[index];
@@ -21,7 +21,7 @@ long long update(int index, int start, int end)		// b¿¡ ÇØ´çÇÏ´Â ÀÚ¸®ÀÇ °ª º¯°æ
 	return tree[index] = update(index * 2, start, (start + end) / 2) + update(index * 2 + 1, (start + end) / 2 + 1, end);
 }
 
-long long Find(int index, int start, int end)		// [b, c]¿¡ ÇØ´çÇÏ´Â ±¸°£ ÇÕ
+long long Find(int index, int start, int end)		// [b, c]ì— í•´ë‹¹í•˜ëŠ” êµ¬ê°„ í•©
 {
 	if (start > c || end < b)
 		return 0;

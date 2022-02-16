@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -10,7 +10,7 @@ vector<int> lis, re_lis;
 int Solve()
 {
 	lis.push_back(A[0]);
-	for (int i = 1; i < N; i++) {			// AÀÇ ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î »ìÇÇ¸ç lis ÁøÇà ¹× ÀÎµ¦½º ÀúÀå
+	for (int i = 1; i < N; i++) {			// Aì˜ ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì‚´í”¼ë©° lis ì§„í–‰ ë° ì¸ë±ìŠ¤ ì €ì¥
 		if (lis.back() < A[i]) {
 			lis.push_back(A[i]);
 			index[i] = lis.size() - 1;
@@ -22,7 +22,7 @@ int Solve()
 		}
 	}
 	re_lis.push_back(A[N - 1]);
-	for (int i = N - 2; i >= 0; i--) {		// AÀÇ ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î »ìÇÇ¸ç lis ÁøÇà ¹× ÀÎµ¦½º ÀúÀå
+	for (int i = N - 2; i >= 0; i--) {		// Aì˜ ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ì‚´í”¼ë©° lis ì§„í–‰ ë° ì¸ë±ìŠ¤ ì €ì¥
 		if (re_lis.back() < A[i]) {
 			re_lis.push_back(A[i]);
 			reversed_index[i] = re_lis.size() - 1;
@@ -33,7 +33,7 @@ int Solve()
 			reversed_index[i] = p;
 		}
 	}
-	for (int i = 0; i < N; i++)				// index + reversed_indexÀÇ ÃÖ´ñ°ª + 1ÀÌ ÃÖÁ¾ ¹ÙÀÌÅä´Ğ ¼ö¿­ÀÇ ±æÀÌ
+	for (int i = 0; i < N; i++)				// index + reversed_indexì˜ ìµœëŒ“ê°’ + 1ì´ ìµœì¢… ë°”ì´í† ë‹‰ ìˆ˜ì—´ì˜ ê¸¸ì´
 		ans = max(ans, index[i] + reversed_index[i] + 1);
 	return ans;
 }

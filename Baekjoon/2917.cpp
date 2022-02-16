@@ -1,31 +1,31 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 struct Node {
 	int r, c, dis;
 };
-int N, M, start_r, start_c, weights[500][500];						// ³ª¹«·ÎºÎÅÍ ÃÖ¼Ò °Å¸® ÀúÀå¿ë
+int N, M, start_r, start_c, weights[500][500];						// ë‚˜ë¬´ë¡œë¶€í„° ìµœì†Œ ê±°ë¦¬ ì €ì¥ìš©
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[500][501];
-bool visited[500][500];												// ´ÙÀÍ½ºÆ®¶ó ½Ã ¹æ¹® Ã¼Å©¿ë
+bool visited[500][500];												// ë‹¤ìµìŠ¤íŠ¸ë¼ ì‹œ ë°©ë¬¸ ì²´í¬ìš©
 queue<Node> q;
 
 int Dij()
 {
 	int tmp = 10000, ans = 0;
-	priority_queue<pair<int, pair<int, int>>> pq;					// (³ª¹«¿ÍÀÇ ÃÖ¼Ò °Å¸®, (Çà, ¿­))·Î ÀúÀå
-	pq.push({ weights[start_r][start_c], {start_r, start_c} });		// V·ÎºÎÅÍ ½ÃÀÛÇØ¼­
+	priority_queue<pair<int, pair<int, int>>> pq;					// (ë‚˜ë¬´ì™€ì˜ ìµœì†Œ ê±°ë¦¬, (í–‰, ì—´))ë¡œ ì €ì¥
+	pq.push({ weights[start_r][start_c], {start_r, start_c} });		// Vë¡œë¶€í„° ì‹œì‘í•´ì„œ
 	visited[start_r][start_c] = true;
 
-	while (!pq.empty()) {											// ³ª¹«¿ÍÀÇ °Å¸®°¡ ÃÖ´ëÀÎ °ÍÀ» ¿ì¼±À¸·Î popÇÏ¸ç ´ÙÀÍ½ºÆ®¶ó
+	while (!pq.empty()) {											// ë‚˜ë¬´ì™€ì˜ ê±°ë¦¬ê°€ ìµœëŒ€ì¸ ê²ƒì„ ìš°ì„ ìœ¼ë¡œ popí•˜ë©° ë‹¤ìµìŠ¤íŠ¸ë¼
 		int dis = pq.top().first;
 		pair<int, int> cur = pq.top().second;
 		pq.pop();
 
-		tmp = tmp > dis ? dis : tmp;								// °æ·Î »ó¿¡¼­ °Å¸® ÃÖ¼Ú°ª °»½Å
+		tmp = tmp > dis ? dis : tmp;								// ê²½ë¡œ ìƒì—ì„œ ê±°ë¦¬ ìµœì†Ÿê°’ ê°±ì‹ 
 		if (map[cur.first][cur.second] == 'J') {
-			ans = ans < tmp ? tmp : ans;							// ¸ñÇ¥ ÁöÁ¡ J¿¡ µµ´ŞÇßÀ» ¶§ ÃÖ¼Ú°ªÀÇ ÃÖ´ñ°ª °»½Å
+			ans = ans < tmp ? tmp : ans;							// ëª©í‘œ ì§€ì  Jì— ë„ë‹¬í–ˆì„ ë•Œ ìµœì†Ÿê°’ì˜ ìµœëŒ“ê°’ ê°±ì‹ 
 			continue;
 		}
 
@@ -51,14 +51,14 @@ int main()
 		fill(weights[i], weights[i] + M, -1);
 		for (int j = 0; j < M; j++) {
 			if (map[i][j] == '+') {
-				q.push({ i, j, 0 });			// ÀÏ´Ü ³ª¹«µé ¸ğµÎ Å¥¿¡ ÀúÀå
+				q.push({ i, j, 0 });			// ì¼ë‹¨ ë‚˜ë¬´ë“¤ ëª¨ë‘ íì— ì €ì¥
 				weights[i][j] = 0;
 			}
 			else if (map[i][j] == 'V')
 				start_r = i, start_c = j;
 		}
 	}
-	while (!q.empty()) {						// °¢ ³ª¹«·ÎºÎÅÍ ½ÃÀÛÇØ¼­ bfs·Î ¸Ê °¢ ÁöÁ¡±îÁö ÃÖ¼Ò °Å¸® ÀúÀåÇÔ
+	while (!q.empty()) {						// ê° ë‚˜ë¬´ë¡œë¶€í„° ì‹œì‘í•´ì„œ bfsë¡œ ë§µ ê° ì§€ì ê¹Œì§€ ìµœì†Œ ê±°ë¦¬ ì €ì¥í•¨
 		Node node = q.front();
 		q.pop();
 

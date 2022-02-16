@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 using namespace std;
 
@@ -9,28 +9,28 @@ char map[50][51];
 
 void DFS(int depth, int r, int c)
 {
-	if (map[r][c] == 'H')								// H ¸¸³ª¸é Á¾·á
+	if (map[r][c] == 'H')								// H ë§Œë‚˜ë©´ ì¢…ë£Œ
 		return;
 
-	visited[r][c] = true;								// Ã¼Å©ÀÎ
-	for (int d = 0; d < 4; d++) {						// ¿¬°áµÈ °÷ ¼øÈ¸
+	visited[r][c] = true;								// ì²´í¬ì¸
+	for (int d = 0; d < 4; d++) {						// ì—°ê²°ëœ ê³³ ìˆœíšŒ
 		int new_r = r + (map[r][c] - '0') * dr[d];
 		int new_c = c + (map[r][c] - '0') * dc[d];
-		if (new_r >= 0 && new_r < N && new_c >= 0 && new_c < M) {	// ¿òÁ÷¿©µµ ¹üÀ§¸¦ ¹þ¾î³ªÁö ¾ÊÀ» °æ¿ì
-			if (!visited[new_r][new_c]) {				// ÇÑ ¹øµµ ¹æ¹®ÇÏÁö ¾ÊÀº °÷ ¹æ¹® ½Ã
+		if (new_r >= 0 && new_r < N && new_c >= 0 && new_c < M) {	// ì›€ì§ì—¬ë„ ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì„ ê²½ìš°
+			if (!visited[new_r][new_c]) {				// í•œ ë²ˆë„ ë°©ë¬¸í•˜ì§€ ì•Šì€ ê³³ ë°©ë¬¸ ì‹œ
 				if (!max_table[new_r][new_c])
 					DFS(depth + 1, new_r, new_c);
 				max_table[r][c] = max(max_table[r][c], 1 + max_table[new_r][new_c]);
 			}
-			else {										// ¹æ¹® ÁßÀÎ °÷ ¹æ¹® ½Ã = »çÀÌÅ¬
+			else {										// ë°©ë¬¸ ì¤‘ì¸ ê³³ ë°©ë¬¸ ì‹œ = ì‚¬ì´í´
 				cout << -1;
 				exit(0);
 			}
 		}
 		else
-			max_table[r][c] = max(max_table[r][c], 1);	// ¹üÀ§ ¹þ¾î³­´Ù¸é 1°ú ÇöÀç ¿òÁ÷ÀÎ È½¼ö Áß ÃÖ´ñ°ª ÀúÀå
+			max_table[r][c] = max(max_table[r][c], 1);	// ë²”ìœ„ ë²—ì–´ë‚œë‹¤ë©´ 1ê³¼ í˜„ìž¬ ì›€ì§ì¸ íšŸìˆ˜ ì¤‘ ìµœëŒ“ê°’ ì €ìž¥
 	}
-	visited[r][c] = false;								// Ã¼Å©¾Æ¿ô
+	visited[r][c] = false;								// ì²´í¬ì•„ì›ƒ
 }
 
 int main()

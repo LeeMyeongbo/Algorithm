@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int N, Q, p, q, r, k, graph, ans[5001], parent[5001], num[5001];
-vector<pair<int, pair<int, int>>> edges;						// (usado, (p, q)) ·Î ÀúÀå
-vector<pair<pair<int, int>, int>> query;						// ((k, v), Äõ¸® ¹øÈ£) ·Î ÀúÀå
+vector<pair<int, pair<int, int>>> edges;						// (usado, (p, q)) ë¡œ ì €ì¥
+vector<pair<pair<int, int>, int>> query;						// ((k, v), ì¿¼ë¦¬ ë²ˆí˜¸) ë¡œ ì €ì¥
 
 int Find(int n)
 {
@@ -29,12 +29,12 @@ void Union(int n1, int n2)
 
 void solve()
 {
-	for (auto& q : query) {									// Äõ¸®µéÀ» ¾Õ¿¡¼­ºÎÅÍ ÇÏ³ª¾¿ »ìÇÇ¸é¼­
-		while (!edges.empty() && edges.back().first >= q.first.first) {		// °£¼±Àº µÚ¿¡¼­ºÎÅÍ USADO rÀÌ Çö Äõ¸®ÀÇ k ÀÌ»óÀ» ¸¸Á·ÇÏ¸é
-			Union(edges.back().second.first, edges.back().second.second);	// À¯´Ï¿Â ÆÄÀÎµå¸¦ ÅëÇØ p¿Í q¸¦ ÇÕÄ§
-			edges.pop_back();												// ÇÕÄ£ °£¼±Àº »èÁ¦ÇÏ°í ´Ù½Ã ¹İº¹
+	for (auto& q : query) {									// ì¿¼ë¦¬ë“¤ì„ ì•ì—ì„œë¶€í„° í•˜ë‚˜ì”© ì‚´í”¼ë©´ì„œ
+		while (!edges.empty() && edges.back().first >= q.first.first) {		// ê°„ì„ ì€ ë’¤ì—ì„œë¶€í„° USADO rì´ í˜„ ì¿¼ë¦¬ì˜ k ì´ìƒì„ ë§Œì¡±í•˜ë©´
+			Union(edges.back().second.first, edges.back().second.second);	// ìœ ë‹ˆì˜¨ íŒŒì¸ë“œë¥¼ í†µí•´ pì™€ që¥¼ í•©ì¹¨
+			edges.pop_back();												// í•©ì¹œ ê°„ì„ ì€ ì‚­ì œí•˜ê³  ë‹¤ì‹œ ë°˜ë³µ
 		}
-		ans[q.second] = num[Find(q.first.second)] - 1;		// Çö Äõ¸®ÀÇ ¹øÈ£¿¡ ÇØ´çÇÏ´Â ´ä = ÇöÀç±îÁö v¿¡ ¿¬°áµÈ Á¤Á¡µéÀÇ °³¼ö
+		ans[q.second] = num[Find(q.first.second)] - 1;		// í˜„ ì¿¼ë¦¬ì˜ ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë‹µ = í˜„ì¬ê¹Œì§€ vì— ì—°ê²°ëœ ì •ì ë“¤ì˜ ê°œìˆ˜
 	}
 }
 
@@ -50,13 +50,13 @@ int main()
 		cin >> p >> q >> r;
 		edges.push_back({ r, {p, q} });
 	}
-	sort(edges.begin(), edges.end());			// °£¼±µéÀ» USADO r ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	sort(edges.begin(), edges.end());			// ê°„ì„ ë“¤ì„ USADO r ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 
-	for (int i = 0; i < Q; i++) {				// ¿ÀÇÁ¶óÀÎ Äõ¸®¸¦ ÀÌ¿ë (Äõ¸® ¼øÀ¸·Î BFS ÀÌ¿ëÇØ¼­ ÇØ°á ½Ã O(NQ) -> TLE!)
+	for (int i = 0; i < Q; i++) {				// ì˜¤í”„ë¼ì¸ ì¿¼ë¦¬ë¥¼ ì´ìš© (ì¿¼ë¦¬ ìˆœìœ¼ë¡œ BFS ì´ìš©í•´ì„œ í•´ê²° ì‹œ O(NQ) -> TLE!)
 		cin >> k >> graph;
 		query.push_back({ {k, graph}, i });
 	}
-	sort(query.begin(), query.end(), greater<pair<pair<int, int>, int>>());		// Äõ¸®µéÀ» k ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+	sort(query.begin(), query.end(), greater<pair<pair<int, int>, int>>());		// ì¿¼ë¦¬ë“¤ì„ k ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 
 	solve();
 	for (int i = 0; i < Q; i++)

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -56,7 +56,7 @@ int main()
 
 	for (int i = 0; i < N; i++) {
 		for (int j = i + 1; j < N; j++) {
-			if (map[i][j] < 0) {			// ÀÌ¹Ì ¿¬°áµÇ¾î ÀÖ´Â Á¤Á¡³¢¸®´Â Union ¿¬»êÀ¸·Î °áÇÕ
+			if (map[i][j] < 0) {			// ì´ë¯¸ ì—°ê²°ë˜ì–´ ìžˆëŠ” ì •ì ë¼ë¦¬ëŠ” Union ì—°ì‚°ìœ¼ë¡œ ê²°í•©
 				Union(i, j);
 				C += map[i][j] * -1;
 			}

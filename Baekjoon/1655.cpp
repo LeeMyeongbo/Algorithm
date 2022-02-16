@@ -1,12 +1,12 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <queue>			// ¿ì¼±¼øÀ§ Å¥ 2°³¸¦ È°¿ëÇÏ¿© ÇØ°á
+#include <queue>			// ìš°ì„ ìˆœìœ„ í 2ê°œë¥¼ í™œìš©í•˜ì—¬ í•´ê²°
 
 using namespace std;
 
 int N, num, ans[100000];
-priority_queue<int> q1;									// ³»¸²Â÷¼øÀ¸·Î ¼ö¸¦ »Ì¾Æ³»´Â ¿ì¼±¼øÀ§ Å¥ q1
-priority_queue<int, vector<int>, greater<int>> q2;		// ¿À¸§Â÷¼øÀ¸·Î ¼ö¸¦ »Ì¾Æ³»´Â ¿ì¼±¼øÀ§ Å¥ q2
+priority_queue<int> q1;									// ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ìˆ˜ë¥¼ ë½‘ì•„ë‚´ëŠ” ìš°ì„ ìˆœìœ„ í q1
+priority_queue<int, vector<int>, greater<int>> q2;		// ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ìˆ˜ë¥¼ ë½‘ì•„ë‚´ëŠ” ìš°ì„ ìˆœìœ„ í q2
 
 int main()
 {
@@ -16,26 +16,26 @@ int main()
 		if (!scanf("%d", &num))
 			return 1;
 		if (q1.empty())
-			q1.push(num);					// ¸Ç Ã³À½ q1ÀÌ ºñ¾îÀÖ´Ù¸é ¼ö »ðÀÔ
+			q1.push(num);					// ë§¨ ì²˜ìŒ q1ì´ ë¹„ì–´ìžˆë‹¤ë©´ ìˆ˜ ì‚½ìž…
 		else {
-			if (num > q1.top())				// ÀÔ·Â¹ÞÀº numÀÌ q1¿¡¼­ °¡Àå Å« ¼ýÀÚº¸´Ù Å©´Ù¸é q2¿¡ »ðÀÔ
+			if (num > q1.top())				// ìž…ë ¥ë°›ì€ numì´ q1ì—ì„œ ê°€ìž¥ í° ìˆ«ìžë³´ë‹¤ í¬ë‹¤ë©´ q2ì— ì‚½ìž…
 				q2.push(num);
 			else
 				q1.push(num);
 			int s = q1.size() - q2.size();
 
-			if (s > 1) {					// q1ÀÇ Å©±â°¡ q2ÀÇ Å©±â + 1 º¸´Ù Å¬ °æ¿ì q1¿¡¼­ °¡Àå Å« ¼ýÀÚ¸¦ »©¼­ q2¿¡ »ðÀÔ
+			if (s > 1) {					// q1ì˜ í¬ê¸°ê°€ q2ì˜ í¬ê¸° + 1 ë³´ë‹¤ í´ ê²½ìš° q1ì—ì„œ ê°€ìž¥ í° ìˆ«ìžë¥¼ ë¹¼ì„œ q2ì— ì‚½ìž…
 				int tmp = q1.top();
 				q1.pop();
 				q2.push(tmp);
 			}
-			else if (s * (-1) >= 1) {		// q2ÀÇ Å©±â°¡ q1ÀÇ Å©±â + 1º¸´Ù Å©°Å³ª °°À» °æ¿ì q2¿¡¼­ °¡Àå ÀÛÀº ¼ýÀÚ¸¦ »©¼­ q1¿¡ »ðÀÔ
+			else if (s * (-1) >= 1) {		// q2ì˜ í¬ê¸°ê°€ q1ì˜ í¬ê¸° + 1ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì„ ê²½ìš° q2ì—ì„œ ê°€ìž¥ ìž‘ì€ ìˆ«ìžë¥¼ ë¹¼ì„œ q1ì— ì‚½ìž…
 				int tmp = q2.top();
 				q2.pop();
 				q1.push(tmp);
 			}
 		}
-		ans[i] = q1.top();					// q1¿¡¼­ °¡Àå Å« ¼ýÀÚ°¡ ¹Ù·Î µ¿»ýÀÌ ¸»ÇØ¾ß ÇÏ´Â Áß°£°ª¿¡ ÇØ´ç
+		ans[i] = q1.top();					// q1ì—ì„œ ê°€ìž¥ í° ìˆ«ìžê°€ ë°”ë¡œ ë™ìƒì´ ë§í•´ì•¼ í•˜ëŠ” ì¤‘ê°„ê°’ì— í•´ë‹¹
 	}
 
 	for (int i = 0; i < N; i++)

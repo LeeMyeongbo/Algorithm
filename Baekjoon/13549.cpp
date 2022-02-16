@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 100001
 using namespace std;
 
 int N, K, visited[MAX];
-priority_queue<pair<int, int>> q;			// (°É¸° ½Ã°£, ÇöÀç À§Ä¡)·Î ÀúÀå (+1/-1 ÇÒ ¶§¶û *2 ÇÒ ¶§ÀÇ ´õÇØÁö´Â ½Ã°£ÀÌ ´Ù¸£¹Ç·Î ´ÙÀÍ½ºÆ®¶ó È°¿ë)
+priority_queue<pair<int, int>> q;			// (ê±¸ë¦° ì‹œê°„, í˜„ì¬ ìœ„ì¹˜)ë¡œ ì €ì¥ (+1/-1 í•  ë•Œë‘ *2 í•  ë•Œì˜ ë”í•´ì§€ëŠ” ì‹œê°„ì´ ë‹¤ë¥´ë¯€ë¡œ ë‹¤ìµìŠ¤íŠ¸ë¼ í™œìš©)
 
 int Solve()
 {
@@ -21,15 +21,15 @@ int Solve()
 		if (cur == K)
 			return num;
 
-		if (cur * 2 < MAX && visited[cur * 2] > num) {			// ÇöÀç À§Ä¡¿¡¼­ *2 ÇÒ ¼ö ÀÖÀ» °æ¿ì
+		if (cur * 2 < MAX && visited[cur * 2] > num) {			// í˜„ì¬ ìœ„ì¹˜ì—ì„œ *2 í•  ìˆ˜ ìˆì„ ê²½ìš°
 			visited[cur * 2] = num;
 			q.push({ -num, cur * 2 });
 		}
-		if (cur + 1 < MAX && visited[cur + 1] > num + 1) {		// ÇöÀç À§Ä¡¿¡¼­ +1 ÇÒ ¼ö ÀÖÀ» °æ¿ì
+		if (cur + 1 < MAX && visited[cur + 1] > num + 1) {		// í˜„ì¬ ìœ„ì¹˜ì—ì„œ +1 í•  ìˆ˜ ìˆì„ ê²½ìš°
 			visited[cur + 1] = num + 1;
 			q.push({ -(num + 1), cur + 1 });
 		}
-		if (cur - 1 >= 0 && visited[cur - 1] > num + 1) {		// ÇöÀç À§Ä¡¿¡¼­ -1 ÇÒ ¼ö ÀÖÀ» °æ¿ì
+		if (cur - 1 >= 0 && visited[cur - 1] > num + 1) {		// í˜„ì¬ ìœ„ì¹˜ì—ì„œ -1 í•  ìˆ˜ ìˆì„ ê²½ìš°
 			visited[cur - 1] = num + 1;
 			q.push({ -(num + 1), cur - 1 });
 		}

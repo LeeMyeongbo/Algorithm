@@ -1,16 +1,16 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <queue>
 #include <vector>
 using namespace std;
 
-const int dr[] = { 0, 0, 1, 0, -1 }, dc[] = { 0, 1, 0, -1, 0 };		// µ¿(1) ³²(2) ¼­(3) ºÏ(4) ¼ø¼­ÀÓ
+const int dr[] = { 0, 0, 1, 0, -1 }, dc[] = { 0, 1, 0, -1, 0 };		// ë™(1) ë‚¨(2) ì„œ(3) ë¶(4) ìˆœì„œì„
 int n, map[51][51], start_r, start_c, end_r, end_c, k, num, circuit, pre_r, pre_c, cur_r, cur_c;
-int pre[51][51], dij[51][51];					// pre[r][c] : rÇà c¿­¿¡ µµ´ŞÇÒ ¶§ÀÇ ¹æÇâ, dij[r][c] : ºñ¿ëÀÇ ÃÖ¼Ú°ª
+int pre[51][51], dij[51][51];					// pre[r][c] : rí–‰ cì—´ì— ë„ë‹¬í•  ë•Œì˜ ë°©í–¥, dij[r][c] : ë¹„ìš©ì˜ ìµœì†Ÿê°’
 priority_queue<pair<int, pair<int, int>>> q;
 vector<pair<int, int>> ans;
 
-void trace_back(int r, int c, int pre_dir)		// °¢°¢ ÇöÀç Çà, ¿­, ÀÌÀü À§Ä¡ÀÇ ¹æÇâ
+void trace_back(int r, int c, int pre_dir)		// ê°ê° í˜„ì¬ í–‰, ì—´, ì´ì „ ìœ„ì¹˜ì˜ ë°©í–¥
 {
 	if (r == start_r && c == start_c) {
 		ans.push_back({ r, c });
@@ -19,7 +19,7 @@ void trace_back(int r, int c, int pre_dir)		// °¢°¢ ÇöÀç Çà, ¿­, ÀÌÀü À§Ä¡ÀÇ ¹æÇ
 	int dir = pre[r][c];
 	if (dir != pre_dir)
 		ans.push_back({ r, c });
-	int d = dir + 2 > 4 ? dir - 2 : dir + 2;	// ÇöÀç À§Ä¡¿¡ ÀúÀåµÈ ¹æÇâÀÇ ¹İ´ë ¹æÇâÀ» ±¸ÇØÁÖ°í ÇØ´ç ¹İ´ë ¹æÇâÀÇ À§Ä¡¸¦ Àü´Ş
+	int d = dir + 2 > 4 ? dir - 2 : dir + 2;	// í˜„ì¬ ìœ„ì¹˜ì— ì €ì¥ëœ ë°©í–¥ì˜ ë°˜ëŒ€ ë°©í–¥ì„ êµ¬í•´ì£¼ê³  í•´ë‹¹ ë°˜ëŒ€ ë°©í–¥ì˜ ìœ„ì¹˜ë¥¼ ì „ë‹¬
 	trace_back(r + dr[d], c + dc[d], dir);
 }
 

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
@@ -13,7 +13,7 @@ vector<int> graph[2 * STD + 1], scc_graph[2 * STD + 1];
 vector<vector<int>> SCC;
 stack<int> s;
 
-int DFS(int cur)			// SCC·Î ¹­¾î °°Àº Áø¸®°ªÀ» °¡Áö´Â Á¤Á¡µé ÀúÀå
+int DFS(int cur)			// SCCë¡œ ë¬¶ì–´ ê°™ì€ ì§„ë¦¬ê°’ì„ ê°€ì§€ëŠ” ì •ì ë“¤ ì €ì¥
 {
 	seq[cur] = ++num;
 	int parent = num;
@@ -68,8 +68,8 @@ void Topological()
 	for (int n = 0; n < SCC.size(); n++)
 		if (!scc_indegree[n]) {
 			for (int& v : SCC[n])
-				v > STD ? truth[v - STD] = -1 : truth[STD - v] = 1;		// ¸Ç Ã³À½ ½ÃÀÛÇÒ sccÀÇ Á¤Á¡µéÀº ¸ğµÎ false·Î µÒ
-			q.push(n);													// À½¼öÀÏ ¶© 1, ¾ç¼öÀÏ ¶© -1
+				v > STD ? truth[v - STD] = -1 : truth[STD - v] = 1;		// ë§¨ ì²˜ìŒ ì‹œì‘í•  sccì˜ ì •ì ë“¤ì€ ëª¨ë‘ falseë¡œ ë‘ 
+			q.push(n);													// ìŒìˆ˜ì¼ ë• 1, ì–‘ìˆ˜ì¼ ë• -1
 		}
 	
 	while (!q.empty()) {
@@ -78,7 +78,7 @@ void Topological()
 
 		for (int& s : scc_graph[cur_scc]) {
 			scc_indegree[s]--;
-			if (!scc_indegree[s]) {					// À§»ó Á¤·Ä ÁøÇàÇÏ¸é¼­ ÆÇº°ÇÏÁö ¾ÊÀº sccÀÇ Á¤Á¡µéÀº ¸ğµÎ false·Î
+			if (!scc_indegree[s]) {					// ìœ„ìƒ ì •ë ¬ ì§„í–‰í•˜ë©´ì„œ íŒë³„í•˜ì§€ ì•Šì€ sccì˜ ì •ì ë“¤ì€ ëª¨ë‘ falseë¡œ
 				for (int& v : SCC[s]) {
 					int x = v > STD ? v - STD : STD - v;
 					if (!truth[x])
@@ -95,11 +95,11 @@ int main()
 	FAST;
 	cin >> N >> M;
 	for (int m = 0; m < M; m++) {
-		cin >> i >> j;								// i ¡ä j ÀÓÀ» ³ªÅ¸³¾ ¶§
-		graph[STD + -i].push_back(STD + j);			// ~i ¡æ j (i°¡ °ÅÁşÀÏ ¶§ j´Â ¹İµå½Ã ÂüÀÌ¿©¾ß ÇÔ)
-		graph[STD + -j].push_back(STD + i);			// ~j ¡æ i (j°¡ °ÅÁşÀÏ ¶§ i´Â ¹İµå½Ã ÂüÀÌ¿©¾ß ÇÔ)
+		cin >> i >> j;								// i â–½ j ì„ì„ ë‚˜íƒ€ë‚¼ ë•Œ
+		graph[STD + -i].push_back(STD + j);			// ~i â†’ j (iê°€ ê±°ì§“ì¼ ë•Œ jëŠ” ë°˜ë“œì‹œ ì°¸ì´ì—¬ì•¼ í•¨)
+		graph[STD + -j].push_back(STD + i);			// ~j â†’ i (jê°€ ê±°ì§“ì¼ ë•Œ iëŠ” ë°˜ë“œì‹œ ì°¸ì´ì—¬ì•¼ í•¨)
 	}
-	for (int v = 1; v <= N; v++) {					// 1, -1, 2, -2... ¼øÀ¸·Î scc Çü¼º
+	for (int v = 1; v <= N; v++) {					// 1, -1, 2, -2... ìˆœìœ¼ë¡œ scc í˜•ì„±
 		if (!complete[STD + v])
 			DFS(STD + v);
 		if (!complete[STD - v])

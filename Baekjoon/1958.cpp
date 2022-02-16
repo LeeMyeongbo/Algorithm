@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -10,12 +10,12 @@ int main()
 {
 	FAST;
 	cin >> str1 >> str2 >> str3;
-	for (int i = 0; i < str1.length(); i++) {							// str1ÀÇ i¹øÂ° ¹®ÀÚ¿¡ ´ëÇØ¼­ 
-		for (int j = 0; j < str2.length(); j++) {						// str2ÀÇ j¹øÂ° ¹®ÀÚ¶û
-			for (int k = 0; k < str3.length(); k++) {					// str3ÀÇ k¹øÂ° ¹®ÀÚ ºñ±³ ¹× LCS ÁøÇà
-				if (str1[i] == str2[j] && str2[j] == str3[k])			// 3°³ ¹®ÀÚ°¡ ¸ðµÎ °°´Ù¸é
-					dp[i + 1][j + 1][k + 1] = dp[i][j][k] + 1;			// ¿À¸¥ÂÊ ¾Æ·¡ ´ë°¢¼± ÂÊ ¾Æ·§¸é Ä­¿¡ +1
-				else {													// ±×·¸Áö ¾Ê´Ù¸é ¿ÞÂÊ, À§ÂÊ, À§ÂÊ ¸éÀÇ Ä­ 3°³ Áß¿¡¼­ ÃÖ´ñ°ª ÃëÇÔ
+	for (int i = 0; i < str1.length(); i++) {							// str1ì˜ ië²ˆì§¸ ë¬¸ìžì— ëŒ€í•´ì„œ 
+		for (int j = 0; j < str2.length(); j++) {						// str2ì˜ jë²ˆì§¸ ë¬¸ìžëž‘
+			for (int k = 0; k < str3.length(); k++) {					// str3ì˜ kë²ˆì§¸ ë¬¸ìž ë¹„êµ ë° LCS ì§„í–‰
+				if (str1[i] == str2[j] && str2[j] == str3[k])			// 3ê°œ ë¬¸ìžê°€ ëª¨ë‘ ê°™ë‹¤ë©´
+					dp[i + 1][j + 1][k + 1] = dp[i][j][k] + 1;			// ì˜¤ë¥¸ìª½ ì•„ëž˜ ëŒ€ê°ì„  ìª½ ì•„ëž«ë©´ ì¹¸ì— +1
+				else {													// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´ ì™¼ìª½, ìœ„ìª½, ìœ„ìª½ ë©´ì˜ ì¹¸ 3ê°œ ì¤‘ì—ì„œ ìµœëŒ“ê°’ ì·¨í•¨
 					int M1 = max(dp[i + 1][j][k + 1], dp[i + 1][j + 1][k]);
 					dp[i + 1][j + 1][k + 1] = max(M1, dp[i][j + 1][k + 1]);
 				}

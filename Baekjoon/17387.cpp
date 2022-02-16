@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -19,12 +19,12 @@ int CCW(pair<ll, ll> s1, pair<ll, ll> s2, pair<ll, ll> p) {
 int solve()
 {
 	int ccw1 = CCW(l1, l2, l3) * CCW(l1, l2, l4), ccw2 = CCW(l3, l4, l1) * CCW(l3, l4, l2);
-	if (ccw1 == 0 && ccw2 == 0) {			// µÎ ¼±ºĞÀÌ ÀÏÁ÷¼±»ó¿¡ ÀÖÀ» °æ¿ì
+	if (ccw1 == 0 && ccw2 == 0) {			// ë‘ ì„ ë¶„ì´ ì¼ì§ì„ ìƒì— ìˆì„ ê²½ìš°
 		if (l1 > l2)
 			swap(l1, l2);
 		if (l3 > l4)
-			swap(l3, l4);					// Ç×»ó ÀÛÀº ÁÂÇ¥ ÂÊÀ» l1, l3·Î ¼³Á¤
-		return l1 <= l4 && l3 <= l2;		// µÎ ¼±ºĞÀÌ ¸¸³¯ ¶§ 1, ¾Æ´Ï¸é 0 ¸®ÅÏ
+			swap(l3, l4);					// í•­ìƒ ì‘ì€ ì¢Œí‘œ ìª½ì„ l1, l3ë¡œ ì„¤ì •
+		return l1 <= l4 && l3 <= l2;		// ë‘ ì„ ë¶„ì´ ë§Œë‚  ë•Œ 1, ì•„ë‹ˆë©´ 0 ë¦¬í„´
 	}
 	return ccw1 <= 0 && ccw2 <= 0;
 }

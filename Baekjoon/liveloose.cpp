@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N, start_r, start_c, Ans = -1;
@@ -6,7 +6,7 @@ const int dr[] = {0, 0, 1, -1}, dc[] = {1, -1, 0, 0};
 char map[20][21];
 bool visited[10][20][20];
 
-void dfs(int cur_r, int cur_c, int move, int coins, int number) {       // ÇöÀç Çà, ¿­, ¿òÁ÷ÀÎ È½¼ö, ¸ðÀº µ¿Àü ¼ö, ¸¶Áö¸·À¸·Î °ÅÄ£ µ¿Àü ¹øÈ£
+void dfs(int cur_r, int cur_c, int move, int coins, int number) {       // í˜„ìž¬ í–‰, ì—´, ì›€ì§ì¸ íšŸìˆ˜, ëª¨ì€ ë™ì „ ìˆ˜, ë§ˆì§€ë§‰ìœ¼ë¡œ ê±°ì¹œ ë™ì „ ë²ˆí˜¸
     if (Ans != -1 && move > Ans)
         return;
     visited[number][cur_r][cur_c] = true;

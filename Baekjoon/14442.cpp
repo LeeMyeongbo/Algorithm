@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -8,7 +8,7 @@ struct Node {
 };
 int N, M, K, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[1000][1001];
-bool visited[11][1000][1000];		// K°¡ 0ºÎÅÍ 10±îÁö ÃÑ 11°³ °¡´ÉÇÏ¹Ç·Î [11][1000][1000]À¸·Î µÖ¾ß ÇÔ!! (½Ç¼ö)
+bool visited[11][1000][1000];		// Kê°€ 0ë¶€í„° 10ê¹Œì§€ ì´ 11ê°œ ê°€ëŠ¥í•˜ë¯€ë¡œ [11][1000][1000]ìœ¼ë¡œ ë‘¬ì•¼ í•¨!! (ì‹¤ìˆ˜)
 queue<Node> q;
 
 int BFS()

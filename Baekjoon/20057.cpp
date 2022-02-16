@@ -1,17 +1,17 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 
 using namespace std;
 
 int N, A[500][500], a, b, c, d, e;
-const int dr[] = { 0, 1, 0, -1 }, dc[] = { -1, 0, 1, 0 };		// ¼­-³²-µ¿-ºÏ ¼ø
+const int dr[] = { 0, 1, 0, -1 }, dc[] = { -1, 0, 1, 0 };		// ì„œ-ë‚¨-ë™-ë¶ ìˆœ
 
 int Solve()
 {
-	int start_r = N / 2, start_c = N / 2, ans = 0;		// ans : °İÀÚ ¹ÛÀ¸·Î ³ª°£ ¸ğ·¡ ¾ç
+	int start_r = N / 2, start_c = N / 2, ans = 0;		// ans : ê²©ì ë°–ìœ¼ë¡œ ë‚˜ê°„ ëª¨ë˜ ì–‘
 	for (int i = 1; i < N; i++) {
-		if (i % 2) {									// i°¡ È¦¼öÀÏ ¶§
-			for (int j = 0; j < i; j++) {				// ¸ÕÀú ¼­ÂÊÀ¸·Î iÄ­¸¸Å­ ÀÌµ¿ÇÏ¸é¼­ ¸ğ·¡µµ ÀÌµ¿
+		if (i % 2) {									// iê°€ í™€ìˆ˜ì¼ ë•Œ
+			for (int j = 0; j < i; j++) {				// ë¨¼ì € ì„œìª½ìœ¼ë¡œ iì¹¸ë§Œí¼ ì´ë™í•˜ë©´ì„œ ëª¨ë˜ë„ ì´ë™
 				start_r += dr[0], start_c += dc[0];
 				a = (int)(A[start_r][start_c] * 0.01);
 				b = (int)(A[start_r][start_c] * 0.02);
@@ -61,7 +61,7 @@ int Solve()
 					ans += rest;
 				A[start_r][start_c] = 0;
 			}
-			for (int j = 0; j < i; j++) {				// ±×¸®°í ³²ÂÊÀ¸·Î i¸¸Å­ ÀÌµ¿
+			for (int j = 0; j < i; j++) {				// ê·¸ë¦¬ê³  ë‚¨ìª½ìœ¼ë¡œ ië§Œí¼ ì´ë™
 				start_r += dr[1], start_c += dc[1];
 				a = (int)(A[start_r][start_c] * 0.01);
 				b = (int)(A[start_r][start_c] * 0.02);
@@ -112,8 +112,8 @@ int Solve()
 				A[start_r][start_c] = 0;
 			}
 		}
-		else {											// i°¡ Â¦¼öÀÏ ¶§
-			for (int j = 0; j < i; j++) {				// ¸ÕÀú µ¿ÂÊÀ¸·Î iÄ­¸¸Å­ ÀÌµ¿ÇÏ¸é¼­ ¸ğ·¡µµ ÀÌµ¿
+		else {											// iê°€ ì§ìˆ˜ì¼ ë•Œ
+			for (int j = 0; j < i; j++) {				// ë¨¼ì € ë™ìª½ìœ¼ë¡œ iì¹¸ë§Œí¼ ì´ë™í•˜ë©´ì„œ ëª¨ë˜ë„ ì´ë™
 				start_r += dr[2], start_c += dc[2];
 				a = (int)(A[start_r][start_c] * 0.01);
 				b = (int)(A[start_r][start_c] * 0.02);
@@ -163,7 +163,7 @@ int Solve()
 					ans += rest;
 				A[start_r][start_c] = 0;
 			}
-			for (int j = 0; j < i; j++) {				// ±×¸®°í ºÏÂÊÀ¸·Î i¸¸Å­ ÀÌµ¿
+			for (int j = 0; j < i; j++) {				// ê·¸ë¦¬ê³  ë¶ìª½ìœ¼ë¡œ ië§Œí¼ ì´ë™
 				start_r += dr[3], start_c += dc[3];
 				a = (int)(A[start_r][start_c] * 0.01);
 				b = (int)(A[start_r][start_c] * 0.02);
@@ -215,7 +215,7 @@ int Solve()
 			}
 		}
 	}
-	for (int j = 0; j < N - 1; j++) {				// ¸¶Áö¸·À¸·Î ¼­ÂÊÀ¸·Î N - 1Ä­¸¸Å­ ÀÌµ¿ÇÏ¸é¼­ ¸ğ·¡µµ ÀÌµ¿
+	for (int j = 0; j < N - 1; j++) {				// ë§ˆì§€ë§‰ìœ¼ë¡œ ì„œìª½ìœ¼ë¡œ N - 1ì¹¸ë§Œí¼ ì´ë™í•˜ë©´ì„œ ëª¨ë˜ë„ ì´ë™
 		start_r += dr[0], start_c += dc[0];
 		a = (int)(A[start_r][start_c] * 0.01);
 		b = (int)(A[start_r][start_c] * 0.02);

@@ -1,13 +1,13 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
 int T, n, m, A[1000], B[1000];
 long long Ans;
-vector<int> subA, subB;			// A¿Í BÀÇ ºÎºĞÇÕÀ» ÀúÀåÇÏ´Â ¹è¿­
+vector<int> subA, subB;			// Aì™€ Bì˜ ë¶€ë¶„í•©ì„ ì €ì¥í•˜ëŠ” ë°°ì—´
 
-void getSum(vector<int>& v, int arr[], int size)		// ºÎºĞÇÕ ÀúÀå
+void getSum(vector<int>& v, int arr[], int size)		// ë¶€ë¶„í•© ì €ì¥
 {
 	for (int i = 0; i < size; i++) {
 		for (int j = i; j < size; j++) {
@@ -27,18 +27,18 @@ long long solve()
 		if (subA[left] + subB[right] > T)
 			right--;
 		else {
-			if (subA[left] + subB[right] == T) {						// ÇÕÀÌ TÀÎ °æ¿ì°¡ ³ª¿Ã ¶§
+			if (subA[left] + subB[right] == T) {						// í•©ì´ Tì¸ ê²½ìš°ê°€ ë‚˜ì˜¬ ë•Œ
 				long long n_A = 0;
 				int Aval = subA[left];
-				while (left < (int)subA.size() && subA[left] == Aval)	// subA´Â ¿À¸¥ÂÊÀ¸·Î °¡¸ç °°Àº °ª °³¼ö Çì¾Æ¸²
+				while (left < (int)subA.size() && subA[left] == Aval)	// subAëŠ” ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°€ë©° ê°™ì€ ê°’ ê°œìˆ˜ í—¤ì•„ë¦¼
 					left++, n_A++;
 
 				long long n_B = 0;
 				int Bval = subB[right];
-				while (right >= 0 && subB[right] == Bval)				// subB´Â ¿ŞÂÊÀ¸·Î °¡¸ç °°Àº °ª °³¼ö Çì¾Æ¸²
+				while (right >= 0 && subB[right] == Bval)				// subBëŠ” ì™¼ìª½ìœ¼ë¡œ ê°€ë©° ê°™ì€ ê°’ ê°œìˆ˜ í—¤ì•„ë¦¼
 					right--, n_B++;
 
-				Ans += n_A * n_B;										// µÑÀÌ °öÇÔ (ÃÖ´ë 50¸¸*50¸¸=2500¾ïÀÌ¶ó int ¹üÀ§ ÃÊ°ú °¡´É)
+				Ans += n_A * n_B;										// ë‘˜ì´ ê³±í•¨ (ìµœëŒ€ 50ë§Œ*50ë§Œ=2500ì–µì´ë¼ int ë²”ìœ„ ì´ˆê³¼ ê°€ëŠ¥)
 			}
 			else
 				left++;

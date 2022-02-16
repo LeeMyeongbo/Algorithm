@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
@@ -7,7 +7,7 @@ int u, v, k, indegree[101];
 bool node[101];
 vector<int> tree[101];
 
-bool BFS(int root)							// ·çÆ®·ÎºÎÅÍ ¸ğµç Á¤Á¡ ¹æ¹® °¡´ÉÇÑÁö Ã¼Å©
+bool BFS(int root)							// ë£¨íŠ¸ë¡œë¶€í„° ëª¨ë“  ì •ì  ë°©ë¬¸ ê°€ëŠ¥í•œì§€ ì²´í¬
 {
 	bool visited[101] = { false, };
 	queue<int> q;
@@ -50,16 +50,16 @@ int main()
 			tree[u].push_back(v);
 		}
 		
-		int root = 0, rootnum = 0, edges = 0, vertex = 0;		// °¢°¢ ·çÆ® ³ëµå, ·çÆ® °³¼ö, °£¼± °³¼ö, Á¤Á¡ °³¼ö
+		int root = 0, rootnum = 0, edges = 0, vertex = 0;		// ê°ê° ë£¨íŠ¸ ë…¸ë“œ, ë£¨íŠ¸ ê°œìˆ˜, ê°„ì„  ê°œìˆ˜, ì •ì  ê°œìˆ˜
 		bool flag = false;
 
 		for (int i = 1; i <= 100; i++) {
 			if (node[i]) {
-				vertex++;										// Á¤Á¡ °³¼ö Ã¼Å©
+				vertex++;										// ì •ì  ê°œìˆ˜ ì²´í¬
 				if (!indegree[i])
-					root = i, rootnum++;						// ÁøÀÔ°£¼±ÀÌ ¾ø´Â ³ëµå = ·çÆ®
+					root = i, rootnum++;						// ì§„ì…ê°„ì„ ì´ ì—†ëŠ” ë…¸ë“œ = ë£¨íŠ¸
 			}
-			if (indegree[i] > 1) {								// ÁøÀÔ°£¼±ÀÌ 2°³ ÀÌ»óÀÌ¸é Æ®¸® ¾Æ´Ô
+			if (indegree[i] > 1) {								// ì§„ì…ê°„ì„ ì´ 2ê°œ ì´ìƒì´ë©´ íŠ¸ë¦¬ ì•„ë‹˜
 				flag = true;
 				break;
 			}
@@ -67,7 +67,7 @@ int main()
 				edges++;
 		}
 		
-		if (vertex && (rootnum != 1 || edges != vertex - 1))	// Á¤Á¡ÀÌ 0°³ ÀÌ»óÀÎµ¥ ·çÆ®°¡ ÇÏ³ª°¡ ¾Æ´Ï°Å³ª °£¼± °³¼ö - 1 != Á¤Á¡ °³¼öÀÌ¸é Æ®¸® ¾Æ´Ô
+		if (vertex && (rootnum != 1 || edges != vertex - 1))	// ì •ì ì´ 0ê°œ ì´ìƒì¸ë° ë£¨íŠ¸ê°€ í•˜ë‚˜ê°€ ì•„ë‹ˆê±°ë‚˜ ê°„ì„  ê°œìˆ˜ - 1 != ì •ì  ê°œìˆ˜ì´ë©´ íŠ¸ë¦¬ ì•„ë‹˜
 			flag = true;
 		
 		if (!flag && BFS(root))

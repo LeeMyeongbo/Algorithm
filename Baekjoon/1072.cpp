@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int X, Y, Z, Ans;
@@ -29,7 +29,7 @@ int main()
 
 	cin >> X >> Y;
 	Z = win_rate((double)Y, (double)X);
-	if (Z >= 99) {			// ÀÌ¹Ì ½Â·ü 99% Âï¾úÀ¸¸é Àý´ë 100 ÂïÀ» ÀÏÀº ¾øÀ½
+	if (Z >= 99) {			// ì´ë¯¸ ìŠ¹ë¥  99% ì°ì—ˆìœ¼ë©´ ì ˆëŒ€ 100 ì°ì„ ì¼ì€ ì—†ìŒ
 		cout << -1;
 		return 0;
 	}

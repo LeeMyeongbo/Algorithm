@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N, Q, choice, p, q;
@@ -9,7 +9,7 @@ long long update(int index, int start, int end)
 	if (start > p || end < p)
 		return tree[index];
 	if (start == end)
-		return tree[index] += q;		// °ªÀ» º¯°æÇÏ´Â °Ô ¾Æ´Ï¶ó Ãß°¡ÇÑ´Ù°í ÇßÀ¸¹Ç·Î
+		return tree[index] += q;		// ê°’ì„ ë³€ê²½í•˜ëŠ” ê²Œ ì•„ë‹ˆë¼ ì¶”ê°€í•œë‹¤ê³  í–ˆìœ¼ë¯€ë¡œ
 	return tree[index] = update(index * 2, start, (start + end) / 2) + update(index * 2 + 1, (start + end) / 2 + 1, end);
 }
 

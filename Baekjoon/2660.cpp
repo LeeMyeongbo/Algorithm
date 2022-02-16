@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -40,7 +40,7 @@ int main()
 		cin >> v1 >> v2;
 		if (v1 == -1)
 			break;
-		graph[v1].push_back(v2);			// Ç×»ó ¿¬°á ±×·¡ÇÁ·Î ÁÖ¾îÁü! (¸ğµç Á¤Á¡³¢¸® ¹æ¹® °¡´É)
+		graph[v1].push_back(v2);			// í•­ìƒ ì—°ê²° ê·¸ë˜í”„ë¡œ ì£¼ì–´ì§! (ëª¨ë“  ì •ì ë¼ë¦¬ ë°©ë¬¸ ê°€ëŠ¥)
 		graph[v2].push_back(v1);
 	}
 	for (int v = 1; v <= N; v++) {

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <stack>
@@ -31,7 +31,7 @@ int DFS(int cur)
 
 			complete[v] = true;
 			scc[v] = scc_num;
-			scc_size[scc_num]++;		// °¢ scc¸¶´Ù Á¤Á¡ÀÇ ¼ö¸¦ ÀúÀå
+			scc_size[scc_num]++;		// ê° sccë§ˆë‹¤ ì •ì ì˜ ìˆ˜ë¥¼ ì €ìž¥
 			if (cur == v)
 				break;
 		}
@@ -58,7 +58,7 @@ int Topological()
 		q.pop();
 
 		if (cur_scc == scc[T]) {
-			Ans = max(Ans, dp[cur_scc]);		// µµÂøÇÏ°íÀÚ ÇÏ´Â Á¤Á¡ÀÌ ¼ÓÇÑ scc¿¡ µµ´ÞÇßÀ» °æ¿ì ¹æ¹® °¡´ÉÇÑ ÃÖ´ë µµ½Ã ¼ö °»½Å
+			Ans = max(Ans, dp[cur_scc]);		// ë„ì°©í•˜ê³ ìž í•˜ëŠ” ì •ì ì´ ì†í•œ sccì— ë„ë‹¬í–ˆì„ ê²½ìš° ë°©ë¬¸ ê°€ëŠ¥í•œ ìµœëŒ€ ë„ì‹œ ìˆ˜ ê°±ì‹ 
 			continue;
 		}
 		for (int s : scc_graph[cur_scc]) {
@@ -80,7 +80,7 @@ int main()
 		graph[A].push_back(B);
 	}
 
-	DFS(S);					// ¸¶Âù°¡Áö·Î ½ÃÀÛÁ¡ÀÌ Á¤ÇØÁ® ÀÖ±â ¶§¹®¿¡ S¿¡¼­ºÎÅÍ ½ÃÀÛÇØ¼­ ¹æ¹®ÇÒ ¼ö ÀÖ´Â Á¤Á¡¸¸ Å½»öÇØ¼­ scc±×·¡ÇÁ Çü¼º
+	DFS(S);					// ë§ˆì°¬ê°€ì§€ë¡œ ì‹œìž‘ì ì´ ì •í•´ì ¸ ìžˆê¸° ë•Œë¬¸ì— Sì—ì„œë¶€í„° ì‹œìž‘í•´ì„œ ë°©ë¬¸í•  ìˆ˜ ìžˆëŠ” ì •ì ë§Œ íƒìƒ‰í•´ì„œ sccê·¸ëž˜í”„ í˜•ì„±
 	cout << Topological();
 	return 0;
 }

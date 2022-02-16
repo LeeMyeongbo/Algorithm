@@ -1,15 +1,15 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, node, L, R, width[10001], most_left[10001], col = 1;		// width[i] : ·¹º§ iÀÇ ³ĞÀÌ
-bool visited[10001];											// most_left[i] : ·¹º§ i¿¡¼­ Á¦ÀÏ ¿ŞÂÊÀÇ ³ëµå ¿­ ¹øÈ£
+int N, node, L, R, width[10001], most_left[10001], col = 1;		// width[i] : ë ˆë²¨ iì˜ ë„“ì´
+bool visited[10001];											// most_left[i] : ë ˆë²¨ iì—ì„œ ì œì¼ ì™¼ìª½ì˜ ë…¸ë“œ ì—´ ë²ˆí˜¸
 struct Tree {
 	Tree* left, * right;
 };
 Tree tree[10001], * root;
 
-void inorder(Tree* node, int level)					// ÁßÀ§ ¼øÈ¸¸¦ ÀÌ¿ëÇÏ¸é ¸Å¿ì °£Æí
+void inorder(Tree* node, int level)					// ì¤‘ìœ„ ìˆœíšŒë¥¼ ì´ìš©í•˜ë©´ ë§¤ìš° ê°„í¸
 {
 	if (node) {
 		inorder(node->left, level + 1);
@@ -30,15 +30,15 @@ int main()
 		cin >> node >> L >> R;
 		if (L > -1) {
 			tree[node].left = tree + L;
-			visited[L] = true;				// ¿ŞÂÊ ÀÚ½ÄÀ¸·Î ¿Â ³ëµå Ã¼Å©
+			visited[L] = true;				// ì™¼ìª½ ìì‹ìœ¼ë¡œ ì˜¨ ë…¸ë“œ ì²´í¬
 		}
 		if (R > -1) {
 			tree[node].right = tree + R;
-			visited[R] = true;				// ¿À¸¥ÂÊ ÀÚ½ÄÀ¸·Î ¿Â ³ëµå Ã¼Å©
+			visited[R] = true;				// ì˜¤ë¥¸ìª½ ìì‹ìœ¼ë¡œ ì˜¨ ë…¸ë“œ ì²´í¬
 		}
 	}
 	for (int i = 1; i <= N; i++)
-		if (!visited[i])					// ¿ŞÂÊ ÀÚ½Äµµ ¾Æ´Ï°í ¿À¸¥ÂÊ ÀÚ½Äµµ ¾Æ´Ñ ³ëµå°¡ ·çÆ®
+		if (!visited[i])					// ì™¼ìª½ ìì‹ë„ ì•„ë‹ˆê³  ì˜¤ë¥¸ìª½ ìì‹ë„ ì•„ë‹Œ ë…¸ë“œê°€ ë£¨íŠ¸
 			root = tree + i;
 	fill(width, width + N + 1, 1);
 

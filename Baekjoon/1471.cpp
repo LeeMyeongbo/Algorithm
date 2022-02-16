@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
@@ -10,7 +10,7 @@ bool complete[200001];
 vector<int> graph[200001], scc_graph[200001];
 stack<int> s;
 
-int dfs(int cur)				// scc Å½»ö
+int dfs(int cur)				// scc íƒìƒ‰
 {
 	seq[cur] = ++num;
 	int par = num;
@@ -42,18 +42,18 @@ int Solve()
 {
 	queue<int> q;
 	for (int i = 1; i <= N; i++)
-		for (int& j : graph[i])						// scc¸¦ ÇÏ³ªÀÇ Á¤Á¡À¸·Î º¸°í scc_graph Çü¼º
+		for (int& j : graph[i])						// sccë¥¼ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ ë³´ê³  scc_graph í˜•ì„±
 			if (scc_index[i] != scc_index[j]) {
 				scc_graph[scc_index[i]].push_back(scc_index[j]);
 				scc_indegree[scc_index[j]]++;
 			}
 	
 	for (int i = 1; i <= scc_num; i++)
-		if (!scc_indegree[i]) {						// ÁøÀÔ°£¼± ¼ö°¡ 0ÀÎ scc Å¥¿¡ »ğÀÔ + dpÅ×ÀÌºí¿¡ ÇØ´ç scc ³»ÀÇ Á¤Á¡ ¼ö Ã¼Å©
+		if (!scc_indegree[i]) {						// ì§„ì…ê°„ì„  ìˆ˜ê°€ 0ì¸ scc íì— ì‚½ì… + dpí…Œì´ë¸”ì— í•´ë‹¹ scc ë‚´ì˜ ì •ì  ìˆ˜ ì²´í¬
 			q.push(i);
 			dp[i] = scc_size[i];
 		}
-	while (!q.empty()) {							// À§»ó Á¤·ÄÀ» ÁøÇàÇÏ¸ç ¹æ¹® °¡´ÉÇÑ Á¤Á¡ ¼ö ÃÖ´ñ°ª °»½Å
+	while (!q.empty()) {							// ìœ„ìƒ ì •ë ¬ì„ ì§„í–‰í•˜ë©° ë°©ë¬¸ ê°€ëŠ¥í•œ ì •ì  ìˆ˜ ìµœëŒ“ê°’ ê°±ì‹ 
 		int cur_scc = q.front();
 		q.pop();
 
@@ -72,7 +72,7 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 	cin >> N;
-	for (int i = 1; i <= N; i++) {		// 1ºÎÅÍ N±îÁö ¾î´À Á¤Á¡À¸·Î °¡´ÂÁö Ã£¾Æ¼­ ¿¬°áÇÏ¸ç ±×·¡ÇÁ Çü¼º
+	for (int i = 1; i <= N; i++) {		// 1ë¶€í„° Nê¹Œì§€ ì–´ëŠ ì •ì ìœ¼ë¡œ ê°€ëŠ”ì§€ ì°¾ì•„ì„œ ì—°ê²°í•˜ë©° ê·¸ë˜í”„ í˜•ì„±
 		int s = i, add = 0;
 		while (s) {
 			add += s % 10;

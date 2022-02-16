@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <map>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int T, n, m, pre[1000], root;		// root : ÀüÀ§ ¼øÈ¸¿¡¼­ ¼­ºê Æ®¸®ÀÇ ·çÆ®·Î µé¾î°¥ Á¤Á¡ÀÇ index
-map<int, int> in;					// in : ÁßÀ§ ¼øÈ¸ ¶§ (Á¤Á¡ °ª, index)·Î ÀúÀå
+int T, n, m, pre[1000], root;		// root : ì „ìœ„ ìˆœíšŒì—ì„œ ì„œë¸Œ íŠ¸ë¦¬ì˜ ë£¨íŠ¸ë¡œ ë“¤ì–´ê°ˆ ì •ì ì˜ index
+map<int, int> in;					// in : ì¤‘ìœ„ ìˆœíšŒ ë•Œ (ì •ì  ê°’, index)ë¡œ ì €ì¥
 
 struct Tree {
 	Tree* left, * right;
@@ -17,12 +17,12 @@ struct Tree {
 };
 Tree* Root;
 
-void Make_Tree(Tree* &cur, int first, int last)	// first, last : ÇöÀç »ìÇÇ°í ÀÖ´Â ¼­ºêÆ®¸®ÀÇ index (first <= index < last)
+void Make_Tree(Tree* &cur, int first, int last)	// first, last : í˜„ì¬ ì‚´í”¼ê³  ìˆëŠ” ì„œë¸ŒíŠ¸ë¦¬ì˜ index (first <= index < last)
 {
 	if (first >= last)
 		return;
-	cur = new Tree(pre[root]);			// ÀüÀ§ ¼øÈ¸¿¡¼­´Â °¢ ¼­ºêÆ®¸®ÀÇ ·çÆ®¿¡ ÇØ´çÇÏ´Â Á¤Á¡ÀÇ index°¡ ¿ŞÂÊ¿¡¼­ºÎÅÍ Â÷±ÙÂ÷±Ù ¿À¸¥ÂÊÀ¸·Î ¿È
-	int root_index = in[pre[root++]];			// ÁßÀ§ ¼øÈ¸¿¡¼­ Çö ¼­ºê Æ®¸®ÀÇ ·çÆ®ÀÇ index¸¦ Ã£¾Æ¼­ root_index¿¡ ÀúÀå
+	cur = new Tree(pre[root]);			// ì „ìœ„ ìˆœíšŒì—ì„œëŠ” ê° ì„œë¸ŒíŠ¸ë¦¬ì˜ ë£¨íŠ¸ì— í•´ë‹¹í•˜ëŠ” ì •ì ì˜ indexê°€ ì™¼ìª½ì—ì„œë¶€í„° ì°¨ê·¼ì°¨ê·¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì˜´
+	int root_index = in[pre[root++]];			// ì¤‘ìœ„ ìˆœíšŒì—ì„œ í˜„ ì„œë¸Œ íŠ¸ë¦¬ì˜ ë£¨íŠ¸ì˜ indexë¥¼ ì°¾ì•„ì„œ root_indexì— ì €ì¥
 	Make_Tree(cur->left, first, root_index);
 	Make_Tree(cur->right, root_index + 1, last);
 }
@@ -47,7 +47,7 @@ int main()
 			cin >> pre[i];
 		for (int i = 0; i < n; i++) {
 			cin >> m;
-			in.insert({ m, i });		// (³ëµå °ª, index)·Î ÀúÀå
+			in.insert({ m, i });		// (ë…¸ë“œ ê°’, index)ë¡œ ì €ì¥
 		}
 		Make_Tree(Root, 0, n);
 		postorder(Root);

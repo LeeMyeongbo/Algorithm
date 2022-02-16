@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,7 +6,7 @@ using namespace std;
 
 int N, K, M, station;
 vector<int> graph[101001];
-queue<pair<int, int>> q;		// (ÇöÀç Á¤Á¡, °ÅÄ£ ¿ª °³¼ö)
+queue<pair<int, int>> q;		// (í˜„ìž¬ ì •ì , ê±°ì¹œ ì—­ ê°œìˆ˜)
 bool visited[101001];
 
 int Solve()
@@ -24,7 +24,7 @@ int Solve()
 
 		for (int i : graph[cur]) {
 			if (!visited[i]) {
-				i > N ? q.push({ i, num }) : q.push({ i, num + 1 });	// ¿ª¿¡¼­ ÇÏÀÌÆÛÆ©ºê·Î ÀÌµ¿ ½Ã ±×´ë·Î, ÇÏÀÌÆÛÆ©ºê¿¡¼­ ¿ªÀ¸·Î ÀÌµ¿ ½Ã +1
+				i > N ? q.push({ i, num }) : q.push({ i, num + 1 });	// ì—­ì—ì„œ í•˜ì´í¼íŠœë¸Œë¡œ ì´ë™ ì‹œ ê·¸ëŒ€ë¡œ, í•˜ì´í¼íŠœë¸Œì—ì„œ ì—­ìœ¼ë¡œ ì´ë™ ì‹œ +1
 				visited[i] = true;
 			}
 		}
@@ -37,7 +37,7 @@ int main()
 	FAST;
 	cin >> N >> K >> M;
 	for (int i = 1; i <= M; i++) {
-		for (int j = 0; j < K; j++) {			// ¿ªÀº 1ºÎÅÍ N, ÇÏÀÌÆÛÆ©ºê¸¦ N + 1ºÎÅÍ N + M±îÁö µÒ
+		for (int j = 0; j < K; j++) {			// ì—­ì€ 1ë¶€í„° N, í•˜ì´í¼íŠœë¸Œë¥¼ N + 1ë¶€í„° N + Mê¹Œì§€ ë‘ 
 			cin >> station;
 			graph[station].push_back(N + i);
 			graph[N + i].push_back(station);

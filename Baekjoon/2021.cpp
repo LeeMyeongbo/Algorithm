@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,8 +6,8 @@ using namespace std;
 
 int N, L, n, Start, End;
 bool visited[200001];
-vector<int> graph[200001];			// ¿ª ¸¶´Ù ¿¬°áµÈ ³ë¼±À» ÇÏ³ªÇÏ³ª ´Ù °£¼±À¸·Î ¿¬°áÇÏ±â¿£ ³Ê¹« ¹÷Âü -> ³ë¼±µµ ÇÏ³ªÀÇ Á¤Á¡À¸·Î µÒ!
-queue<pair<int, int>> q;			// (ÇöÀç Á¤Á¡, ³ë¼± ÀÌ¿ë È½¼ö)
+vector<int> graph[200001];			// ì—­ ë§ˆë‹¤ ì—°ê²°ëœ ë…¸ì„ ì„ í•˜ë‚˜í•˜ë‚˜ ë‹¤ ê°„ì„ ìœ¼ë¡œ ì—°ê²°í•˜ê¸°ì—” ë„ˆë¬´ ë²…ì°¸ -> ë…¸ì„ ë„ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ ë‘ !
+queue<pair<int, int>> q;			// (í˜„ì¬ ì •ì , ë…¸ì„  ì´ìš© íšŸìˆ˜)
 
 int Solve()
 {
@@ -19,14 +19,14 @@ int Solve()
 		int num = q.front().second;
 		q.pop();
 
-		if (cur == End) {			// Start¿Í End°¡ °°Àº °æ¿ìµµ Á¸Àç °¡´É
+		if (cur == End) {			// Startì™€ Endê°€ ê°™ì€ ê²½ìš°ë„ ì¡´ì¬ ê°€ëŠ¥
 			if (!num)
 				return 0;
 			return num - 1;
 		}
 
 		for (int i : graph[cur]) {
-			if (!visited[i]) {		// N¹øº¸´Ù Å« Á¤Á¡À¸·Î ÇâÇÒ ¶© ³ë¼± ÀÌ¿ëÇÏ´Â °ÍÀÌ¹Ç·Î +1, ±×·¸Áö ¾ÊÀ¸¸é ³ë¼±¿¡¼­ ³»¸®´Â °ÍÀÌ¹Ç·Î ±×´ë·Î
+			if (!visited[i]) {		// Në²ˆë³´ë‹¤ í° ì •ì ìœ¼ë¡œ í–¥í•  ë• ë…¸ì„  ì´ìš©í•˜ëŠ” ê²ƒì´ë¯€ë¡œ +1, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ë…¸ì„ ì—ì„œ ë‚´ë¦¬ëŠ” ê²ƒì´ë¯€ë¡œ ê·¸ëŒ€ë¡œ
 				i > N ? q.push({ i, num + 1 }) : q.push({ i, num });
 				visited[i] = true;
 			}
@@ -39,7 +39,7 @@ int main()
 {
 	FAST;
 	cin >> N >> L;
-	for (int i = N + 1; i <= N + L; i++) {		// 1¹øºÎÅÍ N¹ø Á¤Á¡Àº ¿ª, N + 1¹øºÎÅÍ N + L¹ø Á¤Á¡±îÁö´Â ³ë¼±
+	for (int i = N + 1; i <= N + L; i++) {		// 1ë²ˆë¶€í„° Në²ˆ ì •ì ì€ ì—­, N + 1ë²ˆë¶€í„° N + Lë²ˆ ì •ì ê¹Œì§€ëŠ” ë…¸ì„ 
 		while (1) {
 			cin >> n;
 			if (n == -1)

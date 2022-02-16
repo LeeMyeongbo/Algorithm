@@ -1,13 +1,13 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define MAX 5000000
 using namespace std;
 
 int N;
-bool is_comp[MAX];							// ÇÕ¼º¼ö¸¦ true·Î Ç¥½Ã
+bool is_comp[MAX];							// í•©ì„±ìˆ˜ë¥¼ trueë¡œ í‘œì‹œ
 vector<int> prime;
 
-void get_Prime()							// ¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
+void get_Prime()							// ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´
 {
 	for (int i = 2; i < MAX; i++) {
 		if (!is_comp[i]) {

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -11,7 +11,7 @@ bool complete[2 * STD + 1];
 vector<int> graph[2 * STD + 1];
 stack<int> s;
 
-int DFS(int cur)			// SCC·Î ¹­¾î °°Àº Áø¸®°ªÀ» °¡Áö´Â Á¤Á¡µé ÀúÀå
+int DFS(int cur)			// SCCë¡œ ë¬¶ì–´ ê°™ì€ ì§„ë¦¬ê°’ì„ ê°€ì§€ëŠ” ì •ì ë“¤ ì €ì¥
 {
 	seq[cur] = ++num;
 	int parent = num;
@@ -38,7 +38,7 @@ int DFS(int cur)			// SCC·Î ¹­¾î °°Àº Áø¸®°ªÀ» °¡Áö´Â Á¤Á¡µé ÀúÀå
 	return parent;
 }
 
-int Determine()        // x¿Í ~x°¡ °°Àº scc¿¡ ¼ÓÇÏ´ÂÁö ÆÇ´Ü
+int Determine()        // xì™€ ~xê°€ ê°™ì€ sccì— ì†í•˜ëŠ”ì§€ íŒë‹¨
 {
 	for (int v = 1; v <= N; v++)
 		if (scc_index[STD + v] == scc_index[STD - v])
@@ -63,7 +63,7 @@ int main()
 	cout << d << "\n";
 
 	if (d)
-		for (int i = 1; i <= N; i++)	// iÀÇ scc¹øÈ£°¡ -iº¸´Ù ÀÛÀ» °æ¿ì ´õ ±í¼÷È÷(?) ÀÖÀ» ¼ö ÀÖ´Ù´Â ÀÇ¹Ì -> i¸¦ true·Î µÒ
+		for (int i = 1; i <= N; i++)	// iì˜ sccë²ˆí˜¸ê°€ -ië³´ë‹¤ ì‘ì„ ê²½ìš° ë” ê¹Šìˆ™íˆ(?) ìˆì„ ìˆ˜ ìˆë‹¤ëŠ” ì˜ë¯¸ -> ië¥¼ trueë¡œ ë‘ 
 			scc_index[STD + i] < scc_index[STD - i] ? cout << "1 " : cout << "0 ";
 
 	return 0;

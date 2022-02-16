@@ -1,8 +1,8 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 using namespace std;
 
-int N, dp[2][3], new_dp[2][3], pos[3];		// dp[0][0~2] : ÃÖ´ë, dp[1][0~2] : ÃÖ¼Ò
+int N, dp[2][3], new_dp[2][3], pos[3];		// dp[0][0~2] : ìµœëŒ€, dp[1][0~2] : ìµœì†Œ
 
 int main()
 {

@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <vector>
 using namespace std;
 
 int N, S, E, v1, v2, len, Max, pre[100001], Sum[100001];
-vector<pair<int, int>> graph[100001];		// graph[Ãâ¹ß Á¤Á¡] = (µµÂø Á¤Á¡, Åë·Î ±æÀÌ)²Ã·Î ÀúÀå
-priority_queue<pair<int, int>> q;			// (°Å¸® ÇÕ, ÇöÀç Á¤Á¡)²Ã·Î ÀúÀå
+vector<pair<int, int>> graph[100001];		// graph[ì¶œë°œ ì •ì ] = (ë„ì°© ì •ì , í†µë¡œ ê¸¸ì´)ê¼´ë¡œ ì €ì¥
+priority_queue<pair<int, int>> q;			// (ê±°ë¦¬ í•©, í˜„ì¬ ì •ì )ê¼´ë¡œ ì €ì¥
 
 int find_Min()
 {
@@ -32,7 +32,7 @@ int find_Min()
 	return 0;
 }
 
-void backtrack(int v)						// ·Îº¿ 2(¸ñÇ¥ ÁöÁ¡)°¡ À§Ä¡ÇÑ ÁöÁ¡À¸·ÎºÎÅÍ ¿ªÃßÀûÇØ°¡¸ç °æ·Î ³» °¡Àå ±ä Åë·Î Å½»ö
+void backtrack(int v)						// ë¡œë´‡ 2(ëª©í‘œ ì§€ì )ê°€ ìœ„ì¹˜í•œ ì§€ì ìœ¼ë¡œë¶€í„° ì—­ì¶”ì í•´ê°€ë©° ê²½ë¡œ ë‚´ ê°€ì¥ ê¸´ í†µë¡œ íƒìƒ‰
 {
 	for (pair<int, int>& p : graph[v]) {
 		if (p.first == pre[v]) {

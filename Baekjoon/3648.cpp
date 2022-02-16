@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -40,7 +40,7 @@ int DFS(int cur)
 
 bool Possible()
 {
-	for (int i = 1; i <= n; i++)		// -N ~ N (0Àº Á¦¿Ü) Á¤Á¡µéÀ» ¹æ¹®ÇÑ ÀûÀÌ ÀÖ°í i¿Í -i°¡ °°Àº scc¶ó¸é ÁøÃâ ¸ñ·Ï Çü¼º ºÒ°¡!
+	for (int i = 1; i <= n; i++)		// -N ~ N (0ì€ ì œì™¸) ì •ì ë“¤ì„ ë°©ë¬¸í•œ ì ì´ ìˆê³  iì™€ -iê°€ ê°™ì€ sccë¼ë©´ ì§„ì¶œ ëª©ë¡ í˜•ì„± ë¶ˆê°€!
 		if (scc_index[STD + i] > -1 && scc_index[STD - i] > -1 && scc_index[STD + i] == scc_index[STD - i])
 			return false;
 	return true;
@@ -64,7 +64,7 @@ int main()
 			graph[STD - a].push_back(STD + b);
 			graph[STD - b].push_back(STD + a);
 		}
-		graph[STD - 1].push_back(STD + 1);			// »ó±ÙÀÌ´Â Ç×»ó true¿©¾ß ÇÏ¹Ç·Î (x1 ¡ä x1)¶ó´Â Àı Ãß°¡ (x1ÀÌ ÂüÀÌ¶ó´Â ÀÇ¹Ì)
+		graph[STD - 1].push_back(STD + 1);			// ìƒê·¼ì´ëŠ” í•­ìƒ trueì—¬ì•¼ í•˜ë¯€ë¡œ (x1 â–½ x1)ë¼ëŠ” ì ˆ ì¶”ê°€ (x1ì´ ì°¸ì´ë¼ëŠ” ì˜ë¯¸)
 		for (int v = STD - n; v <= STD + n; v++)
 			if (!complete[v] && v != STD)
 				DFS(v);

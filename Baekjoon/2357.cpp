@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, a, b, A[100001], ans[2][400004];		// ans[0][i] : ÃÖ¼Ú°ª, ans[1][i] : ÃÖ´ñ°ª
+int N, M, a, b, A[100001], ans[2][400004];		// ans[0][i] : ìµœì†Ÿê°’, ans[1][i] : ìµœëŒ“ê°’
 
 int init_Min(int index, int start, int end)
 {
@@ -23,18 +23,18 @@ int init_Max(int index, int start, int end)
 
 int get_Min(int index, int start, int end)
 {
-	if (start > b || end < a)				// ±¸°£À» ¹ş¾î³­ °æ¿ì¿¡´Â 10^9 + 1 Ãâ·Â (1 <= n <= 1000000000)
+	if (start > b || end < a)				// êµ¬ê°„ì„ ë²—ì–´ë‚œ ê²½ìš°ì—ëŠ” 10^9 + 1 ì¶œë ¥ (1 <= n <= 1000000000)
 		return 1000000001;
-	if (start >= a && end <= b)				// ±¸°£ ³»ºÎ¿¡ Á¸ÀçÇÏ¸é ¹Ù·Î ÇØ´ç ±¸°£ÀÇ ÃÖ¼Ú°ª Ãâ·Â
+	if (start >= a && end <= b)				// êµ¬ê°„ ë‚´ë¶€ì— ì¡´ì¬í•˜ë©´ ë°”ë¡œ í•´ë‹¹ êµ¬ê°„ì˜ ìµœì†Ÿê°’ ì¶œë ¥
 		return ans[0][index];
 	return min(get_Min(index * 2, start, (start + end) / 2), get_Min(index * 2 + 1, (start + end) / 2 + 1, end));
 }
 
 int get_Max(int index, int start, int end)
 {
-	if (start > b || end < a)				// ±¸°£ ¹ş¾î³­ °æ¿ì¿¡´Â 0 Ãâ·Â (1 <= n <= 1000000000)
+	if (start > b || end < a)				// êµ¬ê°„ ë²—ì–´ë‚œ ê²½ìš°ì—ëŠ” 0 ì¶œë ¥ (1 <= n <= 1000000000)
 		return 0;
-	if (start >= a && end <= b)				// ±¸°£ ³»ºÎ¿¡ Á¸Àç ½Ã ¹Ù·Î ÃÖ´ñ°ª
+	if (start >= a && end <= b)				// êµ¬ê°„ ë‚´ë¶€ì— ì¡´ì¬ ì‹œ ë°”ë¡œ ìµœëŒ“ê°’
 		return ans[1][index];
 	return max(get_Max(index * 2, start, (start + end) / 2), get_Max(index * 2 + 1, (start + end) / 2 + 1, end));
 }

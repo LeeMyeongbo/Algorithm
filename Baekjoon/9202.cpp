@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <set>
 using namespace std;
@@ -13,21 +13,21 @@ bool visited[4][4];
 void dfs(int length, int r, int c) 
 {
 	visited[r][c] = true;
-	found.push_back(board[r][c]);					// 1. Ã¼Å©ÀÎ
+	found.push_back(board[r][c]);					// 1. ì²´í¬ì¸
 
 	if (words.count(found))
-		ans_list.insert(found);						// 2. ¸ñÀûÁö È®ÀÎ (´Ü¾î Ã£Àº°Å ¸Â´ÂÁö È®ÀÎ)
+		ans_list.insert(found);						// 2. ëª©ì ì§€ í™•ì¸ (ë‹¨ì–´ ì°¾ì€ê±° ë§ëŠ”ì§€ í™•ì¸)
 
 	if (length < 8) {
-		for (int d = 0; d < 8; d++) {				// 3. ¹æ¹®ÇÒ ¼ö ÀÖ´ÂÁö È®ÀÎ + ¼øÈ¸
+		for (int d = 0; d < 8; d++) {				// 3. ë°©ë¬¸í•  ìˆ˜ ìˆëŠ”ì§€ í™•ì¸ + ìˆœíšŒ
 			int new_r = r + dr[d];
 			int new_c = c + dc[d];
-			if (new_r >= 0 && new_r < 4 && new_c >= 0 && new_c < 4 && !visited[new_r][new_c])		// 4. °¡´É??
-				dfs(length + 1, new_r, new_c);		// 5. °¡´ÉÇÏ¸é °¨
+			if (new_r >= 0 && new_r < 4 && new_c >= 0 && new_c < 4 && !visited[new_r][new_c])		// 4. ê°€ëŠ¥??
+				dfs(length + 1, new_r, new_c);		// 5. ê°€ëŠ¥í•˜ë©´ ê°
 		}
 	}
 	found.pop_back();
-	visited[r][c] = false;							// 6. Ã¼Å©¾Æ¿ô
+	visited[r][c] = false;							// 6. ì²´í¬ì•„ì›ƒ
 }
 
 int main()
@@ -47,7 +47,7 @@ int main()
 
 		for (int r = 0; r < 4; r++)
 			for (int c = 0; c < 4; c++)
-				dfs(1, r, c);							// 4*4=16°÷ ¸ğµÎ ½ÃÀÛÁ¡À¸·Î ÇÏ¿© dfs Å½»ö
+				dfs(1, r, c);							// 4*4=16ê³³ ëª¨ë‘ ì‹œì‘ì ìœ¼ë¡œ í•˜ì—¬ dfs íƒìƒ‰
 
 		int score = 0, length = 0;
 		string longest = "";
@@ -55,7 +55,7 @@ int main()
 		for (auto iter = ans_list.begin(); iter != ans_list.end(); iter++) {
 			score += s[iter->length()];
 
-			if (length < (int)iter->length()) {			// ÃÖ´ë ±æÀÌ °»½ÅµÉ °æ¿ì
+			if (length < (int)iter->length()) {			// ìµœëŒ€ ê¸¸ì´ ê°±ì‹ ë  ê²½ìš°
 				length = iter->length();
 				longest = *iter;
 			}

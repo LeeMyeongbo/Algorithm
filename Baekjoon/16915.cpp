@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -39,7 +39,7 @@ int dfs(int cur)
 
 bool chk()
 {
-	for (int i = 1; i <= M; i++)		// ½ºÀ§Ä¡ ¼ö¿¡ µû¶ó¼­ µÇ´ÂÁö ¾ÈµÇ´ÂÁö Ã¼Å© (½Ç¼öÁÖÀÇ)
+	for (int i = 1; i <= M; i++)		// ìŠ¤ìœ„ì¹˜ ìˆ˜ì— ë”°ë¼ì„œ ë˜ëŠ”ì§€ ì•ˆë˜ëŠ”ì§€ ì²´í¬ (ì‹¤ìˆ˜ì£¼ì˜)
 		if (scc_index[MAX - i] && scc_index[MAX + i] && scc_index[MAX - i] == scc_index[MAX + i])
 			return false;
 	return true;
@@ -59,20 +59,20 @@ int main()
 		}
 	}
 	for (int i = 1; i <= N; i++) {
-		if (room[i]) {			// ¿­·ÁÀÖÀ» °æ¿ì : (!p¡äq)¡â(p¡â!q)ÀÓÀ» ÀÌ¿ë => p¡æq, q¡æp, !p¡æ!q, !q¡æ!p
+		if (room[i]) {			// ì—´ë ¤ìžˆì„ ê²½ìš° : (!pâ–½q)â–³(pâ–³!q)ìž„ì„ ì´ìš© => pâ†’q, qâ†’p, !pâ†’!q, !qâ†’!p
 			for (int j = 0; j < 2; j++) {
 				graph[MAX - room_switch[i][j]].push_back(MAX - room_switch[i][(j + 1) % 2]);
 				graph[MAX + room_switch[i][j]].push_back(MAX + room_switch[i][(j + 1) % 2]);
 			}
 		}
-		else {					// ´ÝÇôÀÖÀ» °æ¿ì : (p¡äq)¡â(!p¡â!q)ÀÓÀ» ÀÌ¿ë => p¡æ!q, q¡æ!p, !p¡æq, !q¡æp
+		else {					// ë‹«í˜€ìžˆì„ ê²½ìš° : (pâ–½q)â–³(!pâ–³!q)ìž„ì„ ì´ìš© => pâ†’!q, qâ†’!p, !pâ†’q, !qâ†’p
 			for (int j = 0; j < 2; j++) {
 				graph[MAX - room_switch[i][j]].push_back(MAX + room_switch[i][(j + 1) % 2]);
 				graph[MAX + room_switch[i][j]].push_back(MAX - room_switch[i][(j + 1) % 2]);
 			}
 		}
 	}
-	for (int i = MAX - M; i <= MAX + M; i++)		// ½ºÀ§Ä¡ ¼ö¿¡ µû¶ó¼­ µÇ´ÂÁö ¾ÈµÇ´ÂÁö Ã¼Å©ÇØ¾ß ÇÔ! (½Ç¼öÁÖÀÇ)
+	for (int i = MAX - M; i <= MAX + M; i++)		// ìŠ¤ìœ„ì¹˜ ìˆ˜ì— ë”°ë¼ì„œ ë˜ëŠ”ì§€ ì•ˆë˜ëŠ”ì§€ ì²´í¬í•´ì•¼ í•¨! (ì‹¤ìˆ˜ì£¼ì˜)
 		if (i != MAX && !complete[i])
 			dfs(i);
 

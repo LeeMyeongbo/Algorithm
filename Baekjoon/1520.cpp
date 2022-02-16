@@ -1,26 +1,26 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
 
 int M, N, map[500][500], dp[4][500][500];
-const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };		// µ¿ ¼­ ³² ºÏ ¼øÀ¸·Î ¹æ¹®
+const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };		// ë™ ì„œ ë‚¨ ë¶ ìˆœìœ¼ë¡œ ë°©ë¬¸
 bool visited[4][500][500];
 
 int DFS(int r, int c)
 {
-	if (r == M - 1 && c == N - 1)			// Á¦ÀÏ ¿À¸¥ÂÊ ¾Æ·¡¿¡ ´Ù´Ù¸£¸é 1 ¸®ÅÏ
+	if (r == M - 1 && c == N - 1)			// ì œì¼ ì˜¤ë¥¸ìª½ ì•„ë˜ì— ë‹¤ë‹¤ë¥´ë©´ 1 ë¦¬í„´
 		return 1;
 
 	for (int d = 0; d < 4; d++) {
 		int R = r + dr[d];
 		int C = c + dc[d];
 
-		if (R >= 0 && R < M && C >= 0 && C < N && !visited[d][R][C] && map[R][C] < map[r][c]) {		// ¹æ¹®ÇÑ Àû ¾ø´Â ³»¸®¸·±æ
-			visited[d][R][C] = true;		// ¹æ¹® Ã¼Å©ÇÏ°í
-			dp[d][r][c] += DFS(R, C);		// ´õ ±íÀÌ µé¾î°¡¼­ ÇØ´ç ¹æÇâ¿¡¼­ÀÇ °æ·Î ¼ö ´õÇÔ
+		if (R >= 0 && R < M && C >= 0 && C < N && !visited[d][R][C] && map[R][C] < map[r][c]) {		// ë°©ë¬¸í•œ ì  ì—†ëŠ” ë‚´ë¦¬ë§‰ê¸¸
+			visited[d][R][C] = true;		// ë°©ë¬¸ ì²´í¬í•˜ê³ 
+			dp[d][r][c] += DFS(R, C);		// ë” ê¹Šì´ ë“¤ì–´ê°€ì„œ í•´ë‹¹ ë°©í–¥ì—ì„œì˜ ê²½ë¡œ ìˆ˜ ë”í•¨
 		}
 	}
-	return dp[0][r][c] + dp[1][r][c] + dp[2][r][c] + dp[3][r][c];	// °¢ 4¹æÇâ¿¡¼­ÀÇ °æ·Î ¼öÀÇ ÇÕÀ» ¸®ÅÏ
+	return dp[0][r][c] + dp[1][r][c] + dp[2][r][c] + dp[3][r][c];	// ê° 4ë°©í–¥ì—ì„œì˜ ê²½ë¡œ ìˆ˜ì˜ í•©ì„ ë¦¬í„´
 }
 
 int main()

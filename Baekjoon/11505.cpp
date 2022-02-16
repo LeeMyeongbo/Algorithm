@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 1000000007
 using namespace std;

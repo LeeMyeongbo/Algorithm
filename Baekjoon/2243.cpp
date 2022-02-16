@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define S 1048576					// 2^20
 using namespace std;
 
-int n, A, B, C, tree[2 * S];		// tree[1] ~ tree[S - 1] : ³»ºÎ³ëµå, tree[S] ~ tree[2 * S - 1] : ¸®ÇÁ³ëµå
+int n, A, B, C, tree[2 * S];		// tree[1] ~ tree[S - 1] : ë‚´ë¶€ë…¸ë“œ, tree[S] ~ tree[2 * S - 1] : ë¦¬í”„ë…¸ë“œ
 
-void update(int idx, int diff)		// bottom-up ¹æ½ÄÀ¸·Î °»½Å
+void update(int idx, int diff)		// bottom-up ë°©ì‹ìœ¼ë¡œ ê°±ì‹ 
 {
 	int node = idx + S - 1;
 	while (node) {
@@ -18,13 +18,13 @@ int find(int left, int right, int node, int rank)
 	int mid = (left + right) / 2;
 
 	if (left == right) {
-		update(left, -1);			// 1°³ »©Áà¾ß ÇÔ!
+		update(left, -1);			// 1ê°œ ë¹¼ì¤˜ì•¼ í•¨!
 		return left;
 	}
 	if (tree[node * 2] >= rank)
-		return find(left, mid, node * 2, rank);								// ¿ŞÂÊ ¼­ºêÆ®¸®·Î °¥ ¶§´Â ¿ø·¡ ¼øÀ§ ±×´ë·Î Àü´Ş
+		return find(left, mid, node * 2, rank);								// ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ë¡œ ê°ˆ ë•ŒëŠ” ì›ë˜ ìˆœìœ„ ê·¸ëŒ€ë¡œ ì „ë‹¬
 	else
-		return find(mid + 1, right, node * 2 + 1, rank - tree[node * 2]);	// ¿À¸¥ÂÊ ¼­ºêÆ®¸®·Î °¥ ¶§ ¿ø·¡ ¼øÀ§¿¡¼­ ¿ŞÂÊ ¼­ºêÆ®¸® ÇÕ »©ÁÜ!
+		return find(mid + 1, right, node * 2 + 1, rank - tree[node * 2]);	// ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ë¡œ ê°ˆ ë•Œ ì›ë˜ ìˆœìœ„ì—ì„œ ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ í•© ë¹¼ì¤Œ!
 }
 
 int main()

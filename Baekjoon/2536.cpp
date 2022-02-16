@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -7,7 +7,7 @@ struct Bus {
 	int x1, y1, x2, y2;
 };
 int m, n, k, sx, sy, dx, dy;
-bool visited[5001];					// ¹æ¹® ¿©ºÎ (Áßº¹µÈ ¹ö½º´Â Å¸Áö ¾Êµµ·Ï ÇÔ)
+bool visited[5001];					// ë°©ë¬¸ ì—¬ë¶€ (ì¤‘ë³µëœ ë²„ìŠ¤ëŠ” íƒ€ì§€ ì•Šë„ë¡ í•¨)
 Bus bus[5001];
 
 void Swap(int& n1, int& n2)
@@ -21,21 +21,21 @@ int Solve()
 {
 	queue<pair<int, int>> q;
 	for (int i = 1; i <= k; i++) {
-		if (sx >= bus[i].x1 && sx <= bus[i].x2 && sy >= bus[i].y1 && sy <= bus[i].y2) {		// Ãâ¹ßÁö¸¦ Áö³ª´Â ¹ö½ºµé ¸ğµÎ Å¥¿¡ ³Ö°í ¹æ¹®Ã¼Å©
+		if (sx >= bus[i].x1 && sx <= bus[i].x2 && sy >= bus[i].y1 && sy <= bus[i].y2) {		// ì¶œë°œì§€ë¥¼ ì§€ë‚˜ëŠ” ë²„ìŠ¤ë“¤ ëª¨ë‘ íì— ë„£ê³  ë°©ë¬¸ì²´í¬
 			q.push({ i, 1 });
 			visited[i] = true;
 		}
 	}
-	while (!q.empty()) {					// BFS ¹æ½Ä È°¿ë
-		int cur = q.front().first;			// ÇöÀç Å¥¿¡¼­ »©³½ ¹ö½º ¹øÈ£
-		int num = q.front().second;			// ¹ö½º Åº È½¼ö
+	while (!q.empty()) {					// BFS ë°©ì‹ í™œìš©
+		int cur = q.front().first;			// í˜„ì¬ íì—ì„œ ë¹¼ë‚¸ ë²„ìŠ¤ ë²ˆí˜¸
+		int num = q.front().second;			// ë²„ìŠ¤ íƒ„ íšŸìˆ˜
 		q.pop();
 
 		if (dx >= bus[cur].x1 && dx <= bus[cur].x2 && dy >= bus[cur].y1 && dy <= bus[cur].y2)
 			return num;
 
 		for (int i = 1; i <= k; i++) {
-			// Å¥¿¡¼­ »©³½ ¹ö½ºÀÇ ¿îÇà ±¸°£ÀÌ¶û °ãÄ¡´Â ¹ö½ºµé ¸ğµÎ ¹æ¹®ÇÑ Àû ¾øÀ¸¸é Å¥¿¡ ³Ö°í ¹æ¹®Ã¼Å© (µÎ ¼±ºĞÀÌ °ãÄ¥ ¶§ÀÇ Á¶°Ç ÀØÁö¸»±â!)
+			// íì—ì„œ ë¹¼ë‚¸ ë²„ìŠ¤ì˜ ìš´í–‰ êµ¬ê°„ì´ë‘ ê²¹ì¹˜ëŠ” ë²„ìŠ¤ë“¤ ëª¨ë‘ ë°©ë¬¸í•œ ì  ì—†ìœ¼ë©´ íì— ë„£ê³  ë°©ë¬¸ì²´í¬ (ë‘ ì„ ë¶„ì´ ê²¹ì¹  ë•Œì˜ ì¡°ê±´ ìŠì§€ë§ê¸°!)
 			if(!visited[i] && !(bus[i].x1 > bus[cur].x2 || bus[i].x2 < bus[cur].x1 || bus[i].y1 > bus[cur].y2 || bus[i].y2 < bus[cur].y1)){
 				q.push({ i, num + 1 });
 				visited[i] = true;
@@ -54,9 +54,9 @@ int main()
 		if (!scanf("%d %d %d %d %d", &b, &x1, &y1, &x2, &y2))
 			return 1;
 		if (x1 > x2)
-			Swap(x1, x2);				// Ç×»ó x2°¡ x1 ÀÌ»óÀÌ µÇµµ·Ï
+			Swap(x1, x2);				// í•­ìƒ x2ê°€ x1 ì´ìƒì´ ë˜ë„ë¡
 		if (y1 > y2)
-			Swap(y1, y2);				// Ç×»ó y2°¡ y1 ÀÌ»óÀÌ µÇµµ·Ï
+			Swap(y1, y2);				// í•­ìƒ y2ê°€ y1 ì´ìƒì´ ë˜ë„ë¡
 		bus[b] = { x1, y1, x2, y2 };
 	}
 	if (!scanf("%d %d %d %d", &sx, &sy, &dx, &dy))

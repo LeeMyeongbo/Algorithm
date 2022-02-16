@@ -1,43 +1,43 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
-using namespace std;				// ÀÌ ¹®Á¦ Àß º¸±â!
+using namespace std;				// ì´ ë¬¸ì œ ì˜ ë³´ê¸°!
 
 struct Node {
 	int R, C, sum, broken;
-	bool is_day;					// true¶ó¸é ³·, false¶ó¸é ¹ã
+	bool is_day;					// trueë¼ë©´ ë‚®, falseë¼ë©´ ë°¤
 };
 int N, M, K;
 char map[1001][1001];
-bool visited[11][1000][1000];		// ºÎ¼ø º® °³¼ö¿¡ µû¶ó ¹æ¹® Ã¼Å© µû·Î ÇÒ ¼ö ÀÖµµ·Ï ÇÏ±â! (0ºÎÅÍ 10±îÁö¹Ç·Î 11À» ½á¾ß ÇÔ!)
+bool visited[11][1000][1000];		// ë¶€ìˆœ ë²½ ê°œìˆ˜ì— ë”°ë¼ ë°©ë¬¸ ì²´í¬ ë”°ë¡œ í•  ìˆ˜ ìˆë„ë¡ í•˜ê¸°! (0ë¶€í„° 10ê¹Œì§€ë¯€ë¡œ 11ì„ ì¨ì•¼ í•¨!)
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 queue<Node> q;
 
 int Solve()
 {
-	q.push({ 0, 0, 1, 0, true });	// ¸Ç Ã³À½¿£ [0][0]¿¡¼­ ¹æ¹®ÇÑ Ä­ °³¼ö 1, ºÎ¼ø º® °³¼ö 0, ³·ÀÎ »óÅÂ·Î Ãâ¹ß
+	q.push({ 0, 0, 1, 0, true });	// ë§¨ ì²˜ìŒì—” [0][0]ì—ì„œ ë°©ë¬¸í•œ ì¹¸ ê°œìˆ˜ 1, ë¶€ìˆœ ë²½ ê°œìˆ˜ 0, ë‚®ì¸ ìƒíƒœë¡œ ì¶œë°œ
 	visited[0][0][0] = true;
 	while (!q.empty()) {
 		Node node = q.front();
 		q.pop();
 
-		if (node.R == N - 1 && node.C == M - 1)									// ¸ñÀûÁö¿¡ µµ´ŞÇÏ¸é ¹Ù·Î ÃÖ´Ü °æ·Î ¸®ÅÏ
+		if (node.R == N - 1 && node.C == M - 1)									// ëª©ì ì§€ì— ë„ë‹¬í•˜ë©´ ë°”ë¡œ ìµœë‹¨ ê²½ë¡œ ë¦¬í„´
 			return node.sum;
-		for (int i = 0; i < 4; i++) {											// µ¿¼­³²ºÏÀ¸·Î ¿òÁ÷ÀÌ¸ç Ã¼Å©
+		for (int i = 0; i < 4; i++) {											// ë™ì„œë‚¨ë¶ìœ¼ë¡œ ì›€ì§ì´ë©° ì²´í¬
 			int R = node.R + dr[i];
 			int C = node.C + dc[i];
-			if (R >= 0 && R < N && C >= 0 && C < M) {							// ÀÌµ¿ÇÒ °÷ÀÌ ¸Ê ¹üÀ§ ³»¿¡ ÀÖÀ» °æ¿ì
-				if (map[R][C] == '0' && !visited[node.broken][R][C]) {			// ÀÌµ¿ÇÒ °÷ÀÌ ¹æ¹®ÇÑ Àû ¾ø´Â ºóÄ­ÀÏ °æ¿ì
-					visited[node.broken][R][C] = true;							// brokenÀº ±×´ë·Î, ¹æ¹®ÇÑ Ä­ °³¼ö + 1, ³·¹ãÀüÈ¯
+			if (R >= 0 && R < N && C >= 0 && C < M) {							// ì´ë™í•  ê³³ì´ ë§µ ë²”ìœ„ ë‚´ì— ìˆì„ ê²½ìš°
+				if (map[R][C] == '0' && !visited[node.broken][R][C]) {			// ì´ë™í•  ê³³ì´ ë°©ë¬¸í•œ ì  ì—†ëŠ” ë¹ˆì¹¸ì¼ ê²½ìš°
+					visited[node.broken][R][C] = true;							// brokenì€ ê·¸ëŒ€ë¡œ, ë°©ë¬¸í•œ ì¹¸ ê°œìˆ˜ + 1, ë‚®ë°¤ì „í™˜
 					q.push({ R, C, node.sum + 1, node.broken, !node.is_day });
 				}
-				// ÀÌµ¿ÇÒ °÷ÀÌ ¹æ¹®ÇÑ Àû ¾ø´Â º®ÀÌ¸é¼­ ¾ÆÁ÷ ºÎ¼ú ¼ö ÀÖ´Â È½¼ö°¡ ³²¾ÆÀÖ´Â °æ¿ì
+				// ì´ë™í•  ê³³ì´ ë°©ë¬¸í•œ ì  ì—†ëŠ” ë²½ì´ë©´ì„œ ì•„ì§ ë¶€ìˆ  ìˆ˜ ìˆëŠ” íšŸìˆ˜ê°€ ë‚¨ì•„ìˆëŠ” ê²½ìš°
 				else if (map[R][C] == '1' && node.broken + 1 <= K && !visited[node.broken + 1][R][C]) {
-					if (node.is_day) {								// ³·ÀÌ¸é broken¿¡ +1ÇÏ°í 
+					if (node.is_day) {								// ë‚®ì´ë©´ brokenì— +1í•˜ê³  
 						visited[node.broken + 1][R][C] = true;
 						q.push({ R, C, node.sum + 1, node.broken + 1, !node.is_day });
 					}
-					else											// ¹ãÀÌ¶ó¸é ºÎ¼ú ¼ö ¾øÀ¸¹Ç·Î ÀÌµ¿ x,¹æ¹®ÇÑ Ä­ °³¼ö¸¸ +1, ³·¹ãÀüÈ¯
+					else											// ë°¤ì´ë¼ë©´ ë¶€ìˆ  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ ì´ë™ x,ë°©ë¬¸í•œ ì¹¸ ê°œìˆ˜ë§Œ +1, ë‚®ë°¤ì „í™˜
 						q.push({ node.R, node.C, node.sum + 1, node.broken, !node.is_day });
 				}
 			}

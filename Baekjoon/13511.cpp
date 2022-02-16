@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define LOG 17
 using namespace std;
-																	// parent[i][j] : i¹ø Á¤Á¡ÀÇ 2^j¹øÂ° Á¶»ó
-int N, u, graph, w, M, k, query, depth[100001], parent[100001][LOG];	// depth[i] : i¹ø Á¤Á¡ÀÇ ±íÀÌ(1ºÎÅÍ ½ÃÀÛ)
-long long weight_sum[100001][LOG];									// weight_sum[i][j] : i¹ø Á¤Á¡ºÎÅÍ 2^j¹øÂ° Á¶»ó±îÁöÀÇ °¡ÁßÄ¡ ÇÕ
+																	 // parent[i][j] : ië²ˆ ì •ì ì˜ 2^jë²ˆì§¸ ì¡°ìƒ
+int N, u, graph, w, M, k, query, depth[100001], parent[100001][LOG]; // depth[i] : ië²ˆ ì •ì ì˜ ê¹Šì´(1ë¶€í„° ì‹œì‘)
+long long weight_sum[100001][LOG];									 // weight_sum[i][j] : ië²ˆ ì •ì ë¶€í„° 2^jë²ˆì§¸ ì¡°ìƒê¹Œì§€ì˜ ê°€ì¤‘ì¹˜ í•©
 vector<pair<int, int>> tree[100001];
 
 void make_Tree(int d, int pre, int cur, int weight)
@@ -75,10 +75,10 @@ long long get_sum(int lca)
 
 int get_kth(int lca)
 {
-	int u_anc = depth[u] - depth[lca] + 1;	// lca°¡ u·ÎºÎÅÍ ¸î ¹øÂ°ÀÎÁö
-	int v_anc = depth[graph] - depth[lca] + 1;	// lca°¡ v·ÎºÎÅÍ ¸î ¹øÂ°ÀÎÁö
+	int u_anc = depth[u] - depth[lca] + 1;	// lcaê°€ uë¡œë¶€í„° ëª‡ ë²ˆì§¸ì¸ì§€
+	int v_anc = depth[graph] - depth[lca] + 1;	// lcaê°€ vë¡œë¶€í„° ëª‡ ë²ˆì§¸ì¸ì§€
 
-	if (k > u_anc) {						// k¹øÂ°°¡ lca¿Í v »çÀÌ¿¡ ÀÖÀ» °æ¿ì
+	if (k > u_anc) {						// kë²ˆì§¸ê°€ lcaì™€ v ì‚¬ì´ì— ìˆì„ ê²½ìš°
 		int get = u_anc + v_anc - k - 1;
 		for (int i = 0; get; i++) {
 			if (get % 2)
@@ -87,7 +87,7 @@ int get_kth(int lca)
 		}
 		return graph;
 	}
-	else {									// k¹øÂ°°¡ u¿Í lca »çÀÌ¿¡ ÀÖÀ» °æ¿ì
+	else {									// kë²ˆì§¸ê°€ uì™€ lca ì‚¬ì´ì— ìˆì„ ê²½ìš°
 		int get = k - 1;
 		for (int i = 0; get; i++) {
 			if (get % 2)

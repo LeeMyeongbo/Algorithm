@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -10,7 +10,7 @@ vector<vector<int>> SCC;
 vector<pair<int, int>> ans;
 stack<int> s;
 
-int dfs(int cur)			// ¸ÕÀú ¼­·Î ÀÚÀ¯·Ó°Ô ¿Ô´Ù°¬´Ù ÇÒ ¼ö ÀÖ´Â ÁöÁ¡³¢¸® Ã£¾Æ¼­ ÇÏ³ªÀÇ scc·Î ¹­¾îÁÜ
+int dfs(int cur)			// ë¨¼ì € ì„œë¡œ ììœ ë¡­ê²Œ ì™”ë‹¤ê°”ë‹¤ í•  ìˆ˜ ìˆëŠ” ì§€ì ë¼ë¦¬ ì°¾ì•„ì„œ í•˜ë‚˜ì˜ sccë¡œ ë¬¶ì–´ì¤Œ
 {
 	seq[cur] = ++num;
 	int par = num;
@@ -46,23 +46,23 @@ void solve()
 	for (auto& scc : SCC)
 		for (int i = 0; i < (int)scc.size(); i++)
 			if (scc[i] != scc[(i + 1) % scc.size()])
-				ans.push_back({ scc[i], scc[(i + 1) % scc.size()] });	// °°Àº scc³»¿¡ ¼ÓÇÑ Á¤Á¡µé³¢¸® ¿¬°á, ÀúÀå
+				ans.push_back({ scc[i], scc[(i + 1) % scc.size()] });	// ê°™ì€ sccë‚´ì— ì†í•œ ì •ì ë“¤ë¼ë¦¬ ì—°ê²°, ì €ì¥
 
 	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= n; j++)									// scc¸¦ ÇÏ³ªÀÇ Á¤Á¡À¸·Î ÇÏ´Â scc_graph Çü¼º
-			if (graph[i][j] && scc_index[i] != scc_index[j])		// i->j ¸¸Á·ÇÏ¸é¼­ i¿Í j°¡ ´Ù¸¥ scc¿¡ ¼ÓÇÒ °æ¿ì ¿¬°á
+		for (int j = 1; j <= n; j++)									// sccë¥¼ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ í•˜ëŠ” scc_graph í˜•ì„±
+			if (graph[i][j] && scc_index[i] != scc_index[j])		// i->j ë§Œì¡±í•˜ë©´ì„œ iì™€ jê°€ ë‹¤ë¥¸ sccì— ì†í•  ê²½ìš° ì—°ê²°
 				scc_graph[scc_index[i]][scc_index[j]] = 1;
 
-	for (int pass = 0; pass < (int)SCC.size(); pass++)				// ÇÃ·ÎÀÌµå ¿Í¼£·Î ÇÊ¿ä¾ø´Â °£¼± Á¦°Å
+	for (int pass = 0; pass < (int)SCC.size(); pass++)				// í”Œë¡œì´ë“œ ì™€ìƒ¬ë¡œ í•„ìš”ì—†ëŠ” ê°„ì„  ì œê±°
 		for (int start = 0; start < (int)SCC.size(); start++)
 			for (int end = 0; end < (int)SCC.size(); end++)
-				if (scc_graph[start][pass] && scc_graph[pass][end])		// start->pass °æ·Î¿Í pass->end °æ·Î ¸ğµÎ Á¸ÀçÇÒ °æ¿ì
-					scc_graph[start][end] = 0;							// start->end °æ·Î ÇÊ¿ä x => Á¦°Å!
+				if (scc_graph[start][pass] && scc_graph[pass][end])		// start->pass ê²½ë¡œì™€ pass->end ê²½ë¡œ ëª¨ë‘ ì¡´ì¬í•  ê²½ìš°
+					scc_graph[start][end] = 0;							// start->end ê²½ë¡œ í•„ìš” x => ì œê±°!
 
 	for (int i = 0; i < (int)SCC.size(); i++)
 		for (int j = 0; j < (int)SCC.size(); j++)
 			if (scc_graph[i][j])
-				ans.push_back({ SCC[i][0], SCC[j][0] });	// ¿¬°áµÈ µÎ scc ³» 0¹ø(scc Å©±â°¡ 1ÀÏ¼öµµ ÀÖÀ½) indexÀÇ Á¤Á¡³¢¸® ¿¬°á, ÀúÀå
+				ans.push_back({ SCC[i][0], SCC[j][0] });	// ì—°ê²°ëœ ë‘ scc ë‚´ 0ë²ˆ(scc í¬ê¸°ê°€ 1ì¼ìˆ˜ë„ ìˆìŒ) indexì˜ ì •ì ë¼ë¦¬ ì—°ê²°, ì €ì¥
 
 	printf("%d\n", ans.size());
 	while (!ans.empty()) {

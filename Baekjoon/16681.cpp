@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -7,8 +7,8 @@
 using namespace std;
 
 int N, M, D, E, a, b, n, h[100001];
-long long house[100001], korea[100001];		// house : Áı(1)¿¡¼­, korea : °í·Á´ë(N)¿¡¼­ Ãâ¹ßÇÏ¿© °¢ Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®
-priority_queue<pair<long long, int>> q;		// Ç×»ó ÀÚ·áÇü ¸ÂÃçÁÖ±â (ÃÖ´Ü °Å¸®°¡ intÇü ¹üÀ§ ³Ñ¾î¼³ ¼öµµ ÀÖÀ¸¹Ç·Î ±×°Å °¨¾ÈÇØ¼­...)
+long long house[100001], korea[100001];		// house : ì§‘(1)ì—ì„œ, korea : ê³ ë ¤ëŒ€(N)ì—ì„œ ì¶œë°œí•˜ì—¬ ê° ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬
+priority_queue<pair<long long, int>> q;		// í•­ìƒ ìë£Œí˜• ë§ì¶°ì£¼ê¸° (ìµœë‹¨ ê±°ë¦¬ê°€ intí˜• ë²”ìœ„ ë„˜ì–´ì„¤ ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ ê·¸ê±° ê°ì•ˆí•´ì„œ...)
 vector<pair<int, int>> graph[100001];
 
 void dijkstra(int start, long long di[])
@@ -22,7 +22,7 @@ void dijkstra(int start, long long di[])
 		long long sum = -q.top().first;
 		q.pop();
 
-		if (sum > di[cur])					// Èü¿¡ ÀúÀåµÇ¾î ÀÖ´ø ÇÕÀÌ ÇöÀç À§Ä¡±îÁöÀÇ ÃÖ´Ü°Å¸®º¸´Ù Å©´Ù¸é »ìÇÊ ÇÊ¿ä x
+		if (sum > di[cur])					// í™ì— ì €ì¥ë˜ì–´ ìˆë˜ í•©ì´ í˜„ì¬ ìœ„ì¹˜ê¹Œì§€ì˜ ìµœë‹¨ê±°ë¦¬ë³´ë‹¤ í¬ë‹¤ë©´ ì‚´í•„ í•„ìš” x
 			continue;
 
 		for (auto p : graph[cur]) {
@@ -41,8 +41,8 @@ void Solve()
 	
 	long long Max = -MAX;
 	for (int i = 2; i < N; i++)
-		if (house[i] < MAX && korea[i] < MAX)		// Áı¿¡¼­ ¸ñÇ¥ÁöÁ¡±îÁö & ¸ñÇ¥ÁöÁ¡¿¡¼­ °í·Á´ë±îÁö °æ·Î°¡ Á¸ÀçÇÑ´Ù¸é
-			Max = max(Max, (long long)h[i] * E - (house[i] + korea[i]) * D);	// °¡Ä¡ ÃÖ´ñ°ª °»½Å
+		if (house[i] < MAX && korea[i] < MAX)		// ì§‘ì—ì„œ ëª©í‘œì§€ì ê¹Œì§€ & ëª©í‘œì§€ì ì—ì„œ ê³ ë ¤ëŒ€ê¹Œì§€ ê²½ë¡œê°€ ì¡´ì¬í•œë‹¤ë©´
+			Max = max(Max, (long long)h[i] * E - (house[i] + korea[i]) * D);	// ê°€ì¹˜ ìµœëŒ“ê°’ ê°±ì‹ 
 	if (Max > -MAX)
 		cout << Max;
 	else
@@ -55,15 +55,15 @@ int main()
 	cin >> N >> M >> D >> E;
 	for (int i = 1; i <= N; i++)
 		cin >> h[i];
-	for (int i = 0; i < M; i++) {					// ¾ç¹æÇâ °£¼±ÀÌÁö¸¸
+	for (int i = 0; i < M; i++) {					// ì–‘ë°©í–¥ ê°„ì„ ì´ì§€ë§Œ
 		cin >> a >> b >> n;
 		if (h[a] < h[b])
-			graph[a].push_back({ n, b });			// ³ôÀÌ°¡ ´õ ³ôÀº °÷À¸·Î¸¸ °¡´Â ´Ü¹æÇâ °£¼±µé·Î º¸°í ±×·¡ÇÁ Çü¼º
+			graph[a].push_back({ n, b });			// ë†’ì´ê°€ ë” ë†’ì€ ê³³ìœ¼ë¡œë§Œ ê°€ëŠ” ë‹¨ë°©í–¥ ê°„ì„ ë“¤ë¡œ ë³´ê³  ê·¸ë˜í”„ í˜•ì„±
 		else if (h[a] > h[b])
 			graph[b].push_back({ n, a });
 	}
 	for (int i = 1; i <= N; i++)
-		sort(graph[i].begin(), graph[i].end());		// °¢ Á¤Á¡µé°ú ¿¬°áµÈ °£¼±µéÀ» °¡ÁßÄ¡ ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+		sort(graph[i].begin(), graph[i].end());		// ê° ì •ì ë“¤ê³¼ ì—°ê²°ëœ ê°„ì„ ë“¤ì„ ê°€ì¤‘ì¹˜ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	
 	Solve();
 	return 0;

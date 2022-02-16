@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -13,30 +13,30 @@ struct Tree {
 	bool is_Max;
 } tree[200005];
 
-void preorder(Tree* node, bool is_Max)			// is_Max : ÇöÀç ³ëµåÀÇ ÃÖ´ë, ÃÖ¼Ò ¿©ºÎ (ÃÖ´ñ°ªÀÌ ³ª¿Í¾ß ÇÒ ¶© true, ÃÖ¼Ò¿©¾ß ÇÒ ¶© false)
+void preorder(Tree* node, bool is_Max)			// is_Max : í˜„ì¬ ë…¸ë“œì˜ ìµœëŒ€, ìµœì†Œ ì—¬ë¶€ (ìµœëŒ“ê°’ì´ ë‚˜ì™€ì•¼ í•  ë• true, ìµœì†Œì—¬ì•¼ í•  ë• false)
 {
 	if (node) {
 		node->is_Max = is_Max;
-		preorder(node->left, is_Max);			// ¿ŞÂÊ ÀÚ½Ä ³ëµå´Â ¹«Á¶°Ç ºÎ¸ğ ³ëµåÀÇ ÃÖ´ë, ÃÖ¼Ò ¿©ºÎ¿Í °°¾Æ¾ß ÇÔ
-		if (node->op == '-')					// ÇöÀç ¿¬»êÀÚ ³ëµåÀÇ ¿¬»êÀÚ°¡ '-'ÀÏ °æ¿ì
-			preorder(node->right, !is_Max);		// ¿À¸¥ÂÊ ÀÚ½Ä ³ëµå·Î °¥ ¶§´Â ºÎ¸ğ ³ëµåÀÇ ÃÖ´ë, ÃÖ¼Ò ¿©ºÎ¿Í ¹İ´ë°¡ µÇ¾î¾ß ÇÔ
+		preorder(node->left, is_Max);			// ì™¼ìª½ ìì‹ ë…¸ë“œëŠ” ë¬´ì¡°ê±´ ë¶€ëª¨ ë…¸ë“œì˜ ìµœëŒ€, ìµœì†Œ ì—¬ë¶€ì™€ ê°™ì•„ì•¼ í•¨
+		if (node->op == '-')					// í˜„ì¬ ì—°ì‚°ì ë…¸ë“œì˜ ì—°ì‚°ìê°€ '-'ì¼ ê²½ìš°
+			preorder(node->right, !is_Max);		// ì˜¤ë¥¸ìª½ ìì‹ ë…¸ë“œë¡œ ê°ˆ ë•ŒëŠ” ë¶€ëª¨ ë…¸ë“œì˜ ìµœëŒ€, ìµœì†Œ ì—¬ë¶€ì™€ ë°˜ëŒ€ê°€ ë˜ì–´ì•¼ í•¨
 		else
-			preorder(node->right, is_Max);		// ¿¬»êÀÚ°¡ '+'ÀÌ¸é ¿À¸¥ÂÊ ÀÚ½Äµµ ºÎ¸ğ ³ëµåÀÇ ÃÖ´ë, ÃÖ¼Ò ¿©ºÎ¸¦ µû¶ó°¨
+			preorder(node->right, is_Max);		// ì—°ì‚°ìê°€ '+'ì´ë©´ ì˜¤ë¥¸ìª½ ìì‹ë„ ë¶€ëª¨ ë…¸ë“œì˜ ìµœëŒ€, ìµœì†Œ ì—¬ë¶€ë¥¼ ë”°ë¼ê°
 	}
 }
 
-void postorder(Tree* node)						// ÇÇ¿¬»êÀÚ ³ëµå¸¶´Ù ÀúÀåµÈ ÃÖ´ë, ÃÖ¼Ò ¿©ºÎ¿¡ µû¶ó Á¤¼ö º¯È¯ + °è»ê
+void postorder(Tree* node)						// í”¼ì—°ì‚°ì ë…¸ë“œë§ˆë‹¤ ì €ì¥ëœ ìµœëŒ€, ìµœì†Œ ì—¬ë¶€ì— ë”°ë¼ ì •ìˆ˜ ë³€í™˜ + ê³„ì‚°
 {
 	if (node) {
 		postorder(node->left);
 		postorder(node->right);
-		if (!node->op) {						// ÇöÀç ³ëµå°¡ ÇÇ¿¬»êÀÚ ³ëµåÀÏ °æ¿ì
+		if (!node->op) {						// í˜„ì¬ ë…¸ë“œê°€ í”¼ì—°ì‚°ì ë…¸ë“œì¼ ê²½ìš°
 			if (node->is_Max)
-				node->value = num[to--];		// ÃÖ´ñ°ªÀÌ ÀúÀåµÇ¾î¾ß ÇÒ ¶© Å« °ªºÎÅÍ Â÷·ÊÂ÷·Ê ÁöÁ¤
+				node->value = num[to--];		// ìµœëŒ“ê°’ì´ ì €ì¥ë˜ì–´ì•¼ í•  ë• í° ê°’ë¶€í„° ì°¨ë¡€ì°¨ë¡€ ì§€ì •
 			else
-				node->value = num[from++];		// ÃÖ¼Ú°ªÀÌ ÀúÀåµÇ¾î¾ß ÇÒ ¶© ÀÛÀº °ªºÎÅÍ Â÷·ÊÂ÷·Ê ÁöÁ¤
+				node->value = num[from++];		// ìµœì†Ÿê°’ì´ ì €ì¥ë˜ì–´ì•¼ í•  ë• ì‘ì€ ê°’ë¶€í„° ì°¨ë¡€ì°¨ë¡€ ì§€ì •
 		}
-		else {									// ¿¬»êÀÚ ³ëµå¶ó¸é °è»ê
+		else {									// ì—°ì‚°ì ë…¸ë“œë¼ë©´ ê³„ì‚°
 			if (node->op == '+')
 				node->value = node->left->value + node->right->value;
 			else
@@ -51,13 +51,13 @@ int main()
 	cin >> N;
 	for (int i = 1; i <= N; i++) {
 		cin >> value;
-		tree[i] = { nullptr, nullptr, value, 0, false };				// ÇÇ¿¬»êÀÚ ³ëµå´Â ¸®ÇÁÀÌ¹Ç·Î ¿ŞÂÊ, ¿À¸¥ÂÊ ¸ğµå null·Î µÒ
+		tree[i] = { nullptr, nullptr, value, 0, false };				// í”¼ì—°ì‚°ì ë…¸ë“œëŠ” ë¦¬í”„ì´ë¯€ë¡œ ì™¼ìª½, ì˜¤ë¥¸ìª½ ëª¨ë“œ nullë¡œ ë‘ 
 		num[i - 1] = value;
 	}
-	sort(num, num + N);													// ÇÇ¿¬»êÀÚ ³ëµåµéÀÌ °¡Áö´Â Á¤¼öµéÀ» ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	sort(num, num + N);													// í”¼ì—°ì‚°ì ë…¸ë“œë“¤ì´ ê°€ì§€ëŠ” ì •ìˆ˜ë“¤ì„ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	for (int i = N + 1; i < 2 * N; i++) {
 		cin >> op >> Left >> Right;
-		tree[i] = { tree + Left, tree + Right, 0, op, false };		// Æ®¸® Çü¼º
+		tree[i] = { tree + Left, tree + Right, 0, op, false };		// íŠ¸ë¦¬ í˜•ì„±
 	}
 	preorder(tree + 2 * N - 1, true);
 

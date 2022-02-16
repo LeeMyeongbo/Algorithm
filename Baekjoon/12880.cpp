@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -42,15 +42,15 @@ bool determine(int& from, int& to)
 {
 	for (int i = 0; i < N; i++)
 		if (!complete[i])
-			dfs(i, from, to);		// ¸ğµç Á¤Á¡À» µ¹¸ç scc Å½»ö
+			dfs(i, from, to);		// ëª¨ë“  ì •ì ì„ ëŒë©° scc íƒìƒ‰
 
-	for (int i = 0; i < N; i++)		// ¸ğµç µÎ Á¤Á¡ ½ÖÀÇ ¾ç¹æÇâ °æ·Î°¡ ÀÖ¾î¾ß ÇÏ¹Ç·Î
-		if (scc_index[i] != 1)		// ±×·¡ÇÁ ³» ¸ğµç Á¤Á¡ÀÌ °°Àº scc¿¡ ¼ÓÇÏÁö ¾ÊÀ» °æ¿ì false
+	for (int i = 0; i < N; i++)		// ëª¨ë“  ë‘ ì •ì  ìŒì˜ ì–‘ë°©í–¥ ê²½ë¡œê°€ ìˆì–´ì•¼ í•˜ë¯€ë¡œ
+		if (scc_index[i] != 1)		// ê·¸ë˜í”„ ë‚´ ëª¨ë“  ì •ì ì´ ê°™ì€ sccì— ì†í•˜ì§€ ì•Šì„ ê²½ìš° false
 			return false;
 	return true;
 }
 
-int Solve()							// ÅõÆ÷ÀÎÅÍ¸¦ ÀÌ¿ë
+int Solve()							// íˆ¬í¬ì¸í„°ë¥¼ ì´ìš©
 {
 	int left = 0, right = 0, Min = 150001;
 	while (left <= right) {
@@ -77,7 +77,7 @@ int main()
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++) {
 			cin >> graph[i][j];
-			if (!visited[graph[i][j]]) {			// ÀÚ±â ÀÚ½ÅÀ¸·Î °¡´Â self loopµµ ²À ³Ö¾îÁà¾ß ÇÔ!
+			if (!visited[graph[i][j]]) {			// ìê¸° ìì‹ ìœ¼ë¡œ ê°€ëŠ” self loopë„ ê¼­ ë„£ì–´ì¤˜ì•¼ í•¨!
 				visited[graph[i][j]] = true;
 				edge.push_back(graph[i][j]);
 			}

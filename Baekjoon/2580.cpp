@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 int sudoku[9][9];

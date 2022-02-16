@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -6,8 +6,8 @@
 using namespace std;
 
 int V, E, K, u, graph, w, dijkstra[20001];
-vector<pair<int, int>> graph[20001];	// (°¡ÁßÄ¡, µµÂø Á¤Á¡) ÇüÅÂ·Î ÀúÀå
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;	// (°¡ÁßÄ¡ ÇÕ, ÇöÀç Á¤Á¡)
+vector<pair<int, int>> graph[20001];	// (ê°€ì¤‘ì¹˜, ë„ì°© ì •ì ) í˜•íƒœë¡œ ì €ì¥
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;	// (ê°€ì¤‘ì¹˜ í•©, í˜„ì¬ ì •ì )
 
 void Solve()
 {

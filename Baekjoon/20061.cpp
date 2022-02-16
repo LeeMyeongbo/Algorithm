@@ -1,28 +1,28 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 using namespace std;
 
 int N, t, x, y, blue_board[4][6], green_board[6][4];
 int score, num;
 
-void Falling_Blue(int X, int Y)				// ÆÄ¶õ»ö º¸µå¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ¶³¾îÁö´Â °Å (¿¬ÇÑ ÆÄ¶õ»öÀÇ 0¿­¿¡¼­ ½ÃÀÛ)
+void Falling_Blue(int X, int Y)				// íŒŒë€ìƒ‰ ë³´ë“œì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë–¨ì–´ì§€ëŠ” ê±° (ì—°í•œ íŒŒë€ìƒ‰ì˜ 0ì—´ì—ì„œ ì‹œì‘)
 {
 	switch (t) {
-	case 1:									// 1x1 ºí·ÏÀ» ÃÖ´ëÇÑ ¿À¸¥ÂÊÀ¸·Î ¹Ğ±â
+	case 1:									// 1x1 ë¸”ë¡ì„ ìµœëŒ€í•œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë°€ê¸°
 		blue_board[X][Y] = 1;
 		while (Y < 5 && !blue_board[X][Y + 1]) {
 			blue_board[X][Y++] = 0;
 			blue_board[X][Y] = 1;
 		}
 		break;
-	case 2:									// 1x2 ºí·ÏÀ» ÃÖ´ëÇÑ ¿À¸¥ÂÊÀ¸·Î 
+	case 2:									// 1x2 ë¸”ë¡ì„ ìµœëŒ€í•œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ 
 		blue_board[X][Y] = blue_board[X][Y + 1] = 2;
 		while (Y < 4 && !blue_board[X][Y + 2]) {
 			blue_board[X][Y++] = 0;
 			blue_board[X][Y + 1] = 2;
 		}
 		break;
-	default:								// 2x1 ºí·ÏÀ» ÃÖ´ëÇÑ ¿À¸¥ÂÊÀ¸·Î
+	default:								// 2x1 ë¸”ë¡ì„ ìµœëŒ€í•œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ
 		blue_board[X][Y] = blue_board[X + 1][Y] = 3;
 		while (Y < 5 && !blue_board[X][Y + 1] && !blue_board[X + 1][Y + 1]) {
 			blue_board[X][Y++] = blue_board[X + 1][Y] = 0;
@@ -31,24 +31,24 @@ void Falling_Blue(int X, int Y)				// ÆÄ¶õ»ö º¸µå¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ¶³¾îÁö´Â °Å (¿¬
 	}
 }
 
-void Falling_Green(int X, int Y)			// ³ì»ö º¸µå¿¡¼­ ¾Æ·¡·Î ÃÖ´ëÇÑ ¶³¾îÁö´Â °Å (¿¬ÇÑ ³ì»öÀÇ 0Çà¿¡¼­ ½ÃÀÛ)
+void Falling_Green(int X, int Y)			// ë…¹ìƒ‰ ë³´ë“œì—ì„œ ì•„ë˜ë¡œ ìµœëŒ€í•œ ë–¨ì–´ì§€ëŠ” ê±° (ì—°í•œ ë…¹ìƒ‰ì˜ 0í–‰ì—ì„œ ì‹œì‘)
 {
 	switch (t) {
-	case 1:									// 1x1 ºí·ÏÀ» ÃÖ´ëÇÑ ¾Æ·¡·Î
+	case 1:									// 1x1 ë¸”ë¡ì„ ìµœëŒ€í•œ ì•„ë˜ë¡œ
 		green_board[X][Y] = 1;
 		while (X < 5 && !green_board[X + 1][Y]) {
 			green_board[X++][Y] = 0;
 			green_board[X][Y] = 1;
 		}
 		break;
-	case 2:									// 1x2 ºí·ÏÀ» ÃÖ´ëÇÑ ¾Æ·¡·Î
+	case 2:									// 1x2 ë¸”ë¡ì„ ìµœëŒ€í•œ ì•„ë˜ë¡œ
 		green_board[X][Y] = green_board[X][Y + 1] = 2;
 		while (X < 5 && !green_board[X + 1][Y] && !green_board[X + 1][Y + 1]) {
 			green_board[X++][Y] = green_board[X][Y + 1] = 0;
 			green_board[X][Y] = green_board[X][Y + 1] = 2;
 		}
 		break;
-	default:								// 2x1 ºí·ÏÀ» ÃÖ´ëÇÑ ¾Æ·¡·Î
+	default:								// 2x1 ë¸”ë¡ì„ ìµœëŒ€í•œ ì•„ë˜ë¡œ
 		green_board[X][Y] = green_board[X + 1][Y] = 3;
 		while (X < 4 && !green_board[X + 2][Y]) {
 			green_board[X++][Y] = 0;
@@ -59,15 +59,15 @@ void Falling_Green(int X, int Y)			// ³ì»ö º¸µå¿¡¼­ ¾Æ·¡·Î ÃÖ´ëÇÑ ¶³¾îÁö´Â °Å (¿
 
 void Process()
 {
-	for (int y = 2; y < 6; y++) {				// ÁøÇÑ ÆÄ¶õ»ö ºÎºĞÀÇ 2¿­¿¡¼­ 5¿­±îÁö Â÷·Ê·Î »ìÇÇ¸ç °¡µæ Âù ¿­ÀÌ ÀÖ´ÂÁö È®ÀÎ
+	for (int y = 2; y < 6; y++) {				// ì§„í•œ íŒŒë€ìƒ‰ ë¶€ë¶„ì˜ 2ì—´ì—ì„œ 5ì—´ê¹Œì§€ ì°¨ë¡€ë¡œ ì‚´í”¼ë©° ê°€ë“ ì°¬ ì—´ì´ ìˆëŠ”ì§€ í™•ì¸
 		bool full = true;
 		for (int x = 0; x < 4; x++) {
-			if (!blue_board[x][y]) {			// ºñ¾îÀÖ´Â Ä­ÀÌ ÇÏ³ª¶óµµ ÀÖ´Ù¸é ÇØ´ç ¿­Àº °¡µæÂù °ÍÀÌ ¾Æ´Ô
+			if (!blue_board[x][y]) {			// ë¹„ì–´ìˆëŠ” ì¹¸ì´ í•˜ë‚˜ë¼ë„ ìˆë‹¤ë©´ í•´ë‹¹ ì—´ì€ ê°€ë“ì°¬ ê²ƒì´ ì•„ë‹˜
 				full = false;
 				break;
 			}
 		}
-		if (full) {								// ÇöÀç ¿­ÀÌ °¡µæ Ã¡´Ù¸é Á¡¼ö ¿Ã¸®°í ÇØ´ç ¿­ ºñ¿î ´ÙÀ½ ¿À¸¥ÂÊÀ¸·Î ÇÑ ¿­¾¿ ÀÌµ¿
+		if (full) {								// í˜„ì¬ ì—´ì´ ê°€ë“ ì°¼ë‹¤ë©´ ì ìˆ˜ ì˜¬ë¦¬ê³  í•´ë‹¹ ì—´ ë¹„ìš´ ë‹¤ìŒ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì—´ì”© ì´ë™
 			score++;
 			blue_board[0][y] = blue_board[1][y] = blue_board[2][y] = blue_board[3][y] = 0;
 			for (int c = y; c > 0; c--)
@@ -75,15 +75,15 @@ void Process()
 					blue_board[x][c] = blue_board[x][c - 1];
 		}
 	}
-	for (int x = 2; x < 6; x++) {				// ÁøÇÑ ³ì»ö ºÎºĞÀÇ 2Çà¿¡¼­ 5Çà±îÁö Â÷·Ê·Î »ìÇÇ¸ç °¡µæ Âù ÇàÀÌ ÀÖ´ÂÁö È®ÀÎ
+	for (int x = 2; x < 6; x++) {				// ì§„í•œ ë…¹ìƒ‰ ë¶€ë¶„ì˜ 2í–‰ì—ì„œ 5í–‰ê¹Œì§€ ì°¨ë¡€ë¡œ ì‚´í”¼ë©° ê°€ë“ ì°¬ í–‰ì´ ìˆëŠ”ì§€ í™•ì¸
 		bool full = true;
 		for (int y = 0; y < 4; y++) {
-			if (!green_board[x][y]) {			// ºñ¾îÀÖ´Â Ä­ÀÌ ÇÏ³ª¶óµµ ÀÖ´Ù¸é ÇØ´ç ÇàÀº °¡µæÂù °ÍÀÌ ¾Æ´Ô
+			if (!green_board[x][y]) {			// ë¹„ì–´ìˆëŠ” ì¹¸ì´ í•˜ë‚˜ë¼ë„ ìˆë‹¤ë©´ í•´ë‹¹ í–‰ì€ ê°€ë“ì°¬ ê²ƒì´ ì•„ë‹˜
 				full = false;
 				break;
 			}
 		}
-		if (full) {								// ÇöÀç ÇàÀÌ °¡µæ Ã¡´Ù¸é Á¡¼ö ¿Ã¸®°í ÇØ´ç Çà ºñ¿î ´ÙÀ½ ¾Æ·¡ÂÊÀ¸·Î ÇÑ Çà¾¿ ÀÌµ¿
+		if (full) {								// í˜„ì¬ í–‰ì´ ê°€ë“ ì°¼ë‹¤ë©´ ì ìˆ˜ ì˜¬ë¦¬ê³  í•´ë‹¹ í–‰ ë¹„ìš´ ë‹¤ìŒ ì•„ë˜ìª½ìœ¼ë¡œ í•œ í–‰ì”© ì´ë™
 			score++;
 			green_board[x][0] = green_board[x][1] = green_board[x][2] = green_board[x][3] = 0;
 			for (int c = x; c > 0; c--)
@@ -91,13 +91,13 @@ void Process()
 					green_board[c][y] = green_board[c - 1][y];
 		}
 	}
-	while (blue_board[0][1] || blue_board[1][1] || blue_board[2][1] || blue_board[3][1]) {		// ¿¬ÇÑ ÆÄ¶õ ºÎºĞ ºñ¿ì±â
+	while (blue_board[0][1] || blue_board[1][1] || blue_board[2][1] || blue_board[3][1]) {		// ì—°í•œ íŒŒë€ ë¶€ë¶„ ë¹„ìš°ê¸°
 		for (int y = 5; y > 0; y--)
 			for (int x = 0; x < 4; x++)
 				blue_board[x][y] = blue_board[x][y - 1];
 		blue_board[0][0] = blue_board[1][0] = blue_board[2][0] = blue_board[3][0] = 0;
 	}
-	while (green_board[1][0] || green_board[1][1] || green_board[1][2] || green_board[1][3]) {	// ¿¬ÇÑ ³ì»ö ºÎºĞ ºñ¿ì±â
+	while (green_board[1][0] || green_board[1][1] || green_board[1][2] || green_board[1][3]) {	// ì—°í•œ ë…¹ìƒ‰ ë¶€ë¶„ ë¹„ìš°ê¸°
 		for (int x = 5; x > 0; x--)
 			for (int y = 0; y < 4; y++)
 				green_board[x][y] = green_board[x - 1][y];

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int n, m, a, b, cal, U[1000001];
@@ -30,7 +30,7 @@ int main()
 		if (!cal)
 			Union(a, b);
 		else {
-			if (Find(a) == Find(b))		// °°Àº ÁıÇÕ¿¡ ¼ÓÇÏ´ÂÁö ÆÇº°
+			if (Find(a) == Find(b))		// ê°™ì€ ì§‘í•©ì— ì†í•˜ëŠ”ì§€ íŒë³„
 				cout << "yes\n";
 			else
 				cout << "no\n";

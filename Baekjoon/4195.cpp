@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <map>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -41,7 +41,7 @@ int main()
 		for (int f = 0; f < F; f++) {
 			cin >> str1 >> str2;
 			if (!m.count(str1))
-				m.insert({ str1, num++ });		// »ç¶÷ ÀÌ¸§À» key·Î ÇÏ´Â mapÀ» ÅëÇØ ÇØ´ç Ä£±¸°¡ ÀÌ¹Ì ÀÖ´ÂÁö È®ÀÎ
+				m.insert({ str1, num++ });		// ì‚¬ëŒ ì´ë¦„ì„ keyë¡œ í•˜ëŠ” mapì„ í†µí•´ í•´ë‹¹ ì¹œêµ¬ê°€ ì´ë¯¸ ìˆëŠ”ì§€ í™•ì¸
 			if (!m.count(str2))
 				m.insert({ str2, num++ });
 

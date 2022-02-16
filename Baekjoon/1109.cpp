@@ -1,19 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, info[50][50], island, edge[2501], height[2501], ans[51];	// info : ¼¶µéÀÇ ¹øÈ£ ÀúÀå, edge[i] : i¹ø ¼¶À¸·Î ÇâÇÏ´Â ÁøÀÔ °£¼± ¼ö
+int N, M, info[50][50], island, edge[2501], height[2501], ans[51];	// info : ì„¬ë“¤ì˜ ë²ˆí˜¸ ì €ì¥, edge[i] : ië²ˆ ì„¬ìœ¼ë¡œ í–¥í•˜ëŠ” ì§„ì… ê°„ì„  ìˆ˜
 const int dr[] = { 0, 0, 1, -1, -1, 1, 1, -1 }, dc[] = { 1, -1, 0, 0, 1, 1, -1, -1 };
 char map[50][51];
 bool visited_ocean[50][50], visited_island[2501];
-vector<vector<pair<int, int>>> islands;									// islands[i] : i¹ø ¼¶À» ÀÌ·ç°í ÀÖ´Â Ä­µéÀÇ ÁÂÇ¥ ÀúÀå
+vector<vector<pair<int, int>>> islands;									// islands[i] : ië²ˆ ì„¬ì„ ì´ë£¨ê³  ìˆëŠ” ì¹¸ë“¤ì˜ ì¢Œí‘œ ì €ì¥
 vector<int> graph[2501];
 queue<pair<int, int>> q;
 
-void Get_island_num()					// °¢ ¼¶µé ¹øÈ£ ºÎ¿© ¹× À§Ä¡ ÀúÀå
+void Get_island_num()					// ê° ì„¬ë“¤ ë²ˆí˜¸ ë¶€ì—¬ ë° ìœ„ì¹˜ ì €ì¥
 {
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < M; j++) {
@@ -45,7 +45,7 @@ void Get_island_num()					// °¢ ¼¶µé ¹øÈ£ ºÎ¿© ¹× À§Ä¡ ÀúÀå
 	}
 }
 
-void Check(int r, int c)			// ÇöÀç [r][c]¿¡ À§Ä¡ÇÑ ¹Ù´Ù·ÎºÎÅÍ BFS µ¹¸ç ¿¬°áµÈ ¹Ù´Ù ¹× ±× ¹Ù´Ù¿Í Á¢ÇÏ´Â ¼¶µé Å½»ö
+void Check(int r, int c)			// í˜„ì¬ [r][c]ì— ìœ„ì¹˜í•œ ë°”ë‹¤ë¡œë¶€í„° BFS ëŒë©° ì—°ê²°ëœ ë°”ë‹¤ ë° ê·¸ ë°”ë‹¤ì™€ ì ‘í•˜ëŠ” ì„¬ë“¤ íƒìƒ‰
 {
 	if (map[r][c] == '.') {
 		q.push({ r, c });
@@ -76,15 +76,15 @@ void Check(int r, int c)			// ÇöÀç [r][c]¿¡ À§Ä¡ÇÑ ¹Ù´Ù·ÎºÎÅÍ BFS µ¹¸ç ¿¬°áµÈ ¹Ù
 	}
 }
 
-void Find_Outer_island()				// °¡Àå ¿ÜºÎ¿¡ ÀÖ´Â ¼¶µé ¹× ¹Ù´Ù Å½»ö
+void Find_Outer_island()				// ê°€ì¥ ì™¸ë¶€ì— ìˆëŠ” ì„¬ë“¤ ë° ë°”ë‹¤ íƒìƒ‰
 {
-	for (int i = 0; i < N; i++) {		// 0¿­°ú M - 1¿­¿¡ ¹æ¹®ÇÑ Àû ¾ø´Â ¹Ù´Ù ÀÖÀ¸¸é Å½»ö
+	for (int i = 0; i < N; i++) {		// 0ì—´ê³¼ M - 1ì—´ì— ë°©ë¬¸í•œ ì  ì—†ëŠ” ë°”ë‹¤ ìˆìœ¼ë©´ íƒìƒ‰
 		if (!visited_ocean[i][0])
 			Check(i, 0);
 		if (!visited_ocean[i][M - 1])
 			Check(i, M - 1);
 	}
-	for (int j = 0; j < M; j++) {		// 0Çà°ú N - 1Çà¿¡ ¹æ¹®ÇÑ Àû ¾ø´Â ¹Ù´Ù ÀÖÀ¸¸é Å½»ö
+	for (int j = 0; j < M; j++) {		// 0í–‰ê³¼ N - 1í–‰ì— ë°©ë¬¸í•œ ì  ì—†ëŠ” ë°”ë‹¤ ìˆìœ¼ë©´ íƒìƒ‰
 		if (!visited_ocean[0][j])
 			Check(0, j);
 		if (!visited_ocean[N - 1][j])
@@ -92,20 +92,20 @@ void Find_Outer_island()				// °¡Àå ¿ÜºÎ¿¡ ÀÖ´Â ¼¶µé ¹× ¹Ù´Ù Å½»ö
 	}
 }
 
-void Make_Graph()			// °¢ ¼¶¸¶´Ù ³»ºÎ¿¡ ÀÖ´Â ¼¶ Å½»öÇÏ°í ¹æÇâ ±×·¡ÇÁ Çü¼º (¿ÜºÎ ¼¶¡ç³»ºÎ ¼¶ Çü½Ä, ¿ÜºÎ ¼¶ ¹øÈ£ < ³»ºÎ ¼¶ ¹øÈ£)
+void Make_Graph()			// ê° ì„¬ë§ˆë‹¤ ë‚´ë¶€ì— ìˆëŠ” ì„¬ íƒìƒ‰í•˜ê³  ë°©í–¥ ê·¸ë˜í”„ í˜•ì„± (ì™¸ë¶€ ì„¬â†ë‚´ë¶€ ì„¬ í˜•ì‹, ì™¸ë¶€ ì„¬ ë²ˆí˜¸ < ë‚´ë¶€ ì„¬ ë²ˆí˜¸)
 {
 	for (int i = 0; i < island; i++) {
 		for (auto& p : islands[i]) {
 			for (int d = 0; d < 4; d++) {
 				int R = p.first + dr[d];
 				int C = p.second + dc[d];
-				// ÇöÀç ¼¶ ±ÙÃ³¿¡¼­ ¹æ¹®ÇÑ Àû ¾ø´Â ¹Ù´Ù Á¸ÀçÇÏ¸é ±× ¹Ù´Ù°¡ ÇöÀç ¼¶ÀÇ ³»ºÎ ¹Ù´Ù
+				// í˜„ì¬ ì„¬ ê·¼ì²˜ì—ì„œ ë°©ë¬¸í•œ ì  ì—†ëŠ” ë°”ë‹¤ ì¡´ì¬í•˜ë©´ ê·¸ ë°”ë‹¤ê°€ í˜„ì¬ ì„¬ì˜ ë‚´ë¶€ ë°”ë‹¤
 				if (R >= 0 && R < N && C >= 0 && C < M && map[R][C] == '.' && !visited_ocean[R][C]) { 
 					q.push({ R, C });
 					visited_ocean[R][C] = true;
 				}
 			}
-			while (!q.empty()) {				// ±× ³»ºÎ ¹Ù´Ù¿¡¼­ BFS¸¦ µ¹¸é¼­ ¸¸³­ ´Ù¸¥ ¼¶ = ÇöÀç ¼¶ÀÇ ³»ºÎÀÇ ¼¶
+			while (!q.empty()) {				// ê·¸ ë‚´ë¶€ ë°”ë‹¤ì—ì„œ BFSë¥¼ ëŒë©´ì„œ ë§Œë‚œ ë‹¤ë¥¸ ì„¬ = í˜„ì¬ ì„¬ì˜ ë‚´ë¶€ì˜ ì„¬
 				int cur_r = q.front().first;
 				int cur_c = q.front().second;
 				q.pop();
@@ -130,7 +130,7 @@ void Make_Graph()			// °¢ ¼¶¸¶´Ù ³»ºÎ¿¡ ÀÖ´Â ¼¶ Å½»öÇÏ°í ¹æÇâ ±×·¡ÇÁ Çü¼º (¿ÜºÎ 
 	}
 }
 
-void topological()		// À§»ó Á¤·Ä·Î °¢ ¼¶µé ÃÖ´ë ³ôÀÌ °»½Å
+void topological()		// ìœ„ìƒ ì •ë ¬ë¡œ ê° ì„¬ë“¤ ìµœëŒ€ ë†’ì´ ê°±ì‹ 
 {
 	queue<int> tq;
 	for (int i = 0; i < island; i++) {

@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, v1, v2, parent[100001];		// 2¹ø Á¤Á¡ºÎÅÍ N¹ø Á¤Á¡±îÁö ºÎ¸ğ Á¤Á¡ ¹øÈ£ ÀúÀå (1¹øÀº 1·Î ÀúÀå)
+int N, v1, v2, parent[100001];		// 2ë²ˆ ì •ì ë¶€í„° Në²ˆ ì •ì ê¹Œì§€ ë¶€ëª¨ ì •ì  ë²ˆí˜¸ ì €ì¥ (1ë²ˆì€ 1ë¡œ ì €ì¥)
 vector<int> edges[100001];
 
 void dfs(int cur, int par)

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -14,8 +14,8 @@ int main()
 	for (int i = 0; i < (int)str1.length(); i++) {
 		for (int j = 0; j < (int)str2.length(); j++) {
 			if (str1[i] == str2[j])
-				dp[i + 1][j + 1] = dp[i][j] + 1;			// µÎ ¹®ÀÚ¿­ÀÇ ¹®ÀÚ°¡ °°À» °æ¿ì¿¡´Â ¿À¸¥ÂÊ ¾Æ·¡ ´ë°¢¼± ºÎºÐ + 1
-			else											// ±×·¸Áö ¾ÊÀ¸¸é ¿ÞÂÊ, À§ÂÊ Áß Å« °ª ÃëÇÔ
+				dp[i + 1][j + 1] = dp[i][j] + 1;			// ë‘ ë¬¸ìžì—´ì˜ ë¬¸ìžê°€ ê°™ì„ ê²½ìš°ì—ëŠ” ì˜¤ë¥¸ìª½ ì•„ëž˜ ëŒ€ê°ì„  ë¶€ë¶„ + 1
+			else											// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ì™¼ìª½, ìœ„ìª½ ì¤‘ í° ê°’ ì·¨í•¨
 				dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j]);
 		}
 	}

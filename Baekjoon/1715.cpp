@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 int N, cards, ans;
-priority_queue<int, vector<int>, greater<int>> q;		// ¹«Á¶°Ç Ä«µå ¹­À½ÀÌ Å« °ÍÀÏ¼ö·Ï ³ªÁß¿¡ ÇÕÄ¡´Â °Ô ÀÌµæ! 
+priority_queue<int, vector<int>, greater<int>> q;		// ë¬´ì¡°ê±´ ì¹´ë“œ ë¬¶ìŒì´ í° ê²ƒì¼ìˆ˜ë¡ ë‚˜ì¤‘ì— í•©ì¹˜ëŠ” ê²Œ ì´ë“! 
 
 int main()
 {

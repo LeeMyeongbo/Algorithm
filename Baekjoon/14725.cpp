@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -16,7 +16,7 @@ struct Tree {
 			return;
 
 		int right = child.size(), left = 0;
-		while (left < right) {						// lower bound¸¦ ÀÌ¿ë
+		while (left < right) {						// lower boundë¥¼ ì´ìš©
 			int middle = (left + right) / 2;
 			if (str[num] > child[middle]->str)
 				left = middle + 1;
@@ -24,12 +24,12 @@ struct Tree {
 				right = middle;
 		}
 
-		if (right == child.size()) {				// ±¸ÇÑ À§Ä¡°¡ end(¿ÏÀü ¸Ç ³¡)À» °¡¸®Å³ °æ¿ì
+		if (right == child.size()) {				// êµ¬í•œ ìœ„ì¹˜ê°€ end(ì™„ì „ ë§¨ ë)ì„ ê°€ë¦¬í‚¬ ê²½ìš°
 			Tree* tree = new Tree();
 			tree->str = str[num];
 			child.push_back(tree);
 		}
-		else if (child[right]->str != str[num]) {	// ±×°Ô ¾Æ´Ï¶ó 
+		else if (child[right]->str != str[num]) {	// ê·¸ê²Œ ì•„ë‹ˆë¼ 
 			Tree* tree = new Tree();
 			tree->str = str[num];
 			child.insert(child.begin() + right, tree);

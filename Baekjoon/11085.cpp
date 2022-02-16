@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -28,8 +28,8 @@ void Union(int n1, int n2)
 int Solve()
 {
 	for (auto& e : edges) {
-		Union(e.second.first, e.second.second);		// °£¼± °¡ÁßÄ¡°¡ °¡Àå Å« °ÍºÎÅÍ Â÷·Ê´ë·Î ¿¬°á
-		if (Find(c) == Find(graph))						// ±×·¯´Ù°¡ c¿Í v°¡ ¿¬°áµÇ¾úÀ» ¶§ Ãß°¡ÇÑ °£¼±ÀÇ °¡ÁßÄ¡ ¸®ÅÏ
+		Union(e.second.first, e.second.second);		// ê°„ì„  ê°€ì¤‘ì¹˜ê°€ ê°€ì¥ í° ê²ƒë¶€í„° ì°¨ë¡€ëŒ€ë¡œ ì—°ê²°
+		if (Find(c) == Find(graph))					// ê·¸ëŸ¬ë‹¤ê°€ cì™€ vê°€ ì—°ê²°ë˜ì—ˆì„ ë•Œ ì¶”ê°€í•œ ê°„ì„ ì˜ ê°€ì¤‘ì¹˜ ë¦¬í„´
 			return e.first;
 	}
 	return -1;

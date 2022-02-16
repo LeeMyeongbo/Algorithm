@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
-int N, P[301][301], parent[301];			// ¿ì¹°À» Á÷Á¢ ÆÄ´Â °æ¿ì¸¦ 0¹ø ¿ì¹°¿¡ ¿¬°áÇÏ´Â °ÍÀ¸·Î »ı°¢
+int N, P[301][301], parent[301];			// ìš°ë¬¼ì„ ì§ì ‘ íŒŒëŠ” ê²½ìš°ë¥¼ 0ë²ˆ ìš°ë¬¼ì— ì—°ê²°í•˜ëŠ” ê²ƒìœ¼ë¡œ ìƒê°
 priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> q;
-											// °£¼±À» °¡ÁßÄ¡ ¿À¸§Â÷¼øÀ¸·Î »Ì±â À§ÇØ ¿ì¼±¼øÀ§ Å¥ È°¿ë
+											// ê°„ì„ ì„ ê°€ì¤‘ì¹˜ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë½‘ê¸° ìœ„í•´ ìš°ì„ ìˆœìœ„ í í™œìš©
 int Find(int n)
 {
 	if (parent[n] == n)
@@ -37,7 +37,7 @@ int Solve()
 			ans += weight;
 
 		for (int i = 1; i <= N; i++)
-			if (Find(i)) {				// i¹ø ¿ì¹°ÀÌ ¼ÓÇÑ ÁıÇÕÀÇ ÃÖ°í Á¶»ó ¿ì¹° ¹øÈ£°¡ 0ÀÌ ¾Æ´Ñ °æ¿ì´Â ¾ÆÁ÷ ¹°À» ´ëÁö ¾ÊÀº °Í!
+			if (Find(i)) {				// ië²ˆ ìš°ë¬¼ì´ ì†í•œ ì§‘í•©ì˜ ìµœê³  ì¡°ìƒ ìš°ë¬¼ ë²ˆí˜¸ê°€ 0ì´ ì•„ë‹Œ ê²½ìš°ëŠ” ì•„ì§ ë¬¼ì„ ëŒ€ì§€ ì•Šì€ ê²ƒ!
 				complete = false;
 				break;
 			}

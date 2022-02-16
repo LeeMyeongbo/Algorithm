@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 11
 using namespace std;
@@ -36,7 +36,7 @@ int LCA(int x, int y)
 int main()
 {
 	FAST;
-	cin >> N >> binary >> X >> Y;				// Ç×»ó ¹®Á¦¸¦ Àß ÀĞÀÚ!
+	cin >> N >> binary >> X >> Y;				// í•­ìƒ ë¬¸ì œë¥¼ ì˜ ì½ì!
 
 	for (int i = 0; i < binary.length(); i++) {
 		if (binary[i] == '0') {
@@ -50,7 +50,7 @@ int main()
 			cur = parent[cur][0];
 		} 
 	}
-	int cut = LCA(info[X - 1], info[Y - 1]);	// ÀÌÁø Ç¥Çö¿¡¼­ X¹øÂ° Á¤Á¡ÀÌ¶û Y¹øÂ° Á¤Á¡ÀÌ¶ó ÇßÀ¸¹Ç·Î
+	int cut = LCA(info[X - 1], info[Y - 1]);	// ì´ì§„ í‘œí˜„ì—ì„œ Xë²ˆì§¸ ì •ì ì´ë‘ Yë²ˆì§¸ ì •ì ì´ë¼ í–ˆìœ¼ë¯€ë¡œ
 
 	for (int i = 0; i < binary.length(); i++) {
 		if (info[i] == cut) {

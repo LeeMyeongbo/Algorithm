@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <cmath>
 #include <set>
@@ -12,7 +12,7 @@ int map[3][3], dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 }, start_r, start_c;
 set<int> visited;
 queue<Node> q;
 
-int bitmask(int cur_map[][3])			// ¸ÊÀÇ °¢ ÀÚ¸®¸¦ 9^0, 9^1...9^8À¸·Î µÎ°í ºñÆ®¸¶½ºÅ·À¸·Î ¹æ¹®¿©ºÎ ÆÇ´Ü
+int bitmask(int cur_map[][3])			// ë§µì˜ ê° ìë¦¬ë¥¼ 9^0, 9^1...9^8ìœ¼ë¡œ ë‘ê³  ë¹„íŠ¸ë§ˆìŠ¤í‚¹ìœ¼ë¡œ ë°©ë¬¸ì—¬ë¶€ íŒë‹¨
 {
 	int ans = 0;
 	for (int i = 0; i < 9; i++)
@@ -26,13 +26,13 @@ int BFS(int finish)
 	int cur_map[3][3];
 
 	q.push({ start_r, start_c, 0, cur });
-	visited.insert(cur);				// set¿¡ ´ã¾ÆµÎ¸é log ½Ã°£¿¡ ¹æ¹®¿©ºÎ È®ÀÎ °¡´É
+	visited.insert(cur);				// setì— ë‹´ì•„ë‘ë©´ log ì‹œê°„ì— ë°©ë¬¸ì—¬ë¶€ í™•ì¸ ê°€ëŠ¥
 
 	while (!q.empty()) {
 		Node node = q.front();
 		q.pop();
 
-		if (node.cur == finish)			// 1 2 3 4 5 6 7 8 0 ¼ø¼­¶ó¸é ¿Ï·á!
+		if (node.cur == finish)			// 1 2 3 4 5 6 7 8 0 ìˆœì„œë¼ë©´ ì™„ë£Œ!
 			return node.move;
 
 		int sum = node.cur;

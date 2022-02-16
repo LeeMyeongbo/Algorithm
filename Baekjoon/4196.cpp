@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -7,10 +7,10 @@ using namespace std;
 
 int T, N, M, x, y, seq[100001], num, scc[100001], scc_index, indegree[100001], ans;
 bool complete[100001];
-vector<int> graph[100001];		// seq[i] : i¹ø Á¤Á¡À» ¹æ¹®ÇÑ ¼ø¼­, scc[i] : i¹ø Á¤Á¡ÀÌ ¼ÓÇÑ scc ¹øÈ£, indegree[i] : i¹ø sccÀÇ ÁøÀÔÂ÷¼ö
+vector<int> graph[100001];		// seq[i] : ië²ˆ ì •ì ì„ ë°©ë¬¸í•œ ìˆœì„œ, scc[i] : ië²ˆ ì •ì ì´ ì†í•œ scc ë²ˆí˜¸, indegree[i] : ië²ˆ sccì˜ ì§„ì…ì°¨ìˆ˜
 stack<int> s;
 
-int dfs(int cur)				// °¢ Á¤Á¡¸¶´Ù ¸î ¹øÂ° scc¿¡ ¼ÓÇÏ´ÂÁö ÀúÀå
+int dfs(int cur)				// ê° ì •ì ë§ˆë‹¤ ëª‡ ë²ˆì§¸ sccì— ì†í•˜ëŠ”ì§€ ì €ì¥
 {
 	seq[cur] = ++num;
 	int min_s = num;
@@ -37,7 +37,7 @@ int dfs(int cur)				// °¢ Á¤Á¡¸¶´Ù ¸î ¹øÂ° scc¿¡ ¼ÓÇÏ´ÂÁö ÀúÀå
 	return min_s;
 }
 
-int Define_new_Graph()			// ¸ğµç sccÀÇ ÁøÀÔ Â÷¼ö ±¸ÇÔ
+int Define_new_Graph()			// ëª¨ë“  sccì˜ ì§„ì… ì°¨ìˆ˜ êµ¬í•¨
 {
 	for (int i = 1; i <= N; i++)
 		for (int v : graph[i])
@@ -45,7 +45,7 @@ int Define_new_Graph()			// ¸ğµç sccÀÇ ÁøÀÔ Â÷¼ö ±¸ÇÔ
 				indegree[scc[v]]++;
 
 	for (int i = 1; i <= scc_index; i++)
-		if (!indegree[i])		// ÁøÀÔ Â÷¼ö°¡ 0ÀÎ scc°¡ ¹Ù·Î ³Ñ¾î¶ß¸± µµ¹Ì³ë°¡ µÊ!
+		if (!indegree[i])		// ì§„ì… ì°¨ìˆ˜ê°€ 0ì¸ sccê°€ ë°”ë¡œ ë„˜ì–´ëœ¨ë¦´ ë„ë¯¸ë…¸ê°€ ë¨!
 			ans++;
 
 	return ans;

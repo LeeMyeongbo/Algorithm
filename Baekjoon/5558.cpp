@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 int H, W, N, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
-char map[1001][1001];				// char ¹è¿­Àº Ç×»ó ÇÑ ÀÚ¸® ´õ ´Ã·Á¼­ ÁöÁ¤ÇÏ´Â °Í ±â¾ï!
+char map[1001][1001];				// char ë°°ì—´ì€ í•­ìƒ í•œ ìë¦¬ ë” ëŠ˜ë ¤ì„œ ì§€ì •í•˜ëŠ” ê²ƒ ê¸°ì–µ!
 bool visited[11][1001][1001];
 struct Mouse {
 	int r, c, hp, time;
@@ -16,18 +16,18 @@ int BFS()
 		Mouse m = q.front();
 		q.pop();
 
-		if (m.hp == N + 1)			// ¸ğµç Ä¡Áî¸¦ ¸Ô¾úÀ» °æ¿ì Á¾·á
+		if (m.hp == N + 1)			// ëª¨ë“  ì¹˜ì¦ˆë¥¼ ë¨¹ì—ˆì„ ê²½ìš° ì¢…ë£Œ
 			return m.time;
 
 		for (int d = 0; d < 4; d++) {
 			int R = m.r + dr[d];
 			int C = m.c + dc[d];
 			if (R >= 0 && R < H && C >= 0 && C < W && map[R][C] != 'X') {
-				if (map[R][C] - '0' == m.hp && !visited[m.hp + 1][R][C]) {		// ¸ÔÀ» ¼ö ÀÖ´Â Ä¡Áî¸¦ ¸¸³²
+				if (map[R][C] - '0' == m.hp && !visited[m.hp + 1][R][C]) {		// ë¨¹ì„ ìˆ˜ ìˆëŠ” ì¹˜ì¦ˆë¥¼ ë§Œë‚¨
 					q.push({ R, C, m.hp + 1, m.time + 1 });
 					visited[m.hp + 1][R][C] = true;
 				}
-				else if((map[R][C] == '.' || map[R][C] - '0' != m.hp) && !visited[m.hp][R][C]) {	// ºó Ä­ ¶Ç´Â ¾ÆÁ÷ ¸ø ¸Ô´Â Ä¡Áî ¸¸³²
+				else if((map[R][C] == '.' || map[R][C] - '0' != m.hp) && !visited[m.hp][R][C]) {	// ë¹ˆ ì¹¸ ë˜ëŠ” ì•„ì§ ëª» ë¨¹ëŠ” ì¹˜ì¦ˆ ë§Œë‚¨
 					q.push({ R, C, m.hp, m.time + 1 });
 					visited[m.hp][R][C] = true;
 				}

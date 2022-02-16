@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cmath>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -19,11 +19,11 @@ int main()
 	for (int i = 0; i < N; i++)
 		cin >> solu[i];
 
-	sort(solu, solu + N, cmp());			// Àý´ñ°ª ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	sort(solu, solu + N, cmp());			// ì ˆëŒ“ê°’ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	ans = { solu[0], solu[1] };
 	int min = solu[0] + solu[1];
 
-	for (int i = 1; i < N - 1; i++) {		// ÀÎÁ¢ÇÑ °Å 2°³¾¿ ºñ±³ÇÏ¸ç ÇÕ ÃÖ¼Ú°ª °»½Å
+	for (int i = 1; i < N - 1; i++) {		// ì¸ì ‘í•œ ê±° 2ê°œì”© ë¹„êµí•˜ë©° í•© ìµœì†Ÿê°’ ê°±ì‹ 
 		if (abs(min) > abs(solu[i] + solu[i + 1])) {
 			ans = { solu[i], solu[i + 1] };
 			min = solu[i] + solu[i + 1];

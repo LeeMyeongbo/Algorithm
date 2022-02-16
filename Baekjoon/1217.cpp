@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -37,7 +37,7 @@ int dfs(int cur)
 	return par;
 }
 
-bool chk()					// 2-SAT·Î °£´ÜÈ÷ ÇØ°á °¡´É
+bool chk()					// 2-SATë¡œ ê°„ë‹¨ížˆ í•´ê²° ê°€ëŠ¥
 {
 	for (int i = 1; i <= M; i++)
 		if (scc_index[MAX - i] == scc_index[MAX + i])

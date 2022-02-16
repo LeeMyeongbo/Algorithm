@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, K, L, parent[50000], indegree[50000];	// parent[i] : i°¡ ¼ÓÇÑ ÁıÇÕ, indegree[i] : ÁıÇÕ iÀÇ ÁøÀÔ °£¼± ¼ö
-bool unions[50000], tp_visited[50000];	// unions[i] : ½ÇÁ¦ Á¸ÀçÇÏ´Â ÁıÇÕ i¸¦ true·Î, tp_visited[i] : À§»ó Á¤·ÄÇÏ¸ç ¹æ¹®ÇÑ ÁıÇÕ i true·Î Ã¼Å©
+int N, M, K, L, parent[50000], indegree[50000];	// parent[i] : iê°€ ì†í•œ ì§‘í•©, indegree[i] : ì§‘í•© iì˜ ì§„ì… ê°„ì„  ìˆ˜
+bool unions[50000], tp_visited[50000];	// unions[i] : ì‹¤ì œ ì¡´ì¬í•˜ëŠ” ì§‘í•© ië¥¼ trueë¡œ, tp_visited[i] : ìœ„ìƒ ì •ë ¬í•˜ë©° ë°©ë¬¸í•œ ì§‘í•© i trueë¡œ ì²´í¬
 char symbol;
 vector<pair<int, int>> edges;
 vector<int> graph[50000];
@@ -33,18 +33,18 @@ void Union(int n1, int n2)
 bool is_consistent()
 {
 	for (auto& e : edges) {
-		graph[parent[e.first]].push_back(parent[e.second]);	// °£¼±µéÀÌ ¿¬°áÇÏ´Â ÁıÇÕ graph Çü¼º
+		graph[parent[e.first]].push_back(parent[e.second]);	// ê°„ì„ ë“¤ì´ ì—°ê²°í•˜ëŠ” ì§‘í•© graph í˜•ì„±
 		indegree[parent[e.second]]++;
 	}
 	for (int i = 0; i < N; i++)
-		if (unions[i] && !indegree[i])						// ÁøÀÔ Â÷¼ö°¡ 0ÀÎ ÁıÇÕ Å¥¿¡ ÀúÀå
+		if (unions[i] && !indegree[i])						// ì§„ì… ì°¨ìˆ˜ê°€ 0ì¸ ì§‘í•© íì— ì €ì¥
 			q.push(i);
 	
-	while (!q.empty()) {									// À§»ó Á¤·Ä ½Ç½Ã
+	while (!q.empty()) {									// ìœ„ìƒ ì •ë ¬ ì‹¤ì‹œ
 		int cur = q.front();
 		q.pop();
 
-		tp_visited[cur] = true;					// À§»ó Á¤·ÄÇÏ¸ç ¹æ¹®ÇÏ´Â ÁıÇÕµéÀº ¸ğµÎ tp_visited¿¡ true·Î Ã³¸®
+		tp_visited[cur] = true;					// ìœ„ìƒ ì •ë ¬í•˜ë©° ë°©ë¬¸í•˜ëŠ” ì§‘í•©ë“¤ì€ ëª¨ë‘ tp_visitedì— trueë¡œ ì²˜ë¦¬
 		for (int& i : graph[cur]) {
 			indegree[i]--;
 			if (!indegree[i])
@@ -52,7 +52,7 @@ bool is_consistent()
 		}
 	}
 	for (int i = 0; i < N; i++)
-		if (unions[i] && !tp_visited[i])		// À§»ó Á¤·ÄÇÏ¸ç ¹æ¹®ÇÏÁö ¸øÇÑ ÁıÇÕ Á¸Àç ½Ã ÀÏ°ü¼º x
+		if (unions[i] && !tp_visited[i])		// ìœ„ìƒ ì •ë ¬í•˜ë©° ë°©ë¬¸í•˜ì§€ ëª»í•œ ì§‘í•© ì¡´ì¬ ì‹œ ì¼ê´€ì„± x
 			return false;
 	return true;
 }
@@ -67,13 +67,13 @@ int main()
 	for (int i = 0; i < M; i++) {
 		cin >> K >> symbol >> L;
 		if (symbol == '>')
-			edges.push_back({ K, L });		// '>'ÀÏ °æ¿ì °£¼±À¸·Î ¿¬°á
+			edges.push_back({ K, L });		// '>'ì¼ ê²½ìš° ê°„ì„ ìœ¼ë¡œ ì—°ê²°
 		else
-			Union(K, L);					// '='ÀÏ °æ¿ì ÇÏ³ªÀÇ ÁıÇÕÀ¸·Î ÇÕÄ§
+			Union(K, L);					// '='ì¼ ê²½ìš° í•˜ë‚˜ì˜ ì§‘í•©ìœ¼ë¡œ í•©ì¹¨
 	}
 	for (int i = 0; i < N; i++) {
 		Find(i);
-		unions[parent[i]] = true;			// 0ºÎÅÍ N-1±îÁö Çö Á¤Á¡ÀÌ ¼ÓÇÑ ÁıÇÕÀ» true·Î Ã³¸®
+		unions[parent[i]] = true;			// 0ë¶€í„° N-1ê¹Œì§€ í˜„ ì •ì ì´ ì†í•œ ì§‘í•©ì„ trueë¡œ ì²˜ë¦¬
 	}
 	if (is_consistent())
 		cout << "consistent";

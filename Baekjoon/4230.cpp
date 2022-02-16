@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -8,10 +8,10 @@ using namespace std;
 int N, M, n1, n2, order, seq[2 * MAX + 1], scc_num, scc_index[2 * MAX + 1];
 bool complete[2 * MAX + 1];
 char h_w1, h_w2;
-vector<int> graph[2 * MAX + 1];		// hÀÏ °æ¿ì¿¡´Â MAXº¸´Ù Å©°í wÀÏ °æ¿ì¿¡´Â MAXº¸´Ù ÀÛÀ½
+vector<int> graph[2 * MAX + 1];		// hì¼ ê²½ìš°ì—ëŠ” MAXë³´ë‹¤ í¬ê³  wì¼ ê²½ìš°ì—ëŠ” MAXë³´ë‹¤ ì‘ìŒ
 stack<int> s;
 
-int dfs(int cur)				// °°Àº Áø¸®°ªÀ» °¡Áö´Â ¿ä¼Ò³¢¸® SCC·Î ¹­¾îÁÜ
+int dfs(int cur)				    // ê°™ì€ ì§„ë¦¬ê°’ì„ ê°€ì§€ëŠ” ìš”ì†Œë¼ë¦¬ SCCë¡œ ë¬¶ì–´ì¤Œ
 {
 	seq[cur] = ++order;
 	int par = order;
@@ -38,7 +38,7 @@ int dfs(int cur)				// °°Àº Áø¸®°ªÀ» °¡Áö´Â ¿ä¼Ò³¢¸® SCC·Î ¹­¾îÁÜ
 	return par;
 }
 
-bool chk()			// -x¿Í x°¡ °°Àº scc¿¡ ¼ÓÇÏ´ÂÁö Ã¼Å© (¼ÓÇÏ¸é ¼º¸³x)
+bool chk()			// -xì™€ xê°€ ê°™ì€ sccì— ì†í•˜ëŠ”ì§€ ì²´í¬ (ì†í•˜ë©´ ì„±ë¦½x)
 {
 	for (int i = 1; i <= N; i++)
 		if (scc_index[MAX - i] && scc_index[MAX + i] && scc_index[MAX - i] == scc_index[MAX + i])
@@ -54,26 +54,26 @@ int main()
 		if (!N && !M)
 			return 0;
 
-		for (int i = 0; i < M; i++) {			// ¿©±â¼­ °£°úÇÏ¸é ¾ÈµÉ °Í : Ã¶½ÂÀÌ¿Í º¸¶÷ÀÌµµ ºÒ·û ÀúÁö¸¦ ¼ö ÀÖÀ½!
-			cin >> n1 >> h_w1 >> n2 >> h_w2;	// ÀÔ·ÂÀ¸·Î ÁÖ¾îÁö´Â °ªÀÇ Àı´ñ°ª + 1À» ÇÏ°í ±×·¡ÇÁ Çü¼º (0->1, 1->2, ...  (n-1)->n)
+		for (int i = 0; i < M; i++) {			// ì—¬ê¸°ì„œ ê°„ê³¼í•˜ë©´ ì•ˆë  ê²ƒ : ì² ìŠ¹ì´ì™€ ë³´ëŒì´ë„ ë¶ˆë¥œ ì €ì§€ë¥¼ ìˆ˜ ìˆìŒ!
+			cin >> n1 >> h_w1 >> n2 >> h_w2;	// ì…ë ¥ìœ¼ë¡œ ì£¼ì–´ì§€ëŠ” ê°’ì˜ ì ˆëŒ“ê°’ + 1ì„ í•˜ê³  ê·¸ë˜í”„ í˜•ì„± (0->1, 1->2, ...  (n-1)->n)
 			n1++, n2++;
 			if (h_w1 == 'w')
 				n1 *= -1;
 			if (h_w2 == 'w')
 				n2 *= -1;
-			graph[MAX + n1].push_back(MAX - n2);	// ºÒ·û³¢¸° °°ÀÌ ÀÖÀ¸¸é ¾ÈµÇ¹Ç·Î
+			graph[MAX + n1].push_back(MAX - n2);	// ë¶ˆë¥œë¼ë¦° ê°™ì´ ìˆìœ¼ë©´ ì•ˆë˜ë¯€ë¡œ
 			graph[MAX + n2].push_back(MAX - n1);
 		}
-		graph[MAX - 1].push_back(MAX + 1);		// Ã¶½ÂÀÌ¸¦ ¹«Á¶°Ç »Ì´Â´Ù °¡Á¤ (1 ¡ä 1) (Ç×»ó »Ì°í ½ÍÀº °Ô ÀÖÀ¸¸é ÀÌ·¸°Ô ÇÏ´Â °Å ±â¾ï!)
+		graph[MAX - 1].push_back(MAX + 1);		// ì² ìŠ¹ì´ë¥¼ ë¬´ì¡°ê±´ ë½‘ëŠ”ë‹¤ ê°€ì • (1 â–½ 1) (í•­ìƒ ë½‘ê³  ì‹¶ì€ ê²Œ ìˆìœ¼ë©´ ì´ë ‡ê²Œ í•˜ëŠ” ê±° ê¸°ì–µ!)
 
 		for (int i = MAX - N; i <= MAX + N; i++)
 			if (i != MAX && !complete[i])
 				dfs(i);
 
 		if (chk()) {
-			for (int i = 2; i <= N; i++) {		// ¿ø·¡´Â +xÀÇ scc ¹øÈ£°¡ -xº¸´Ù Å¬ °æ¿ì x¹øÂ°¸¦ false(='w')·Î Ã³¸®ÇÏ´Â °Ô ±¹·ê (Ã¶½ÂÀÌ ÁÙ)
+			for (int i = 2; i <= N; i++) {		// ì›ë˜ëŠ” +xì˜ scc ë²ˆí˜¸ê°€ -xë³´ë‹¤ í´ ê²½ìš° xë²ˆì§¸ë¥¼ false(='w')ë¡œ ì²˜ë¦¬í•˜ëŠ” ê²Œ êµ­ë£° (ì² ìŠ¹ì´ ì¤„)
 				cout << i - 1;
-				scc_index[MAX - i] < scc_index[MAX + i] ? cout << "h " : cout << "w ";		// º¸¶÷ÀÌ ÁÙ : Ã¶½ÂÀÌ°¡ ¾ÉÀº ÁÙÀÇ ¹İ´ë·Î Ã³¸®
+				scc_index[MAX - i] < scc_index[MAX + i] ? cout << "h " : cout << "w ";		// ë³´ëŒì´ ì¤„ : ì² ìŠ¹ì´ê°€ ì•‰ì€ ì¤„ì˜ ë°˜ëŒ€ë¡œ ì²˜ë¦¬
 			}
 			cout << "\n";
 		}

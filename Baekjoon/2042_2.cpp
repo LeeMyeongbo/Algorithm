@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define S 1048576
 using namespace std;
 
 int N, M, K;
-long long a, b, c, tree[2 * S];					// tree[1] ~ tree[S - 1] : ³»ºÎ³ëµå, tree[S] ~ tree[2 * S - 1] : ¸®ÇÁ³ëµå
+long long a, b, c, tree[2 * S];					// tree[1] ~ tree[S - 1] : ë‚´ë¶€ë…¸ë“œ, tree[S] ~ tree[2 * S - 1] : ë¦¬í”„ë…¸ë“œ
 
-long long init(int left, int right, int node)	// ÀÎµ¦½º Æ®¸® Çü¼º
+long long init(int left, int right, int node)	// ì¸ë±ìŠ¤ íŠ¸ë¦¬ í˜•ì„±
 {
 	int mid = (left + right) / 2;
 
@@ -14,7 +14,7 @@ long long init(int left, int right, int node)	// ÀÎµ¦½º Æ®¸® Çü¼º
 	return tree[node] = init(left, mid, node * 2) + init(mid + 1, right, node * 2 + 1);
 }
 
-void update(int node, long long diff)			// bottom-up ¹æ½ÄÀ¸·Î °»½Å
+void update(int node, long long diff)			// bottom-up ë°©ì‹ìœ¼ë¡œ ê°±ì‹ 
 {
 	while (node) {
 		tree[node] += diff;
@@ -22,7 +22,7 @@ void update(int node, long long diff)			// bottom-up ¹æ½ÄÀ¸·Î °»½Å
 	}
 }
 
-long long find(int left, int right, int node)	// top-down ¹æ½ÄÀ¸·Î ±¸°£ ÇÕ µµÃâ
+long long find(int left, int right, int node)	// top-down ë°©ì‹ìœ¼ë¡œ êµ¬ê°„ í•© ë„ì¶œ
 {
 	int mid = (left + right) / 2;
 

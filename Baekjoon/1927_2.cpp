@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N, x, heap[200001], Size;
@@ -8,8 +8,8 @@ void heapinsert(int n)
 	heap[++Size] = n;
 
 	int idx = Size;
-	while (idx > 1 && heap[idx / 2] > heap[idx]) {		// ºÎ¸ğ°¡ ÀÚ½Äº¸´Ù Å¬ °æ¿ì
-		swap(heap[idx / 2], heap[idx]);					// ºÎ¸ğ ÀÚ½Ä À§Ä¡ ¹Ù²Ş
+	while (idx > 1 && heap[idx / 2] > heap[idx]) {		// ë¶€ëª¨ê°€ ìì‹ë³´ë‹¤ í´ ê²½ìš°
+		swap(heap[idx / 2], heap[idx]);					// ë¶€ëª¨ ìì‹ ìœ„ì¹˜ ë°”ê¿ˆ
 		idx /= 2;
 	}
 }
@@ -26,22 +26,22 @@ int heapdelete()
 	int cur = 1;
 
 	while (true) {
-		if (!heap[cur * 2])								// ÀÚ½ÄÀÌ ¾ø´Ù¸é break
+		if (!heap[cur * 2])								// ìì‹ì´ ì—†ë‹¤ë©´ break
 			break;
 
-		if (heap[cur * 2] && !heap[cur * 2 + 1]) {		// ¿ŞÂÊ ÀÚ½Ä¸¸ Á¸ÀçÇÒ °æ¿ì
+		if (heap[cur * 2] && !heap[cur * 2 + 1]) {		// ì™¼ìª½ ìì‹ë§Œ ì¡´ì¬í•  ê²½ìš°
 			if (heap[cur] > heap[cur * 2])
-				swap(heap[cur], heap[cur * 2]);			// ºÎ¸ğ°¡ ÀÚ½Äº¸´Ù Å©´Ù¸é ¹Ù²Ş
+				swap(heap[cur], heap[cur * 2]);			// ë¶€ëª¨ê°€ ìì‹ë³´ë‹¤ í¬ë‹¤ë©´ ë°”ê¿ˆ
 			break;
 		}
-		else {											// µÎ ÀÚ½ÄÀÌ ¸ğµÎ Á¸ÀçÇÒ °æ¿ì
-			if (heap[cur] > heap[cur * 2] || heap[cur] > heap[cur * 2 + 1]) {		// µÎ ÀÚ½Ä Áß ÇÏ³ª¶óµµ ºÎ¸ğº¸´Ù ÀÛÀ» °æ¿ì
-				if (heap[cur * 2] < heap[cur * 2 + 1]) {	// ¿ŞÂÊ ÀÚ½ÄÀÌ ¿À¸¥ÂÊº¸´Ù ÀÛÀ» °æ¿ì
+		else {											// ë‘ ìì‹ì´ ëª¨ë‘ ì¡´ì¬í•  ê²½ìš°
+			if (heap[cur] > heap[cur * 2] || heap[cur] > heap[cur * 2 + 1]) {		// ë‘ ìì‹ ì¤‘ í•˜ë‚˜ë¼ë„ ë¶€ëª¨ë³´ë‹¤ ì‘ì„ ê²½ìš°
+				if (heap[cur * 2] < heap[cur * 2 + 1]) {	// ì™¼ìª½ ìì‹ì´ ì˜¤ë¥¸ìª½ë³´ë‹¤ ì‘ì„ ê²½ìš°
 					swap(heap[cur * 2], heap[cur]);
 					cur *= 2;
 				}
 				else {
-					swap(heap[cur * 2 + 1], heap[cur]);		// ¿À¸¥ÂÊ ÀÚ½ÄÀÌ ¿ŞÂÊº¸´Ù ÀÛÀ» °æ¿ì
+					swap(heap[cur * 2 + 1], heap[cur]);		// ì˜¤ë¥¸ìª½ ìì‹ì´ ì™¼ìª½ë³´ë‹¤ ì‘ì„ ê²½ìš°
 					cur = cur * 2 + 1;
 				}
 			}

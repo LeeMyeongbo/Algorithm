@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -15,8 +15,8 @@ bool dfs(int cur, int depth)
 	for (int i : graph[cur])
 		if (!visited[i] && dfs(i, depth + 1))
 			return true;
-	visited[cur] = false;		// Å½»öÇÏ°í ´Ù½Ã Àç±Í ºüÁ®³ª¿Ã ¶§ ¹æ¹®À» Ç®¾îÁà¾ß ÇÔ (°°Àº Á¤Á¡ Å½»öÇØ¼­ ±íÀÌ°¡ 4°¡ µÉ ¼öµµ ÀÖÀ¸¹Ç·Î)
-	return false;				// ±íÀÌ°¡ 4°¡ µÇ¸é ¹«Á¶°Ç Á¾·áÇÏ¹Ç·Î Áßº¹À» Çã¶ôÇØµµ µÊ (´õ±º´Ù³ª Á¤Á¡ ¼öµµ ÃÖ´ë 2000 ÀÌ¹Ç·Î)
+	visited[cur] = false;		// íƒìƒ‰í•˜ê³  ë‹¤ì‹œ ì¬ê·€ ë¹ ì ¸ë‚˜ì˜¬ ë•Œ ë°©ë¬¸ì„ í’€ì–´ì¤˜ì•¼ í•¨ (ê°™ì€ ì •ì  íƒìƒ‰í•´ì„œ ê¹Šì´ê°€ 4ê°€ ë  ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ)
+	return false;				// ê¹Šì´ê°€ 4ê°€ ë˜ë©´ ë¬´ì¡°ê±´ ì¢…ë£Œí•˜ë¯€ë¡œ ì¤‘ë³µì„ í—ˆë½í•´ë„ ë¨ (ë”êµ°ë‹¤ë‚˜ ì •ì  ìˆ˜ë„ ìµœëŒ€ 2000 ì´ë¯€ë¡œ)
 }
 
 int main()

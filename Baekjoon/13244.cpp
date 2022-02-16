@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <cstring>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -8,7 +8,7 @@ int T, N, M, A, B;
 bool graph[1001][1001], visited[1001];
 queue<int> q;
 
-bool is_connected()			// BFS·Î ¸ğµç Á¤Á¡À» ¹æ¹® °¡´ÉÇÑÁö »ìÇË
+bool is_connected()			// BFSë¡œ ëª¨ë“  ì •ì ì„ ë°©ë¬¸ ê°€ëŠ¥í•œì§€ ì‚´í•Œ
 {
 	q.push(1);
 	visited[1] = true;
@@ -40,10 +40,10 @@ int main()
 			cin >> A >> B;
 			graph[A][B] = graph[B][A] = true;
 		}
-		if (M != N - 1)				// °£¼± °³¼ö = Á¤Á¡ °³¼ö - 1ÀÌ ¾Æ´Ï¸é ¹«Á¶°Ç ±×·¡ÇÁÀÓ
+		if (M != N - 1)				// ê°„ì„  ê°œìˆ˜ = ì •ì  ê°œìˆ˜ - 1ì´ ì•„ë‹ˆë©´ ë¬´ì¡°ê±´ ê·¸ë˜í”„ì„
 			cout << "graph\n";
 		else {
-			if (is_connected())		// ¸ğµç Á¤Á¡ÀÌ ¼­·Î ¿¬°áµÇ¾î ÀÖÀ¸¸é Æ®¸®, ¾Æ´Ï¸é ±×·¡ÇÁ
+			if (is_connected())		// ëª¨ë“  ì •ì ì´ ì„œë¡œ ì—°ê²°ë˜ì–´ ìˆìœ¼ë©´ íŠ¸ë¦¬, ì•„ë‹ˆë©´ ê·¸ë˜í”„
 				cout << "tree\n";
 			else
 				cout << "graph\n";

@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 int N, W[300], P[300][300], parent[300];
-bool done[300];					// ¹°À» ´ë¸é true
+bool done[300];					// ë¬¼ì„ ëŒ€ë©´ true
 priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> q;
 
 int Find(int n)
@@ -22,7 +22,7 @@ bool Union(int n1, int n2)
 
 	parent[n2] = n1;
 	if (done[n2])
-		done[n1] = true;		// n2 ÁıÇÕ¿¡ ¹°À» ´ë°í ÀÖ´Ù¸é n1 ÁıÇÕ¿¡µµ ¹°À» ´ëÁÜ
+		done[n1] = true;		// n2 ì§‘í•©ì— ë¬¼ì„ ëŒ€ê³  ìˆë‹¤ë©´ n1 ì§‘í•©ì—ë„ ë¬¼ì„ ëŒ€ì¤Œ
 	return true;
 }
 
@@ -36,7 +36,7 @@ int Solve()
 		q.pop();
 
 		bool complete = true;
-		// n1 ¶Ç´Â n2 ÁıÇÕ¿¡ ¹°À» ´ë°í ÀÖÁö ¾Ê°í n1°ú n2°¡ °°°Å³ª ¼­·Î ´Ù¸¥ ÁıÇÕ¿¡ ¼ÓÇÑ »óÅÂ¿¡¼­ °°Àº ÁıÇÕÀ¸·Î µÇ¾ú´Ù¸é
+		// n1 ë˜ëŠ” n2 ì§‘í•©ì— ë¬¼ì„ ëŒ€ê³  ìˆì§€ ì•Šê³  n1ê³¼ n2ê°€ ê°™ê±°ë‚˜ ì„œë¡œ ë‹¤ë¥¸ ì§‘í•©ì— ì†í•œ ìƒíƒœì—ì„œ ê°™ì€ ì§‘í•©ìœ¼ë¡œ ë˜ì—ˆë‹¤ë©´
 		if ((!done[Find(n1)] || !done[Find(n2)]) && (n1 == n2 || Union(n1, n2))) {
 			ans += weight;
 			if (n1 == n2)
@@ -44,7 +44,7 @@ int Solve()
 		}
 
 		for(int i = 0; i < N; i++)
-			if (!done[Find(i)]) {		// i¹ø ¿ì¹°ÀÌ ¼ÓÇÑ ÁıÇÕ¿¡¼­ ¾ÆÁ÷ ¹°À» ´ëÁö ¾Ê¾ÒÀ» °æ¿ì
+			if (!done[Find(i)]) {		// ië²ˆ ìš°ë¬¼ì´ ì†í•œ ì§‘í•©ì—ì„œ ì•„ì§ ë¬¼ì„ ëŒ€ì§€ ì•Šì•˜ì„ ê²½ìš°
 				complete = false;
 				break;
 			}

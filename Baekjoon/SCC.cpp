@@ -1,26 +1,26 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int V, E, a, b, order[10001], n;		// order[i] : i¹ø Á¤Á¡À» ¹æ¹®ÇÑ ¼ø¼­ ÀúÀå
-bool complete[10001];					// complete[i] : i¹ø Á¤Á¡ Å½»öÀÌ ¿Ï·áµÇ¾ú´ÂÁö ¿©ºÎ
+int V, E, a, b, order[10001], n;		// order[i] : ië²ˆ ì •ì ì„ ë°©ë¬¸í•œ ìˆœì„œ ì €ì¥
+bool complete[10001];					// complete[i] : ië²ˆ ì •ì  íƒìƒ‰ì´ ì™„ë£Œë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 vector<int> graph[10001];
 vector<vector<int>> SCC;
 stack<int> s;
 
 int dfs(int cur)
 {
-	order[cur] = ++n;					// ÇöÀç Á¤Á¡ÀÇ ¹æ¹®ÇÑ ¼ø¼­ ÀúÀå
+	order[cur] = ++n;					// í˜„ì¬ ì •ì ì˜ ë°©ë¬¸í•œ ìˆœì„œ ì €ì¥
 	int p = order[cur];
 	s.push(cur);
 
-	for (int i : graph[cur]) {			// p¸¦ ÃÖ¼Ú°ªÀ¸·Î °»½Å
-		if (!order[i])					// ¾ÆÁ÷ ÇØ´ç Á¤Á¡À» ¹æ¹®ÇÏÁö ¾Ê¾ÒÀ» °æ¿ì
+	for (int i : graph[cur]) {			// pë¥¼ ìµœì†Ÿê°’ìœ¼ë¡œ ê°±ì‹ 
+		if (!order[i])					// ì•„ì§ í•´ë‹¹ ì •ì ì„ ë°©ë¬¸í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 			p = min(p, dfs(i));
-		else if (!complete[i])			// ¹æ¹®Àº Çß´Âµ¥ °­°áÇÕ ¿ä¼Ò Å½»öÀÌ ¿Ï·áµÇÁö ¾Ê¾ÒÀ» °æ¿ì
+		else if (!complete[i])			// ë°©ë¬¸ì€ í–ˆëŠ”ë° ê°•ê²°í•© ìš”ì†Œ íƒìƒ‰ì´ ì™„ë£Œë˜ì§€ ì•Šì•˜ì„ ê²½ìš°
 			p = min(p, order[i]);
 	}
 
@@ -33,7 +33,7 @@ int dfs(int cur)
 			complete[v] = true;
 			scc.push_back(v);
 
-			if (order[v] == p)			// ÀÚ±â ÀÚ½ÅÀÌ ³ª¿Ã ¶§±îÁö ¹İº¹ÇØ¼­ pop
+			if (order[v] == p)			// ìê¸° ìì‹ ì´ ë‚˜ì˜¬ ë•Œê¹Œì§€ ë°˜ë³µí•´ì„œ pop
 				break;
 		}
 		sort(scc.begin(), scc.end());

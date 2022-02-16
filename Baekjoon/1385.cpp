@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define MAX 1000000
 using namespace std;
@@ -16,10 +16,10 @@ void make_map()
 
 	while (true) {
 		hexa++;
-		for (int d = 0; d < 6; d++) {		// ¢Ö ¡æ ¡é ¢× ¡ç ¡è ¼øÀ¸·Î ¿òÁ÷ÀÓ
+		for (int d = 0; d < 6; d++) {		// â†— â†’ â†“ â†™ â† â†‘ ìˆœìœ¼ë¡œ ì›€ì§ì„
 			int repeat = hexa - 1;
 			if (!d)
-				repeat--;					// ¢Ö ¹æÇâÀº ´Ù¸¥ ¹æÇâµéº¸´Ù 1¹ø¾¿ ´ú ¿òÁ÷¿©¾ß ÇÔ
+				repeat--;					// â†— ë°©í–¥ì€ ë‹¤ë¥¸ ë°©í–¥ë“¤ë³´ë‹¤ 1ë²ˆì”© ëœ ì›€ì§ì—¬ì•¼ í•¨
 			for (int m = 0; m < repeat; m++) {
 				map[r][c] = ++cur;
 				if (cur == a)
@@ -36,7 +36,7 @@ void make_map()
 		if (cur == MAX)
 			return;
 
-		r += dr[5], c += dc[5];				// ±×¸®°í ¸¶Áö¸·¿¡ ¡è ÇÑ¹ø ´õ
+		r += dr[5], c += dc[5];				// ê·¸ë¦¬ê³  ë§ˆì§€ë§‰ì— â†‘ í•œë²ˆ ë”
 	}
 }
 
@@ -56,7 +56,7 @@ void BFS()
 		Node node = q.front();
 		q.pop();
 
-		if (node.cur == b) {							// µµÂøÁ¡À¸·ÎºÎÅÍ ¿ªÃßÀûÇØ¼­ Ãâ·Â
+		if (node.cur == b) {							// ë„ì°©ì ìœ¼ë¡œë¶€í„° ì—­ì¶”ì í•´ì„œ ì¶œë ¥
 			show_path(b);
 			return;
 		}
@@ -64,7 +64,7 @@ void BFS()
 		for (int d = 0; d < 6; d++) {
 			int R = node.r + dr[d];
 			int C = node.c + dc[d];
-			if (map[R][C] && pre[map[R][C]] == -1) {	// pre[map[R][C]]°¡ -1ÀÌ´Ù? -> ÇØ´ç map[R][C]´Â ¹æ¹®ÇÑ Àû ¾ø´Ù!
+			if (map[R][C] && pre[map[R][C]] == -1) {	// pre[map[R][C]]ê°€ -1ì´ë‹¤? -> í•´ë‹¹ map[R][C]ëŠ” ë°©ë¬¸í•œ ì  ì—†ë‹¤!
 				pre[map[R][C]] = node.cur;
 				q.push({ R, C, map[R][C] });
 			}

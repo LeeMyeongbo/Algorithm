@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <algorithm>
 #include <cstring>
@@ -9,11 +9,11 @@ struct Node {
 };
 int n, m, map[100][100], Left = 1000000000, Right;
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
-bool visited[2][100][100];			// [0][r][c] : Àåºñ »ç¿ë x, [1][r][c] : Àåºñ »ç¿ë o
+bool visited[2][100][100];			// [0][r][c] : ì¥ë¹„ ì‚¬ìš© x, [1][r][c] : ì¥ë¹„ ì‚¬ìš© o
 
-bool bfs(int M)						// ·¹º§ÀÌ MÀÌÇÏÀÎ °÷Àº ¸ğµÎ ¹æ¹®
+bool bfs(int M)						// ë ˆë²¨ì´ Mì´í•˜ì¸ ê³³ì€ ëª¨ë‘ ë°©ë¬¸
 {
-	if (map[0][0] > M)				// ½ÃÀÛ À§Ä¡ºÎÅÍ Mº¸´Ù Å©¸é ¾Æ¿¹ Ãâ¹ßÀ» ¸øÇÔ
+	if (map[0][0] > M)				// ì‹œì‘ ìœ„ì¹˜ë¶€í„° Më³´ë‹¤ í¬ë©´ ì•„ì˜ˆ ì¶œë°œì„ ëª»í•¨
 		return false;
 
 	queue<Node> q;
@@ -35,9 +35,9 @@ bool bfs(int M)						// ·¹º§ÀÌ MÀÌÇÏÀÎ °÷Àº ¸ğµÎ ¹æ¹®
 					q.push({ node.depth, R, C });
 					visited[node.depth][R][C] = true;
 				}
-				else if (map[R][C] > M && !node.depth) {	// ·¹º§ÀÌ Mº¸´Ù ³ôÀº °÷À» ¹ß°ßÇÏ°í Àåºñ¸¦ ¾ÆÁ÷ ¾È ¾´ °æ¿ì
+				else if (map[R][C] > M && !node.depth) {	// ë ˆë²¨ì´ Më³´ë‹¤ ë†’ì€ ê³³ì„ ë°œê²¬í•˜ê³  ì¥ë¹„ë¥¼ ì•„ì§ ì•ˆ ì“´ ê²½ìš°
 					R += dr[d], C += dc[d];
-					if (R >= 0 && R < n && C >= 0 && C < m && !visited[1][R][C] && map[R][C] <= M) { // ¶Ù¾î³Ñ¾î µµÂøÇÑ °÷ÀÌ ·¹º§ MÀÌÇÏ¶ó¸é
+					if (R >= 0 && R < n && C >= 0 && C < m && !visited[1][R][C] && map[R][C] <= M) { // ë›°ì–´ë„˜ì–´ ë„ì°©í•œ ê³³ì´ ë ˆë²¨ Mì´í•˜ë¼ë©´
 						q.push({ 1, R, C });
 						visited[1][R][C] = true;
 					}
@@ -53,12 +53,12 @@ int Solve()
 	int ans = 0;
 	while (Left <= Right) {
 		int mid = (Left + Right) / 2;
-		if (bfs(mid)) {				// mid ÀÌÇÏÀÇ ·¹º§¸¸ °ÅÄ¡°íµµ (n-1, m-1)¿¡ µµ´Ş °¡´ÉÇÒ °æ¿ì
+		if (bfs(mid)) {				// mid ì´í•˜ì˜ ë ˆë²¨ë§Œ ê±°ì¹˜ê³ ë„ (n-1, m-1)ì— ë„ë‹¬ ê°€ëŠ¥í•  ê²½ìš°
 			ans = mid;
-			Right = mid - 1;		// ÇöÀç mid°ª ÀúÀåÇÏ°í ´õ ÀÛÀº ¹üÀ§·Î ÁÙÀÓ
+			Right = mid - 1;		// í˜„ì¬ midê°’ ì €ì¥í•˜ê³  ë” ì‘ì€ ë²”ìœ„ë¡œ ì¤„ì„
 		}
-		else						// ±×·¸Áö ¾Ê´Ù¸é
-			Left = mid + 1;			// ´õ Å« ¹üÀ§·Î ÁÙÀÓ
+		else						// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´
+			Left = mid + 1;			// ë” í° ë²”ìœ„ë¡œ ì¤„ì„
 		memset(visited, false, sizeof(visited));
 	}
 	return ans;

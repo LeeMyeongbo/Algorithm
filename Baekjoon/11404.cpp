@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define MAX 10000000000
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -7,11 +7,11 @@ using namespace std;
 int n, m, a, b;
 long long graph[101][101], c;
 
-void Floyd()			// ÇÃ·ÎÀÌµå ¿Í¼£ ±â¾ï!!
+void Floyd()			// í”Œë¡œì´ë“œ ì™€ìƒ¬ ê¸°ì–µ!!
 {
-	for (int pass = 1; pass <= n; pass++) {			// °ÅÄ¡´Â Á¤Á¡
-		for (int s = 1; s <= n; s++) {				// Ãâ¹ß Á¤Á¡
-			for (int d = 1; d <= n; d++) {			// µµÂø Á¤Á¡
+	for (int pass = 1; pass <= n; pass++) {			// ê±°ì¹˜ëŠ” ì •ì 
+		for (int s = 1; s <= n; s++) {				// ì¶œë°œ ì •ì 
+			for (int d = 1; d <= n; d++) {			// ë„ì°© ì •ì 
 				graph[s][d] = min(graph[s][d], graph[s][pass] + graph[pass][d]);
 			}
 		}

@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
 int N, M, a, b, c, Ans, idx, U[1001];
-vector<pair<int, pair<int, int>>> edges;		// (°¡ÁßÄ¡(=ºñ¿ë), (Á¤Á¡ 1, Á¤Á¡ 2))·Î ÀúÀå
+vector<pair<int, pair<int, int>>> edges;		// (ê°€ì¤‘ì¹˜(=ë¹„ìš©), (ì •ì  1, ì •ì  2))ë¡œ ì €ì¥
 
 int Find(int v)
 {
@@ -22,15 +22,15 @@ void Union(int v1, int v2)
 
 int Kruskal()
 {
-	sort(edges.begin(), edges.end());							// °£¼±À» ºñ¿ë ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+	sort(edges.begin(), edges.end());							// ê°„ì„ ì„ ë¹„ìš© ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 	
 	for (pair<int, pair<int, int>>& e : edges) {
-		if (Find(e.second.first) != Find(e.second.second)) {	// ¸¸¾à µÎ Á¤Á¡ÀÌ ¿¬°áµÇ¾î ÀÖÁö ¾Ê´Ù¸é
-			Union(e.second.first, e.second.second);				// ¿¬°áÇÏ°í
-			idx++, Ans += e.first;								// ºñ¿ë Ãß°¡
+		if (Find(e.second.first) != Find(e.second.second)) {	// ë§Œì•½ ë‘ ì •ì ì´ ì—°ê²°ë˜ì–´ ìˆì§€ ì•Šë‹¤ë©´
+			Union(e.second.first, e.second.second);				// ì—°ê²°í•˜ê³ 
+			idx++, Ans += e.first;								// ë¹„ìš© ì¶”ê°€
 		}
 		if (idx == N - 1)
-			break;												// °£¼± N - 1°³ ¿¬°á ½Ã MST Çü¼º ¿Ï·á!
+			break;												// ê°„ì„  N - 1ê°œ ì—°ê²° ì‹œ MST í˜•ì„± ì™„ë£Œ!
 	}
 
 	return Ans;

@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int A, B, C, Sum;
-bool num[2001][2001];			// [Á¦ÀÏ Å« ¼ıÀÚ][Á¦ÀÏ ÀÛÀº ¼ıÀÚ]¿¡ ¹æ¹® Ã¼Å© (Å« ¼ıÀÚ ÀÛÀº ¼ıÀÚ µû·Îµû·Î ¸»°í ½ÖÀ¸·Î ¹æ¹® Ã¼Å©ÇÒ ÇÊ¿ä ÀÖÀ½)
+bool num[2001][2001];			// [ì œì¼ í° ìˆ«ì][ì œì¼ ì‘ì€ ìˆ«ì]ì— ë°©ë¬¸ ì²´í¬ (í° ìˆ«ì ì‘ì€ ìˆ«ì ë”°ë¡œë”°ë¡œ ë§ê³  ìŒìœ¼ë¡œ ë°©ë¬¸ ì²´í¬í•  í•„ìš” ìˆìŒ)
 queue<pair<int, int>> q;
 
 int Solve()

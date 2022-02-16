@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -7,16 +7,16 @@ using namespace std;
 int N, A[1000];
 vector<int> lds;
 
-int Solve()								// A[i]¸¦ ¿ª¼øÀ¸·Î ÀúÀåÇÑ ÈÄ ÃÖÀå Áõ°¡ ºÎºĞ ¼ö¿­ÀÇ ±æÀÌ µµÃâ
+int Solve()								// A[i]ë¥¼ ì—­ìˆœìœ¼ë¡œ ì €ì¥í•œ í›„ ìµœì¥ ì¦ê°€ ë¶€ë¶„ ìˆ˜ì—´ì˜ ê¸¸ì´ ë„ì¶œ
 {
 	lds.push_back(A[0]);
 	for (int i = 1; i < N; i++) {
-		if (A[i] <= lds.back()) {		// lower_bound¸¦ ÀÌ¿ëÇÑ Ç®ÀÌ¹ı ±â¾ï!
+		if (A[i] <= lds.back()) {		// lower_boundë¥¼ ì´ìš©í•œ í’€ì´ë²• ê¸°ì–µ!
 			int index = lower_bound(lds.begin(), lds.end(), A[i]) - lds.begin();
-			lds[index] = A[i];			// A ¹è¿­ ³» ÇöÀç °ªÀÌ ldsÀÇ ¸¶Áö¸· °ªº¸´Ù ÀÛÀº °æ¿ì¿£ lower_bound ±¸ÇØ¼­ ±× À§Ä¡¿¡ ÇöÀç °ª ÀúÀå
+			lds[index] = A[i];			// A ë°°ì—´ ë‚´ í˜„ì¬ ê°’ì´ ldsì˜ ë§ˆì§€ë§‰ ê°’ë³´ë‹¤ ì‘ì€ ê²½ìš°ì—” lower_bound êµ¬í•´ì„œ ê·¸ ìœ„ì¹˜ì— í˜„ì¬ ê°’ ì €ì¥
 		}
 		else
-			lds.push_back(A[i]);		// A ¹è¿­ ³» ÇöÀç °ªÀÌ ldsÀÇ ¸¶Áö¸· °ªº¸´Ù Å« °æ¿ì¿£ Ãß°¡
+			lds.push_back(A[i]);		// A ë°°ì—´ ë‚´ í˜„ì¬ ê°’ì´ ldsì˜ ë§ˆì§€ë§‰ ê°’ë³´ë‹¤ í° ê²½ìš°ì—” ì¶”ê°€
 	}
 	return lds.size();
 }

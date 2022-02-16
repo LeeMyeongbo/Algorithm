@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -40,7 +40,7 @@ int DFS(int cur)
 	return parent;
 }
 
-void Determine()					// outdegree°¡ 0ÀÎ scc°¡ ¹Ù·Î ½ÌÅ©¿¡ ÇØ´ç!
+void Determine()					// outdegreeê°€ 0ì¸ sccê°€ ë°”ë¡œ ì‹±í¬ì— í•´ë‹¹!
 {
 	for (int i = 1; i <= n; i++)
 		for (int& j : graph[i]) {

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -20,17 +20,17 @@ bool BFS()
 			if (R < 0 || R >= N || C < 0 || C >= M)
 				continue;
 
-			if (R == end_r && C == end_c) {			// ¸ñÇ¥ ÁöÁ¡¿¡ µµÂøÇÒ °æ¿ì
-				if (map[R][C] == 'X')				// 'X'¶ó¸é ¹Ù·Î Á¾·á
+			if (R == end_r && C == end_c) {			// ëª©í‘œ ì§€ì ì— ë„ì°©í•  ê²½ìš°
+				if (map[R][C] == 'X')				// 'X'ë¼ë©´ ë°”ë¡œ ì¢…ë£Œ
 					return true;
 				else {
-					map[R][C] = 'X';				// '.'¶ó¸é 'X'·Î ¹Ù²Ù°í Å¥ »ğÀÔ
+					map[R][C] = 'X';				// '.'ë¼ë©´ 'X'ë¡œ ë°”ê¾¸ê³  í ì‚½ì…
 					q.push({ R, C });
 				}
 			}
-			else if (map[R][C] != 'X') {			// ¸ñÇ¥ ÁöÁ¡ÀÌ ¾Æ´Ñ '.'¿¡ µµ´Ş ½Ã
+			else if (map[R][C] != 'X') {			// ëª©í‘œ ì§€ì ì´ ì•„ë‹Œ '.'ì— ë„ë‹¬ ì‹œ
 				map[R][C] = 'X';
-				q.push({ R, C });					// 'X'·Î ¹Ù²Ù°í Å¥ »ğÀÔ
+				q.push({ R, C });					// 'X'ë¡œ ë°”ê¾¸ê³  í ì‚½ì…
 			}
 		}
 	}

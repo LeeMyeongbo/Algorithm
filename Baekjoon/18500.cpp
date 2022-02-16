@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <vector>
 #include <algorithm>
@@ -10,7 +10,7 @@ char map[100][101];
 queue<pair<int, int>> q;
 vector<pair<int, int>> minerals;
 
-bool falling_cluster(int r, int c, int n)		// ÇöÀç Å¬·¯½ºÅÍ ±¸ÇÏ°í ±×°Ô ¶³¾îÁö´Â Å¬·¯½ºÅÍÀÎÁö ÆÇ´Ü
+bool falling_cluster(int r, int c, int n)		// í˜„ì¬ í´ëŸ¬ìŠ¤í„° êµ¬í•˜ê³  ê·¸ê²Œ ë–¨ì–´ì§€ëŠ” í´ëŸ¬ìŠ¤í„°ì¸ì§€ íŒë‹¨
 {
 	bool can_fall = true;
 	visited[r][c] = true;
@@ -21,7 +21,7 @@ bool falling_cluster(int r, int c, int n)		// ÇöÀç Å¬·¯½ºÅÍ ±¸ÇÏ°í ±×°Ô ¶³¾îÁö´Â
 		int cur_c = q.front().second;
 		q.pop();
 
-		if (cur_r == R - 1)						// ¹Ù´Ú¿¡ ÀÖ´Â ¹Ì³×¶ö Á¸Àç ½Ã ÇöÀç Å¬·¯½ºÅÍ´Â ¶³¾îÁö´Â Å¬·¯½ºÅÍ°¡ ¾Æ´Ô
+		if (cur_r == R - 1)						// ë°”ë‹¥ì— ìˆëŠ” ë¯¸ë„¤ë„ ì¡´ì¬ ì‹œ í˜„ì¬ í´ëŸ¬ìŠ¤í„°ëŠ” ë–¨ì–´ì§€ëŠ” í´ëŸ¬ìŠ¤í„°ê°€ ì•„ë‹˜
 			can_fall = false;
 		minerals.push_back({ cur_r, cur_c });
 
@@ -41,7 +41,7 @@ void Solve()
 {
 	for (int n = 0; n < N; n++) {
 		if (n % 2) {
-			for (int c = C - 1; c >= 0; c--)			// ¸·´ë±â ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î ´øÁ®¼­ Á¦ÀÏ Ã³À½ ¸ÂÀº ¹Ì³×¶ö ÆÄ±«
+			for (int c = C - 1; c >= 0; c--)			// ë§‰ëŒ€ê¸° ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ë˜ì ¸ì„œ ì œì¼ ì²˜ìŒ ë§ì€ ë¯¸ë„¤ë„ íŒŒê´´
 				if (map[stick[n]][c] == 'x') {
 					map[stick[n]][c] = '.';
 					break;
@@ -49,7 +49,7 @@ void Solve()
 		}
 		else {
 			for (int c = 0; c < C; c++)
-				if (map[stick[n]][c] == 'x') {			// ·ÛÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ´øÁ®¼­ Ã³À½ ¸ÂÀº ¹Ì³×¶ö ÆÄ±«
+				if (map[stick[n]][c] == 'x') {			// ë¢´ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë˜ì ¸ì„œ ì²˜ìŒ ë§ì€ ë¯¸ë„¤ë„ íŒŒê´´
 					map[stick[n]][c] = '.';
 					break;
 				}
@@ -58,11 +58,11 @@ void Solve()
 		bool fallen = false;
 		for (int i = 0; i < R; i++) {
 			for (int j = 0; j < C; j++) {
-				if (visited[i][j] || map[i][j] == '.')	// ºó °÷ ¶Ç´Â ¹æ¹®ÇÑ Ä­ÀÌ¶ó¸é skip
+				if (visited[i][j] || map[i][j] == '.')	// ë¹ˆ ê³³ ë˜ëŠ” ë°©ë¬¸í•œ ì¹¸ì´ë¼ë©´ skip
 					continue;
 				if (falling_cluster(i, j, cluster)) {
 					int min_fall = 10001;
-					sort(minerals.begin(), minerals.end());		// Çö Å¬·¯½ºÅÍÀÇ °¡Àå À§ÂÊ¿¡ ÀÖ´Â ¹Ì³×¶öºÎÅÍ ¼ø¼­´ë·Î Á¤·Ä
+					sort(minerals.begin(), minerals.end());		// í˜„ í´ëŸ¬ìŠ¤í„°ì˜ ê°€ì¥ ìœ„ìª½ì— ìˆëŠ” ë¯¸ë„¤ë„ë¶€í„° ìˆœì„œëŒ€ë¡œ ì •ë ¬
 
 					for (auto& p : minerals) {
 						int cur_r = p.first, cur_c = p.second, fall = 0;
@@ -72,9 +72,9 @@ void Solve()
 							fall++;
 						}
 						if (fall)
-							min_fall = min(min_fall, fall);		// Å¬·¯½ºÅÍÀÇ °¢ ¹Ì³×¶ö¸¶´Ù ¶³¾îÁö´Â ³ôÀÌÀÇ ÃÖ¼Ú°ª °»½Å
+							min_fall = min(min_fall, fall);		// í´ëŸ¬ìŠ¤í„°ì˜ ê° ë¯¸ë„¤ë„ë§ˆë‹¤ ë–¨ì–´ì§€ëŠ” ë†’ì´ì˜ ìµœì†Ÿê°’ ê°±ì‹ 
 					}
-					while (!minerals.empty()) {					// °¡Àå ¾Æ·¡ÂÊ¿¡ ÀÖ´Â ¹Ì³×¶öºÎÅÍ Â÷·Ê·Î ¶³¾î¶ß¸²
+					while (!minerals.empty()) {					// ê°€ì¥ ì•„ë˜ìª½ì— ìˆëŠ” ë¯¸ë„¤ë„ë¶€í„° ì°¨ë¡€ë¡œ ë–¨ì–´ëœ¨ë¦¼
 						pair<int, int> p = minerals.back();
 						int cur_r = p.first, cur_c = p.second;
 

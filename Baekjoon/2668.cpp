@@ -1,20 +1,20 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, graph[101], visited[101], graph;
+int N, graph[101], visited[101], seq;
 bool complete[101];
 vector<vector<int>> SCC;
 vector<int> ans;
 stack<int> s;
 
-int DFS(int cur)				// SCC ÀÌ¿ëÇÏ¿© ÇØ°á (´Ü¼øÈ÷ »çÀÌÅ¬ Ã£´Â ½ÄÀ¸·Î ÇØµµ µÊ ÁøÃâ °£¼±ÀÌ Á¤Á¡¸¶´Ù ÇÏ³ª¾¿ ¹Û¿¡ ¾øÀ¸´Ï)
+int DFS(int cur)				// SCC ì´ìš©í•˜ì—¬ í•´ê²° (ë‹¨ìˆœíˆ ì‚¬ì´í´ ì°¾ëŠ” ì‹ìœ¼ë¡œ í•´ë„ ë¨ ì§„ì¶œ ê°„ì„ ì´ ì •ì ë§ˆë‹¤ í•˜ë‚˜ì”© ë°–ì— ì—†ìœ¼ë‹ˆ)
 {
-	visited[cur] = ++graph;
-	int p = graph;
+	visited[cur] = ++seq;
+	int p = seq;
 	s.push(cur);
 
 	if (!visited[graph[cur]])

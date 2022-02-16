@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -26,7 +26,7 @@ void Solve()
 		}
 	}
 
-	if (ans.size() == N)			// ±×·¡ÇÁ¿¡ »çÀÌÅ¬ÀÌ Á¸ÀçÇÏ¿© À§»ó Á¤·ÄÀ» ÅëÇØ ¸ğµç Á¤Á¡ÀÌ Á¤·ÄµÇÁö ¸øÇÑ °æ¿ì
+	if (ans.size() == N)			// ê·¸ë˜í”„ì— ì‚¬ì´í´ì´ ì¡´ì¬í•˜ì—¬ ìœ„ìƒ ì •ë ¬ì„ í†µí•´ ëª¨ë“  ì •ì ì´ ì •ë ¬ë˜ì§€ ëª»í•œ ê²½ìš°
 		for (int i : ans)
 			cout << i << "\n";
 	else

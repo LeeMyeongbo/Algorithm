@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -14,16 +14,16 @@ int dfs(int cur, int parent)
 	int seq = num;
 
 	for (int& i : graph[cur]) {
-		if (i == parent)						// ºÎ¸ð ³ëµå´Â skip
+		if (i == parent)						// ë¶€ëª¨ ë…¸ë“œëŠ” skip
 			continue;
-		else if (visited[i])					// ºÎ¸ð ³ëµå°¡ ¾Æ´Ñµ¥ ¹æ¹®ÇÑ Àû ÀÖ´Â ³ëµåµé Áß¿¡¼­´Â ¹æ¹® ¼ø¼­°¡ °¡Àå ÀÛÀº °ªÀ¸·Î seq °»½Å
+		else if (visited[i])					// ë¶€ëª¨ ë…¸ë“œê°€ ì•„ë‹Œë° ë°©ë¬¸í•œ ì  ìžˆëŠ” ë…¸ë“œë“¤ ì¤‘ì—ì„œëŠ” ë°©ë¬¸ ìˆœì„œê°€ ê°€ìž¥ ìž‘ì€ ê°’ìœ¼ë¡œ seq ê°±ì‹ 
 			seq = min(seq, visited[i]);
-		else {									// ¹æ¹®ÇÑ Àû ¾ø´Â ³ëµåÀÇ °æ¿ì ÇØ´ç ³ëµå°¡ ¹æ¹®ÇÒ ¼ö ÀÖ´Â ÃÖ¼Ò ¹æ¹® ¼ø¼­ÀÇ Á¤Á¡ ±¸ÇÏ°í
-			int pre = dfs(i, cur);				// ±×°Ô Çö Á¤Á¡(cur)ÀÇ ¹æ¹® ¼ø¼­º¸´Ù Å©´Ù¸é cur°ú ÇØ´ç ³ëµå »çÀÌÀÇ °£¼±ÀÌ ´ÜÀý¼±ÀÌ µÊ
+		else {									// ë°©ë¬¸í•œ ì  ì—†ëŠ” ë…¸ë“œì˜ ê²½ìš° í•´ë‹¹ ë…¸ë“œê°€ ë°©ë¬¸í•  ìˆ˜ ìžˆëŠ” ìµœì†Œ ë°©ë¬¸ ìˆœì„œì˜ ì •ì  êµ¬í•˜ê³ 
+			int pre = dfs(i, cur);				// ê·¸ê²Œ í˜„ ì •ì (cur)ì˜ ë°©ë¬¸ ìˆœì„œë³´ë‹¤ í¬ë‹¤ë©´ curê³¼ í•´ë‹¹ ë…¸ë“œ ì‚¬ì´ì˜ ê°„ì„ ì´ ë‹¨ì ˆì„ ì´ ë¨
 			if (pre > visited[cur])
 				ans.push_back({ min(i, cur), max(i, cur) });
 
-			seq = min(seq, pre);				// seq ÃÖ¼Ú°ª °»½Å
+			seq = min(seq, pre);				// seq ìµœì†Ÿê°’ ê°±ì‹ 
 		}
 	}
 	return seq;

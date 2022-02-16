@@ -1,14 +1,14 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
 int N, M, a, b, w;
-pair<int, long long> U[100001];			// (¿¬°áµÈ ±âÁØÁ¤Á¡, ±âÁØ Á¤Á¡°úÀÇ ¹«°Ô Â÷ÀÌ)·Î ÀúÀå (±âÁØÁ¤Á¡¿¡¼­ ¸Ö¾îÁú¼ö·Ï ¹«°Ô ÇÑ ¹ø¾¿ Áõ°¨)
-char choice;							// U[i] = (j, w) ==> i¹øÀÇ ±âÁØÁ¤Á¡ = j¹ø && i¹øÀÇ ¹«°Ô = j¹øÀÇ ¹«°Ô + w
+pair<int, long long> U[100001];			// (ì—°ê²°ëœ ê¸°ì¤€ì •ì , ê¸°ì¤€ ì •ì ê³¼ì˜ ë¬´ê²Œ ì°¨ì´)ë¡œ ì €ì¥ (ê¸°ì¤€ì •ì ì—ì„œ ë©€ì–´ì§ˆìˆ˜ë¡ ë¬´ê²Œ í•œ ë²ˆì”© ì¦ê°)
+char choice;							// U[i] = (j, w) ==> ië²ˆì˜ ê¸°ì¤€ì •ì  = jë²ˆ && ië²ˆì˜ ë¬´ê²Œ = jë²ˆì˜ ë¬´ê²Œ + w
 
 pair<int, long long> Update(int n)
 {
-	if (U[n].first == n)				// ±âÁØÁ¤Á¡¿¡ µµ´Ş ½Ã (U[n].second = 0) ¹Ù·Î U[n] ¸®ÅÏ
+	if (U[n].first == n)				// ê¸°ì¤€ì •ì ì— ë„ë‹¬ ì‹œ (U[n].second = 0) ë°”ë¡œ U[n] ë¦¬í„´
 		return U[n];
 	
 	pair<int, long long> p = Update(U[n].first);
@@ -16,12 +16,12 @@ pair<int, long long> Update(int n)
 	return U[n];
 }
 
-void Union(int v1, int v2, long long gap)		// v1ÀÇ ±âÁØÁ¤Á¡ -> v2ÀÇ ±âÁØÁ¤Á¡ ¿¬°á
+void Union(int v1, int v2, long long gap)		// v1ì˜ ê¸°ì¤€ì •ì  -> v2ì˜ ê¸°ì¤€ì •ì  ì—°ê²°
 {
-	pair<int, long long> r1 = Update(v1);		// r1 = (v1ÀÇ ±âÁØÁ¤Á¡, v1ÀÇ ¹«°Ô - v1ÀÇ ±âÁØÁ¤Á¡ÀÇ ¹«°Ô)
-	pair<int, long long> r2 = Update(v2);		// r2 = (v2ÀÇ ±âÁØÁ¤Á¡, v2ÀÇ ¹«°Ô - v2ÀÇ ±âÁØÁ¤Á¡ÀÇ ¹«°Ô)
+	pair<int, long long> r1 = Update(v1);		// r1 = (v1ì˜ ê¸°ì¤€ì •ì , v1ì˜ ë¬´ê²Œ - v1ì˜ ê¸°ì¤€ì •ì ì˜ ë¬´ê²Œ)
+	pair<int, long long> r2 = Update(v2);		// r2 = (v2ì˜ ê¸°ì¤€ì •ì , v2ì˜ ë¬´ê²Œ - v2ì˜ ê¸°ì¤€ì •ì ì˜ ë¬´ê²Œ)
 
-	U[r2.first] = { r1.first, r1.second - r2.second + gap };	// Ç×»ó ±âÁØÁ¤Á¡À» ±âÁØÀ¸·Î ¹«°Ô Â÷ÀÌ °è»êÇØ¾ß ÇÔ!
+	U[r2.first] = { r1.first, r1.second - r2.second + gap };	// í•­ìƒ ê¸°ì¤€ì •ì ì„ ê¸°ì¤€ìœ¼ë¡œ ë¬´ê²Œ ì°¨ì´ ê³„ì‚°í•´ì•¼ í•¨!
 }
 
 int main()

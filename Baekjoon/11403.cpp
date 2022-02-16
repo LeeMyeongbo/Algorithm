@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <algorithm>
 #define MAX 10000
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);

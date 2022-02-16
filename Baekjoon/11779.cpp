@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -6,8 +6,8 @@
 using namespace std;
 
 struct Info {
-	vector<int> path;				// °ÅÃÄ¿Â °æ·Î ÀúÀå
-	int sum;						// ºñ¿ë ÇÕ
+	vector<int> path;				// ê±°ì³ì˜¨ ê²½ë¡œ ì €ì¥
+	int sum;						// ë¹„ìš© í•©
 };
 int n, m, graph[1001][1001], Start, End, visited_sum[1001], ans = -1;
 queue<Info> q;
@@ -25,17 +25,17 @@ void Solve()
 		int cur = info.path.back();
 		q.pop();
 
-		if (cur == End) {								// ¸ñÀûÁö¿¡ µµÂøÇßÀ» °æ¿ì
-			if (ans == -1 || ans > info.sum) {			// ¸ñÀûÁö¿¡ Ã³À½ µµ´ŞÇÏ°Å³ª ÇÕÀÌ ´õ ÀÛ¾ÆÁö´Â °æ¿ì °»½Å
+		if (cur == End) {								// ëª©ì ì§€ì— ë„ì°©í–ˆì„ ê²½ìš°
+			if (ans == -1 || ans > info.sum) {			// ëª©ì ì§€ì— ì²˜ìŒ ë„ë‹¬í•˜ê±°ë‚˜ í•©ì´ ë” ì‘ì•„ì§€ëŠ” ê²½ìš° ê°±ì‹ 
 				ans = info.sum;
 				ans_list = info.path;
 			}
 			continue;
 		}
-		for (int i = 1; i <= n; i++) {					// ¿¬°áµÈ Á¤Á¡µé Áß ¹æ¹®ÇÑ Àû ¾ø°Å³ª ÇÕÀÌ ´õ ÀÛÀº Á¤Á¡ ÇâÇØ¼­ BFS ¶§¸²
+		for (int i = 1; i <= n; i++) {					// ì—°ê²°ëœ ì •ì ë“¤ ì¤‘ ë°©ë¬¸í•œ ì  ì—†ê±°ë‚˜ í•©ì´ ë” ì‘ì€ ì •ì  í–¥í•´ì„œ BFS ë•Œë¦¼
 			if (graph[cur][i] != -1 && (visited_sum[i] == -1 || info.sum + graph[cur][i] < visited_sum[i])) {
 				vector<int> new_path = info.path;
-				new_path.push_back(i);					// °æ·Î¿¡ ÇöÀç µµ½Ã Ãß°¡ÇÏ°í ÀúÀå
+				new_path.push_back(i);					// ê²½ë¡œì— í˜„ì¬ ë„ì‹œ ì¶”ê°€í•˜ê³  ì €ì¥
 
 				int new_sum = info.sum + graph[cur][i];
 				visited_sum[i] = new_sum;
@@ -59,8 +59,8 @@ int main()
 	for (int i = 0; i < m; i++) {
 		if (!scanf("%d %d %d", &start, &end, &cost))
 			return 1;
-		if (graph[start][end] == -1 || graph[start][end] > cost)	// µÎ Á¤Á¡ »çÀÌ ¿©·¯ °£¼±ÀÌ Á¸Àç °¡´É! -> µÎ Á¤Á¡ »çÀÌ °£¼± À¯ÀÏÇÑÁö È®ÀÎ!
-			graph[start][end] = cost;								// ¿©·¯ °£¼± Áß °¡Àå °¡ÁßÄ¡°¡ ÀÛÀº °Í ¼±ÅÃ
+		if (graph[start][end] == -1 || graph[start][end] > cost)	// ë‘ ì •ì  ì‚¬ì´ ì—¬ëŸ¬ ê°„ì„ ì´ ì¡´ì¬ ê°€ëŠ¥! -> ë‘ ì •ì  ì‚¬ì´ ê°„ì„  ìœ ì¼í•œì§€ í™•ì¸!
+			graph[start][end] = cost;								// ì—¬ëŸ¬ ê°„ì„  ì¤‘ ê°€ì¥ ê°€ì¤‘ì¹˜ê°€ ì‘ì€ ê²ƒ ì„ íƒ
 	}
 	if (!scanf("%d %d", &Start, &End))
 		return 1;

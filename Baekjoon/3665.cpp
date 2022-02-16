@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <set>
@@ -19,7 +19,7 @@ void Solve()
 
 	while (!q.empty()) {
 		if (q.size() > 1) {
-			cout << "?\n";				// Å¥¿¡ µÑ ÀÌ»óÀÇ ³ëµå°¡ Á¸ÀçÇÑ´Ù¸é Á¤È®ÇÑ ¼øÀ§ ¸Þ±æ ¼ö ¾øÀ½
+			cout << "?\n";				// íì— ë‘˜ ì´ìƒì˜ ë…¸ë“œê°€ ì¡´ìž¬í•œë‹¤ë©´ ì •í™•í•œ ìˆœìœ„ ë©”ê¸¸ ìˆ˜ ì—†ìŒ
 			return;
 		}
 		int cur = q.front();
@@ -33,7 +33,7 @@ void Solve()
 		}
 	}
 	if (ans.size() != n)
-		cout << "IMPOSSIBLE";			// »çÀÌÅ¬ÀÌ Á¸ÀçÇÏ¿© ¸ðµç Á¤Á¡ÀÌ Á¤·ÄµÇÁö ¸øÇß´Ù¸é impossible
+		cout << "IMPOSSIBLE";			// ì‚¬ì´í´ì´ ì¡´ìž¬í•˜ì—¬ ëª¨ë“  ì •ì ì´ ì •ë ¬ë˜ì§€ ëª»í–ˆë‹¤ë©´ impossible
 	else
 		for (int i : ans)
 			cout << i << " ";
@@ -49,13 +49,13 @@ int main()
 		for (int i = 0; i < n; i++)
 			cin >> team[i];
 		for (int i = 0; i < n - 1; i++)
-			for (int j = i + 1; j < n; j++) {			// °£¼±À» ÃÑ nC2(== n*(n - 1)/2)°³ ±¸¼ºÇØ¾ß ÇÔ!
+			for (int j = i + 1; j < n; j++) {			// ê°„ì„ ì„ ì´ nC2(== n*(n - 1)/2)ê°œ êµ¬ì„±í•´ì•¼ í•¨!
 				graph[team[i]].insert(team[j]);
 				indegree[team[j]]++;
 			}
 
 		cin >> m;
-		for (int i = 0; i < m; i++) {					// ¿ì¼±¼øÀ§°¡ ¹Ù²ï °£¼± ¾÷µ¥ÀÌÆ®
+		for (int i = 0; i < m; i++) {					// ìš°ì„ ìˆœìœ„ê°€ ë°”ë€ ê°„ì„  ì—…ë°ì´íŠ¸
 			cin >> a >> b;
 			if (graph[a].count(b)) {
 				graph[a].erase(b);

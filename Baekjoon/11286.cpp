@@ -1,13 +1,13 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <cmath>
 using namespace std;
 
 struct cmp {
-	bool operator()(const int& left, const int& right) const {		// ¿¬»êÀÚ ¿À¹ö·Îµù
+	bool operator()(const int& left, const int& right) const {		// ì—°ì‚°ìž ì˜¤ë²„ë¡œë”©
 		if (abs(left) > abs(right))
 			return true;
-		else if (abs(left) < abs(right))							// Àý´ñ°ª ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏµµ·Ï ÇÔ
+		else if (abs(left) < abs(right))							// ì ˆëŒ“ê°’ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•˜ë„ë¡ í•¨
 			return false;
 		return left > right;
 	}

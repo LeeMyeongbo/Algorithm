@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <set>
@@ -15,7 +15,7 @@ bool BFS()
 
 	v[1] = true;
 	q.push(1);
-	if (visited[n++] != 1)						// ½ÃÀÛÁ¤Á¡Àº ¹«Àû±Ç 1
+	if (visited[n++] != 1)						// ì‹œì‘ì •ì ì€ ë¬´ì ê¶Œ 1
 		return false;
 
 	while (!q.empty()) {
@@ -26,12 +26,12 @@ bool BFS()
 		for (int i : graph[cur])
 			if (!v[i]) {
 				v[i] = true;
-				orders.insert(i);				// ÀÏ´Ü ÇöÀç Á¤Á¡°ú ¿¬°áµÇ¾î ÀÖ´Â Á¤Á¡µé ¸ğµÎ set¿¡´Ù°¡ ÀÓ½Ã ÀúÀå
+				orders.insert(i);				// ì¼ë‹¨ í˜„ì¬ ì •ì ê³¼ ì—°ê²°ë˜ì–´ ìˆëŠ” ì •ì ë“¤ ëª¨ë‘ setì—ë‹¤ê°€ ì„ì‹œ ì €ì¥
 			}
 		
 		for (int i = n; i < n + orders.size(); i++) {
-			if (orders.count(visited[i]))		// ÀÔ·Â¹ŞÀº BFS ¹æ¹®¼ø¼­¿¡¼­ setÅ©±â¸¸Å­ »ìÇÇ¸ç ½ÇÁ¦·Î set¿¡ µé¾îÀÖÀ¸¸é
-				q.push(visited[i]);				// ±× ¶§ Å¥¿¡ »ğÀÔ!
+			if (orders.count(visited[i]))		// ì…ë ¥ë°›ì€ BFS ë°©ë¬¸ìˆœì„œì—ì„œ setí¬ê¸°ë§Œí¼ ì‚´í”¼ë©° ì‹¤ì œë¡œ setì— ë“¤ì–´ìˆìœ¼ë©´
+				q.push(visited[i]);				// ê·¸ ë•Œ íì— ì‚½ì…!
 			else
 				return false;
 		}

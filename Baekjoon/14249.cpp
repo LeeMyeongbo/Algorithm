@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
@@ -10,7 +10,7 @@ bool complete[100001];
 vector<int> graph[100001], scc_graph[100001];
 stack<int> s;
 
-int dfs(int cur)					// °¢ Á¤Á¡¸¶´Ù dfs µ¹¸®¸ç scc Å½»ö
+int dfs(int cur)					// ê° ì •ì ë§ˆë‹¤ dfs ëŒë¦¬ë©° scc íƒìƒ‰
 {
 	seq[cur] = ++order;
 	int p = order;
@@ -50,7 +50,7 @@ int solve()
 
 	dij[sccid[start]] = scc_size[sccid[start]];
 	q.push({ dij[sccid[start]], sccid[start] });
-	while (!q.empty()) {								// ¿ª(?) ´ÙÀÍ½ºÆ®¶ó ¹æ½ÄÀ¸·Î ÃÖ´ñ°ªÀ» °»½ÅÇØ ³ª°¨
+	while (!q.empty()) {								// ì—­(?) ë‹¤ìµìŠ¤íŠ¸ë¼ ë°©ì‹ìœ¼ë¡œ ìµœëŒ“ê°’ì„ ê°±ì‹ í•´ ë‚˜ê°
 		int cur_scc = q.top().second;
 		int sum = q.top().first;
 		ans = max(ans, sum);

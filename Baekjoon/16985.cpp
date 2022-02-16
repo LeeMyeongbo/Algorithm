@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstring>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,12 +6,12 @@
 using namespace std;
 
 struct Node {
-	int l, r, c, move;							// °¢°¢ Ãş, Çà, ¿­, ¿òÁ÷ÀÎ È½¼ö
+	int l, r, c, move;							// ê°ê° ì¸µ, í–‰, ì—´, ì›€ì§ì¸ íšŸìˆ˜
 };
 int map[VAL][VAL][VAL], src[VAL][VAL][VAL], Ans = -1;
 const int dl[] = { 0, 0, 0, 0, 1, -1 }, dr[] = { 0, 0, 1, -1, 0, 0 }, dc[] = { 1, -1, 0, 0, 0, 0 };
 
-bool Rotate(int layer)							// (VAL - 1 - j, i)¿¡ ÀÖ´ø °ÍÀÌ (i, j)·Î ÀÌµ¿
+bool Rotate(int layer)							// (VAL - 1 - j, i)ì— ìˆë˜ ê²ƒì´ (i, j)ë¡œ ì´ë™
 {
 	bool is_Same = true;
 	int tmp[VAL][VAL], tmp2[VAL][VAL];
@@ -32,7 +32,7 @@ bool Rotate(int layer)							// (VAL - 1 - j, i)¿¡ ÀÖ´ø °ÍÀÌ (i, j)·Î ÀÌµ¿
 
 int BFS()										
 {
-	if (!map[0][0][0])							// ¾îÂ÷ÇÇ È¸ÀüÇÏ¹Ç·Î (0, 0, 0)¿¡¼­ (4, 4, 4)·Î °¡´Â °Í¸¸ È®ÀÎÇØµµ ¹«¹æ
+	if (!map[0][0][0])							// ì–´ì°¨í”¼ íšŒì „í•˜ë¯€ë¡œ (0, 0, 0)ì—ì„œ (4, 4, 4)ë¡œ ê°€ëŠ” ê²ƒë§Œ í™•ì¸í•´ë„ ë¬´ë°©
 		return -1;
 
 	queue<Node> q;
@@ -70,7 +70,7 @@ void DFS(int layer)
 	}
 	for (int r = 1; r <= 4; r++) {
 		DFS(layer + 1);
-		if (Rotate(layer))					// ÇöÀç ÃşÀÇ È¸ÀüÇÑ ¸ğ¾çÀÌ È¸ÀüÇÏ±â ÀüÀÌ¶û ¶È°°À¸¸é ÇöÀç Ãş Á¾·á (°¡ÁöÄ¡±â)
+		if (Rotate(layer))					// í˜„ì¬ ì¸µì˜ íšŒì „í•œ ëª¨ì–‘ì´ íšŒì „í•˜ê¸° ì „ì´ë‘ ë˜‘ê°™ìœ¼ë©´ í˜„ì¬ ì¸µ ì¢…ë£Œ (ê°€ì§€ì¹˜ê¸°)
 			return;
 	}
 }

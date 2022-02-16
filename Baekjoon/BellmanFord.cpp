@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 1000000000
@@ -7,22 +7,22 @@ using namespace std;
 int TC, N, M, W, S, E, T, map[501][501];
 long long weight_sum[501];
 
-bool Bellman()				// ½ÃÀÛÁ¡ÀÌ 1¹ø Á¤Á¡ÀÌ¶ó °¡Á¤ (2¹ø, 3¹øÀ¸·Î µÖµµ µÊ. ´Ï¸¾ÀÓ ¤·¤·)
+bool Bellman()				// ì‹œì‘ì ì´ 1ë²ˆ ì •ì ì´ë¼ ê°€ì • (2ë²ˆ, 3ë²ˆìœ¼ë¡œ ë‘¬ë„ ë¨. ë‹ˆë§˜ì„ ã…‡ã…‡)
 {
 	fill(weight_sum, weight_sum + N + 1, MAX);
-	weight_sum[1] = 0;		// ½ÃÀÛÁ¡Àº 0À¸·Î ÇÏ°í ½ÃÀÛ
-												// edge relaxation °úÁ¤
-	for (int i = 0; i < N - 1; i++)				// start¿Í end »çÀÌ °£¼± Á¸Àç ½Ã end Á¤Á¡ÀÇ °¡ÁßÄ¡ ÇÕ ÃÖ¼Ú°ªÀ¸·Î °»½Å => N - 1¹ø ¹İº¹
+	weight_sum[1] = 0;		// ì‹œì‘ì ì€ 0ìœ¼ë¡œ í•˜ê³  ì‹œì‘
+												// edge relaxation ê³¼ì •
+	for (int i = 0; i < N - 1; i++)				// startì™€ end ì‚¬ì´ ê°„ì„  ì¡´ì¬ ì‹œ end ì •ì ì˜ ê°€ì¤‘ì¹˜ í•© ìµœì†Ÿê°’ìœ¼ë¡œ ê°±ì‹  => N - 1ë²ˆ ë°˜ë³µ
 		for (int start = 1; start <= N; start++)
 			for (int end = 1; end <= N; end++)	
 				if (map[start][end] != MAX && weight_sum[start] != MAX)
 					weight_sum[end] = min(weight_sum[end], weight_sum[start] + map[start][end]);
 	
-	for(int start = 1; start <= N; start++)		// ¸¶Áö¸· N¹øÂ°¿¡ end Á¤Á¡ÀÇ °¡ÁßÄ¡ ÇÕ ÃÖ¼Ò·Î °»½ÅÇØ º½
+	for(int start = 1; start <= N; start++)		// ë§ˆì§€ë§‰ Në²ˆì§¸ì— end ì •ì ì˜ ê°€ì¤‘ì¹˜ í•© ìµœì†Œë¡œ ê°±ì‹ í•´ ë´„
 		for (int end = 1; end <= N; end++) {
 			if (map[start][end] != MAX) {
 				long long Min = min(weight_sum[end], weight_sum[start] + map[start][end]);
-				if (Min != weight_sum[end])		// end Á¤Á¡ÀÇ °¡ÁßÄ¡ ÇÕ ÃÖ¼Ú°ªÀÌ ¶Ç °»½ÅµÉ °æ¿ì ÇØ´ç end Á¤Á¡Àº »çÀÌÅ¬¿¡ Æ÷ÇÔ
+				if (Min != weight_sum[end])		// end ì •ì ì˜ ê°€ì¤‘ì¹˜ í•© ìµœì†Ÿê°’ì´ ë˜ ê°±ì‹ ë  ê²½ìš° í•´ë‹¹ end ì •ì ì€ ì‚¬ì´í´ì— í¬í•¨
 					return true;
 			}
 		}

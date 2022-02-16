@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
-int N, M, A[50][50], sd[100][2], Sum;		// sd[n][0] : ¹æÇâ, sd[n][1] : ¿òÁ÷ÀÌ´Â È½¼ö
+int N, M, A[50][50], sd[100][2], Sum;		// sd[n][0] : ë°©í–¥, sd[n][1] : ì›€ì§ì´ëŠ” íšŸìˆ˜
 const int dr[] = { 0, 0, -1, -1, -1, 0, 1, 1, 1 }, dc[] = { 0, -1, -1, 0, 1, 1, 1, 0, -1 };
-bool pre_move[50][50], post_move[50][50];	// pre_move : ±¸¸§ ÀÌµ¿ Àü, post_move : ±¸¸§ ÀÌµ¿ ÈÄ
+bool pre_move[50][50], post_move[50][50];	// pre_move : êµ¬ë¦„ ì´ë™ ì „, post_move : êµ¬ë¦„ ì´ë™ í›„
 
 int Solve()
 {
@@ -12,9 +12,9 @@ int Solve()
 	for (int i = 0; i < M; i++) {
 		for (int r = 0; r < N; r++)
 			for (int c = 0; c < N; c++)
-				post_move[r][c] = false;		// ÀÏ´Ü ±¸¸§ ÀÌµ¿ ÈÄ »óÅÂ¸¦ false·Î ½Ï ÃÊ±âÈ­ÇØÁÜ
+				post_move[r][c] = false;		// ì¼ë‹¨ êµ¬ë¦„ ì´ë™ í›„ ìƒíƒœë¥¼ falseë¡œ ì‹¹ ì´ˆê¸°í™”í•´ì¤Œ
 
-		for (int r = 0; r < N; r++) {			// ±¸¸§ ÀÌµ¿
+		for (int r = 0; r < N; r++) {			// êµ¬ë¦„ ì´ë™
 			for (int c = 0; c < N; c++) {
 				if (!pre_move[r][c])
 					continue;
@@ -32,7 +32,7 @@ int Solve()
 			}
 		}
 
-		for (int r = 0; r < N; r++) {			// ¹° º¹»ç ¹ö1±×
+		for (int r = 0; r < N; r++) {			// ë¬¼ ë³µì‚¬ ë²„1ê·¸
 			for (int c = 0; c < N; c++) {
 				if (!post_move[r][c])
 					continue;
@@ -45,9 +45,9 @@ int Solve()
 			}
 		}
 
-		for (int r = 0; r < N; r++) {			// ±¸¸§ »ı±è(pre_move¿¡ »ı±â°Ô ÇØ¾ß ÇÔ)
+		for (int r = 0; r < N; r++) {			// êµ¬ë¦„ ìƒê¹€(pre_moveì— ìƒê¸°ê²Œ í•´ì•¼ í•¨)
 			for (int c = 0; c < N; c++) {
-				if (!post_move[r][c] && A[r][c] > 1) {	// ±¸¸§ ÀÖ´ø ÀÚ¸®°¡ ¾Æ´Ï°í ¹° ¾çÀÌ 2 ÀÌ»óÀÏ ¶§
+				if (!post_move[r][c] && A[r][c] > 1) {	// êµ¬ë¦„ ìˆë˜ ìë¦¬ê°€ ì•„ë‹ˆê³  ë¬¼ ì–‘ì´ 2 ì´ìƒì¼ ë•Œ
 					A[r][c] -= 2;
 					pre_move[r][c] = true;
 				}

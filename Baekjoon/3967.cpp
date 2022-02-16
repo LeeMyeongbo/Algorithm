@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 char map[5][10];

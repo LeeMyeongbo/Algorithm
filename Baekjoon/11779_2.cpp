@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -7,9 +7,9 @@ using namespace std;
 
 int n, m, graph[1001][1001], pre[1001], Start, End, visited_sum[1001];
 vector<int> ans;
-priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;		// ¿ì¼±¼øÀ§ Å¥·Î ÇÕÀÌ °¡Àå ³·Àº °ÍºÎÅÍ ²¨³¿
+priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;		// ìš°ì„ ìˆœìœ„ íë¡œ í•©ì´ ê°€ì¥ ë‚®ì€ ê²ƒë¶€í„° êº¼ëƒ„
 
-void Backtrack(int n)										// µµÂøÁö·ÎºÎÅÍ °æ·Î ¿ªÃßÀû
+void Backtrack(int n)										// ë„ì°©ì§€ë¡œë¶€í„° ê²½ë¡œ ì—­ì¶”ì 
 {
 	ans.push_back(n);
 	if (n == Start)
@@ -30,8 +30,8 @@ void Solve()
 			continue;
 		for (int i = 1; i <= n; i++)
 			if (graph[cur][i] > -1 && (visited_sum[i] == -1 || visited_sum[i] > sum + graph[cur][i])) {
-				pre[i] = cur;								// iÀÇ ÀÌÀü Á¤Á¡ÀÌ curÀÌ´Ù´Â ÀÇ¹Ì
-				visited_sum[i] = sum + graph[cur][i];		// ÃÖ¼Ò ÇÕ°è °»½Å
+				pre[i] = cur;								// iì˜ ì´ì „ ì •ì ì´ curì´ë‹¤ëŠ” ì˜ë¯¸
+				visited_sum[i] = sum + graph[cur][i];		// ìµœì†Œ í•©ê³„ ê°±ì‹ 
 				q.push({ visited_sum[i], i });
 			}
 	}
@@ -55,8 +55,8 @@ int main()
 	for (int i = 0; i < m; i++) {
 		if (!scanf("%d %d %d", &start, &end, &cost))
 			return 1;
-		if (graph[start][end] == -1 || graph[start][end] > cost)	// µÎ Á¤Á¡ »çÀÌ ¿©·¯ °£¼±ÀÌ Á¸Àç °¡´É! -> µÎ Á¤Á¡ »çÀÌ °£¼± À¯ÀÏÇÑÁö È®ÀÎ!
-			graph[start][end] = cost;								// ¿©·¯ °£¼± Áß °¡Àå °¡ÁßÄ¡°¡ ÀÛÀº °Í ¼±ÅÃ
+		if (graph[start][end] == -1 || graph[start][end] > cost)	// ë‘ ì •ì  ì‚¬ì´ ì—¬ëŸ¬ ê°„ì„ ì´ ì¡´ì¬ ê°€ëŠ¥! -> ë‘ ì •ì  ì‚¬ì´ ê°„ì„  ìœ ì¼í•œì§€ í™•ì¸!
+			graph[start][end] = cost;								// ì—¬ëŸ¬ ê°„ì„  ì¤‘ ê°€ì¥ ê°€ì¤‘ì¹˜ê°€ ì‘ì€ ê²ƒ ì„ íƒ
 	}
 	if (!scanf("%d %d", &Start, &End))
 		return 1;

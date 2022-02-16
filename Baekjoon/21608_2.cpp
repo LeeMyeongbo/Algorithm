@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -23,38 +23,38 @@ int main()
 		cin >> student;
 		cin >> like[student][0] >> like[student][1] >> like[student][2] >> like[student][3];
 
-		vector<pair<pair<int, int>, pair<int, int>>> info;			// ((ÁÁ¾ÆÇÏ´Â ÇĞ»ı ¼ö, ºó Ä­ ¼ö), (Çà, ¿­))
+		vector<pair<pair<int, int>, pair<int, int>>> info;			// ((ì¢‹ì•„í•˜ëŠ” í•™ìƒ ìˆ˜, ë¹ˆ ì¹¸ ìˆ˜), (í–‰, ì—´))
 		for (int r = 1; r <= N; r++) {
 			for (int c = 1; c <= N; c++) {
-				if (map[r][c])										// ÀÌ¹Ì ´©±º°¡ ¾É¾ÒÀ¸¸é skip
+				if (map[r][c])										// ì´ë¯¸ ëˆ„êµ°ê°€ ì•‰ì•˜ìœ¼ë©´ skip
 					continue;
 
 				int st = 0, e = 0;
 				for (int dir = 0; dir < 4; dir++) {
 					int R = r + dr[dir];
 					int C = c + dc[dir];
-					if (R >= 1 && R <= N && C >= 1 && C <= N) {		// µ¿¼­³²ºÏ 4¹æÇâÀ¸·Î »ìÇÇ¸ç
+					if (R >= 1 && R <= N && C >= 1 && C <= N) {		// ë™ì„œë‚¨ë¶ 4ë°©í–¥ìœ¼ë¡œ ì‚´í”¼ë©°
 						for (int s = 0; s < 4; s++)
-							if (like[student][s] == map[R][C])		// °¢ Ä­¸¶´Ù ÀÎÁ¢ÇÑ ÁÁ¾ÆÇÏ´Â ÇĞ»ı ¼ö Çì¾Æ¸²
+							if (like[student][s] == map[R][C])		// ê° ì¹¸ë§ˆë‹¤ ì¸ì ‘í•œ ì¢‹ì•„í•˜ëŠ” í•™ìƒ ìˆ˜ í—¤ì•„ë¦¼
 								st++;
-						if (!map[R][C])								// °¢ Ä­¸¶´Ù ºó Ä­ ¼ö Çì¾Æ¸²
+						if (!map[R][C])								// ê° ì¹¸ë§ˆë‹¤ ë¹ˆ ì¹¸ ìˆ˜ í—¤ì•„ë¦¼
 							e++;
 					}
 				}
 				info.push_back({ {st, e}, {r, c} });
 			}
 		}
-		sort(info.begin(), info.end(), compare);			// ¸ÕÀú (ÇĞ»ı ¼ö, ºóÄ­ ¼ö)¿¡ ´ëÇØ¼­ ³»¸²Â÷¼ø Á¤·Ä
+		sort(info.begin(), info.end(), compare);			// ë¨¼ì € (í•™ìƒ ìˆ˜, ë¹ˆì¹¸ ìˆ˜)ì— ëŒ€í•´ì„œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 		
 		vector<pair<int, int>> rest;
 		rest.push_back(info[0].second);
 		for (int k = 1; k < (int)info.size(); k++) {
-			if (info[k].first == info[0].first)				// ÇĞ»ı ¼ö¿Í ºóÄ­ ¼ö ¸ğµÎ °°´Ù¸é (Çà, ¿­) ÀúÀå
+			if (info[k].first == info[0].first)				// í•™ìƒ ìˆ˜ì™€ ë¹ˆì¹¸ ìˆ˜ ëª¨ë‘ ê°™ë‹¤ë©´ (í–‰, ì—´) ì €ì¥
 				rest.push_back(info[k].second);
 			else
 				break;
 		}
-		sort(rest.begin(), rest.end());						// (Çà, ¿­) ¿À¸§Â÷¼ø Á¤·Ä
+		sort(rest.begin(), rest.end());						// (í–‰, ì—´) ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 
 		map[rest[0].first][rest[0].second] = student;
 	}

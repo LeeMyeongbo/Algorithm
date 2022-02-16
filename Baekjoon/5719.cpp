@@ -1,14 +1,14 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define MAX 1000000000
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, S, D, U, V, P, di[500];				// di[i] : S¿¡¼­ i¹ø Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸®
-vector<pair<int, int>> graph[500], pre[500];	// pre[i] : i¹ø Á¤Á¡ ÀÌÀü¿¡ °ÅÄ£ Á¤Á¡µéÀ» (°¡ÁßÄ¡, ¿¬°áµÈ Á¤Á¡)·Î ÀúÀå
-priority_queue<pair<int, int>> pq;				// (ÃÖ´Ü °Å¸®, Çö À§Ä¡)
-bool deleted_edge[500][500];					// ¸¸¾à Á¤Á¡ i¿¡¼­ Á¤Á¡ j·Î °¡´Â °£¼±ÀÌ Áö¿öÁö¸é [i][j] = true·Î µÊ
+int N, M, S, D, U, V, P, di[500];				// di[i] : Sì—ì„œ ië²ˆ ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬
+vector<pair<int, int>> graph[500], pre[500];	// pre[i] : ië²ˆ ì •ì  ì´ì „ì— ê±°ì¹œ ì •ì ë“¤ì„ (ê°€ì¤‘ì¹˜, ì—°ê²°ëœ ì •ì )ë¡œ ì €ì¥
+priority_queue<pair<int, int>> pq;				// (ìµœë‹¨ ê±°ë¦¬, í˜„ ìœ„ì¹˜)
+bool deleted_edge[500][500];					// ë§Œì•½ ì •ì  iì—ì„œ ì •ì  jë¡œ ê°€ëŠ” ê°„ì„ ì´ ì§€ì›Œì§€ë©´ [i][j] = trueë¡œ ë¨
 
 void Dijkstra()
 {
@@ -25,15 +25,15 @@ void Dijkstra()
 			continue;
 
 		for (auto p : graph[cur]) {
-			if (!deleted_edge[cur][p.second] && di[p.second] >= di[cur] + p.first) {	// Áö¿öÁø °£¼±ÀÌ ¾Æ´Ï¸é¼­ °¥ ¼ö ÀÖÀ» °æ¿ì
-				if (di[p.second] > di[cur] + p.first) {									// ÃÖ´Ü °Å¸® °»½Å
+			if (!deleted_edge[cur][p.second] && di[p.second] >= di[cur] + p.first) {	// ì§€ì›Œì§„ ê°„ì„ ì´ ì•„ë‹ˆë©´ì„œ ê°ˆ ìˆ˜ ìˆì„ ê²½ìš°
+				if (di[p.second] > di[cur] + p.first) {									// ìµœë‹¨ ê±°ë¦¬ ê°±ì‹ 
 					di[p.second] = di[cur] + p.first;
 					pq.push({ -di[p.second], p.second });
 				}
-				// Ã³À½ ¹æ¹®ÇÏ´Â Á¤Á¡ÀÌ°Å³ª ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖ´Â ÃÖ´Ü °Å¸®¶û °°À» °æ¿ì¿£ ±×´ë·Î Ãß°¡
+				// ì²˜ìŒ ë°©ë¬¸í•˜ëŠ” ì •ì ì´ê±°ë‚˜ ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆëŠ” ìµœë‹¨ ê±°ë¦¬ë‘ ê°™ì„ ê²½ìš°ì—” ê·¸ëŒ€ë¡œ ì¶”ê°€
 				if (pre[p.second].empty() || pre[p.second][0].first == di[p.second])
 					pre[p.second].push_back({ di[p.second], cur });
-				// ´õ ÀÛÀº ÃÖ´Ü °Å¸®·Î °»½ÅµÇ¸é ±âÁ¸¿¡ ÀúÀåµÈ °ÍµéÀº ¸ğµÎ Á¦°ÅÇÏ°í »õ·Ó°Ô °»½ÅµÈ ÃÖ´Ü °Å¸® ¹× ÀÌÀü Á¤Á¡ ÀúÀå
+				// ë” ì‘ì€ ìµœë‹¨ ê±°ë¦¬ë¡œ ê°±ì‹ ë˜ë©´ ê¸°ì¡´ì— ì €ì¥ëœ ê²ƒë“¤ì€ ëª¨ë‘ ì œê±°í•˜ê³  ìƒˆë¡­ê²Œ ê°±ì‹ ëœ ìµœë‹¨ ê±°ë¦¬ ë° ì´ì „ ì •ì  ì €ì¥
 				else if (pre[p.second][0].first > di[p.second]) {
 					pre[p.second].clear();
 					pre[p.second].push_back({ di[p.second], cur });
@@ -46,7 +46,7 @@ void Dijkstra()
 void Delete_Edges(int now)
 {
 	for (auto e : pre[now]) {
-		if (!deleted_edge[e.second][now]) {			// Áßº¹ ¹æ¹® ¹æÁö!! (Ç×»ó Áß¿ä! °£°úÇÏÁö ¸»±â)
+		if (!deleted_edge[e.second][now]) {			// ì¤‘ë³µ ë°©ë¬¸ ë°©ì§€!! (í•­ìƒ ì¤‘ìš”! ê°„ê³¼í•˜ì§€ ë§ê¸°)
 			deleted_edge[e.second][now] = true;
 			Delete_Edges(e.second);
 		}
@@ -55,16 +55,16 @@ void Delete_Edges(int now)
 
 int Solve()
 {
-	Dijkstra();					// Ãâ¹ßÁö¿¡¼­ºÎÅÍ ÃÖ´Ü °æ·Î ¸ğµÎ ±¸ÇÏ°í
+	Dijkstra();					// ì¶œë°œì§€ì—ì„œë¶€í„° ìµœë‹¨ ê²½ë¡œ ëª¨ë‘ êµ¬í•˜ê³ 
 	if (di[D] == MAX)
 		return -1;
 
-	Delete_Edges(D);			// ÃÖ´Ü °æ·Îµé ¸ğµÎ Áö¿öÁØ´Ù
+	Delete_Edges(D);			// ìµœë‹¨ ê²½ë¡œë“¤ ëª¨ë‘ ì§€ì›Œì¤€ë‹¤
 
 	for (int i = 0; i < N; i++)
 		pre[i].clear();
 
-	Dijkstra();					// ±×¸®°í Áö¿î °£¼±µé Á¦¿ÜÇÏ°í ³ª¸ÓÁö °£¼±µé·Î ´Ù½Ã ÇÑ ¹ø ÃÖ´Ü °æ·Î ±¸ÇÔ
+	Dijkstra();					// ê·¸ë¦¬ê³  ì§€ìš´ ê°„ì„ ë“¤ ì œì™¸í•˜ê³  ë‚˜ë¨¸ì§€ ê°„ì„ ë“¤ë¡œ ë‹¤ì‹œ í•œ ë²ˆ ìµœë‹¨ ê²½ë¡œ êµ¬í•¨
 	if (di[D] == MAX)
 		return -1;
 	return di[D];

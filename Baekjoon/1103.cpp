@@ -1,16 +1,16 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <algorithm>
-using namespace std;		// Æ¯Á¤ Ä­¿¡¼­ ¿òÁ÷ÀÎ È½¼öÀÇ ÃÖ´ñ°ªÀ» ÇÑ¹ø ±¸ÇÏ¸é ÀÌÈÄ¿¡ ¶È°°Àº Ä­¿¡ ´Ù½Ã ¿ÔÀ» ¶§ ¶Ç ÀÏÀÏÀÌ ±¸ÇÒ ÇÊ¿ä°¡ ¾øÀ½À» ÀÌ¿ë(DP)
+using namespace std;		// íŠ¹ì • ì¹¸ì—ì„œ ì›€ì§ì¸ íšŸìˆ˜ì˜ ìµœëŒ“ê°’ì„ í•œë²ˆ êµ¬í•˜ë©´ ì´í›„ì— ë˜‘ê°™ì€ ì¹¸ì— ë‹¤ì‹œ ì™”ì„ ë•Œ ë˜ ì¼ì¼ì´ êµ¬í•  í•„ìš”ê°€ ì—†ìŒì„ ì´ìš©(DP)
 
-int N, M, Max_move[4][50][50];		// Max_move : ÇØ´ç Ä­¿¡ ¹æÇâ º°·Î ÃÖ´ëÇÑ ¿òÁ÷ÀÏ ¼ö ÀÖ´Â È½¼ö¸¦ ÀúÀåÇØ¼­ °¡ÁöÄ¡±â¿¡ È°¿ë!
-const int dr[] = { 0, 1, 0, -1 }, dc[] = { 1, 0, -1, 0 };			// µ¿ ³² ¼­ ºÏ ¼øÀ¸·Î ¿òÁ÷ÀÓ
+int N, M, Max_move[4][50][50];		// Max_move : í•´ë‹¹ ì¹¸ì— ë°©í–¥ ë³„ë¡œ ìµœëŒ€í•œ ì›€ì§ì¼ ìˆ˜ ìžˆëŠ” íšŸìˆ˜ë¥¼ ì €ìž¥í•´ì„œ ê°€ì§€ì¹˜ê¸°ì— í™œìš©!
+const int dr[] = { 0, 1, 0, -1 }, dc[] = { 1, 0, -1, 0 };			// ë™ ë‚¨ ì„œ ë¶ ìˆœìœ¼ë¡œ ì›€ì§ìž„
 char map[50][51];
-bool visited[4][50][50];			// »çÀÌÅ¬ÀÌ Á¸ÀçÇÏ´Â Áö È®ÀÎÇÏ±â À§ÇÔ
+bool visited[4][50][50];			// ì‚¬ì´í´ì´ ì¡´ìž¬í•˜ëŠ” ì§€ í™•ì¸í•˜ê¸° ìœ„í•¨
 
 int dfs(int r, int c, int move)
 {
-	if (r < 0 || r >= N || c < 0 || c >= M || map[r][c] == 'H')		// ¹üÀ§¸¦ ¹þ¾î³ª°Å³ª ±¸¸Û¿¡ ´Ù´Ù¸£¸é ¹Ù·Î 0 ¸®ÅÏ
+	if (r < 0 || r >= N || c < 0 || c >= M || map[r][c] == 'H')		// ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ê±°ë‚˜ êµ¬ë©ì— ë‹¤ë‹¤ë¥´ë©´ ë°”ë¡œ 0 ë¦¬í„´
 		return 0;
 
 	for (int d = 0; d < 4; d++) {
@@ -20,16 +20,16 @@ int dfs(int r, int c, int move)
 		if (!visited[d][r][c]) {
 			visited[d][r][c] = true;
 			if (!Max_move[d][r][c])
-				Max_move[d][r][c] = max(Max_move[d][r][c], dfs(R, C, move + 1) + 1);	// ¹æÇâ º°·Î ¿òÁ÷ÀÏ ¼ö ÀÖ´Â ÃÖ´ë È½¼ö °»½Å
+				Max_move[d][r][c] = max(Max_move[d][r][c], dfs(R, C, move + 1) + 1);	// ë°©í–¥ ë³„ë¡œ ì›€ì§ì¼ ìˆ˜ ìžˆëŠ” ìµœëŒ€ íšŸìˆ˜ ê°±ì‹ 
 			visited[d][r][c] = false;
 		}
-		else {						// ÀÌ¹Ì ¹æ¹®ÇÑ °÷ ¶Ç ¹æ¹®ÇÏ¸é »çÀÌÅ¬ÀÌ Çü¼º!
+		else {						// ì´ë¯¸ ë°©ë¬¸í•œ ê³³ ë˜ ë°©ë¬¸í•˜ë©´ ì‚¬ì´í´ì´ í˜•ì„±!
 			printf("-1");
 			exit(0);
 		}
 	}
 	
-	return max(max(Max_move[0][r][c], Max_move[1][r][c]), max(Max_move[2][r][c], Max_move[3][r][c]));	// µ¿ ³² ¼­ ºÏ ¹æÇâ Áß ÃÖ´ñ°ª
+	return max(max(Max_move[0][r][c], Max_move[1][r][c]), max(Max_move[2][r][c], Max_move[3][r][c]));	// ë™ ë‚¨ ì„œ ë¶ ë°©í–¥ ì¤‘ ìµœëŒ“ê°’
 }
 
 int main()

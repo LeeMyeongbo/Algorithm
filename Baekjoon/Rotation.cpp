@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -16,7 +16,7 @@ void rotation_test()
 {
 	cout << "anticlock_wise\n\n";
 	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {					// ¢× : N-1¿¡¼­ »©±â, ¢Ù : ±×´ë·Î
+		for (int j = 0; j < N; j++) {					// â†™ : N-1ì—ì„œ ë¹¼ê¸°, â†˜ : ê·¸ëŒ€ë¡œ
 			B[0][i][j] = A[i][j];
 			B[1][N - 1 - j][i] = A[i][j];
 			B[2][N - 1 - i][N - 1 - j] = A[i][j];
@@ -24,7 +24,7 @@ void rotation_test()
 		}
 	}
 	for (int k = 0; k < 4; k++) {
-		cout << k * 90 << "µµ È¸Àü\n";
+		cout << k * 90 << "ë„ íšŒì „\n";
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++)
 				cout << B[k][r][c] << " ";
@@ -35,7 +35,7 @@ void rotation_test()
 
 	cout << "clock_wise\n\n";
 	for (int i = 0; i < N; i++) {
-		for (int j = 0; j < N; j++) {					// ¢× : ±×´ë·Î, ¢Ù : N-1¿¡¼­ »©±â
+		for (int j = 0; j < N; j++) {					// â†™ : ê·¸ëŒ€ë¡œ, â†˜ : N-1ì—ì„œ ë¹¼ê¸°
 			B[0][i][j] = A[i][j];
 			B[1][j][N - 1 - i] = A[i][j];
 			B[2][N - 1 - i][N - 1 - j] = A[i][j];
@@ -43,7 +43,7 @@ void rotation_test()
 		}
 	}
 	for (int k = 0; k < 4; k++) {
-		cout << k * 90 << "µµ È¸Àü\n";
+		cout << k * 90 << "ë„ íšŒì „\n";
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++)
 				cout << B[k][r][c] << " ";

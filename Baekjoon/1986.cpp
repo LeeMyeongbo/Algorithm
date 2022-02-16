@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int n, m, queen, q[2][100], knight, k[2][100], pawn, p[2][100], ans;
 const int dr[][4] = { 0, 1, 0, -1, -1, 1, 1, -1 }, dc[][4] = { 1, 0, -1, 0, 1, 1, -1, -1 };
-char map[1000][1001];			// Äı, ³ªÀÌÆ®, Æù À§Ä¡ Ã¼Å©
-bool danger[1000][1000];		// À§ÇèÇÑ °÷ Ã¼Å©
+char map[1000][1001];			// í€¸, ë‚˜ì´íŠ¸, í° ìœ„ì¹˜ ì²´í¬
+bool danger[1000][1000];		// ìœ„í—˜í•œ ê³³ ì²´í¬
 
 void Solve()
 {
@@ -15,7 +15,7 @@ void Solve()
 			for (int d = 0; d < 4; d++) {
 				int R = q[0][i] + dr[c][d];
 				int C = q[1][i] + dc[c][d];
-				while (R >= 0 && R < n && C >= 0 && C < m && !map[R][C]) {		// 8¹æÇâÀ¸·Î ¿òÁ÷ÀÌ¸ç ºó Ä­ ÀÖÀ¸¸é ÃÖ´ëÇÑ Ç¥½Ã
+				while (R >= 0 && R < n && C >= 0 && C < m && !map[R][C]) {		// 8ë°©í–¥ìœ¼ë¡œ ì›€ì§ì´ë©° ë¹ˆ ì¹¸ ìˆìœ¼ë©´ ìµœëŒ€í•œ í‘œì‹œ
 					danger[R][C] = true;
 					R += dr[c][d], C += dc[c][d];
 				}
@@ -28,7 +28,7 @@ void Solve()
 			for (int d = c; d < c + 2; d++) {
 				int R = k[0][i] + dr[0][c] + dr[1][d % 4];
 				int C = k[1][i] + dc[0][c] + dc[1][d % 4];
-				if (R >= 0 && R < n && C >= 0 && C < m && !map[R][C])			// Àå¾Ö¹° °Ç³Ê¶Û ¼ö ÀÖ´Ù°í ÇßÀ¸´Ï ¹¹
+				if (R >= 0 && R < n && C >= 0 && C < m && !map[R][C])			// ì¥ì• ë¬¼ ê±´ë„ˆë›¸ ìˆ˜ ìˆë‹¤ê³  í–ˆìœ¼ë‹ˆ ë­
 					danger[R][C] = true;
 			}
 		}

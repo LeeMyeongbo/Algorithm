@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 using namespace std;
 
-int N, arr[1000000], ltr_gcd[1000000], rtl_gcd[1000000], none_k[1000000], Ans, Max;	// ltr_gcd : ¿ŞÂÊ¿¡¼­ºÎÅÍ ÁøÇàÇÑ gcd ÀúÀå
-																					// rtl_gcd : ¿À¸¥ÂÊ¿¡¼­ºÎÅÍ ÁøÇàÇÑ gcd ÀúÀå
-int gcd(int a, int b)																// none_k : k Á¦¿ÜÇÑ ³ª¸ÓÁö ¼öµéÀÇ gcd ÀúÀå
+int N, arr[1000000], ltr_gcd[1000000], rtl_gcd[1000000], none_k[1000000], Ans, Max;	// ltr_gcd : ì™¼ìª½ì—ì„œë¶€í„° ì§„í–‰í•œ gcd ì €ì¥
+																					// rtl_gcd : ì˜¤ë¥¸ìª½ì—ì„œë¶€í„° ì§„í–‰í•œ gcd ì €ì¥
+int gcd(int a, int b)																// none_k : k ì œì™¸í•œ ë‚˜ë¨¸ì§€ ìˆ˜ë“¤ì˜ gcd ì €ì¥
 {
 	int r = a % b;
 	if (r)
@@ -20,17 +20,17 @@ int main()
 	for (int i = 0; i < N; i++)
 		cin >> arr[i];
 	ltr_gcd[0] = arr[0];
-	rtl_gcd[N - 1] = arr[N - 1];				// ltr_gcdÀÇ ¸Ç ¿ŞÂÊ¿¡´Â Ã¹¹øÂ° ¼ö¸¦, rtl_gcdÀÇ ¸Ç ¿À¸¥ÂÊ¿¡´Â ¸¶Áö¸· ¹øÂ° ¼ö¸¦ ÀúÀå
+	rtl_gcd[N - 1] = arr[N - 1];				// ltr_gcdì˜ ë§¨ ì™¼ìª½ì—ëŠ” ì²«ë²ˆì§¸ ìˆ˜ë¥¼, rtl_gcdì˜ ë§¨ ì˜¤ë¥¸ìª½ì—ëŠ” ë§ˆì§€ë§‰ ë²ˆì§¸ ìˆ˜ë¥¼ ì €ì¥
 
 	for (int i = 1; i < N; i++) {
 		int a = max(arr[i], ltr_gcd[i - 1]);
 		int b = min(arr[i], ltr_gcd[i - 1]);
-		ltr_gcd[i] = gcd(a, b);					// ¿ŞÂÊ¿¡¼­ 2¹øÂ° ¼öºÎÅÍ ½ÃÀÛÇÏ¿© ¿À¸¥ÂÊÀ¸·Î ÁøÇàÇÏ¸é¼­ ´©Àû gcd ÁøÇà, ÀúÀå
+		ltr_gcd[i] = gcd(a, b);					// ì™¼ìª½ì—ì„œ 2ë²ˆì§¸ ìˆ˜ë¶€í„° ì‹œì‘í•˜ì—¬ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì§„í–‰í•˜ë©´ì„œ ëˆ„ì  gcd ì§„í–‰, ì €ì¥
 	}
 	for (int i = N - 2; i >= 0; i--) {
 		int a = max(arr[i], rtl_gcd[i + 1]);
 		int b = min(arr[i], rtl_gcd[i + 1]);
-		rtl_gcd[i] = gcd(a, b);					// ¿À¸¥ÂÊ¿¡¼­ 2¹øÂ° ¼öºÎÅÍ ½ÃÀÛÇÏ¿© ¿ŞÂÊÀ¸·Î ÁøÇàÇÏ¸é¼­ ´©Àû gcd ÁøÇà, ÀúÀå
+		rtl_gcd[i] = gcd(a, b);					// ì˜¤ë¥¸ìª½ì—ì„œ 2ë²ˆì§¸ ìˆ˜ë¶€í„° ì‹œì‘í•˜ì—¬ ì™¼ìª½ìœ¼ë¡œ ì§„í–‰í•˜ë©´ì„œ ëˆ„ì  gcd ì§„í–‰, ì €ì¥
 	}
 
 	none_k[0] = rtl_gcd[1];
@@ -39,17 +39,17 @@ int main()
 	for (int i = 1; i < N - 1; i++) {
 		int a = max(ltr_gcd[i - 1], rtl_gcd[i + 1]);
 		int b = min(ltr_gcd[i - 1], rtl_gcd[i + 1]);
-		none_k[i] = gcd(a, b);					// ³ª¸ÓÁö 2¹øÂ° ¼öºÎÅÍ N - 1¹øÂ° ¼öÀÇ none_k´Â ¿ŞÂÊ ltr_gcd¿Í ¿À¸¥ÂÊ rtl_gcdÀÇ gcdÀÓ!
+		none_k[i] = gcd(a, b);					// ë‚˜ë¨¸ì§€ 2ë²ˆì§¸ ìˆ˜ë¶€í„° N - 1ë²ˆì§¸ ìˆ˜ì˜ none_këŠ” ì™¼ìª½ ltr_gcdì™€ ì˜¤ë¥¸ìª½ rtl_gcdì˜ gcdì„!
 	}
 
 	for (int i = 0; i < N; i++) {
-		if (arr[i] % none_k[i] && none_k[i] > Max) {	// none_k°¡ ÇØ´ç kÀÇ ¾à¼ö°¡ ¾Æ´Ï¸é¼­ ÃÖ´ñ°ª °»½Å °¡´ÉÇÒ °æ¿ì
+		if (arr[i] % none_k[i] && none_k[i] > Max) {	// none_kê°€ í•´ë‹¹ kì˜ ì•½ìˆ˜ê°€ ì•„ë‹ˆë©´ì„œ ìµœëŒ“ê°’ ê°±ì‹  ê°€ëŠ¥í•  ê²½ìš°
 			Max = none_k[i];
 			Ans = arr[i];
 		}
 	}
 	if (!Ans)
-		cout << -1;								// Ans=0ÀÌ´Ù? -> ÇÑ ¹øµµ °»½ÅÀÌ ÀÌ·ç¾îÁöÁö ¾Ê¾Ò´Ù´Â ÀÇ¹Ì
+		cout << -1;								// Ans=0ì´ë‹¤? -> í•œ ë²ˆë„ ê°±ì‹ ì´ ì´ë£¨ì–´ì§€ì§€ ì•Šì•˜ë‹¤ëŠ” ì˜ë¯¸
 	else
 		cout << Max << ' ' << Ans;
 	return 0;

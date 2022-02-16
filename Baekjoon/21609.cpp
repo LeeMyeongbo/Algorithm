@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -17,7 +17,7 @@ void gravity()
 			int R = r + 1;
 			while (R < N && map[R][c] == -2) {
 				map[R][c] = map[R - 1][c];
-				map[R - 1][c] = -2;									// ºó °÷ = -2
+				map[R - 1][c] = -2;									// ë¹ˆ ê³³ = -2
 				R++;
 			}
 		}
@@ -27,7 +27,7 @@ void gravity()
 void rotate()
 {
 	/*for (int k = 0; k < N / 2; k++) {
-		for (int rotate = 0; rotate < N - 2 * k - 1; rotate++) {	// ÇÑ Ä­¾¿ ¹İ½Ã°è ¹æÇâÀ¸·Î ¿Å±â´Â °É (º¯ ±æÀÌ-1)¹ø ¹İº¹
+		for (int rotate = 0; rotate < N - 2 * k - 1; rotate++) {	// í•œ ì¹¸ì”© ë°˜ì‹œê³„ ë°©í–¥ìœ¼ë¡œ ì˜®ê¸°ëŠ” ê±¸ (ë³€ ê¸¸ì´-1)ë²ˆ ë°˜ë³µ
 			int tmp = map[k][k];
 			for (int c = k; c < N - k - 1; c++)
 				map[k][c] = map[k][c + 1];
@@ -41,7 +41,7 @@ void rotate()
 		}
 	} */
 
-	// ÈÎ¾À ´õ ½¬¿î ¹æ¹ıÀÌ ÀÖ´Ù ÀÌ¸»ÀÌ¾ß
+	// í›¨ì”¬ ë” ì‰¬ìš´ ë°©ë²•ì´ ìˆë‹¤ ì´ë§ì´ì•¼
 	int tmp[20][20];
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
@@ -54,16 +54,16 @@ void rotate()
 int solve()
 {
 	while (true) {
-		bool visited[20][20] = { false, };							// ÀüÃ¼ ºí·Ï Å½»öÇÒ ¶§ ¹æ¹® Ã¼Å©
+		bool visited[20][20] = { false, };							// ì „ì²´ ë¸”ë¡ íƒìƒ‰í•  ë•Œ ë°©ë¬¸ ì²´í¬
 		bool is_blockgroup = false;
 		vector<vector<pair<int, int>>> block_groups;
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
-				if (visited[r][c] || map[r][c] <= 0)				// ÀÌ¹Ì Å½»öÇÑ ºí·ÏÀÌ°Å³ª ÀÏ¹İ ºí·ÏÀÌ ¾Æ´Ï¶ó¸é skip
+				if (visited[r][c] || map[r][c] <= 0)				// ì´ë¯¸ íƒìƒ‰í•œ ë¸”ë¡ì´ê±°ë‚˜ ì¼ë°˜ ë¸”ë¡ì´ ì•„ë‹ˆë¼ë©´ skip
 					continue;
 
-				// ¹«Áö°³ ºí·ÏÀº Áßº¹ ¹æ¹®ÇÏÁö¸¸ BFS·Î ÇÑ ºí·Ï±×·ì Ã£À» ¶© ÇÑ ¹ø¾¿¸¸ ¹æ¹®
-				bool visited_rainbow[20][20] = { false, };			// ºí·Ï±×·ì ÇÏ³ª¸¦ Å½»öÇÒ ¶§ ¹«Áö°³ ºí·Ï ¹æ¹® Ã¼Å©
+				// ë¬´ì§€ê°œ ë¸”ë¡ì€ ì¤‘ë³µ ë°©ë¬¸í•˜ì§€ë§Œ BFSë¡œ í•œ ë¸”ë¡ê·¸ë£¹ ì°¾ì„ ë• í•œ ë²ˆì”©ë§Œ ë°©ë¬¸
+				bool visited_rainbow[20][20] = { false, };			// ë¸”ë¡ê·¸ë£¹ í•˜ë‚˜ë¥¼ íƒìƒ‰í•  ë•Œ ë¬´ì§€ê°œ ë¸”ë¡ ë°©ë¬¸ ì²´í¬
 				vector<pair<int, int>> block_group;
 				q.push({ r, c });
 				visited[r][c] = true;
@@ -77,11 +77,11 @@ int solve()
 						int new_R = R + dr[d];
 						int new_C = C + dc[d];
 						if (new_R >= 0 && new_R < N && new_C >= 0 && new_C < N) {
-							if (map[new_R][new_C] == map[r][c] && !visited[new_R][new_C]) {		// »ö±òÀÌ °°Àº ºí·ÏÀÏ °æ¿ì
+							if (map[new_R][new_C] == map[r][c] && !visited[new_R][new_C]) {		// ìƒ‰ê¹”ì´ ê°™ì€ ë¸”ë¡ì¼ ê²½ìš°
 								visited[new_R][new_C] = true;
 								q.push({ new_R, new_C });
 							}
-							else if (!map[new_R][new_C] && !visited_rainbow[new_R][new_C]) {	// ¹«Áö°³ ºí·ÏÀÏ °æ¿ì
+							else if (!map[new_R][new_C] && !visited_rainbow[new_R][new_C]) {	// ë¬´ì§€ê°œ ë¸”ë¡ì¼ ê²½ìš°
 								visited_rainbow[new_R][new_C] = true;
 								q.push({ new_R, new_C });
 							}
@@ -92,7 +92,7 @@ int solve()
 					is_blockgroup = true;
 				else continue;
 
-				if (block_groups.empty() || block_groups[0].size() == block_group.size())	// Å©±â°¡ °¡Àå Å« ºí·Ï±×·ì ÀúÀå
+				if (block_groups.empty() || block_groups[0].size() == block_group.size())	// í¬ê¸°ê°€ ê°€ì¥ í° ë¸”ë¡ê·¸ë£¹ ì €ì¥
 					block_groups.push_back(block_group);
 				else if (block_groups[0].size() < block_group.size()) {
 					block_groups.clear();
@@ -103,9 +103,9 @@ int solve()
 		if (!is_blockgroup)
 			break;
 
-		// block_groups¿¡´Â Å©±â°¡ °¡Àå Å« ºí·Ï±×·ìµéÀÌ ÀúÀåµÇ¾î ÀÖÀ½
-		vector<pair<int, int>> rainbow_blocks;									// (¹«Áö°³ ºí·Ï °³¼ö, ÇØ´ç ºí·Ï±×·ìÀÇ index)
-		for (int i = 0; i < (int)block_groups.size(); i++) {					// ¹«Áö°³ ºí·Ï ¼ö°¡ °¡Àå ¸¹Àº ºí·Ï±×·ì ÀúÀå
+		// block_groupsì—ëŠ” í¬ê¸°ê°€ ê°€ì¥ í° ë¸”ë¡ê·¸ë£¹ë“¤ì´ ì €ì¥ë˜ì–´ ìˆìŒ
+		vector<pair<int, int>> rainbow_blocks;									// (ë¬´ì§€ê°œ ë¸”ë¡ ê°œìˆ˜, í•´ë‹¹ ë¸”ë¡ê·¸ë£¹ì˜ index)
+		for (int i = 0; i < (int)block_groups.size(); i++) {					// ë¬´ì§€ê°œ ë¸”ë¡ ìˆ˜ê°€ ê°€ì¥ ë§ì€ ë¸”ë¡ê·¸ë£¹ ì €ì¥
 			int n_rainbow = 0;
 			for (int j = 0; j < (int)block_groups[i].size(); j++) {
 				if (!map[block_groups[i][j].first][block_groups[i][j].second])
@@ -119,16 +119,16 @@ int solve()
 			}
 		}
 
-		// rainbow_blocks¿¡´Â Å©±â°¡ °¡Àå Å©¸é¼­ ¹«Áö°³ ºí·Ï °³¼ö°¡ °¡Àå ¸¹Àº ºí·Ï±×·ìµéÀÇ index°¡ ÀúÀåµÇ¾î ÀÖÀ½
+		// rainbow_blocksì—ëŠ” í¬ê¸°ê°€ ê°€ì¥ í¬ë©´ì„œ ë¬´ì§€ê°œ ë¸”ë¡ ê°œìˆ˜ê°€ ê°€ì¥ ë§ì€ ë¸”ë¡ê·¸ë£¹ë“¤ì˜ indexê°€ ì €ì¥ë˜ì–´ ìˆìŒ
 		pair<int, int> p = { -1, -1 };
 		int chosen = 0;
 		for (int i = 0; i < (int)rainbow_blocks.size(); i++) {
 			int cur = rainbow_blocks[i].second;
-			sort(block_groups[cur].begin(), block_groups[cur].end());	// ÁÂÇ¥¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏ°í
-			for (int j = 0; j < (int)block_groups[cur].size(); j++) {	// °¢ ºí·Ï±×·ì¸¶´Ù ±âÁØ ºí·Ï Å½»ö
+			sort(block_groups[cur].begin(), block_groups[cur].end());	// ì¢Œí‘œë¥¼ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•˜ê³ 
+			for (int j = 0; j < (int)block_groups[cur].size(); j++) {	// ê° ë¸”ë¡ê·¸ë£¹ë§ˆë‹¤ ê¸°ì¤€ ë¸”ë¡ íƒìƒ‰
 				if (map[block_groups[cur][j].first][block_groups[cur][j].second] > 0 && block_groups[cur][j] > p) {
-					p = block_groups[cur][j];							// ºí·Ï±×·ì º° ±âÁØ ºí·Ï À§Ä¡ÀÇ ÃÖ´ñ°ª °»½Å
-					chosen = cur;										// ¸î ¹øÂ° ºí·Ï±×·ì ¼±ÅÃÇß´ÂÁöµµ ÀúÀå
+					p = block_groups[cur][j];							// ë¸”ë¡ê·¸ë£¹ ë³„ ê¸°ì¤€ ë¸”ë¡ ìœ„ì¹˜ì˜ ìµœëŒ“ê°’ ê°±ì‹ 
+					chosen = cur;										// ëª‡ ë²ˆì§¸ ë¸”ë¡ê·¸ë£¹ ì„ íƒí–ˆëŠ”ì§€ë„ ì €ì¥
 					break;
 				}
 			}
@@ -136,7 +136,7 @@ int solve()
 
 		Score += block_groups[chosen].size() * block_groups[chosen].size();
 		for (int i = 0; i < (int)block_groups[chosen].size(); i++)
-			map[block_groups[chosen][i].first][block_groups[chosen][i].second] = -2;	// ºó °÷Àº -2·Î Ã³¸®
+			map[block_groups[chosen][i].first][block_groups[chosen][i].second] = -2;	// ë¹ˆ ê³³ì€ -2ë¡œ ì²˜ë¦¬
 
 		gravity();
 		rotate();

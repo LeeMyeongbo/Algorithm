@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,8 +6,8 @@ using namespace std;
 
 int n, m, k, a, b, c;
 vector<pair<int, int>> graph[1001];
-priority_queue<pair<int, int>> pq;			// (ÇÕ, ÇöÀç Á¤Á¡)À¸·Î ÀúÀå
-priority_queue<int> dest[1001];				// °¢ Á¤Á¡¸¶´Ù 1 ~ k¹øÂ° ÃÖ´Ü °Å¸® ÀúÀå
+priority_queue<pair<int, int>> pq;			// (í•©, í˜„ì¬ ì •ì )ìœ¼ë¡œ ì €ì¥
+priority_queue<int> dest[1001];				// ê° ì •ì ë§ˆë‹¤ 1 ~ kë²ˆì§¸ ìµœë‹¨ ê±°ë¦¬ ì €ì¥
 
 void Dijkstra()
 {
@@ -20,11 +20,11 @@ void Dijkstra()
 		pq.pop();
 
 		for (auto& p : graph[cur]) {
-			if (dest[p.first].size() < k) {				// ÇöÀç »ìÇÇ°í ÀÖ´Â Á¤Á¡ÀÇ Èü Å©±â°¡ kº¸´Ù ÀÛÀ¸¸é ±×´ë·Î push
+			if (dest[p.first].size() < k) {				// í˜„ì¬ ì‚´í”¼ê³  ìˆëŠ” ì •ì ì˜ í™ í¬ê¸°ê°€ kë³´ë‹¤ ì‘ìœ¼ë©´ ê·¸ëŒ€ë¡œ push
 				dest[p.first].push(sum + p.second);
 				pq.push({ -(sum + p.second), p.first });
 			}
-			// Å©±â°¡ kÀÌ°í Èü¿¡ ÀúÀåµÈ ÃÖ´ñ°ªÀÌ ÇöÀç±îÁö °è»êµÈ °Å¸® ÇÕº¸´Ù Å©´Ù¸é ±× ÃÖ´ñ°ª °»½Å
+			// í¬ê¸°ê°€ kì´ê³  í™ì— ì €ì¥ëœ ìµœëŒ“ê°’ì´ í˜„ì¬ê¹Œì§€ ê³„ì‚°ëœ ê±°ë¦¬ í•©ë³´ë‹¤ í¬ë‹¤ë©´ ê·¸ ìµœëŒ“ê°’ ê°±ì‹ 
 			else if (dest[p.first].size() == k && sum + p.second < dest[p.first].top()) {
 				dest[p.first].pop();
 				dest[p.first].push(sum + p.second);

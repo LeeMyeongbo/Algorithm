@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -7,22 +7,22 @@
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, chk[10001], A, B, id, scc[10001], Size[10001], n, Max, edge[10001];		// scc[i] : i¹ø Á¤Á¡ÀÌ ¸î ¹ø sccÀÎÁö ÀúÀå
-bool visit[10001];							// Size[i] : i¹ø scc¸¦ ÀÌ·ç´Â Á¤Á¡ °³¼ö ÀúÀå, edge[i] : i¹ø sccÀÇ ÁøÀÔ °£¼± °³¼ö ÀúÀå
-vector<int> graph[10001], new_g[10001];		// new_g : scc¸¦ ±¸ÇÑ ÈÄ »õ·Î Çü¼ºÇÑ ±×·¡ÇÁ
+int N, M, chk[10001], A, B, id, scc[10001], Size[10001], n, Max, edge[10001];		// scc[i] : ië²ˆ ì •ì ì´ ëª‡ ë²ˆ sccì¸ì§€ ì €ì¥
+bool visit[10001];							// Size[i] : ië²ˆ sccë¥¼ ì´ë£¨ëŠ” ì •ì  ê°œìˆ˜ ì €ì¥, edge[i] : ië²ˆ sccì˜ ì§„ì… ê°„ì„  ê°œìˆ˜ ì €ì¥
+vector<int> graph[10001], new_g[10001];		// new_g : sccë¥¼ êµ¬í•œ í›„ ìƒˆë¡œ í˜•ì„±í•œ ê·¸ë˜í”„
 stack<int> s;
 set<int> visited[10001];
 queue<int> q;
 
-int Find_SCC(int cur) {				// »çÀÌÅ¬ÀÎ ºÎºĞÀ» ÇÏ³ªÀÇ Á¤Á¡À¸·Î ¹Ù²Ş
+int Find_SCC(int cur) {				// ì‚¬ì´í´ì¸ ë¶€ë¶„ì„ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ ë°”ê¿ˆ
 	chk[cur] = ++id;
 	s.push(cur);
 
 	int parent = chk[cur];
 	for (int i : graph[cur]) {
-		if (!chk[i])								// Ã³À½ Á¤Á¡À» ¹æ¹®ÇÒ °æ¿ì
+		if (!chk[i])								// ì²˜ìŒ ì •ì ì„ ë°©ë¬¸í•  ê²½ìš°
 			parent = min(parent, Find_SCC(i));
-		else if (!scc[i])							// Ã³¸® ÁßÀÎ Á¤Á¡À» ¸¸³µÀ» °æ¿ì
+		else if (!scc[i])							// ì²˜ë¦¬ ì¤‘ì¸ ì •ì ì„ ë§Œë‚¬ì„ ê²½ìš°
 			parent = min(parent, chk[i]);
 	}
 	if (parent == chk[cur]) {
@@ -32,7 +32,7 @@ int Find_SCC(int cur) {				// »çÀÌÅ¬ÀÎ ºÎºĞÀ» ÇÏ³ªÀÇ Á¤Á¡À¸·Î ¹Ù²Ş
 			s.pop();
 
 			scc[v] = n;
-			if (v == cur)					// ÀÚ±â ÀÚ½ÅÀÌ ³ª¿À¸é Á¾·á
+			if (v == cur)					// ìê¸° ìì‹ ì´ ë‚˜ì˜¤ë©´ ì¢…ë£Œ
 				break;
 		}
 	}
@@ -42,7 +42,7 @@ int Find_SCC(int cur) {				// »çÀÌÅ¬ÀÎ ºÎºĞÀ» ÇÏ³ªÀÇ Á¤Á¡À¸·Î ¹Ù²Ş
 void Solve()
 {
 	int max_scc = 0;
-	for (int i = 1; i <= N; i++) {			// SCC¸¦ ÇÏ³ªÀÇ Á¤Á¡À¸·Î º¸°í ±×·¡ÇÁ »õ·Î Çü¼º
+	for (int i = 1; i <= N; i++) {			// SCCë¥¼ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ ë³´ê³  ê·¸ë˜í”„ ìƒˆë¡œ í˜•ì„±
 		Size[scc[i]]++;
 		max_scc = max(max_scc, scc[i]);
 		for (int v : graph[i]) {
@@ -55,7 +55,7 @@ void Solve()
 	}
 
 	for (int i = 1; i <= max_scc; i++)
-		if (!edge[i]) {						// ÁøÀÔ °£¼± ¼ö°¡ 0ÀÎ Á¤Á¡ ¹ß°ß ½Ã BFSÅ½»ö
+		if (!edge[i]) {						// ì§„ì… ê°„ì„  ìˆ˜ê°€ 0ì¸ ì •ì  ë°œê²¬ ì‹œ BFSíƒìƒ‰
 			q.push(i);
 			visit[i] = true;
 

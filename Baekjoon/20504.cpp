@@ -1,81 +1,81 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
 using namespace std;
 
-int N, M, u, graph, T, t[200000], order, seq[200001], scc_num, sccid[200001], scc_indegree[200000], starting_scc;
+int N, M, u, v, T, t[200000], order, seq[200001], scc_num, sccid[200001], scc_indegree[200000], starting_scc;
 bool complete[200001], visited_scc[200000];
 vector<int> graph[200001];
 stack<int> s;
 
 int dfs(int cur)
 {
-	seq[cur] = ++order;
-	int par = order;
-	s.push(cur);
+    seq[cur] = ++order;
+    int par = order;
+    s.push(cur);
 
-	for (int& i : graph[cur]) {
-		if (!seq[i])
-			par = min(par, dfs(i));
-		else if (!complete[i])
-			par = min(par, seq[i]);
-	}
-	if (par == seq[cur]) {
-		scc_num++;
-		while (!s.empty()) {
-			int v = s.top();
-			s.pop();
+    for (int& i : graph[cur]) {
+        if (!seq[i])
+            par = min(par, dfs(i));
+        else if (!complete[i])
+            par = min(par, seq[i]);
+    }
+    if (par == seq[cur]) {
+        scc_num++;
+        while (!s.empty()) {
+            int v = s.top();
+            s.pop();
 
-			complete[v] = true;
-			sccid[v] = scc_num;
-			if (v == cur)
-				break;
-		}
-	}
-	return par;
+            complete[v] = true;
+            sccid[v] = scc_num;
+            if (v == cur)
+                break;
+        }
+    }
+    return par;
 }
 
 int find()
 {
-	int Found = 0;
-	for (int i = 1; i <= N; i++)
-		for(int& j : graph[i])
-			if (sccid[i] != sccid[j])
-				scc_indegree[sccid[j]]++;
+    int Found = 0;
+    for (int i = 1; i <= N; i++)
+        for (int& j : graph[i])
+            if (sccid[i] != sccid[j])
+                scc_indegree[sccid[j]]++;
 
-	for (int i = 1; i <= scc_num; i++)
-		if (!scc_indegree[i])
-			starting_scc++;				// ÁøÀÔÂ÷¼ö°¡ 0ÀÎ scc °³¼ö Ã¼Å© (ÃÖ¼ÒÇÑ ÁøÀÔ°£¼±ÀÌ ¾ø´Â scc¿¡¼­ºÎÅÍ ½ÃÀÛÇØ¾ß ÇÏ±â ¶§¹®)
+    for (int i = 1; i <= scc_num; i++)
+        if (!scc_indegree[i])
+            starting_scc++;				// ì§„ìž…ì°¨ìˆ˜ê°€ 0ì¸ scc ê°œìˆ˜ ì²´í¬ (ìµœì†Œí•œ ì§„ìž…ê°„ì„ ì´ ì—†ëŠ” sccì—ì„œë¶€í„° ì‹œìž‘í•´ì•¼ í•˜ê¸° ë•Œë¬¸)
 
-	for (int i = 0; i < T; i++) {		// ÇØ´ç t[i]°¡ ¼ÓÇÑ sccÀÇ ÁøÀÔÂ÷¼ö°¡ 0ÀÌ°í ¹æ¹®ÇÑ Àû ¾ø´Â scc¶ó¸é ¹æ¹® Ã¼Å© + °³¼ö Áõ°¡
-		if (!scc_indegree[sccid[t[i]]] && !visited_scc[sccid[t[i]]]) {
-			visited_scc[sccid[t[i]]] = true;
-			Found++;
-		}
-	}
-	if (Found < starting_scc)	// °³¼ö Çì¾Æ·Á¼­ ÁøÀÔÂ÷¼ö°¡ 0ÀÎ sccÀÇ °³¼öº¸´Ù ÀÛ´Ù¸é
-		return -1;				// ¹ÌÃ³ Çì¾Æ¸®Áö ¸øÇÑ, ¶Ç ´Ù¸¥ ÁøÀÔÂ÷¼ö°¡ 0ÀÎ sccÀÇ ÇÔ¼öµéÀº È£ÃâµÉ ¼ö ¾ø´Ù´Â ÀÇ¹Ì
-	else
-		return Found;
+    for (int i = 0; i < T; i++) {		// í•´ë‹¹ t[i]ê°€ ì†í•œ sccì˜ ì§„ìž…ì°¨ìˆ˜ê°€ 0ì´ê³  ë°©ë¬¸í•œ ì  ì—†ëŠ” sccë¼ë©´ ë°©ë¬¸ ì²´í¬ + ê°œìˆ˜ ì¦ê°€
+        if (!scc_indegree[sccid[t[i]]] && !visited_scc[sccid[t[i]]]) {
+            visited_scc[sccid[t[i]]] = true;
+            Found++;
+        }
+    }
+    if (Found < starting_scc)	// ê°œìˆ˜ í—¤ì•„ë ¤ì„œ ì§„ìž…ì°¨ìˆ˜ê°€ 0ì¸ sccì˜ ê°œìˆ˜ë³´ë‹¤ ìž‘ë‹¤ë©´
+        return -1;				// ë¯¸ì²˜ í—¤ì•„ë¦¬ì§€ ëª»í•œ, ë˜ ë‹¤ë¥¸ ì§„ìž…ì°¨ìˆ˜ê°€ 0ì¸ sccì˜ í•¨ìˆ˜ë“¤ì€ í˜¸ì¶œë  ìˆ˜ ì—†ë‹¤ëŠ” ì˜ë¯¸
+    else
+        return Found;
 }
 
 int main()
 {
-	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-	cin >> N >> M;
-	while (M--) {
-		cin >> u >> graph;
-		graph[u].push_back(graph);
-	}
-	cin >> T;
-	for (int i = 0; i < T; i++)
-		cin >> t[i];
+    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    cin >> N >> M;
+    while (M--) {
+        cin >> u >> v;
+        graph[u].push_back(v);
+    }
+    cin >> T;
+    for (int i = 0; i < T; i++)
+        cin >> t[i];
 
-	for (int i = 1; i <= N; i++)
-		if (!complete[i])
-			dfs(i);
+    for (int i = 1; i <= N; i++)
+        if (!complete[i])
+            dfs(i);
 
-	cout << find();
-	return 0;
+    cout << find();
+    return 0;
 }

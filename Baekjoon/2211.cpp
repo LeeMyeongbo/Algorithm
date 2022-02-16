@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, A, B, C, dijkstra[1001], pre[1001], cnt;		// pre[i] : i¹ø Á¤Á¡ ÀÌÀü¿¡ ¾î¶² Á¤Á¡À» °ÜÃÆ¾ú´ÂÁö ÀúÀå
+int N, M, A, B, C, dijkstra[1001], pre[1001], cnt;		// pre[i] : ië²ˆ ì •ì  ì´ì „ì— ì–´ë–¤ ì •ì ì„ ê²¨ì³¤ì—ˆëŠ”ì§€ ì €ì¥
 vector<pair<int, int>> graph[1001], ans;
 priority_queue<int, vector<int>, greater<int>> q;
 
@@ -27,7 +27,7 @@ void Solve()
 		}
 	}
 	for (int i = 1; i <= N; i++) {
-		if (pre[i]) {				// i¹ø ÀÌÀü Á¤Á¡ÀÌ Á¸ÀçÇÏ¸é ±× °£¼±À» ÀúÀå
+		if (pre[i]) {				// ië²ˆ ì´ì „ ì •ì ì´ ì¡´ì¬í•˜ë©´ ê·¸ ê°„ì„ ì„ ì €ì¥
 			cnt++;
 			ans.push_back({ pre[i], i });
 		}
@@ -45,7 +45,7 @@ int main()
 	for (int i = 0; i < M; i++) {
 		cin >> A >> B >> C;
 		graph[A].push_back({ C, B });
-		graph[B].push_back({ C, A });		// (°¡ÁßÄ¡, Á¤Á¡) ÇüÅÂ·Î ÀúÀå
+		graph[B].push_back({ C, A });		// (ê°€ì¤‘ì¹˜, ì •ì ) í˜•íƒœë¡œ ì €ì¥
 	}
 	
 	Solve();

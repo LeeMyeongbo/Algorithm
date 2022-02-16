@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,8 +6,8 @@ using namespace std;
 
 int N, M, X, Y, A, B, pre[100101];
 bool visited[100101];
-vector<int> graph[100101];		// 1 ~ N : Ãş, N + 1 ~ N + M : ¿¤¸®º£ÀÌÅÍ
-queue<pair<int, int>> q;		// (ÇöÀç Á¤Á¡, ¿¤¸®º£ÀÌÅÍ Åº È½¼ö)
+vector<int> graph[100101];		// 1 ~ N : ì¸µ, N + 1 ~ N + M : ì—˜ë¦¬ë² ì´í„°
+queue<pair<int, int>> q;		// (í˜„ì¬ ì •ì , ì—˜ë¦¬ë² ì´í„° íƒ„ íšŸìˆ˜)
 
 void backtrack(int cur)
 {

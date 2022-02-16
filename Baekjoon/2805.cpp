@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 using namespace std;
 
@@ -15,12 +15,12 @@ long long solve()
 			if (h < tree[i])
 				sum += (tree[i] - h);
 		}
-		if (sum >= M) {		// Ã¬±ä ³ª¹« ÀüÃ¼ ±æÀÌ°¡ M ÀÌ»óÀÌ¶ó¸é ÀúÀå + ³ôÀÌ¸¦ º¸´Ù ³ô°Ô ÀâÀ½
+		if (sum >= M) {		// ì±™ê¸´ ë‚˜ë¬´ ì „ì²´ ê¸¸ì´ê°€ M ì´ìƒì´ë¼ë©´ ì €ì¥ + ë†’ì´ë¥¼ ë³´ë‹¤ ë†’ê²Œ ì¡ìŒ
 			Ans = h;
 			left = h + 1;
 		}
 		else
-			right = h - 1;	// ±×·¸Áö ¾Ê´Ù¸é ³ôÀÌ¸¦ ³·°Ô ÀâÀ½
+			right = h - 1;	// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´ ë†’ì´ë¥¼ ë‚®ê²Œ ì¡ìŒ
 	}
 	return Ans;
 }

@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
 
-int N, M, x, y, k, table[101][101], indegree[101];	// table[a][b] : ºÎÇ° a¸¦ ¸¸µé±â À§ÇØ ºÎÇ° b°¡ ¸î °³ ÇÊ¿äÇÑÁö ÀúÀå
+int N, M, x, y, k, table[101][101], indegree[101];	// table[a][b] : ë¶€í’ˆ aë¥¼ ë§Œë“¤ê¸° ìœ„í•´ ë¶€í’ˆ bê°€ ëª‡ ê°œ í•„ìš”í•œì§€ ì €ìž¥
 vector<pair<int, int>> graph[101];
 queue<int> q;
 
@@ -14,12 +14,12 @@ int main()
 
 	for (int i = 0; i < M; i++) {
 		cin >> x >> y >> k;
-		graph[y].push_back({ x, k });		// y -> x, °¡ÁßÄ¡ k
+		graph[y].push_back({ x, k });		// y -> x, ê°€ì¤‘ì¹˜ k
 		indegree[x]++;
 	}
 	for (int i = 1; i <= N; i++)
 		if (!indegree[i]) {
-			q.push(i);						// ÁøÀÔ Â÷¼ö°¡ 0ÀÎ Á¤Á¡µé Å¥¿¡ »ðÀÔ
+			q.push(i);						// ì§„ìž… ì°¨ìˆ˜ê°€ 0ì¸ ì •ì ë“¤ íì— ì‚½ìž…
 			table[i][i] = 1;
 		}
 
@@ -29,7 +29,7 @@ int main()
 
 		for (pair<int, int>& p : graph[cur]) {
 			for (int i = 1; i <= N; i++)
-				table[p.first][i] += table[cur][i] * p.second;		// tableÀÇ curÇà¿¡´Ù°¡ °¡ÁßÄ¡(k)¸¸Å­ °öÇØ¼­ ¿¬°áµÈ Á¤Á¡ Çà¿¡ ´õÇÔ
+				table[p.first][i] += table[cur][i] * p.second;		// tableì˜ curí–‰ì—ë‹¤ê°€ ê°€ì¤‘ì¹˜(k)ë§Œí¼ ê³±í•´ì„œ ì—°ê²°ëœ ì •ì  í–‰ì— ë”í•¨
 
 			indegree[p.first]--;
 			if (!indegree[p.first])

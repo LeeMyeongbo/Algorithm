@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <cmath>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -16,7 +16,7 @@ void get_prime()
 				not_prime[i * j] = true;
 		}
 	}
-	for (int i = 2; i <= N; i++)		// N ÀÌÇÏÀÇ ¼Ò¼öµé ¸ðµÎ ÀúÀå
+	for (int i = 2; i <= N; i++)		// N ì´í•˜ì˜ ì†Œìˆ˜ë“¤ ëª¨ë‘ ì €ìž¥
 		if (!not_prime[i])
 			prime.push_back(i);
 }
@@ -24,7 +24,7 @@ void get_prime()
 int Solve()
 {
 	int left = 0, right = 1, ans = 0, sum = 2;
-	while (left <= right && right < prime.size()) {		// Åõ Æ÷ÀÎÅÍ·Î ¿¬¼ÓµÈ ÇÕÀÌ NÀ» ¸¸Á·ÇÏ´Â °æ¿ì Å½»ö
+	while (left <= right && right < prime.size()) {		// íˆ¬ í¬ì¸í„°ë¡œ ì—°ì†ëœ í•©ì´ Nì„ ë§Œì¡±í•˜ëŠ” ê²½ìš° íƒìƒ‰
 		if (sum > N)
 			sum -= prime[left++];
 		else {

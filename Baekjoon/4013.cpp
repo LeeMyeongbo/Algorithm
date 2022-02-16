@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <stack>
@@ -8,11 +8,11 @@ using namespace std;
 
 int N, M, v1, v2, ATM[500001], S, P, rest, seq[500001], num, scc[500001], scc_num, scc_indegree[500001], scc_sum[500001], Ans[500001];
 bool is_restaurant[500001], complete[500001], scc_restaurant[500001];
-vector<int> graph[500001], DAG[500001];		// DAG : scc¸¦ ÇÏ³ªÀÇ Á¤Á¡À¸·Î ¹­¾î¼­ Çü¼ºÇÑ ±×·¡ÇÁ
+vector<int> graph[500001], DAG[500001];		// DAG : sccë¥¼ í•˜ë‚˜ì˜ ì •ì ìœ¼ë¡œ ë¬¶ì–´ì„œ í˜•ì„±í•œ ê·¸ë˜í”„
 stack<int> s;
 queue<int> q;
 
-int DFS(int cur)				// ±×·¡ÇÁ·ÎºÎÅÍ scc±×·¡ÇÁ Çü¼º & °¢ scc ³»ºÎÀÇ °¢ Á¤Á¡µéÀÇ Çö±İ º¸À¯ ¾×¼ö ÇÕ ÀúÀå & ·¹½ºÅä¶û ÀÖ´Â ¿ä¼Ò Ã¼Å©
+int DFS(int cur)				// ê·¸ë˜í”„ë¡œë¶€í„° sccê·¸ë˜í”„ í˜•ì„± & ê° scc ë‚´ë¶€ì˜ ê° ì •ì ë“¤ì˜ í˜„ê¸ˆ ë³´ìœ  ì•¡ìˆ˜ í•© ì €ì¥ & ë ˆìŠ¤í† ë‘ ìˆëŠ” ìš”ì†Œ ì²´í¬
 {
 	seq[cur] = ++num;
 	int parent = num;
@@ -32,9 +32,9 @@ int DFS(int cur)				// ±×·¡ÇÁ·ÎºÎÅÍ scc±×·¡ÇÁ Çü¼º & °¢ scc ³»ºÎÀÇ °¢ Á¤Á¡µéÀÇ Ç
 
 			complete[v] = true;
 			scc[v] = scc_num;
-			scc_sum[scc_num] += ATM[v];			// Çö scc¿¡ ¼ÓÇÑ Á¤Á¡ÀÇ ºñ¿ë ´õÇØ°¨
-			if (is_restaurant[v])				// Çö Á¤Á¡¿¡ ·¹½ºÅä¶û Á¸ÀçÇÒ °æ¿ì
-				scc_restaurant[scc[v]] = true;	// ÀÌ Á¤Á¡ÀÌ ¼ÓÇÑ scc¿¡µµ ·¹½ºÅä¶ûÀÌ Á¸Àç!
+			scc_sum[scc_num] += ATM[v];			// í˜„ sccì— ì†í•œ ì •ì ì˜ ë¹„ìš© ë”í•´ê°
+			if (is_restaurant[v])				// í˜„ ì •ì ì— ë ˆìŠ¤í† ë‘ ì¡´ì¬í•  ê²½ìš°
+				scc_restaurant[scc[v]] = true;	// ì´ ì •ì ì´ ì†í•œ sccì—ë„ ë ˆìŠ¤í† ë‘ì´ ì¡´ì¬!
 			if (cur == v)
 				break;
 		}
@@ -47,7 +47,7 @@ int Determine()
 	int ans = 0;
 	for (int i = 1; i <= N; i++)
 		for (int& j : graph[i])
-			if (scc[i] && scc[j] && scc[i] != scc[j]) {		// Á¤Á¡ i¿Í j¸¦ ¹æ¹®ÇÒ ¼ö ÀÖ°í µÎ Á¤Á¡ÀÌ °°Àº scc¿¡ ¼ÓÇÏÁö ¾ÊÀ» °æ¿ì
+			if (scc[i] && scc[j] && scc[i] != scc[j]) {		// ì •ì  iì™€ jë¥¼ ë°©ë¬¸í•  ìˆ˜ ìˆê³  ë‘ ì •ì ì´ ê°™ì€ sccì— ì†í•˜ì§€ ì•Šì„ ê²½ìš°
 				DAG[scc[i]].push_back(scc[j]);
 				scc_indegree[scc[j]]++;
 			}
@@ -62,7 +62,7 @@ int Determine()
 			ans = max(ans, Ans[cur_scc]);
 		for (int s : DAG[cur_scc]) {
 			scc_indegree[s]--;
-			Ans[s] = max(Ans[s], Ans[cur_scc] + scc_sum[s]);	// À§»óÁ¤·Ä ÇÏ¸é¼­ °¢ scc¸¶´Ù ºñ¿ë ÇÕ ÃÖ´ñ°ª °»½Å
+			Ans[s] = max(Ans[s], Ans[cur_scc] + scc_sum[s]);	// ìœ„ìƒì •ë ¬ í•˜ë©´ì„œ ê° sccë§ˆë‹¤ ë¹„ìš© í•© ìµœëŒ“ê°’ ê°±ì‹ 
 			if (!scc_indegree[s])
 				q.push(s);
 		}
@@ -86,7 +86,7 @@ int main()
 		is_restaurant[rest] = true;
 	}
 
-	DFS(S);					// ½ÃÀÛÁ¡ S°¡ Á¤ÇØÁ® ÀÖÀ¸¹Ç·Î S·ÎºÎÅÍ °¥ ¼ö ÀÖ´Â Á¤Á¡µé¸¸ Å½»öÇØ¼­ scc±×·¡ÇÁ Çü¼ºÇØÁÖ¸é µÊ!
+	DFS(S);					// ì‹œì‘ì  Sê°€ ì •í•´ì ¸ ìˆìœ¼ë¯€ë¡œ Së¡œë¶€í„° ê°ˆ ìˆ˜ ìˆëŠ” ì •ì ë“¤ë§Œ íƒìƒ‰í•´ì„œ sccê·¸ë˜í”„ í˜•ì„±í•´ì£¼ë©´ ë¨!
 	cout << Determine();
 	return 0;
 }

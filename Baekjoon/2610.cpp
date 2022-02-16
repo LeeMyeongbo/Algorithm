@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, v1, v2, K, group[101], length[101];		// group[i] : i¹ø Á¤Á¡ÀÌ ¸î ¹ø ±×·ì¿¡ ¼ÓÇÏ´ÂÁö
-vector<int> graph[101], ans;						// length[i] : i¹ø Á¤Á¡ÀÌ ±×·ì ³»ÀÇ °¢ Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸® Áß ÃÖ´ñ°ª
+int N, M, v1, v2, K, group[101], length[101];		// group[i] : ië²ˆ ì •ì ì´ ëª‡ ë²ˆ ê·¸ë£¹ì— ì†í•˜ëŠ”ì§€
+vector<int> graph[101], ans;						// length[i] : ië²ˆ ì •ì ì´ ê·¸ë£¹ ë‚´ì˜ ê° ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ ì¤‘ ìµœëŒ“ê°’
 queue<pair<int, int>> q;
 
 int BFS(int cur, int seq, bool chk)
@@ -45,12 +45,12 @@ int main()
 	}
 
 	for (int i = 1; i <= N; i++) {
-		if (!group[i]) {						// ¾Æ¿¹ Å½»öÇÑ Àû ¾ø´Â Á¤Á¡ÀÏ °æ¿ì
-			length[i] = BFS(i, ++K, true);		// ¸î ¹ø ±×·ì¿¡ ¼ÓÇÏ´ÂÁö Ã¼Å©ÇÏ¸é¼­ BFS
+		if (!group[i]) {						// ì•„ì˜ˆ íƒìƒ‰í•œ ì  ì—†ëŠ” ì •ì ì¼ ê²½ìš°
+			length[i] = BFS(i, ++K, true);		// ëª‡ ë²ˆ ê·¸ë£¹ì— ì†í•˜ëŠ”ì§€ ì²´í¬í•˜ë©´ì„œ BFS
 			ans.push_back(i);
 		}
 		else {
-			length[i] = BFS(i, K, false);		// Çö Á¤Á¡ÀÌ ¸î ¹ø ±×·ì¿¡ ¼ÓÇÏ´ÂÁö Ã¼Å©µÇ¾î ÀÖÀ» °æ¿ì BFS·Î ÃÖ´ë °Å¸®¸¸ ±¸ÇÔ
+			length[i] = BFS(i, K, false);		// í˜„ ì •ì ì´ ëª‡ ë²ˆ ê·¸ë£¹ì— ì†í•˜ëŠ”ì§€ ì²´í¬ë˜ì–´ ìˆì„ ê²½ìš° BFSë¡œ ìµœëŒ€ ê±°ë¦¬ë§Œ êµ¬í•¨
 			int cur_group = group[i];
 			ans[cur_group - 1] = length[ans[cur_group - 1]] > length[i] ? i : ans[cur_group - 1];
 		}

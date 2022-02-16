@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -11,45 +11,45 @@ struct Node {
 };
 queue<Node> q;
 
-/*	BFS ´Ü°è
-	1. Å¥¿¡¼­ ²¨³¿
-	2. ¸ñÀûÁöÀÎÁö È®ÀÎ
-	3. ¿¬°áµÈ °÷ ¼øÈ¸
-		4. °¢ ¿¬°áµÈ °÷ °¥ ¼ö ÀÖ´ÂÁö È®ÀÎ
-			5. Ã¼Å©ÀÎ
-			6. Å¥¿¡ ³ÖÀ½
+/*	BFS ë‹¨ê³„
+	1. íì—ì„œ êº¼ëƒ„
+	2. ëª©ì ì§€ì¸ì§€ í™•ì¸
+	3. ì—°ê²°ëœ ê³³ ìˆœíšŒ
+		4. ê° ì—°ê²°ëœ ê³³ ê°ˆ ìˆ˜ ìžˆëŠ”ì§€ í™•ì¸
+			5. ì²´í¬ì¸
+			6. íì— ë„£ìŒ
 */
 
 void BFS()
 {
 	q.push({ Sr, Sc, 0, false });
 	while (!q.empty()) {
-		// 1. Å¥¿¡¼­ ²¨³¿
+		// 1. íì—ì„œ êº¼ëƒ„
 		Node node = q.front();
 		q.pop();
 
-		// 2. ¸ñÀûÁöÀÎÁö È®ÀÎ
+		// 2. ëª©ì ì§€ì¸ì§€ í™•ì¸
 		if (!node.water && node.r == Dr && node.c == Dc)
 			break;
 
-		// 3. ¿¬°áµÈ °÷ ¼øÈ¸
+		// 3. ì—°ê²°ëœ ê³³ ìˆœíšŒ
 		for (int d = 0; d < 4; d++) {
 			int r = node.r + dr[d];
 			int c = node.c + dc[d];
 
-			// 4. °¢ ¿¬°áµÈ °÷ °¥ ¼ö ÀÖ´ÂÁö È®ÀÎ
+			// 4. ê° ì—°ê²°ëœ ê³³ ê°ˆ ìˆ˜ ìžˆëŠ”ì§€ í™•ì¸
 			if (r >= 0 && r < R && c >= 0 && c < C && !visited[r][c]) {
-				if (node.water && map[r][c] == '.') {								// ¹°ÀÌ ÀÌµ¿ÇÒ °æ¿ì
-					// 5. Ã¼Å©ÀÎ
+				if (node.water && map[r][c] == '.') {								// ë¬¼ì´ ì´ë™í•  ê²½ìš°
+					// 5. ì²´í¬ì¸
 					visited[r][c] = node.time + 1;
 					map[r][c] = '*';
-					// 6. Å¥¿¡ ³ÖÀ½
+					// 6. íì— ë„£ìŒ
 					q.push({ r, c, node.time + 1, true });
 				}
-				else if (!node.water && (map[r][c] == '.' || map[r][c] == 'D')) {	// °í½¿µµÄ¡°¡ ÀÌµ¿ÇÒ °æ¿ì
-					// 5. Ã¼Å©ÀÎ
+				else if (!node.water && (map[r][c] == '.' || map[r][c] == 'D')) {	// ê³ ìŠ´ë„ì¹˜ê°€ ì´ë™í•  ê²½ìš°
+					// 5. ì²´í¬ì¸
 					visited[r][c] = node.time + 1;
-					// 6. Å¥¿¡ ³ÖÀ½
+					// 6. íì— ë„£ìŒ
 					q.push({ r, c, node.time + 1, false });
 				}
 			}

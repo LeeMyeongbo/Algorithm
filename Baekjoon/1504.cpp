@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -6,7 +6,7 @@
 using namespace std;
 
 int N, E, a, b, c, v1, v2;
-long long one_start[801], v1_start[801], v2_start[801];		// °¡ÁßÄ¡ ÇÕ ÀúÀåÇÒ ¶§ intÇü ¹üÀ§ ³Ñ¾î¼³ ¼öµµ ÀÖÀ¸´Ï..
+long long one_start[801], v1_start[801], v2_start[801];		// ê°€ì¤‘ì¹˜ í•© ì €ì¥í•  ë•Œ intí˜• ë²”ìœ„ ë„˜ì–´ì„¤ ìˆ˜ë„ ìˆìœ¼ë‹ˆ..
 vector<pair<int, int>> graph[801];
 priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> q;
 
@@ -20,7 +20,7 @@ void Dijkstra(int start, long long shortest[])
 		int cur = q.top().second;
 		q.pop();
 
-		/*if (cur == N)			// N¹ø Á¤Á¡À» °ÅÃÄ¾ß ÃÖ´Ü °Å¸®·Î °¡´Â °æ¿ìµµ ÀÖÀ» ¼ö ÀÖÀ½!
+		/*if (cur == N)			// Në²ˆ ì •ì ì„ ê±°ì³ì•¼ ìµœë‹¨ ê±°ë¦¬ë¡œ ê°€ëŠ” ê²½ìš°ë„ ìˆì„ ìˆ˜ ìˆìŒ!
 			continue;*/
 		for (auto p : graph[cur]) {
 			if (shortest[p.second] == -1 || shortest[p.second] > shortest[cur] + p.first) {
@@ -35,7 +35,7 @@ long long Solve()
 {
 	Dijkstra(1, one_start);
 	Dijkstra(v1, v1_start);
-	Dijkstra(v2, v2_start);			// 1¹ø Á¤Á¡, v1, v2¿¡¼­ ½ÃÀÛÇÏ¿© °¢ Á¤Á¡±îÁöÀÇ ÃÖ´Ü °Å¸® ÀúÀå
+	Dijkstra(v2, v2_start);			// 1ë²ˆ ì •ì , v1, v2ì—ì„œ ì‹œì‘í•˜ì—¬ ê° ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ ì €ì¥
 
 	if (one_start[v1] > -1 && v1_start[v2] > -1 && v2_start[N] > -1 && one_start[v2] > -1 && v2_start[v1] > -1 && v1_start[N] > -1)
 		return min(one_start[v1] + v1_start[v2] + v2_start[N], one_start[v2] + v2_start[v1] + v1_start[N]);

@@ -1,25 +1,25 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <stack>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 stack<pair<int, int>> graph[1000];
 int N, idx, e;
-bool possible = true, used[10000000];			// »ç¿ëÇÑ °£¼± ¹øÈ£ ÀúÀå¿ë
+bool possible = true, used[10000000];			// ì‚¬ìš©í•œ ê°„ì„  ë²ˆí˜¸ ì €ì¥ìš©
 
 void DFS(int i)
 {
 	while (true) {
 		while (!graph[i].empty() && used[graph[i].top().second])
-			graph[i].pop();							// ÀÌ¹Ì »ç¿ëÇÑ °£¼± Á¦¿ÜÇÏ´Â °úÁ¤
+			graph[i].pop();							// ì´ë¯¸ ì‚¬ìš©í•œ ê°„ì„  ì œì™¸í•˜ëŠ” ê³¼ì •
 
-		if (graph[i].empty())						// ÇöÀç Á¤Á¡¿¡¼­ ´õ ÀÌ»ó »ç¿ëÇÒ °£¼± ¾øÀ¸¸é Àç±Í ºüÁ®³ª°¨
+		if (graph[i].empty())						// í˜„ì¬ ì •ì ì—ì„œ ë” ì´ìƒ ì‚¬ìš©í•  ê°„ì„  ì—†ìœ¼ë©´ ì¬ê·€ ë¹ ì ¸ë‚˜ê°
 			break;
 
 		pair<int, int> p = graph[i].top();
 		graph[i].pop();
 
-		used[p.second] = true;						// °£¼± »ç¿ëÇß´Ù´Â Ç¥½Ã
+		used[p.second] = true;						// ê°„ì„  ì‚¬ìš©í–ˆë‹¤ëŠ” í‘œì‹œ
 		DFS(p.first);
 	}
 	cout << i + 1 << " ";
@@ -41,7 +41,7 @@ int main()
 		}
 	for (int i = 0; i < N; i++)
 		if (graph[i].size() % 2)
-			possible = false;						// Á¤Á¡ ÇÏ³ª¶óµµ Â÷¼ö°¡ È¦¼ö¸é ¿ÀÀÏ·¯ È¸·Î x
+			possible = false;						// ì •ì  í•˜ë‚˜ë¼ë„ ì°¨ìˆ˜ê°€ í™€ìˆ˜ë©´ ì˜¤ì¼ëŸ¬ íšŒë¡œ x
 
 	if (possible)
 		DFS(0);

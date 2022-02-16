@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cmath>
 #include <queue>
 using namespace std;
@@ -48,12 +48,12 @@ int main()
 	for (int i = 0; i < M; i++) {
 		cin >> map[i];
 		for (int j = 0; j < N; j++) {
-			if (map[i][j] == 'S') {				// ¿ø·¡ ³»°¡ ÀÖ´ø °÷ '.'À¸·Î Ã³¸®
+			if (map[i][j] == 'S') {				// ì›ëž˜ ë‚´ê°€ ìžˆë˜ ê³³ '.'ìœ¼ë¡œ ì²˜ë¦¬
 				q.push({ i, j, 0 });
 				visited[0][i][j] = true;
 				map[i][j] = '.';
 			}
-			else if (map[i][j] == 'X')			// ¹°°Ç ÇÏ³ªÇÏ³ª ±¸ºÐÇØ¼­ ÀúÀå
+			else if (map[i][j] == 'X')			// ë¬¼ê±´ í•˜ë‚˜í•˜ë‚˜ êµ¬ë¶„í•´ì„œ ì €ìž¥
 				map[i][j] = S++ + 48;
 		}
 	}

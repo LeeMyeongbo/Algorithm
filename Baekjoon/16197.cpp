@@ -1,16 +1,16 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 struct Node {
-	pair<int, int> coin[2];			// µ¿Àü 2°³ÀÇ À§Ä¡
-	int move;						// ¿òÁ÷ÀÎ È½¼ö
+	pair<int, int> coin[2];			// ë™ì „ 2ê°œì˜ ìœ„ì¹˜
+	int move;						// ì›€ì§ì¸ íšŸìˆ˜
 };
 queue<Node> q;
 int N, M, c, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 }, start[2][2];
 char map[22][23];
-bool visited[22][22][22][22];		// °¡ÀåÀÚ¸®¿¡ ¹æ¹®Ã¼Å©°¡ ÀÌ·ç¾îÁö¸é ³ª°£ °É·Î Ã³¸® (Ç×»ó ¶³¾îÁö´Â °Í±îÁö °í·ÁÇÑ´Ù¸é »ç¹æÀ¸·Î ÇÑ Ä­¾¿ ´Ã·Áº¸±â)
+bool visited[22][22][22][22];		// ê°€ì¥ìë¦¬ì— ë°©ë¬¸ì²´í¬ê°€ ì´ë£¨ì–´ì§€ë©´ ë‚˜ê°„ ê±¸ë¡œ ì²˜ë¦¬ (í•­ìƒ ë–¨ì–´ì§€ëŠ” ê²ƒê¹Œì§€ ê³ ë ¤í•œë‹¤ë©´ ì‚¬ë°©ìœ¼ë¡œ í•œ ì¹¸ì”© ëŠ˜ë ¤ë³´ê¸°)
 
 int BFS()
 {
@@ -23,14 +23,14 @@ int BFS()
 	while (!q.empty()) {
 		Node node = q.front();
 		q.pop();
-		// µÑ ´Ù ³ª°£ °æ¿ì skip
+		// ë‘˜ ë‹¤ ë‚˜ê°„ ê²½ìš° skip
 		if ((node.coin[0].first == 0 || node.coin[0].first == N + 1 || node.coin[0].second == 0 || node.coin[0].second == M + 1) &&
 			(node.coin[1].first == 0 || node.coin[1].first == N + 1 || node.coin[1].second == 0 || node.coin[1].second == M + 1))
 			continue;
-		// ¿òÁ÷ÀÎ È½¼ö°¡ 10¹øÀÌ ³Ñ¾î°¡¸é -1 ¸®ÅÏ
+		// ì›€ì§ì¸ íšŸìˆ˜ê°€ 10ë²ˆì´ ë„˜ì–´ê°€ë©´ -1 ë¦¬í„´
 		else if (node.move > 10)
 			return -1;
-		// µÑ Áß ÇÏ³ª¸¸ ³ª°£ °æ¿ì ¿òÁ÷ÀÎ È½¼ö ¸®ÅÏ
+		// ë‘˜ ì¤‘ í•˜ë‚˜ë§Œ ë‚˜ê°„ ê²½ìš° ì›€ì§ì¸ íšŸìˆ˜ ë¦¬í„´
 		else if (node.coin[0].first == 0 || node.coin[0].first == N + 1 || node.coin[0].second == 0 || node.coin[0].second == M + 1 ||
 			node.coin[1].first == 0 || node.coin[1].first == N + 1 || node.coin[1].second == 0 || node.coin[1].second == M + 1)
 			return node.move;
@@ -38,7 +38,7 @@ int BFS()
 		for (int d = 0; d < 4; d++) {
 			Node new_node = node;
 			for (int c = 0; c < 2; c++) {
-				if (map[node.coin[c].first + dr[d]][node.coin[c].second + dc[d]] != '#') {	// ¿òÁ÷ÀÌ·Á´Â °÷ÀÌ º®ÀÌ ¾Æ´Ï¸é ÀÌµ¿
+				if (map[node.coin[c].first + dr[d]][node.coin[c].second + dc[d]] != '#') {	// ì›€ì§ì´ë ¤ëŠ” ê³³ì´ ë²½ì´ ì•„ë‹ˆë©´ ì´ë™
 					new_node.coin[c].first += dr[d];
 					new_node.coin[c].second += dc[d];
 				}

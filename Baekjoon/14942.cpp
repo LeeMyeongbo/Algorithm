@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 17
@@ -8,7 +8,7 @@ int n, a, b, c, ant[100001], energy[100001], parent[100001][MAX];
 bool visited[100001];
 vector<pair<int, int>> tree[100001];
 
-void dfs(int cur, int pre, int E)			// °¢ Á¤Á¡ÀÇ Ã¹ ¹øÂ° Á¶»ó°ú 1¹ø±îÁöÀÇ Åë·Î ±æÀÌ ÇÕ ÀúÀå
+void dfs(int cur, int pre, int E)			// ê° ì •ì ì˜ ì²« ë²ˆì§¸ ì¡°ìƒê³¼ 1ë²ˆê¹Œì§€ì˜ í†µë¡œ ê¸¸ì´ í•© ì €ì¥
 {
 	visited[cur] = true;
 	parent[cur][0] = pre;
@@ -19,7 +19,7 @@ void dfs(int cur, int pre, int E)			// °¢ Á¤Á¡ÀÇ Ã¹ ¹øÂ° Á¶»ó°ú 1¹ø±îÁöÀÇ Åë·Î ±
 			dfs(p.first, cur, E + p.second);
 }
 
-void set_Parent()							// °¢ Á¤Á¡ÀÇ 2^1ºÎÅÍ 2^16¹øÂ°ÀÇ Á¶»ó ÀúÀå
+void set_Parent()							// ê° ì •ì ì˜ 2^1ë¶€í„° 2^16ë²ˆì§¸ì˜ ì¡°ìƒ ì €ì¥
 {
 	dfs(1, 0, 0);
 	for (int j = 1; j < MAX; j++)
@@ -29,13 +29,13 @@ void set_Parent()							// °¢ Á¤Á¡ÀÇ 2^1ºÎÅÍ 2^16¹øÂ°ÀÇ Á¶»ó ÀúÀå
 
 void Solve()
 {
-	for (int i = 1; i <= n; i++) {					// 1¹ø °³¹ÌºÎÅÍ n¹ø °³¹Ì±îÁö
+	for (int i = 1; i <= n; i++) {					// 1ë²ˆ ê°œë¯¸ë¶€í„° në²ˆ ê°œë¯¸ê¹Œì§€
 		int cur = i;
 		for (int j = MAX - 1; j >= 0; j--) {
-			// Çö Á¤Á¡ÀÇ 2^j ¹øÂ°ÀÇ Á¶»óÀÌ Á¸ÀçÇÏ¸é¼­ ÇØ´ç ÁöÁ¡±îÁöÀÇ °Å±â±îÁöÀÇ Åë·Î ±æÀÌ°¡ ÇöÀç °³¹ÌÀÇ ³²Àº ¿¡³ÊÁö·® ÀÌÇÏÀÏ °æ¿ì
+			// í˜„ ì •ì ì˜ 2^j ë²ˆì§¸ì˜ ì¡°ìƒì´ ì¡´ì¬í•˜ë©´ì„œ í•´ë‹¹ ì§€ì ê¹Œì§€ì˜ ê±°ê¸°ê¹Œì§€ì˜ í†µë¡œ ê¸¸ì´ê°€ í˜„ì¬ ê°œë¯¸ì˜ ë‚¨ì€ ì—ë„ˆì§€ëŸ‰ ì´í•˜ì¼ ê²½ìš°
 			if (parent[cur][j] && energy[cur] - energy[parent[cur][j]] <= ant[i]) { 
-				ant[i] -= energy[cur] - energy[parent[cur][j]];		// °Å±â±îÁöÀÇ Åë·Î ±æÀÌ¸¸Å­ ¿¡³ÊÁö Â÷°¨
-				cur = parent[cur][j];								// °Å±â·Î ÀÌµ¿
+				ant[i] -= energy[cur] - energy[parent[cur][j]];		// ê±°ê¸°ê¹Œì§€ì˜ í†µë¡œ ê¸¸ì´ë§Œí¼ ì—ë„ˆì§€ ì°¨ê°
+				cur = parent[cur][j];								// ê±°ê¸°ë¡œ ì´ë™
 			}
 		}
 		cout << cur << "\n";

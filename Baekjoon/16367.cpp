@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -8,7 +8,7 @@ using namespace std;
 int k, n, lamp[MAX * 2 + 1], num, seq[MAX * 2 + 1], scc_num, scc_index[MAX * 2 + 1];
 char color;
 bool complete[MAX * 2 + 1];
-vector<int> graph[MAX * 2 + 1];		// »¡°£»öÀÏ ¶§ MAXº¸´Ù Å©°í ÆÄ¶õ»öÀÏ ¶§ MAXº¸´Ù ÀÛÀ½
+vector<int> graph[MAX * 2 + 1];		// ë¹¨ê°„ìƒ‰ì¼ ë•Œ MAXë³´ë‹¤ í¬ê³  íŒŒë€ìƒ‰ì¼ ë•Œ MAXë³´ë‹¤ ì‘ìŒ
 stack<int> s;
 
 int dfs(int cur)
@@ -58,7 +58,7 @@ int main()
 			if (color == 'B')
 				predict[j] *= -1;
 		}
-		for (int j = 0; j < 3; j++) {			// ÇÏ³ª°¡ ¸¸Á·ÇÏÁö ¸øÇÒ °æ¿ì ³ª¸ÓÁö 2°³°¡ ¹«Àû±Ç ¸¸Á·ÇØ¾ß ÇÔÀ» ÀÌ¿ë
+		for (int j = 0; j < 3; j++) {			// í•˜ë‚˜ê°€ ë§Œì¡±í•˜ì§€ ëª»í•  ê²½ìš° ë‚˜ë¨¸ì§€ 2ê°œê°€ ë¬´ì ê¶Œ ë§Œì¡±í•´ì•¼ í•¨ì„ ì´ìš©
 			graph[MAX - predict[j]].push_back(MAX + predict[(j + 1) % 3]);
 			graph[MAX - predict[j]].push_back(MAX + predict[(j + 2) % 3]);
 		}

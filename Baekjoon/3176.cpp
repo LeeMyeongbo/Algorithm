@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -6,10 +6,10 @@
 using namespace std;
 
 int N, a, b, c, K, d, e;
-int depth[100001];				// depth[i] : Á¤Á¡ iÀÇ ±íÀÌ (Á¤Á¡ 1À» 1·Î µÒ)
-int parent[100001][MAX];		// parent[i][j] : Á¤Á¡ iÀÇ 2^j¹øÂ° Á¶»ó
-int Max_weight[100001][MAX];	// Max_weight[i][j] : i¿¡¼­ iÀÇ 2^j¹øÂ° Á¶»ó±îÁöÀÇ µµ·Îµé Áß ÃÖ´ë ±æÀÌ ÀúÀå
-int Min_weight[100001][MAX];	// Min_weight[i][j] : i¿¡¼­ iÀÇ 2^j¹øÂ° Á¶»ó±îÁöÀÇ µµ·Îµé Áß ÃÖ¼Ò ±æÀÌ ÀúÀå
+int depth[100001];				// depth[i] : ì •ì  iì˜ ê¹Šì´ (ì •ì  1ì„ 1ë¡œ ë‘ )
+int parent[100001][MAX];		// parent[i][j] : ì •ì  iì˜ 2^jë²ˆì§¸ ì¡°ìƒ
+int Max_weight[100001][MAX];	// Max_weight[i][j] : iì—ì„œ iì˜ 2^jë²ˆì§¸ ì¡°ìƒê¹Œì§€ì˜ ë„ë¡œë“¤ ì¤‘ ìµœëŒ€ ê¸¸ì´ ì €ì¥
+int Min_weight[100001][MAX];	// Min_weight[i][j] : iì—ì„œ iì˜ 2^jë²ˆì§¸ ì¡°ìƒê¹Œì§€ì˜ ë„ë¡œë“¤ ì¤‘ ìµœì†Œ ê¸¸ì´ ì €ì¥
 vector<pair<int, int>> tree[100001];
 
 void dfs(int d, int cur, int par, int length)
@@ -23,7 +23,7 @@ void dfs(int d, int cur, int par, int length)
 			dfs(d + 1, p.first, cur, p.second);
 }
 
-void set_Parent()			// 2^1ºÎÅÍ 2^(MAX-1)¹øÂ° Á¶»ó±îÁö ÀúÀå + ÃÖ´ë,ÃÖ¼Ò ±æÀÌ °»½Å
+void set_Parent()			// 2^1ë¶€í„° 2^(MAX-1)ë²ˆì§¸ ì¡°ìƒê¹Œì§€ ì €ì¥ + ìµœëŒ€,ìµœì†Œ ê¸¸ì´ ê°±ì‹ 
 {
 	dfs(1, 1, 0, 0);
 
@@ -38,7 +38,7 @@ void set_Parent()			// 2^1ºÎÅÍ 2^(MAX-1)¹øÂ° Á¶»ó±îÁö ÀúÀå + ÃÖ´ë,ÃÖ¼Ò ±æÀÌ °»½Å
 void Solve()
 {
 	int Min = 1000001, Max = 0;
-	if (depth[d] < depth[e])			// dÀÇ ±íÀÌ¸¦ ´õ ±í°Ô ¼³Á¤
+	if (depth[d] < depth[e])			// dì˜ ê¹Šì´ë¥¼ ë” ê¹Šê²Œ ì„¤ì •
 		swap(d, e);
 
 	int gap = depth[d] - depth[e];

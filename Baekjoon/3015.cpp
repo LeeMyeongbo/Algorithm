@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <stack>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int N, height;
 long long ans;
-stack<pair<int, int>> s;			// (Å°, »ç¶÷ ¼ö)·Î ÀúÀå
+stack<pair<int, int>> s;			// (í‚¤, ì‚¬ëŒ ìˆ˜)ë¡œ ì €ì¥
 
 int main()
 {
@@ -13,21 +13,21 @@ int main()
 	cin >> N >> height;
 	s.push({ height, 1 });
 
-	for (int i = 1; i < N; i++) {	// ¸ğµç »ç¶÷ÀÌ ¿ŞÂÊ(ÀÎµ¦½º°¡ ÀÛÀº ¹æÇâ)À» ¹Ù¶óº¸°í ÀÖ´Ù°í »ı°¢ÇÏ°í Á¢±Ù
+	for (int i = 1; i < N; i++) {	// ëª¨ë“  ì‚¬ëŒì´ ì™¼ìª½(ì¸ë±ìŠ¤ê°€ ì‘ì€ ë°©í–¥)ì„ ë°”ë¼ë³´ê³  ìˆë‹¤ê³  ìƒê°í•˜ê³  ì ‘ê·¼
 		cin >> height;
-		while (!s.empty() && s.top().first < height) {	// stack top¿¡ À§Ä¡ÇÑ »ç¶÷ÀÇ Å°°¡ heightº¸´Ù ÀÛÀº °æ¿ì 
-			ans += s.top().second;						// stack top¿¡ ÀÖ´Â »ç¶÷ÀÇ ¼ö¸¦ ´õÇÔ
-			s.pop();									// Å°°¡ ÀÛÁö ¾ÊÀº »ç¶÷ÀÌ ³ªÅ¸³ª°Å³ª stackÀÌ ºô ¶§±îÁö ¹İº¹
+		while (!s.empty() && s.top().first < height) {	// stack topì— ìœ„ì¹˜í•œ ì‚¬ëŒì˜ í‚¤ê°€ heightë³´ë‹¤ ì‘ì€ ê²½ìš° 
+			ans += s.top().second;						// stack topì— ìˆëŠ” ì‚¬ëŒì˜ ìˆ˜ë¥¼ ë”í•¨
+			s.pop();									// í‚¤ê°€ ì‘ì§€ ì•Šì€ ì‚¬ëŒì´ ë‚˜íƒ€ë‚˜ê±°ë‚˜ stackì´ ë¹Œ ë•Œê¹Œì§€ ë°˜ë³µ
 		}
-		if (!s.empty() && s.top().first == height) {	// ÀÌÈÄ stack top¿¡ À§Ä¡ÇÑ »ç¶÷ÀÇ Å°°¡ height¿Í °°À» °æ¿ì
-			ans += s.top().second;						// ±× »ç¶÷ÀÇ ¼ö¸¸Å­ ´õÇØÁÜ
-			s.top().second++;							// topÀÇ »ç¶÷ ¼ö +1
-			if (s.size() > 1)							// ¿ŞÂÊ¿¡ Å°°¡ ´õ Å« »ç¶÷ÀÌ ÀÖ´Ù¸é ±× »ç¶÷±îÁö º¼ ¼ö ÀÖÀ¸¹Ç·Î +1
+		if (!s.empty() && s.top().first == height) {	// ì´í›„ stack topì— ìœ„ì¹˜í•œ ì‚¬ëŒì˜ í‚¤ê°€ heightì™€ ê°™ì„ ê²½ìš°
+			ans += s.top().second;						// ê·¸ ì‚¬ëŒì˜ ìˆ˜ë§Œí¼ ë”í•´ì¤Œ
+			s.top().second++;							// topì˜ ì‚¬ëŒ ìˆ˜ +1
+			if (s.size() > 1)							// ì™¼ìª½ì— í‚¤ê°€ ë” í° ì‚¬ëŒì´ ìˆë‹¤ë©´ ê·¸ ì‚¬ëŒê¹Œì§€ ë³¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ +1
 				ans++;
 		}
-		else {							// ±× ¿ÜÀÇ °æ¿ì (stackÀÌ ºñ¾ú°Å³ª stack top¿¡ À§Ä¡ÇÑ »ç¶÷ Å°°¡ heightº¸´Ù Å¬ °æ¿ì)
-			if (!s.empty())				// ½ºÅÃÀÌ ºñÁö ¾Ê¾Ò´Ù¸é stack top¿¡ À§Ä¡ÇÑ »ç¶÷ Å°°¡ heightº¸´Ù Å©´Ù´Â ÀÇ¹Ì
-				ans++;					// ÀÌ·± °æ¿ì´Â ¹Ù·Î ¾ÕÀÇ »ç¶÷ 1¸í¹Û¿¡ ¸ø º¸´Â °æ¿ìÀÌ¹Ç·Î +1
+		else {							// ê·¸ ì™¸ì˜ ê²½ìš° (stackì´ ë¹„ì—ˆê±°ë‚˜ stack topì— ìœ„ì¹˜í•œ ì‚¬ëŒ í‚¤ê°€ heightë³´ë‹¤ í´ ê²½ìš°)
+			if (!s.empty())				// ìŠ¤íƒì´ ë¹„ì§€ ì•Šì•˜ë‹¤ë©´ stack topì— ìœ„ì¹˜í•œ ì‚¬ëŒ í‚¤ê°€ heightë³´ë‹¤ í¬ë‹¤ëŠ” ì˜ë¯¸
+				ans++;					// ì´ëŸ° ê²½ìš°ëŠ” ë°”ë¡œ ì•ì˜ ì‚¬ëŒ 1ëª…ë°–ì— ëª» ë³´ëŠ” ê²½ìš°ì´ë¯€ë¡œ +1
 			s.push({ height, 1 });
 		}
 	}

@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #define LOG 15
 using namespace std;
@@ -59,8 +59,8 @@ int main()
 	for (int i = 0; i < m - 1; i++) {
 		int lca = LCA(city[i], city[i + 1]);
 		if (!i)
-			ans += depth[lca] - 1;				// ¸Ç Ã³À½¿¡´Â ¹«Àû±Ç 1¹ø¿¡¼­ºÎÅÍ ¿©Çà ½ÃÀÛ
-		ans += depth[city[i]] - depth[lca] + depth[city[i + 1]] - depth[lca];	// µÎ µµ½Ã¿¡¼­ lca±îÁöÀÇ °Å¸®¸¦ ´õÇØ°¡¸é µÊ
+			ans += depth[lca] - 1;				// ë§¨ ì²˜ìŒì—ëŠ” ë¬´ì ê¶Œ 1ë²ˆì—ì„œë¶€í„° ì—¬í–‰ ì‹œìž‘
+		ans += depth[city[i]] - depth[lca] + depth[city[i + 1]] - depth[lca];	// ë‘ ë„ì‹œì—ì„œ lcaê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ë”í•´ê°€ë©´ ë¨
 	}
 
 	cout << ans;

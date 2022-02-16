@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -8,9 +8,9 @@
 using namespace std;
 
 priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
-vector<pair<int, int>> graph[MAX];				// (¿¬°áµÈ ±³Â÷·Î, µµ·Î ±æÀÌ) ²Ã·Î ÀúÀå
-int T, n, m, t, s, g, h, must;					// must : g, h »çÀÌÀÇ µµ·Î
-int s_sum[MAX], g_sum[MAX], h_sum[MAX];			// s_sum : s¿¡¼­, g_sum : g¿¡¼­, h_sum : h¿¡¼­ Ãâ¹ßÇÏ¿© °¢ ±³Â÷·Î±îÁöÀÇ ÃÖ´Ü °Å¸® ÀúÀå
+vector<pair<int, int>> graph[MAX];				// (ì—°ê²°ëœ êµì°¨ë¡œ, ë„ë¡œ ê¸¸ì´) ê¼´ë¡œ ì €ì¥
+int T, n, m, t, s, g, h, must;					// must : g, h ì‚¬ì´ì˜ ë„ë¡œ
+int s_sum[MAX], g_sum[MAX], h_sum[MAX];			// s_sum : sì—ì„œ, g_sum : gì—ì„œ, h_sum : hì—ì„œ ì¶œë°œí•˜ì—¬ ê° êµì°¨ë¡œê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ ì €ì¥
 
 void Dijkstra(int start_arr[], int start)
 {
@@ -36,9 +36,9 @@ vector<int> Solve(int dest[])
 	vector<int> ans_list;
 	Dijkstra(s_sum, s);
 	Dijkstra(g_sum, g);
-	Dijkstra(h_sum, h);						// s, g, h °¢ ±³Â÷·Î·ÎºÎÅÍ ¸ğµç ±³Â÷·Î±îÁöÀÇ ÃÖ´Ü °Å¸® µµÃâÇØ¼­ ÀúÀå
+	Dijkstra(h_sum, h);						// s, g, h ê° êµì°¨ë¡œë¡œë¶€í„° ëª¨ë“  êµì°¨ë¡œê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ ë„ì¶œí•´ì„œ ì €ì¥
 
-	// s¿¡¼­ g(h)±îÁöÀÇ ÃÖ´Ü °Å¸® + g-h µµ·Î + h(g)¿¡¼­ ¸ñÀûÁö±îÁöÀÇ ÃÖ´Ü °Å¸® = s¿¡¼­ ¸ñÀûÁö±îÁö ÃÖ´Ü °Å¸® => ÀÌ ¸ñÀûÁö´Â °¡´É!
+	// sì—ì„œ g(h)ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ + g-h ë„ë¡œ + h(g)ì—ì„œ ëª©ì ì§€ê¹Œì§€ì˜ ìµœë‹¨ ê±°ë¦¬ = sì—ì„œ ëª©ì ì§€ê¹Œì§€ ìµœë‹¨ ê±°ë¦¬ => ì´ ëª©ì ì§€ëŠ” ê°€ëŠ¥!
 	for (int i = 0; i < t; i++) {
 		if (s_sum[g] + must + h_sum[dest[i]] == s_sum[dest[i]] || s_sum[h] + must + g_sum[dest[i]] == s_sum[dest[i]])
 			ans_list.push_back(dest[i]);
@@ -53,7 +53,7 @@ int main()
 	if (!scanf("%d", &T))
 		return 1;
 	for (int test = 0; test < T; test++) {
-		int dest[100] = { 0, };					// ¿¹»ó ¸ñÀûÁö ÀúÀå
+		int dest[100] = { 0, };					// ì˜ˆìƒ ëª©ì ì§€ ì €ì¥
 
 		if (!scanf("%d %d %d %d %d %d", &n, &m, &t, &s, &g, &h))
 			return 1;

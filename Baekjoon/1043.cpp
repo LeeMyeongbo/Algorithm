@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -14,7 +14,7 @@ int Solve()
 		q.push(p);
 		visited[p] = true;
 	}
-	while (!q.empty()) {			// BFS·Î Áø½ÇÀ» ¾Æ´Â »ç¶÷°ú ¿¬°áµÈ »ç¶÷µé ¸ğµÎ Å½»ö ¤¡¤¡
+	while (!q.empty()) {			// BFSë¡œ ì§„ì‹¤ì„ ì•„ëŠ” ì‚¬ëŒê³¼ ì—°ê²°ëœ ì‚¬ëŒë“¤ ëª¨ë‘ íƒìƒ‰ ã„±ã„±
 		int cur = q.front();
 		q.pop();
 
@@ -39,14 +39,14 @@ int main()
 	cin >> N >> M >> t;
 
 	for (int i = 0; i < t; i++)
-		cin >> truth[i];						// Áø½ÇÀ» ¾Æ´Â »ç¶÷µé ¸ñ·Ï ÀúÀå
+		cin >> truth[i];						// ì§„ì‹¤ì„ ì•„ëŠ” ì‚¬ëŒë“¤ ëª©ë¡ ì €ì¥
 
 	for (int i = 0; i < M; i++) {
 		cin >> t;
 		for (int j = 0; j < t; j++)
 			cin >> party[i][j];
 		for (int j = 0; j < t - 1; j++)
-			for (int k = j + 1; k < t; k++)		// ÆÄÆ¼ Âü¼®ÇÑ »ç¶÷³¢¸® ¼­·Î¼­·Î ¸ğµÎ ÀÎÁ¢Çà·Ä¿¡´Ù ¿¬°áµÈ °É·Î Ç¥½Ã
+			for (int k = j + 1; k < t; k++)		// íŒŒí‹° ì°¸ì„í•œ ì‚¬ëŒë¼ë¦¬ ì„œë¡œì„œë¡œ ëª¨ë‘ ì¸ì ‘í–‰ë ¬ì—ë‹¤ ì—°ê²°ëœ ê±¸ë¡œ í‘œì‹œ
 				adjacent[party[i][j]][party[i][k]] = adjacent[party[i][k]][party[i][j]] = true;
 	}
 

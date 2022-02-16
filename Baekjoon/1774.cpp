@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
@@ -39,11 +39,11 @@ double Solve()
 			edges.push_back({ distance, {i, j} });
 		}
 	}
-	sort(edges.begin(), edges.end());		// °¡ÁßÄ¡ (µÎ ÁÂÇ¥ »çÀÌ °Å¸®) ¿À¸§Â÷¼øÀ¸·Î °£¼± Á¤·Ä
+	sort(edges.begin(), edges.end());		// ê°€ì¤‘ì¹˜ (ë‘ ì¢Œí‘œ ì‚¬ì´ ê±°ë¦¬) ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ê°„ì„  ì •ë ¬
 
 	for (auto &e : edges) {
 		bool complete = true;
-		if (Union(e.second.first, e.second.second)) {	// UnionÀ» ÅëÇØ µÎ Á¤Á¡ÀÌ ¿¬°áµÇ¾úÀ» ¶§ °Å¸® ÇÕ °»½ÅÇÏ°í ¸ğµç Á¡ÀÌ ¿¬°áµÇ¾ú´ÂÁö »ìÇË
+		if (Union(e.second.first, e.second.second)) {	// Unionì„ í†µí•´ ë‘ ì •ì ì´ ì—°ê²°ë˜ì—ˆì„ ë•Œ ê±°ë¦¬ í•© ê°±ì‹ í•˜ê³  ëª¨ë“  ì ì´ ì—°ê²°ë˜ì—ˆëŠ”ì§€ ì‚´í•Œ
 			sum += e.first;
 			for (int v = 1; v <= N; v++)
 				if (Find(v) != 1) {
@@ -51,7 +51,7 @@ double Solve()
 					break;
 				}
 		}
-		else continue;						// ÀÌ¹Ì ¿¬°áµÇ¾î ÀÖ´Ù¸é skip
+		else continue;						// ì´ë¯¸ ì—°ê²°ë˜ì–´ ìˆë‹¤ë©´ skip
 		if (complete) break;
 	}
 	return sum;
@@ -70,7 +70,7 @@ int main()
 	}
 	for (int i = 1; i <= M; i++) {
 		cin >> a >> b;
-		Union(a, b);			// ÀÌ¹Ì ¿¬°áµÈ ÁÂÇ¥µé ¿¬°á
+		Union(a, b);			// ì´ë¯¸ ì—°ê²°ëœ ì¢Œí‘œë“¤ ì—°ê²°
 	}
 
 	cout << Solve();

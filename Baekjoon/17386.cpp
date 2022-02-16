@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 long long X1, X2, X3, X4, Y1, Y2, Y3, Y4;
 
 int CCW(long long X1, long long X2, long long Y1, long long Y2, long long X3, long long Y3) {
-	long long val = X1 * Y2 + X2 * Y3 + X3 * Y1 - (Y1 * X2 + Y2 * X3 + Y3 * X1);		// ¼±ºÐ ±³Â÷ ÆÇÁ¤
-	if (val < 0)																		// (x1, y1)°ú (x2, y2)´Â ¼±ºÐ, (x3, y3)´Â Á¡
+	long long val = X1 * Y2 + X2 * Y3 + X3 * Y1 - (Y1 * X2 + Y2 * X3 + Y3 * X1);		// ì„ ë¶„ êµì°¨ íŒì •
+	if (val < 0)																		// (x1, y1)ê³¼ (x2, y2)ëŠ” ì„ ë¶„, (x3, y3)ëŠ” ì 
 		return -1;
 	else if (val > 0)
 		return 1;

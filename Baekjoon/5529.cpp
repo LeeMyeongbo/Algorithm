@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -7,10 +7,10 @@ using namespace std;
 
 int M, N, K, x, y;
 pair<int, int> Switch[200000];
-vector<tuple<int, int, int>> S_x, S_y, Start;	// S_x : (x, y, ½ºÀ§Ä¡ ¹øÈ£)·Î, S_y : (y, x, ½ºÀ§Ä¡ ¹øÈ£)·Î ÀúÀå
-vector<pair<int, int>> graph[200001][2];		// (¿¬°áµÈ ½ºÀ§Ä¡ ¹øÈ£, °£¼± ±æÀÌ)·Î ÀúÀå
-long long dij[200001][2], ans = -1;				// dij[i][0] : i¹ø ½ºÀ§Ä¡¿¡ À§¾Æ·¡·Î ÀÌµ¿ÇØ¼­ °¥ ¼ö ÀÖ´Â ÃÖ´Ü ½Ã°£
-												// dij[i][1] : i¹ø ½ºÀ§Ä¡¿¡ ÁÂ¿ì·Î ÀÌµ¿ÇØ¼­ °¥ ¼ö ÀÖ´Â ÃÖ´Ü ½Ã°£
+vector<tuple<int, int, int>> S_x, S_y, Start;	// S_x : (x, y, ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸)ë¡œ, S_y : (y, x, ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸)ë¡œ ì €ì¥
+vector<pair<int, int>> graph[200001][2];		// (ì—°ê²°ëœ ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸, ê°„ì„  ê¸¸ì´)ë¡œ ì €ì¥
+long long dij[200001][2], ans = -1;				// dij[i][0] : ië²ˆ ìŠ¤ìœ„ì¹˜ì— ìœ„ì•„ë˜ë¡œ ì´ë™í•´ì„œ ê°ˆ ìˆ˜ ìˆëŠ” ìµœë‹¨ ì‹œê°„
+												// dij[i][1] : ië²ˆ ìŠ¤ìœ„ì¹˜ì— ì¢Œìš°ë¡œ ì´ë™í•´ì„œ ê°ˆ ìˆ˜ ìˆëŠ” ìµœë‹¨ ì‹œê°„
 void make_Graph()
 {
 	sort(S_x.begin(), S_x.end());
@@ -19,11 +19,11 @@ void make_Graph()
 	for (int i = 0; i < S_x.size() - 1; i++) {
 		if (get<0>(S_x[i]) == 1)
 			Start.push_back(S_x[i]);
-		if (get<0>(S_x[i]) == get<0>(S_x[i + 1])) {			// »óÇÏ·Î ¿Ô´Ù°¬´Ù ÇÏ´Â °æ·Î ÀúÀå
+		if (get<0>(S_x[i]) == get<0>(S_x[i + 1])) {			// ìƒí•˜ë¡œ ì™”ë‹¤ê°”ë‹¤ í•˜ëŠ” ê²½ë¡œ ì €ì¥
 			graph[get<2>(S_x[i])][0].push_back({get<2>(S_x[i + 1]), get<1>(S_x[i + 1]) - get<1>(S_x[i])});
 			graph[get<2>(S_x[i + 1])][0].push_back({get<2>(S_x[i]), get<1>(S_x[i + 1]) - get<1>(S_x[i])});
 		}
-		if (get<0>(S_y[i]) == get<0>(S_y[i + 1])) {			// ÁÂ¿ì·Î ¿Ô´Ù°¬´Ù ÇÏ´Â °æ·Î ÀúÀå
+		if (get<0>(S_y[i]) == get<0>(S_y[i + 1])) {			// ì¢Œìš°ë¡œ ì™”ë‹¤ê°”ë‹¤ í•˜ëŠ” ê²½ë¡œ ì €ì¥
 			graph[get<2>(S_y[i])][1].push_back({get<2>(S_y[i + 1]), get<1>(S_y[i + 1]) - get<1>(S_y[i])});
 			graph[get<2>(S_y[i + 1])][1].push_back({get<2>(S_y[i]), get<1>(S_y[i + 1]) - get<1>(S_y[i])});
 		}
@@ -34,7 +34,7 @@ void make_Graph()
 
 long long dijkstra()
 {
-	priority_queue<tuple<long long, int, int>> pq;		// (¼Ò¿ä ½Ã°£, ¹® ¿­¸° ¹æÇâ, ÇöÀç ½ºÀ§Ä¡ ¹øÈ£)·Î ÀúÀå
+	priority_queue<tuple<long long, int, int>> pq;		// (ì†Œìš” ì‹œê°„, ë¬¸ ì—´ë¦° ë°©í–¥, í˜„ì¬ ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸)ë¡œ ì €ì¥
 	if (!Start.empty()){
 		dij[get<2>(Start[0])][0] = get<1>(Start[0]) - 1;
 		pq.push({-dij[get<2>(Start[0])][0], 0, get<2>(Start[0])});

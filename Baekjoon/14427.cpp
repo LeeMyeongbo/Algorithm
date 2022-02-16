@@ -1,8 +1,8 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, A[100001], choice, i, graph, tree[400004];		// tree : ÃÖ¼Ú°ªÀÇ index ÀúÀå
+int N, M, A[100001], choice, i, graph, tree[400004];		// tree : ìµœì†Ÿê°’ì˜ index ì €ì¥
 
 int get_index(int i1, int i2)
 {
@@ -14,7 +14,7 @@ int init(int index, int start, int end)
 	if (start == end)
 		return tree[index] = start;
 	
-	// Çö ³ëµåÀÇ µÎ ÀÚ½Äµé Áß ÃÖ¼Ú°ªÀÇ index¸¦ ÀúÀå
+	// í˜„ ë…¸ë“œì˜ ë‘ ìì‹ë“¤ ì¤‘ ìµœì†Ÿê°’ì˜ indexë¥¼ ì €ì¥
 	return tree[index] = get_index(init(index * 2, start, (start + end) / 2), init(index * 2 + 1, (start + end) / 2 + 1, end));
 }
 

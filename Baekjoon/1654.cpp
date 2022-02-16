@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
@@ -14,11 +14,11 @@ long long Solve()
 		for (int i = 0; i < K; i++)
 			n += Lan[i] / mid;
 		if (n < N)
-			Right = mid - 1;		// ÇÊ¿äÇÑ °³¼öº¸´Ù Àû°Ô ³ª¿Ã °æ¿ì ±æÀÌ¸¦ Á» ´õ ÁÙÀÓ
-		else {						// ÇÊ¿äÇÑ °³¼ö ÀÌ»óÀÌ¶ó¸é
+			Right = mid - 1;		// í•„ìš”í•œ ê°œìˆ˜ë³´ë‹¤ ì ê²Œ ë‚˜ì˜¬ ê²½ìš° ê¸¸ì´ë¥¼ ì¢€ ë” ì¤„ìž„
+		else {						// í•„ìš”í•œ ê°œìˆ˜ ì´ìƒì´ë¼ë©´
 			if (Result < mid)
-				Result = mid;		// mid ÃÖ´ñ°ª °»½Å
-			Left = mid + 1;			// ±æÀÌ¸¦ ´ÃÀÓ
+				Result = mid;		// mid ìµœëŒ“ê°’ ê°±ì‹ 
+			Left = mid + 1;			// ê¸¸ì´ë¥¼ ëŠ˜ìž„
 		}
 	}
 	return Result;

@@ -1,21 +1,21 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N, M, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[50][51];
 bool visited[50][50];
 
-void dfs(int cur_r, int cur_c, int pre_r, int pre_c)	// cur_r : ÇöÀç Çà, cur_c : ÇöÀç ¿­, pre_r : ¹Ù·Î ÀÌÀü Çà, pre_c : ¹Ù·Î ÀÌÀü ¿­
+void dfs(int cur_r, int cur_c, int pre_r, int pre_c)	// cur_r : í˜„ì¬ í–‰, cur_c : í˜„ì¬ ì—´, pre_r : ë°”ë¡œ ì´ì „ í–‰, pre_c : ë°”ë¡œ ì´ì „ ì—´
 {
 	visited[cur_r][cur_c] = true;
 
 	for (int d = 0; d < 4; d++) {
 		int R = cur_r + dr[d];
 		int C = cur_c + dc[d];
-		if (R >= 0 && R < N && C >= 0 && C < M && map[cur_r][cur_c] == map[R][C]) {		// ¾ËÆÄºªÀÌ °°Àº ¿µ¿ªÀ¸·Î¸¸ °¥ ¼ö ÀÖÀ½
+		if (R >= 0 && R < N && C >= 0 && C < M && map[cur_r][cur_c] == map[R][C]) {		// ì•ŒíŒŒë²³ì´ ê°™ì€ ì˜ì—­ìœ¼ë¡œë§Œ ê°ˆ ìˆ˜ ìˆìŒ
 			if (!visited[R][C])
 				dfs(R, C, cur_r, cur_c);
-			else if (visited[R][C] && (R != pre_r || C != pre_c)) {		// ºĞ¸íÈ÷ ¹æ¹®ÇÑ ÁöÁ¡ÀÎµ¥ ¹Ù·Î Àü¿¡ ¹æ¹®ÇÑ Á¡Àº ¾Æ´Ñ °æ¿ì »çÀÌÅ¬
+			else if (visited[R][C] && (R != pre_r || C != pre_c)) {		// ë¶„ëª…íˆ ë°©ë¬¸í•œ ì§€ì ì¸ë° ë°”ë¡œ ì „ì— ë°©ë¬¸í•œ ì ì€ ì•„ë‹Œ ê²½ìš° ì‚¬ì´í´
 				cout << "Yes";
 				exit(0);
 			}

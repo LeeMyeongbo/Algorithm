@@ -1,25 +1,25 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 using namespace std;
 
 int N, M, start_r, start_c, end_r, end_c;
 const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[500][501];
-bool visited[500][500], moved;			// moved : ¿òÁ÷¿´´ÂÁö ¿©ºÎ
+bool visited[500][500], moved;			// moved : ì›€ì§ì˜€ëŠ”ì§€ ì—¬ë¶€
 queue<pair<int, int>> q;
 
 bool BFS()
 {
 	q.push({ start_r, start_c });
 	if (start_r != end_r || start_c != end_c)
-		map[start_r][start_c] = '.';			// Ãâ¹ßÁ¡°ú µµÂøÁ¡ÀÌ °°Áö ¾Ê´Ù¸é Ãâ¹ßÁ¡À» '.'À¸·Î ¹Ù²Ù°í Ãâ¹ß!
+		map[start_r][start_c] = '.';			// ì¶œë°œì ê³¼ ë„ì°©ì ì´ ê°™ì§€ ì•Šë‹¤ë©´ ì¶œë°œì ì„ '.'ìœ¼ë¡œ ë°”ê¾¸ê³  ì¶œë°œ!
 	visited[start_r][start_c] = true;
 
 	while (!q.empty()) {
 		pair<int, int> cur = q.front();
 		q.pop();
 
-		if (cur.first == end_r && cur.second == end_c && moved) {	// ÃÖ¼Ò ÇÑ ¹ø ÀÌ»ó ¿òÁ÷¿©¾ß yes°¡ ³ª¿Ã ¼ö ÀÖÀ½
+		if (cur.first == end_r && cur.second == end_c && moved) {	// ìµœì†Œ í•œ ë²ˆ ì´ìƒ ì›€ì§ì—¬ì•¼ yesê°€ ë‚˜ì˜¬ ìˆ˜ ìˆìŒ
 			if (map[end_r][end_c] == 'X')
 				return true;
 
@@ -30,7 +30,7 @@ bool BFS()
 				if (R >= 0 && R < N && C >= 0 && C < M && map[R][C] == '.')
 					cnt++;
 			}
-			if (cnt >= 2)				// µµÂøÁ¡ ÁÖÀ§¿¡ '.'ÀÌ 2°³ ÀÌ»ó ÀÖÀ¸¸é ¹«Àû±Ç °¡´É
+			if (cnt >= 2)				// ë„ì°©ì  ì£¼ìœ„ì— '.'ì´ 2ê°œ ì´ìƒ ìˆìœ¼ë©´ ë¬´ì ê¶Œ ê°€ëŠ¥
 				return true;
 
 			break;
@@ -40,8 +40,8 @@ bool BFS()
 			int R = cur.first + dr[d];
 			int C = cur.second + dc[d];
 			if (R >= 0 && R < N && C >= 0 && C < M) {
-				if (R == end_r && C == end_c) {			// µµÂøÁ¡ÀÌ¶ó¸é ¹«Á¶°Ç Å¥¿¡ »ğÀÔ
-					moved = true;						// ¿òÁ÷¿´´Ù´Â Ç¥½Ã
+				if (R == end_r && C == end_c) {			// ë„ì°©ì ì´ë¼ë©´ ë¬´ì¡°ê±´ íì— ì‚½ì…
+					moved = true;						// ì›€ì§ì˜€ë‹¤ëŠ” í‘œì‹œ
 					q.push({ R, C });
 				}
 				else if (!visited[R][C] && map[R][C] == '.') {

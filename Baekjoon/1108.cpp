@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
@@ -10,7 +10,7 @@ int N, link, n, order, seq[2551], scc_num, scc_index[2551], indegree[2551];
 long long score[2551];
 bool complete[2551];
 string page, linked, want;
-vector<int> graph[2551], new_graph[2551];		// new_graph : scc ¹àÇô³½ µÚ Çü¼ºÇÏ´Â »õ·Î¿î ±×·¡ÇÁ
+vector<int> graph[2551], new_graph[2551];		// new_graph : scc ë°í˜€ë‚¸ ë’¤ í˜•ì„±í•˜ëŠ” ìƒˆë¡œìš´ ê·¸ë˜í”„
 map<string, int> Hashed;
 stack<int> s;
 
@@ -48,8 +48,8 @@ long long solve()
 
 	for (int i = 1; i <= n; i++)
 		for (int& v : graph[i])
-			if (scc_index[i] != scc_index[v]) {		// i¿Í v°¡ ´Ù¸¥ scc¿¡ ¼ÓÇÒ °æ¿ì¿¡¸¸ ¿¬°á + ÁøÀÔÂ÷¼ö Áõ°¡
-				new_graph[i].push_back(v);			// (»çÀÌÅ¬ÀÌ Çü¼ºµÈ Á¤Á¡³¢¸®´Â ´õÇÏ¸é ¾ÈµÇ´Ï±î °°Àº sccÀÇ Á¤Á¡³¢¸®´Â ¿¬°á ²÷¾îÁÜ)
+			if (scc_index[i] != scc_index[v]) {		// iì™€ vê°€ ë‹¤ë¥¸ sccì— ì†í•  ê²½ìš°ì—ë§Œ ì—°ê²° + ì§„ì…ì°¨ìˆ˜ ì¦ê°€
+				new_graph[i].push_back(v);			// (ì‚¬ì´í´ì´ í˜•ì„±ëœ ì •ì ë¼ë¦¬ëŠ” ë”í•˜ë©´ ì•ˆë˜ë‹ˆê¹Œ ê°™ì€ sccì˜ ì •ì ë¼ë¦¬ëŠ” ì—°ê²° ëŠì–´ì¤Œ)
 				indegree[v]++;
 			}
 
@@ -57,7 +57,7 @@ long long solve()
 		if (!indegree[i])
 			q.push(i);
 
-	while (!q.empty()) {			// À§»ó Á¤·Ä ½ÃÀü (°°Àº scc³» Á¤Á¡ÀÌ¶óµµ Á¡¼ö°¡ ´Ş¶óÁú ¼ö ÀÖ´Ù´Â °Í¿¡ À¯ÀÇ)
+	while (!q.empty()) {			// ìœ„ìƒ ì •ë ¬ ì‹œì „ (ê°™ì€ sccë‚´ ì •ì ì´ë¼ë„ ì ìˆ˜ê°€ ë‹¬ë¼ì§ˆ ìˆ˜ ìˆë‹¤ëŠ” ê²ƒì— ìœ ì˜)
 		int cur = q.front();
 		q.pop();
 
@@ -75,7 +75,7 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 	cin >> N;
-	for (int i = 1; i <= N; i++) {			// À¥»çÀÌÆ®°¡ ¹®ÀÚ¿­ ÇüÅÂ·Î ÁÖ¾îÁö¹Ç·Î ÀÔ·ÂµÈ ¼ø¼­´ë·Î ÇØ½Ã Çü¼ºÇÏ°í ±×·¡ÇÁ Çü¼º
+	for (int i = 1; i <= N; i++) {			// ì›¹ì‚¬ì´íŠ¸ê°€ ë¬¸ìì—´ í˜•íƒœë¡œ ì£¼ì–´ì§€ë¯€ë¡œ ì…ë ¥ëœ ìˆœì„œëŒ€ë¡œ í•´ì‹œ í˜•ì„±í•˜ê³  ê·¸ë˜í”„ í˜•ì„±
 		cin >> page >> link;
 		if (!Hashed.count(page))
 			Hashed.insert({ page, ++n });

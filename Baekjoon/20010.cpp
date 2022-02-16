@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -6,9 +6,9 @@ using namespace std;
 
 int N, K, a, b, c, parent[1000], farthest, ans1, ans2;
 bool visited[1000];
-vector<pair<int, pair<int, int>>> edges;			// (°¡ÁßÄ¡, (v1, v2))·Î ÀúÀå
-vector<pair<int, int>> graph[1000];					// (¿¬°áµÈ Á¤Á¡, °¡ÁßÄ¡)·Î ÀúÀå
-queue<pair<int, int>> q;							// (ÇöÀç Á¤Á¡, °¡ÁßÄ¡ ÇÕ)À¸·Î ÀúÀå
+vector<pair<int, pair<int, int>>> edges;			// (ê°€ì¤‘ì¹˜, (v1, v2))ë¡œ ì €ì¥
+vector<pair<int, int>> graph[1000];					// (ì—°ê²°ëœ ì •ì , ê°€ì¤‘ì¹˜)ë¡œ ì €ì¥
+queue<pair<int, int>> q;							// (í˜„ì¬ ì •ì , ê°€ì¤‘ì¹˜ í•©)ìœ¼ë¡œ ì €ì¥
 
 int find(int v) 
 {
@@ -64,10 +64,10 @@ int main()
 		cin >> a >> b >> c;
 		edges.push_back({ c, {min(a, b), max(a, b)} });
 	}
-	sort(edges.begin(), edges.end(), greater<pair<int, pair<int, int>>>());		// °£¼±µéÀ» °¡ÁßÄ¡ ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+	sort(edges.begin(), edges.end(), greater<pair<int, pair<int, int>>>());		// ê°„ì„ ë“¤ì„ ê°€ì¤‘ì¹˜ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 
 	int connect = N - 1;
-	while (connect) {									// Å©·ç½ºÄ® ¾Ë°í¸®Áò
+	while (connect) {									// í¬ë£¨ìŠ¤ì¹¼ ì•Œê³ ë¦¬ì¦˜
 		auto e = edges.back();
 		edges.pop_back();
 
@@ -79,7 +79,7 @@ int main()
 		}
 	}
 	BFS(0);
-	BFS(farthest);										// bfs 2¹ø¸¸ µ¹¸®¸é ¹Ù·Î Æ®¸® Áö¸§ ¾Ë ¼ö ÀÖÀ½
+	BFS(farthest);										// bfs 2ë²ˆë§Œ ëŒë¦¬ë©´ ë°”ë¡œ íŠ¸ë¦¬ ì§€ë¦„ ì•Œ ìˆ˜ ìˆìŒ
 
 	cout << ans1 << "\n" << ans2;
 	return 0;

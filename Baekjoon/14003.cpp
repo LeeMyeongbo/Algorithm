@@ -1,38 +1,38 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, A[1000000], index[1000000];		// index[i] : A[i]°¡ lis³»¿¡ À§Ä¡ÇÏ´Â ÀÎµ¦½º ÀúÀå
+int N, A[1000000], index[1000000];		// index[i] : A[i]ê°€ lisë‚´ì— ìœ„ì¹˜í•˜ëŠ” ì¸ë±ìŠ¤ ì €ì¥
 vector<int> lis;
-stack<int> st;							// st : ÃÖÀå Áõ°¡ ºÎºĞ ¼ö¿­ ÃßÀû¿ë
+stack<int> st;							// st : ìµœì¥ ì¦ê°€ ë¶€ë¶„ ìˆ˜ì—´ ì¶”ì ìš©
 
 void Solve()
 {
 	lis.push_back(A[0]);
 	for (int i = 1; i < N; i++) {
-		if (lis.back() < A[i]) {		// A[i]°¡ Å©¸é lis¿¡ ¹Ù·Î Ãß°¡
+		if (lis.back() < A[i]) {		// A[i]ê°€ í¬ë©´ lisì— ë°”ë¡œ ì¶”ê°€
 			lis.push_back(A[i]);
 			index[i] = lis.size() - 1;
 		}
-		else {							// ±×·¸Áö ¾Ê´Ù¸é A[i]°¡ µé¾î°¥ ¼ö ÀÖ´Â ÃÖÀûÀÇ À§Ä¡(=lower bound)ÀÇ °ªÀ» A[i]·Î º¯È¯
+		else {							// ê·¸ë ‡ì§€ ì•Šë‹¤ë©´ A[i]ê°€ ë“¤ì–´ê°ˆ ìˆ˜ ìˆëŠ” ìµœì ì˜ ìœ„ì¹˜(=lower bound)ì˜ ê°’ì„ A[i]ë¡œ ë³€í™˜
 			int n = lower_bound(lis.begin(), lis.end(), A[i]) - lis.begin();
 			lis[n] = A[i];
 			index[i] = n;
 		}
 	}
-	int s = lis.size();					// lisÀÇ Å©±â°¡ ÃÖÀå Áõ°¡ ºÎºĞ ¼ö¿­ÀÇ Å©±â (³»ºÎ °ªµéÀÌ ºÎºĞ ¼ö¿­ÀÇ ¿ø¼ÒÀÎ °ÍÀº ¾Æ´Ô)
+	int s = lis.size();					// lisì˜ í¬ê¸°ê°€ ìµœì¥ ì¦ê°€ ë¶€ë¶„ ìˆ˜ì—´ì˜ í¬ê¸° (ë‚´ë¶€ ê°’ë“¤ì´ ë¶€ë¶„ ìˆ˜ì—´ì˜ ì›ì†Œì¸ ê²ƒì€ ì•„ë‹˜)
 	cout << s-- << "\n";
 
 	for (int i = N - 1; i >= 0; i--) {
-		if (index[i] == s) {			// index[i]¿¡ ÀúÀåµÈ À§Ä¡°¡ s¿Í °°À¸¸é A[i]¸¦ ½ºÅÃ¿¡ push
+		if (index[i] == s) {			// index[i]ì— ì €ì¥ëœ ìœ„ì¹˜ê°€ sì™€ ê°™ìœ¼ë©´ A[i]ë¥¼ ìŠ¤íƒì— push
 			st.push(A[i]);
 			s--;
 		}
 	}
-	while (!st.empty()) {				// Last in First OutÀ¸·Î popÇÏ¸ç Ãâ·Â
+	while (!st.empty()) {				// Last in First Outìœ¼ë¡œ popí•˜ë©° ì¶œë ¥
 		cout << st.top() << " ";
 		st.pop();
 	}

@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, Time[501], edge[501], ans[501], graph;		// edge[i] : i¹ø Á¤Á¡À¸·Î ÇâÇÏ´Â ÁøÀÔ °£¼± ¼ö
+int N, Time[501], edge[501], ans[501], graph;		// edge[i] : ië²ˆ ì •ì ìœ¼ë¡œ í–¥í•˜ëŠ” ì§„ì… ê°„ì„  ìˆ˜
 vector<int> graph[501];
 queue<int> q;
 

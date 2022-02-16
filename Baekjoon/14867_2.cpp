@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
@@ -7,10 +7,10 @@ struct Node {
 	int A, B, cnt;
 };
 int a, b, c, d;
-bool A_visited[2][100001], B_visited[2][100001];		// A_visited[0][i] : B°¡ ºñ¾îÀÖÀ» ¶§, [1][i] : B°¡ °¡µæ Ã¡À» ¶§ AÀÇ ¹°ÀÇ ¾ç i
-queue<Node> q;											// B_visited[0][i] : A°¡ ºñ¾îÀÖÀ» ¶§, [1][i] : A°¡ °¡µæ Ã¡À» ¶§ BÀÇ ¹°ÀÇ ¾ç i
+bool A_visited[2][100001], B_visited[2][100001];	// A_visited[0][i] : Bê°€ ë¹„ì–´ìˆì„ ë•Œ, [1][i] : Bê°€ ê°€ë“ ì°¼ì„ ë•Œ Aì˜ ë¬¼ì˜ ì–‘ i
+queue<Node> q;										// B_visited[0][i] : Aê°€ ë¹„ì–´ìˆì„ ë•Œ, [1][i] : Aê°€ ê°€ë“ ì°¼ì„ ë•Œ Bì˜ ë¬¼ì˜ ì–‘ i
 
-int BFS()											// ¸Å ¹ø ¸¶´Ù A, B µÑ Áß ÇÏ³ª´Â ¹İµå½Ã ºñ¾î ÀÖ°Å³ª °¡µæ Â÷ ÀÖÀ½!
+int BFS()											// ë§¤ ë²ˆ ë§ˆë‹¤ A, B ë‘˜ ì¤‘ í•˜ë‚˜ëŠ” ë°˜ë“œì‹œ ë¹„ì–´ ìˆê±°ë‚˜ ê°€ë“ ì°¨ ìˆìŒ!
 {
 	q.push({ 0, 0, 0 });
 	A_visited[0][0] = B_visited[0][0] = true;
@@ -22,35 +22,35 @@ int BFS()											// ¸Å ¹ø ¸¶´Ù A, B µÑ Áß ÇÏ³ª´Â ¹İµå½Ã ºñ¾î ÀÖ°Å³ª °¡µæ Â÷ À
 		if (node.A == c && node.B == d)
 			return node.cnt;
 
-		if (!B_visited[1][node.B]) {				// A¿¡ ¹°À» °¡µæ Ã¤¿ï ¶§
+		if (!B_visited[1][node.B]) {				// Aì— ë¬¼ì„ ê°€ë“ ì±„ìš¸ ë•Œ
 			B_visited[1][node.B] = true;
 			q.push({ a, node.B, node.cnt + 1 });
 		}
-		if (!B_visited[0][node.B]) {				// A¿¡ ¹°À» ºñ¿ï ¶§
+		if (!B_visited[0][node.B]) {				// Aì— ë¬¼ì„ ë¹„ìš¸ ë•Œ
 			B_visited[0][node.B] = true;
 			q.push({ 0, node.B, node.cnt + 1 });
 		}
-		if (!A_visited[1][node.A]) {				// B¿¡ ¹°À» °¡µæ Ã¤¿ï ¶§
+		if (!A_visited[1][node.A]) {				// Bì— ë¬¼ì„ ê°€ë“ ì±„ìš¸ ë•Œ
 			A_visited[1][node.A] = true;
 			q.push({ node.A, b, node.cnt + 1 });
 		}
-		if (!A_visited[0][node.A]) {				// B¿¡ ¹°À» ºñ¿ï ¶§
+		if (!A_visited[0][node.A]) {				// Bì— ë¬¼ì„ ë¹„ìš¸ ë•Œ
 			A_visited[0][node.A] = true;
 			q.push({ node.A, 0, node.cnt + 1 });
 		}
-		if (node.A + node.B <= a && !A_visited[0][node.A + node.B]) {		// B ¹°À» A¿¡ ¸ğµÎ ºÎ¾îµµ ³ÑÄ¡Áö ¾ÊÀ» °æ¿ì (B°¡ ºñ°Ô µÊ)
+		if (node.A + node.B <= a && !A_visited[0][node.A + node.B]) {		// B ë¬¼ì„ Aì— ëª¨ë‘ ë¶€ì–´ë„ ë„˜ì¹˜ì§€ ì•Šì„ ê²½ìš° (Bê°€ ë¹„ê²Œ ë¨)
 			A_visited[0][node.A + node.B] = true;
 			q.push({ node.A + node.B, 0, node.cnt + 1 });
 		}
-		else if (node.A + node.B > a && !B_visited[1][node.A + node.B - a]) {	// B ¹°À» A¿¡ ¸ğµÎ ºÎÀ¸¸é ³ÑÄ¥ °æ¿ì (A°¡ °¡µæ Âü)
+		else if (node.A + node.B > a && !B_visited[1][node.A + node.B - a]) {	// B ë¬¼ì„ Aì— ëª¨ë‘ ë¶€ìœ¼ë©´ ë„˜ì¹  ê²½ìš° (Aê°€ ê°€ë“ ì°¸)
 			B_visited[1][node.A + node.B - a] = true;
 			q.push({ a, node.A + node.B - a, node.cnt + 1 });
 		}
-		if (node.A + node.B <= b && !B_visited[0][node.A + node.B]) {		// A ¹°À» B¿¡ ¸ğµÎ ºÎ¾îµµ ³ÑÄ¡Áö ¾ÊÀ» °æ¿ì (A°¡ ºñ°Ô µÊ)
+		if (node.A + node.B <= b && !B_visited[0][node.A + node.B]) {		// A ë¬¼ì„ Bì— ëª¨ë‘ ë¶€ì–´ë„ ë„˜ì¹˜ì§€ ì•Šì„ ê²½ìš° (Aê°€ ë¹„ê²Œ ë¨)
 			B_visited[0][node.A + node.B] = true;
 			q.push({ 0, node.A + node.B, node.cnt + 1 });
 		}
-		else if (node.A + node.B > b && !A_visited[1][node.A + node.B - b]) {	// A ¹°À» B¿¡ ¸ğµÎ ºÎÀ¸¸é ³ÑÄ¥ °æ¿ì (B°¡ °¡µæ Âü)
+		else if (node.A + node.B > b && !A_visited[1][node.A + node.B - b]) {	// A ë¬¼ì„ Bì— ëª¨ë‘ ë¶€ìœ¼ë©´ ë„˜ì¹  ê²½ìš° (Bê°€ ê°€ë“ ì°¸)
 			A_visited[1][node.A + node.B - b] = true;
 			q.push({ node.A + node.B - b, b, node.cnt + 1 });
 		}

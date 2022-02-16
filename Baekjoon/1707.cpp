@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <vector>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -10,7 +10,7 @@ queue<int> q;
 
 bool Solve()
 {
-	for (int v = 1; v <= V; v++) {						// ¿¬°á ±×·¡ÇÁ°¡ ¾Æ´Ï¾îµµ ÀÌºÐ ±×·¡ÇÁÀÏ ¼ö ÀÖÀ¸¹Ç·Î ¸ðµç Á¤Á¡¿¡ ´ëÇØ¼­ È®ÀÎ!
+	for (int v = 1; v <= V; v++) {						// ì—°ê²° ê·¸ëž˜í”„ê°€ ì•„ë‹ˆì–´ë„ ì´ë¶„ ê·¸ëž˜í”„ì¼ ìˆ˜ ìžˆìœ¼ë¯€ë¡œ ëª¨ë“  ì •ì ì— ëŒ€í•´ì„œ í™•ì¸!
 		if (visited[v])
 			continue;
 		visited[v] = 1;
@@ -21,7 +21,7 @@ bool Solve()
 			q.pop();
 
 			for (int i : graph[cur]) {
-				if (visited[i] == visited[cur])			// ÇöÀç ºÎºÐ ±×·¡ÇÁ°¡ ÀÌºÐ ±×·¡ÇÁ°¡ ¾Æ´Ï¸é Çö ±×·¡ÇÁ´Â ÀÌºÐ ±×·¡ÇÁ°¡ ¾Æ´Ô!
+				if (visited[i] == visited[cur])			// í˜„ìž¬ ë¶€ë¶„ ê·¸ëž˜í”„ê°€ ì´ë¶„ ê·¸ëž˜í”„ê°€ ì•„ë‹ˆë©´ í˜„ ê·¸ëž˜í”„ëŠ” ì´ë¶„ ê·¸ëž˜í”„ê°€ ì•„ë‹˜!
 					return false;
 				if (!visited[i]) {
 					visited[i] = visited[cur] * -1;
@@ -30,7 +30,7 @@ bool Solve()
 			}
 		}
 	}
-	return true;		// ¸ðµç ºÎºÐ ±×·¡ÇÁ(µé)ÀÌ ÀÌºÐ ±×·¡ÇÁ¶ó¸é ÇöÀç ±×·¡ÇÁ´Â ÀÌºÐ ±×·¡ÇÁ
+	return true;		// ëª¨ë“  ë¶€ë¶„ ê·¸ëž˜í”„(ë“¤)ì´ ì´ë¶„ ê·¸ëž˜í”„ë¼ë©´ í˜„ìž¬ ê·¸ëž˜í”„ëŠ” ì´ë¶„ ê·¸ëž˜í”„
 }
 
 int main()

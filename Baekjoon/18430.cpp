@@ -1,13 +1,13 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 int N, M, map[5][5], ans;
-const int dr[] = { 0, 1, 0, -1 }, dc[] = { 1, 0, -1, 0 };	// µ¿ ³² ¼­ ºÏ
+const int dr[] = { 0, 1, 0, -1 }, dc[] = { 1, 0, -1, 0 };	// ë™ ë‚¨ ì„œ ë¶
 bool visited[5][5];
 
-void dfs(int r, int c, int sum) {		// r : ºÎ¸Ş¶û Áß¾ÓºÎºĞÀÇ Çà, c : Áß¾ÓºÎºĞ ¿­
+void dfs(int r, int c, int sum) {		// r : ë¶€ë©”ë‘ ì¤‘ì•™ë¶€ë¶„ì˜ í–‰, c : ì¤‘ì•™ë¶€ë¶„ ì—´
 	if (r == N) {
 		ans = max(ans, sum);
 		return;
@@ -15,7 +15,7 @@ void dfs(int r, int c, int sum) {		// r : ºÎ¸Ş¶û Áß¾ÓºÎºĞÀÇ Çà, c : Áß¾ÓºÎºĞ ¿­
 	else if (c == M)
 		dfs(r + 1, 0, sum);
 	else {
-		for (int d = 0; d < 4; d++) {	// ÇöÀç [r][c] ¿µ¿ªÀ» ºÎ¸Ş¶û Áß¾ÓºÎºĞÀ¸·Î »ïÀ» °æ¿ì
+		for (int d = 0; d < 4; d++) {	// í˜„ì¬ [r][c] ì˜ì—­ì„ ë¶€ë©”ë‘ ì¤‘ì•™ë¶€ë¶„ìœ¼ë¡œ ì‚¼ì„ ê²½ìš°
 			if (visited[r][c])
 				continue;
 			int wing1_r = r + dr[d];
@@ -30,7 +30,7 @@ void dfs(int r, int c, int sum) {		// r : ºÎ¸Ş¶û Áß¾ÓºÎºĞÀÇ Çà, c : Áß¾ÓºÎºĞ ¿­
 				}
 			}
 		}
-		dfs(r, c + 1, sum);				// ÇöÀç [r][c] ¿µ¿ªÀ» ºÎ¸Ş¶û Áß¾ÓºÎºĞÀ¸·Î »ïÁö ¾ÊÀ» °æ¿ì
+		dfs(r, c + 1, sum);				// í˜„ì¬ [r][c] ì˜ì—­ì„ ë¶€ë©”ë‘ ì¤‘ì•™ë¶€ë¶„ìœ¼ë¡œ ì‚¼ì§€ ì•Šì„ ê²½ìš°
 	}
 }
 

@@ -1,18 +1,18 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
 struct Node {
-	int r, c, move, index;		// move : ÀÔ·Â È½¼ö, index : ÇöÀç ÀÔ·ÂÇÏ·Á´Â ÅØ½ºÆ®ÀÇ index
+	int r, c, move, index;		// move : ì…ë ¥ íšŸìˆ˜, index : í˜„ì¬ ì…ë ¥í•˜ë ¤ëŠ” í…ìŠ¤íŠ¸ì˜ index
 };
 queue<Node> q;
-const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };	// µ¿-¼­-³²-ºÏ ¼ø¼­
+const int dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };	// ë™-ì„œ-ë‚¨-ë¶ ìˆœì„œ
 int r, c, visited[10001][50][50], ans;
 char map[50][51];
 string input;
-pair<int, int> go[4][50][50];	// Å°º¸µå »óÀÇ °¢ À§Ä¡¿¡¼­ µ¿ ¼­ ³² ºÏ ¼ø¼­·Î ¿òÁ÷¿´À» ¶§ ¾î´À À§Ä¡·Î °¡°Ô µÇ´ÂÁö ÀúÀå (¹üÀ§ ¹ş¾î³ª¸é (-1, -1))
+pair<int, int> go[4][50][50];	// í‚¤ë³´ë“œ ìƒì˜ ê° ìœ„ì¹˜ì—ì„œ ë™ ì„œ ë‚¨ ë¶ ìˆœì„œë¡œ ì›€ì§ì˜€ì„ ë•Œ ì–´ëŠ ìœ„ì¹˜ë¡œ ê°€ê²Œ ë˜ëŠ”ì§€ ì €ì¥ (ë²”ìœ„ ë²—ì–´ë‚˜ë©´ (-1, -1))
 
 int BFS()
 {
@@ -20,20 +20,20 @@ int BFS()
 	while (!q.empty()) {
 		Node node = q.front();
 		q.pop();
-		// ÅØ½ºÆ® ¸ğµÎ ÀÔ·ÂÇÏ°í ³­ µÚ¿¡ ¿£ÅÍÅ°¿¡ µµ´ŞÇßÀ» °æ¿ì
+		// í…ìŠ¤íŠ¸ ëª¨ë‘ ì…ë ¥í•˜ê³  ë‚œ ë’¤ì— ì—”í„°í‚¤ì— ë„ë‹¬í–ˆì„ ê²½ìš°
 		if (node.index == (int)input.length() && map[node.r][node.c] == '*') {
 			if (!ans)
 				ans = node.move + 1;
 			ans = min(ans, node.move + 1);
 			continue;
 		}
-		// ÀÔ·ÂÇÏ·Á´Â ¾ËÆÄºªÀÇ Å°¿¡ µµ´ŞÇßÀ» °æ¿ì select & ´ÙÀ½ ±ÛÀÚ ÀÔ·ÂÇØ¾ß ÇÏ¹Ç·Î index + 1ÇÏ°í ÀÔ·Â È½¼ö °»½Å, Å¥ »ğÀÔ
+		// ì…ë ¥í•˜ë ¤ëŠ” ì•ŒíŒŒë²³ì˜ í‚¤ì— ë„ë‹¬í–ˆì„ ê²½ìš° select & ë‹¤ìŒ ê¸€ì ì…ë ¥í•´ì•¼ í•˜ë¯€ë¡œ index + 1í•˜ê³  ì…ë ¥ íšŸìˆ˜ ê°±ì‹ , í ì‚½ì…
 		else if (node.index < (int)input.length() && map[node.r][node.c] == input[node.index]) {
 			q.push({ node.r, node.c, node.move + 1, node.index + 1 });
 			visited[node.index + 1][node.r][node.c] = node.move + 1;
 			continue;
 		}
-		// µ¿ ¼­ ³² ºÏ 4¹æÇâÀ¸·Î »ìÇÇ¸ç °¥ ¼ö ÀÖ´Â À§Ä¡¿¡ ´ëÇÏ¿© ÀÔ·Â È½¼ö °»½Å, Å¥ »ğÀÔ
+		// ë™ ì„œ ë‚¨ ë¶ 4ë°©í–¥ìœ¼ë¡œ ì‚´í”¼ë©° ê°ˆ ìˆ˜ ìˆëŠ” ìœ„ì¹˜ì— ëŒ€í•˜ì—¬ ì…ë ¥ íšŸìˆ˜ ê°±ì‹ , í ì‚½ì…
 		for (int d = 0; d < 4; d++) {
 			int R = go[d][node.r][node.c].first;
 			int C = go[d][node.r][node.c].second;
@@ -55,15 +55,15 @@ int main()
 	
 	for (int i = 0; i < r; i++) {
 		for (int j = 0; j < c; j++) {
-			for (int d = 0; d < 4; d++) {		// ÇöÀç [i][j] ÁöÁ¡¿¡¼­ µ¿ ¼­ ³² ºÏ 4¹æÇâÀ¸·Î ¿òÁ÷¿´À» ¶§ ¾î´À À§Ä¡·Î °¡°Ô µÇ´ÂÁö¸¦ ÀúÀå
+			for (int d = 0; d < 4; d++) {		// í˜„ì¬ [i][j] ì§€ì ì—ì„œ ë™ ì„œ ë‚¨ ë¶ 4ë°©í–¥ìœ¼ë¡œ ì›€ì§ì˜€ì„ ë•Œ ì–´ëŠ ìœ„ì¹˜ë¡œ ê°€ê²Œ ë˜ëŠ”ì§€ë¥¼ ì €ì¥
 				int R = i + dr[d];
 				int C = j + dc[d];
 				while (1) {
-					if (R < 0 || R >= r || C < 0 || C >= c) {	// ¹üÀ§ ¹ş¾î³ª¸é (-1, -1) ÀúÀå
+					if (R < 0 || R >= r || C < 0 || C >= c) {	// ë²”ìœ„ ë²—ì–´ë‚˜ë©´ (-1, -1) ì €ì¥
 						go[d][i][j] = { -1, -1 };
 						break;
 					}
-					else if (map[R][C] != map[i][j]) {			// ÇöÀç Å°ÀÇ ¾ËÆÄºª°ú ´Ù¸¥ À§Ä¡¿¡ µµ´ŞÇÏ¸é ±× À§Ä¡°¡ µµÂø ÁöÁ¡
+					else if (map[R][C] != map[i][j]) {			// í˜„ì¬ í‚¤ì˜ ì•ŒíŒŒë²³ê³¼ ë‹¤ë¥¸ ìœ„ì¹˜ì— ë„ë‹¬í•˜ë©´ ê·¸ ìœ„ì¹˜ê°€ ë„ì°© ì§€ì 
 						go[d][i][j] = { R, C };
 						break;
 					}

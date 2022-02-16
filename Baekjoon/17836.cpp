@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #include <algorithm>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -20,13 +20,13 @@ int BFS()
 		Node node = q.front();
 		q.pop();
 
-		if (node.r == N - 1 && node.c == M - 1) {	// °øÁÖ¸¦ ¹ß°ßÇßÀ» °æ¿ì dest °»½Å ¹× BFS Á¾·á
+		if (node.r == N - 1 && node.c == M - 1) {	// ê³µì£¼ë¥¼ ë°œê²¬í–ˆì„ ê²½ìš° dest ê°±ì‹  ë° BFS ì¢…ë£Œ
 			dest = node.move;
 			break;
 		}
-		else if (map[node.r][node.c] == 2) {		// ±×¶÷À» ¹ß°ßÇßÀ» °æ¿ì dest2 °»½Å
+		else if (map[node.r][node.c] == 2) {		// ê·¸ëŒì„ ë°œê²¬í–ˆì„ ê²½ìš° dest2 ê°±ì‹ 
 			gram = min(gram, node.move);
-			dest2 = gram + N - 1 - node.r + M - 1 - node.c;		// ±×¶÷À¸·Î´Â º® Á¦ÇÑ¾øÀÌ ºÎ¼ú ¼ö ÀÖÀ¸´Ï±î ¹Ù·Î ÁÂÇ¥·Î ÃÖ´Ü °Å¸® °è»ê
+			dest2 = gram + N - 1 - node.r + M - 1 - node.c;		// ê·¸ëŒìœ¼ë¡œëŠ” ë²½ ì œí•œì—†ì´ ë¶€ìˆ  ìˆ˜ ìˆìœ¼ë‹ˆê¹Œ ë°”ë¡œ ì¢Œí‘œë¡œ ìµœë‹¨ ê±°ë¦¬ ê³„ì‚°
 			continue;
 		}
 		for (int d = 0; d < 4; d++) {

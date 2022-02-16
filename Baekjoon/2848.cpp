@@ -1,26 +1,26 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
 
 vector<int> graph[26];
 string str[100];
-bool appear[26];        // ³ªÅ¸³­ ¾ËÆÄºªµé ÀúÀå
+bool appear[26];        // ë‚˜íƒ€ë‚œ ì•ŒíŒŒë²³ë“¤ ì €ì¥
 int N, inorder[26];
 
 void topological()
 {
     vector<char> ans;
-    bool multiple = false;                  // °¡´ÉÇÑ Á¤·ÄÀÌ ¿©·¯ °³ ÀÖ´ÂÁö ÆÇº°
+    bool multiple = false;                  // ê°€ëŠ¥í•œ ì •ë ¬ì´ ì—¬ëŸ¬ ê°œ ìˆëŠ”ì§€ íŒë³„
     queue<int> q;
     for (int i = 0; i < 26; i++) {
-        if (appear[i] && !inorder[i])       // ¸ñ·Ï¿¡ ³ªÅ¸³­ ¾ËÆÄºªµé Áß ÁøÀÔÂ÷¼ö°¡ 0ÀÎ ¾ËÆÄºª Å¥¿¡ ÀúÀå
+        if (appear[i] && !inorder[i])       // ëª©ë¡ì— ë‚˜íƒ€ë‚œ ì•ŒíŒŒë²³ë“¤ ì¤‘ ì§„ì…ì°¨ìˆ˜ê°€ 0ì¸ ì•ŒíŒŒë²³ íì— ì €ì¥
             q.push(i);
     }
 
-    while(!q.empty()) {                     // À§»ó Á¤·Ä ½ÃÇà
+    while(!q.empty()) {                     // ìœ„ìƒ ì •ë ¬ ì‹œí–‰
         if (q.size() > 1)
-            multiple = true;                // Å¥ÀÇ Å©±â°¡ 1º¸´Ù Å©´Ù¸é °¡´ÉÇÑ Á¤·Ä ¼ö°¡ ¿©·¯ °³
+            multiple = true;                // íì˜ í¬ê¸°ê°€ 1ë³´ë‹¤ í¬ë‹¤ë©´ ê°€ëŠ¥í•œ ì •ë ¬ ìˆ˜ê°€ ì—¬ëŸ¬ ê°œ
         int cur = q.front();
         q.pop();
 
@@ -33,7 +33,7 @@ void topological()
     }
 
     for (int i = 0; i < 26; i++) {
-        if (appear[i] && inorder[i]) {      // ¾ÆÁ÷ ÁøÀÔÂ÷¼ö°¡ 0º¸´Ù Å« Á¤Á¡ Á¸Àç = »çÀÌÅ¬ÀÌ Á¸ÀçÇÑ´Ù´Â ÀÇ¹Ì
+        if (appear[i] && inorder[i]) {      // ì•„ì§ ì§„ì…ì°¨ìˆ˜ê°€ 0ë³´ë‹¤ í° ì •ì  ì¡´ì¬ = ì‚¬ì´í´ì´ ì¡´ì¬í•œë‹¤ëŠ” ì˜ë¯¸
             cout << "!";
             return;
         }
@@ -56,11 +56,11 @@ int main()
     }
     for (int i = 0; i < N - 1; i++) {
         for (int j = 0; j < str[i].length(); j++) {
-            if (j == str[i + 1].length()) {         // ¸¸¾à µÚ ´Ü¾î¿Í ´Ù¸¥ ¾ËÆÄºªÀÌ ¾ø´Âµ¥ ¾Õ ´Ü¾î°¡ ´õ ±æ´Ù¸é ¼ø¼­ Á¸Àç x
+            if (j == str[i + 1].length()) {         // ë§Œì•½ ë’¤ ë‹¨ì–´ì™€ ë‹¤ë¥¸ ì•ŒíŒŒë²³ì´ ì—†ëŠ”ë° ì• ë‹¨ì–´ê°€ ë” ê¸¸ë‹¤ë©´ ìˆœì„œ ì¡´ì¬ x
                 cout << "!";
                 return 0;
             }
-            if (str[i][j] != str[i + 1][j]) {       // ¹Ù·Î µÚ ´Ü¾î¿Í ¿ŞÂÊ ÀÚ¸®ºÎÅÍ ºñ±³ÇÏ¿© ´Ù¸¥ ¾ËÆÄºª Á¸Àç ½Ã ¿¬°á + ÁøÀÔÂ÷¼ö Áõ°¡
+            if (str[i][j] != str[i + 1][j]) {       // ë°”ë¡œ ë’¤ ë‹¨ì–´ì™€ ì™¼ìª½ ìë¦¬ë¶€í„° ë¹„êµí•˜ì—¬ ë‹¤ë¥¸ ì•ŒíŒŒë²³ ì¡´ì¬ ì‹œ ì—°ê²° + ì§„ì…ì°¨ìˆ˜ ì¦ê°€
                 graph[str[i][j] - 'a'].push_back(str[i + 1][j] - 'a');
                 inorder[str[i + 1][j] - 'a']++;
                 break;

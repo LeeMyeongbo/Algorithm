@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -41,7 +41,7 @@ int DFS(int cur)
 int Determine()
 {
 	for (int v = 1; v <= N; v++)
-		if (scc[STD + v] == scc[STD - v])		// ¸¸¾à v¿Í ~v°¡ °°Àº scc¿¡ ¼ÓÇÑ´Ù¸é ~v ¡æ v & v ¡æ ~v°¡ µ¿½Ã¿¡ ¼º¸³ÇÏ°Ô µÊ (¸»µµ ¾ÈµÇÁö)
+		if (scc[STD + v] == scc[STD - v])		// ë§Œì•½ vì™€ ~vê°€ ê°™ì€ sccì— ì†í•œë‹¤ë©´ ~v â†’ v & v â†’ ~vê°€ ë™ì‹œì— ì„±ë¦½í•˜ê²Œ ë¨ (ë§ë„ ì•ˆë˜ì§€)
 			return 0;
 	return 1;
 }
@@ -51,11 +51,11 @@ int main()
 	FAST;
 	cin >> N >> M;
 	for (int m = 0; m < M; m++) {
-		cin >> i >> j;								// i ¡ä j ÀÓÀ» ³ªÅ¸³¾ ¶§
-		graph[STD + -i].push_back(STD + j);			// ~i ¡æ j (i°¡ °ÅÁşÀÏ ¶§ j´Â ¹İµå½Ã ÂüÀÌ¿©¾ß ÇÔ)
-		graph[STD + -j].push_back(STD + i);			// ~j ¡æ i (j°¡ °ÅÁşÀÏ ¶§ i´Â ¹İµå½Ã ÂüÀÌ¿©¾ß ÇÔ)
+		cin >> i >> j;								// i â–½ j ì„ì„ ë‚˜íƒ€ë‚¼ ë•Œ
+		graph[STD + -i].push_back(STD + j);			// ~i â†’ j (iê°€ ê±°ì§“ì¼ ë•Œ jëŠ” ë°˜ë“œì‹œ ì°¸ì´ì—¬ì•¼ í•¨)
+		graph[STD + -j].push_back(STD + i);			// ~j â†’ i (jê°€ ê±°ì§“ì¼ ë•Œ iëŠ” ë°˜ë“œì‹œ ì°¸ì´ì—¬ì•¼ í•¨)
 	}
-	for (int v = 1; v <= N; v++) {					// 1, -1, 2, -2... ¼øÀ¸·Î scc Çü¼º
+	for (int v = 1; v <= N; v++) {					// 1, -1, 2, -2... ìˆœìœ¼ë¡œ scc í˜•ì„±
 		if (!complete[STD + v])
 			DFS(STD + v);
 		if (!complete[STD - v])

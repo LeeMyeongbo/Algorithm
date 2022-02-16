@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
@@ -10,7 +10,7 @@ bool complete[100000];
 vector<int> graph[100000];
 stack<int> s;
 
-int DFS(int cur)							// DFS ÀÌ¿ëÇØ °¢ Á¤Á¡ÀÌ ¸î ¹øÂ° scc¿¡ ¼ÓÇÏ´ÂÁö get
+int DFS(int cur)							// DFS ì´ìš©í•´ ê° ì •ì ì´ ëª‡ ë²ˆì§¸ sccì— ì†í•˜ëŠ”ì§€ get
 {
 	seq[cur] = ++num;
 	int parent = num;
@@ -38,7 +38,7 @@ int DFS(int cur)							// DFS ÀÌ¿ëÇØ °¢ Á¤Á¡ÀÌ ¸î ¹øÂ° scc¿¡ ¼ÓÇÏ´ÂÁö get
 	return parent;
 }
 
-void Determine()							// °¢ scc¸¶´Ù ÁøÀÔ Â÷¼ö°¡ 0ÀÎ °ÍÀÇ °³¼ö¸¦ Çì¾Æ·Á º½
+void Determine()							// ê° sccë§ˆë‹¤ ì§„ì… ì°¨ìˆ˜ê°€ 0ì¸ ê²ƒì˜ ê°œìˆ˜ë¥¼ í—¤ì•„ë ¤ ë´„
 {
 	for (int i = 0; i < N; i++)
 		for (int& j : graph[i])

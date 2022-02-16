@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <cmath>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -8,7 +8,7 @@ int A, P, ans;
 vector<int> D;
 bool visited[250000];
 
-int Solve()						// ¾î´À ½ÃÁ¡¿¡¼­ »çÀÌÅ¬ÀÌ Çü¼ºµÉ ¼ö¹Û¿¡ ¾øÀ½
+int Solve()						// ì–´ëŠ ì‹œì ì—ì„œ ì‚¬ì´í´ì´ í˜•ì„±ë  ìˆ˜ë°–ì— ì—†ìŒ
 {
 	D.push_back(A);
 	visited[A] = true;

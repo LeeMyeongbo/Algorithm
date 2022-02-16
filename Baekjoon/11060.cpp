@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <queue>
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-queue<pair<int, int>> q;			// (ÇöÀç À§Ä¡, Á¡ÇÁ È½¼ö)
+queue<pair<int, int>> q;			// (í˜„ì¬ ìœ„ì¹˜, ì í”„ íšŸìˆ˜)
 int N, A[1000], visited[1000], Min = -1;
 
 int Solve()
@@ -24,9 +24,9 @@ int Solve()
 			continue;
 		}
 		for (int i = 1; i <= A[cur]; i++) {
-			if (cur + i >= N)												// Á¡ÇÁ ¶Ú °Å¸®°¡ ¹üÀ§¸¦ ¹ş¾î³ª¸é break
+			if (cur + i >= N)												// ì í”„ ë›´ ê±°ë¦¬ê°€ ë²”ìœ„ë¥¼ ë²—ì–´ë‚˜ë©´ break
 				break;
-			if (visited[cur + i] == -1 || visited[cur + i] > jump + 1) {	// ¹æ¹®ÇÑ Àû ¾ø°Å³ª ´õ ÀûÀº Á¡ÇÁ È½¼ö·Î °¥ ¼ö ÀÖ´Ù¸é Å¥ »ğÀÔ
+			if (visited[cur + i] == -1 || visited[cur + i] > jump + 1) {	// ë°©ë¬¸í•œ ì  ì—†ê±°ë‚˜ ë” ì ì€ ì í”„ íšŸìˆ˜ë¡œ ê°ˆ ìˆ˜ ìˆë‹¤ë©´ í ì‚½ì…
 				visited[cur + i] = jump + 1;
 				q.push({ cur + i, jump + 1 });
 			}

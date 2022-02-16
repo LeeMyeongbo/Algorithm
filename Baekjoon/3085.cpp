@@ -1,10 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int N;
 char map[50][51];
 
-int Find_rowMax(int r)						// rÇà¿¡ ÇØ´çÇÏ´Â °¡·ÎÁÙ ³»¿¡¼­ ¶È°°Àº »ö±òÀÇ ÃÖ´ë ±æÀÌ ±¸ÇÔ
+int Find_rowMax(int r)						// rí–‰ì— í•´ë‹¹í•˜ëŠ” ê°€ë¡œì¤„ ë‚´ì—ì„œ ë˜‘ê°™ì€ ìƒ‰ê¹”ì˜ ìµœëŒ€ ê¸¸ì´ êµ¬í•¨
 {
 	int n = 1, ans = 1;
 	for (int c = 1; c < N; c++) {
@@ -16,7 +16,7 @@ int Find_rowMax(int r)						// rÇà¿¡ ÇØ´çÇÏ´Â °¡·ÎÁÙ ³»¿¡¼­ ¶È°°Àº »ö±òÀÇ ÃÖ´ë ±
 	return ans;
 }
 
-int Find_colMax(int c)						// c¿­¿¡ ÇØ´çÇÏ´Â ¼¼·ÎÁÙ ³»¿¡¼­ ¶È°°Àº »ö±òÀÇ ÃÖ´ë ±æÀÌ ±¸ÇÔ
+int Find_colMax(int c)						// cì—´ì— í•´ë‹¹í•˜ëŠ” ì„¸ë¡œì¤„ ë‚´ì—ì„œ ë˜‘ê°™ì€ ìƒ‰ê¹”ì˜ ìµœëŒ€ ê¸¸ì´ êµ¬í•¨
 {
 	int n = 1, ans = 1;
 	for (int r = 1; r < N; r++) {
@@ -31,7 +31,7 @@ int Find_colMax(int c)						// c¿­¿¡ ÇØ´çÇÏ´Â ¼¼·ÎÁÙ ³»¿¡¼­ ¶È°°Àº »ö±òÀÇ ÃÖ´ë ±
 int Solve()
 {
 	int M = 0, M1 = 0, M2 = 0;
-	for (int i = 0; i < N; i++) {			// »çÅÁ À§Ä¡ ±³È¯ Àü ¶È°°Àº »ö±òÀÇ ÃÖ´ë ±æÀÌ ±¸ÇØ³õÀ½
+	for (int i = 0; i < N; i++) {			// ì‚¬íƒ• ìœ„ì¹˜ êµí™˜ ì „ ë˜‘ê°™ì€ ìƒ‰ê¹”ì˜ ìµœëŒ€ ê¸¸ì´ êµ¬í•´ë†“ìŒ
 		M1 = max(M1, Find_rowMax(i));
 		M2 = max(M2, Find_colMax(i));
 		M = max(M1, M2);
@@ -40,11 +40,11 @@ int Solve()
 	M1 = M2 = 0;
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N - 1; j++) {
-			swap(map[i][j], map[i][j + 1]);		// iÇà ³»¿¡¼­ °¡·Î·Î ÀÎÁ¢ÇÑ 2°³ ±³È¯ÇÏ°í ÃÖ´ë ±æÀÌ °»½Å
+			swap(map[i][j], map[i][j + 1]);		// ií–‰ ë‚´ì—ì„œ ê°€ë¡œë¡œ ì¸ì ‘í•œ 2ê°œ êµí™˜í•˜ê³  ìµœëŒ€ ê¸¸ì´ ê°±ì‹ 
 			M1 = max(Find_rowMax(i), max(Find_colMax(j), Find_colMax(j + 1)));
 			swap(map[i][j], map[i][j + 1]);
 
-			swap(map[j][i], map[j + 1][i]);		// i¿­ ³»¿¡¼­ ¼¼·Î·Î ÀÎÁ¢ÇÑ 2°³ ±³È¯ÇÏ°í ÃÖ´ë ±æÀÌ °»½Å
+			swap(map[j][i], map[j + 1][i]);		// iì—´ ë‚´ì—ì„œ ì„¸ë¡œë¡œ ì¸ì ‘í•œ 2ê°œ êµí™˜í•˜ê³  ìµœëŒ€ ê¸¸ì´ ê°±ì‹ 
 			M2 = max(Find_colMax(i), max(Find_rowMax(j), Find_rowMax(j + 1)));
 			swap(map[j][i], map[j + 1][i]);
 
