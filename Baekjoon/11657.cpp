@@ -1,7 +1,6 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <queue>
-#define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define MAX 1000000000
 using namespace std;
 
@@ -9,7 +8,7 @@ int N, M, A, B, C, map[501][501];
 long long nodes[501];
 bool visited[501];
 
-void BFS()					// 1¹ø µµ½Ã¿¡¼­ºÎÅÍ Ãâ¹ßÇØ µµ´ŞÇÒ ¼ö ÀÖ´Â µµ½ÃµéÀ» Ã¼Å© (µµ´ŞÇÒ ¼ö ¾ø´Â µµ½Ãµé Á¸Àç °¡´ÉÇÏ¹Ç·Î)
+void BFS()					// 1ë²ˆ ë„ì‹œì—ì„œë¶€í„° ì¶œë°œí•´ ë„ë‹¬í•  ìˆ˜ ìˆëŠ” ë„ì‹œë“¤ì„ ì²´í¬ (ë„ë‹¬í•  ìˆ˜ ì—†ëŠ” ë„ì‹œë“¤ ì¡´ì¬ ê°€ëŠ¥í•˜ë¯€ë¡œ)
 {
 	queue<int> q;
 	q.push(1);
@@ -33,15 +32,15 @@ void Bellman()
 	for (int i = 0; i < N - 1; i++)
 		for (int start = 1; start <= N; start++)
 			for (int end = 1; end <= N; end++)
-				if (map[start][end] != MAX && nodes[start] != MAX)		// ½ÃÀÛ Á¤Á¡ÀÇ °ªÀÌ ¹«ÇÑ´ë°¡ ¾Æ´Ï°í °£¼±ÀÌ Á¸ÀçÇÒ °æ¿ì
-					nodes[end] = min(nodes[end], nodes[start] + map[start][end]);		// ¸ğµç °£¼±µé edge relaxation (N - 1¹ø ¼öÇà)
+				if (map[start][end] != MAX && nodes[start] != MAX)		// ì‹œì‘ ì •ì ì˜ ê°’ì´ ë¬´í•œëŒ€ê°€ ì•„ë‹ˆê³  ê°„ì„ ì´ ì¡´ì¬í•  ê²½ìš°
+					nodes[end] = min(nodes[end], nodes[start] + map[start][end]);		// ëª¨ë“  ê°„ì„ ë“¤ edge relaxation (N - 1ë²ˆ ìˆ˜í–‰)
 
 	for (int start = 1; start <= N; start++)
 		for (int end = 1; end <= N; end++)
 			if (map[start][end] != MAX) {
-				long long Min = min(nodes[end], nodes[start] + map[start][end]);		// ¸¶Áö¸·À¸·Î ¸ğµç °£¼±µé edge relaxation ¼öÇà
-				if (Min != nodes[end] && visited[end]) {				// ÃÖ¼Ú°ªÀÌ ´õ ÀÛÀº °ªÀ¸·Î °»½Å -> À½¼ö »çÀÌÅ¬ Á¸ÀçÇÑ´Ù´Â ÀÇ¹Ì
-					cout << -1;											// ±× À½¼ö »çÀÌÅ¬¿¡ ½ÃÀÛÁ¡(1)À¸·ÎºÎÅÍ µµ´Ş °¡´ÉÇÒ °æ¿ì -1
+				long long Min = min(nodes[end], nodes[start] + map[start][end]);		// ë§ˆì§€ë§‰ìœ¼ë¡œ ëª¨ë“  ê°„ì„ ë“¤ edge relaxation ìˆ˜í–‰
+				if (Min != nodes[end] && visited[end]) {				// ìµœì†Ÿê°’ì´ ë” ì‘ì€ ê°’ìœ¼ë¡œ ê°±ì‹  -> ìŒìˆ˜ ì‚¬ì´í´ ì¡´ì¬í•œë‹¤ëŠ” ì˜ë¯¸
+					cout << -1;											// ê·¸ ìŒìˆ˜ ì‚¬ì´í´ì— ì‹œì‘ì (1)ìœ¼ë¡œë¶€í„° ë„ë‹¬ ê°€ëŠ¥í•  ê²½ìš° -1
 					return;
 				}
 			}
@@ -56,7 +55,8 @@ void Bellman()
 
 int main()
 {
-	FAST;
+	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+
 	cin >> N >> M;
 	for (int i = 1; i <= N; i++)
 		fill(map[i], map[i] + N + 1, MAX);
@@ -64,10 +64,11 @@ int main()
 	
 	for (int i = 0; i < M; i++) {
 		cin >> A >> B >> C;
-		map[A][B] = min(map[A][B], C);		// °°Àº (A, B) ÀÕ´Â °£¼±ÀÌ ¿©·¯ °³ ÁÖ¾îÁú ¼öµµ ÀÖÀ¸¹Ç·Î ±× ¶§´Â °¡ÁßÄ¡°¡ Á¦ÀÏ ÀÛÀº °ÍÀ¸·Î ÀúÀå
+		map[A][B] = min(map[A][B], C);		// ê°™ì€ (A, B) ì‡ëŠ” ê°„ì„ ì´ ì—¬ëŸ¬ ê°œ ì£¼ì–´ì§ˆ ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ ê·¸ ë•ŒëŠ” ê°€ì¤‘ì¹˜ê°€ ì œì¼ ì‘ì€ ê²ƒìœ¼ë¡œ ì €ì¥
 	}
 
 	BFS();
 	Bellman();
+
 	return 0;
 }

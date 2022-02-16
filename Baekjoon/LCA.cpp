@@ -4,14 +4,14 @@
 #define FAST ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 using namespace std;
 
-int N, M, v1, v2, n1, n2, parent[50001][16], depth[50001], n;		// parent[i][k] : iÀÇ 2^k¹øÂ° ºÎ¸ğ
+int N, M, v1, v2, n1, n2, parent[50001][16], depth[50001], n;		// parent[i][k] : iì˜ 2^kë²ˆì§¸ ë¶€ëª¨
 vector<int> tree[50001];
 
-void dfs(int d, int cur, int par)				// °¢ Á¤Á¡¸¶´Ù ¹Ù·Î À§(2^0¹øÂ°) ºÎ¸ğ ¹× ±íÀÌ ÀúÀå
+void dfs(int d, int cur, int par)				// ê° ì •ì ë§ˆë‹¤ ë°”ë¡œ ìœ„(2^0ë²ˆì§¸) ë¶€ëª¨ ë° ê¹Šì´ ì €ì¥
 {
 	parent[cur][0] = par;
 	depth[cur] = d;
-
+    
 	for (int& i : tree[cur]) {
 		if (!depth[i])
 			dfs(d + 1, i, cur);
@@ -20,18 +20,18 @@ void dfs(int d, int cur, int par)				// °¢ Á¤Á¡¸¶´Ù ¹Ù·Î À§(2^0¹øÂ°) ºÎ¸ğ ¹× ±íÀ
 
 void set_Parent()
 {
-	for (int j = 1; j < n; j++)					// 2^1¹øÂ° Á¶»ó, 2^2¹øÂ° Á¶»ó ¼øÀ¸·Î 
-		for (int i = 1; i <= N; i++)			// 1¹øºÎÅÍ N¹ø±îÁö ¹İº¹
+	for (int j = 1; j < n; j++)					// 2^1ë²ˆì§¸ ì¡°ìƒ, 2^2ë²ˆì§¸ ì¡°ìƒ ìˆœìœ¼ë¡œ 
+		for (int i = 1; i <= N; i++)			// 1ë²ˆë¶€í„° Në²ˆê¹Œì§€ ë°˜ë³µ
 			parent[i][j] = parent[parent[i][j - 1]][j - 1];
 }
 
 int LCA()
 {
-	if (depth[n1] < depth[n2])					// n1ÀÇ ±íÀÌ°¡ ´õ ±íµµ·Ï ¼³Á¤
+	if (depth[n1] < depth[n2])					// n1ì˜ ê¹Šì´ê°€ ë” ê¹Šë„ë¡ ì„¤ì •
 		swap(n1, n2);
 
 	int diff = depth[n1] - depth[n2];
-	for(int i = 0; diff; i++) {					// n1ÀÇ ±íÀÌ°¡ n2¶û °°À» ¶§±îÁö À§·Î ¿Ã·Á¼­ ¸ÂÃã
+	for(int i = 0; diff; i++) {					// n1ì˜ ê¹Šì´ê°€ n2ë‘ ê°™ì„ ë•Œê¹Œì§€ ìœ„ë¡œ ì˜¬ë ¤ì„œ ë§ì¶¤
 		if (diff % 2)
 			n1 = parent[n1][i];
 		diff /= 2;
@@ -39,7 +39,7 @@ int LCA()
 
 	if (n1 == n2)
 		return n1;
-	for (int i = n - 1; i >= 0; i--) {			// ÃÖ»ó´Ü ³ëµå·ÎºÎÅÍ Á¶»óÀÌ °°¾ÆÁö±â Àü±îÁö 2^i¾¿ ÀÌµ¿
+	for (int i = n - 1; i >= 0; i--) {			// ìµœìƒë‹¨ ë…¸ë“œë¡œë¶€í„° ì¡°ìƒì´ ê°™ì•„ì§€ê¸° ì „ê¹Œì§€ 2^iì”© ì´ë™
 		if (parent[n1][i] != parent[n2][i]) {
 			n1 = parent[n1][i];
 			n2 = parent[n2][i];

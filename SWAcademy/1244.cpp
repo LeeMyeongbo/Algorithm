@@ -12,7 +12,7 @@ void dfs(int index, int depth)
 		Max = max(Max, stoi(arr));
 		return;
 	}
-	for (int first = index; first < arr.length() - 1; first++) {			// Áßº¹Á¶ÇÕ... ±î¸ÔÁö ¾Ê±â!!
+	for (int first = index; first < arr.length() - 1; first++) {			// ì¤‘ë³µì¡°í•©... ê¹Œë¨¹ì§€ ì•Šê¸°!!
 		for (int second = first + 1; second < arr.length(); second++) {
 			swap(arr[first], arr[second]);
 			dfs(first, depth + 1);
@@ -26,11 +26,11 @@ int main(int argc, char** argv)
 	cin >> T;
 	for (int test_case = 1; test_case <= T; ++test_case) {
 		cin >> arr >> change;
-		if (change > arr.length()) {		// ±³È¯ È½¼ö°¡ ¹®ÀÚ ±æÀÌº¸´Ù ±æ °æ¿ì
+		if (change > arr.length()) {		// êµí™˜ íšŸìˆ˜ê°€ ë¬¸ì ê¸¸ì´ë³´ë‹¤ ê¸¸ ê²½ìš°
 			if (change % 2 && arr.length() % 2 || !(change % 2) && !(arr.length() % 2))
-				change = arr.length();		// ¹®ÀÚ ±æÀÌ¿Í ±³È¯ È½¼ö ¸ğµÎ Â¦¼ö È¤Àº È¦¼ö¶ó¸é ¹®ÀÚ ±æÀÌ¸¸Å­¸¸ ±³È¯ÇÏ¸é ´ä ³ª¿È
+				change = arr.length();		// ë¬¸ì ê¸¸ì´ì™€ êµí™˜ íšŸìˆ˜ ëª¨ë‘ ì§ìˆ˜ í˜¹ì€ í™€ìˆ˜ë¼ë©´ ë¬¸ì ê¸¸ì´ë§Œí¼ë§Œ êµí™˜í•˜ë©´ ë‹µ ë‚˜ì˜´
 			else
-				change = arr.length() + 1;	// ±×°Ô ¾Æ´Ï¶ó¸é ÃÖ´ë ¹®ÀÚ°¥ÀÌ+1 ¸¸Å­¸¸ ±³È¯ÇØÁàµµ ÃæºĞ!
+				change = arr.length() + 1;	// ê·¸ê²Œ ì•„ë‹ˆë¼ë©´ ìµœëŒ€ ë¬¸ìê¸¸ì´+1 ë§Œí¼ë§Œ êµí™˜í•´ì¤˜ë„ ì¶©ë¶„!
 		}
 		dfs(0, 0);
 		cout << "#" << test_case << " " << Max << endl;

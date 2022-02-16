@@ -11,22 +11,22 @@ bool isCutVertex[10001];
 int dfs(int cur, bool Root)
 {
 	visited[cur] = ++num;
-	int order = visited[cur];					// ¸Ç Ã³À½¿£ order¸¦ ÇöÀç ³ëµåÀÇ ¹æ¹® ¼ø¼­·Î ÃÊ±âÈ­
-	int child = 0;								// Çö ³ëµåÀÇ ÀÚ½Ä ³ëµå ¼ö
+	int order = visited[cur];					// ë§¨ ì²˜ìŒì—” orderë¥¼ í˜„ì¬ ë…¸ë“œì˜ ë°©ë¬¸ ìˆœì„œë¡œ ì´ˆê¸°í™”
+	int child = 0;								// í˜„ ë…¸ë“œì˜ ìì‹ ë…¸ë“œ ìˆ˜
 
 	for (int i : graph[cur]) {
-		if (visited[i])							// ÀÌ¹Ì ¹æ¹®ÇÑ ³ëµåÀÇ °æ¿ì
-			order = min(order, visited[i]);		// °¡Àå ¹æ¹® ¼ø¼­°¡ ºü¸¥ ³ğÀ¸·Î order °»½Å
-		else {									// ¾ÆÁ÷ ¹æ¹®ÇÑ Àû ¾ø´Â ³ëµå¶ó¸é
-			child++;							// ±×°Ô ¹Ù·Î ÀÚ½Ä ³ëµå
-			int pre = dfs(i, false);			// ÇØ´ç ÀÚ½Ä ³ëµå¿Í ¿¬°áµÈ ³ëµåµéÀÇ ¹æ¹® ¼ø¼­ Áß ÃÖ¼Ú°ªÀ» pre¿¡ ÀúÀå
+		if (visited[i])							// ì´ë¯¸ ë°©ë¬¸í•œ ë…¸ë“œì˜ ê²½ìš°
+			order = min(order, visited[i]);		// ê°€ì¥ ë°©ë¬¸ ìˆœì„œê°€ ë¹ ë¥¸ ë†ˆìœ¼ë¡œ order ê°±ì‹ 
+		else {									// ì•„ì§ ë°©ë¬¸í•œ ì  ì—†ëŠ” ë…¸ë“œë¼ë©´
+			child++;							// ê·¸ê²Œ ë°”ë¡œ ìì‹ ë…¸ë“œ
+			int pre = dfs(i, false);			// í•´ë‹¹ ìì‹ ë…¸ë“œì™€ ì—°ê²°ëœ ë…¸ë“œë“¤ì˜ ë°©ë¬¸ ìˆœì„œ ì¤‘ ìµœì†Ÿê°’ì„ preì— ì €ì¥
 
-			if (!Root && pre >= visited[cur])	// pre°ªÀÌ Çö ³ëµåÀÇ ¹æ¹® ¼ø¼­º¸´Ù ÀÛÁö ¾Ê´Ù¸é ÇöÀç Á¤Á¡ÀÌ ´ÜÀıÁ¡ÀÌ µÊ
+			if (!Root && pre >= visited[cur])	// preê°’ì´ í˜„ ë…¸ë“œì˜ ë°©ë¬¸ ìˆœì„œë³´ë‹¤ ì‘ì§€ ì•Šë‹¤ë©´ í˜„ì¬ ì •ì ì´ ë‹¨ì ˆì ì´ ë¨
 				isCutVertex[cur] = true;
-			order = min(order, pre);			// order ÃÖ¼Ú°ª °»½Å
+			order = min(order, pre);			// order ìµœì†Ÿê°’ ê°±ì‹ 
 		}
 	}
-	if (Root && child >= 2)						// Çö Á¤Á¡ÀÌ ·çÆ®ÀÏ °æ¿ì¿£ ÀÚ½ÄÀÌ µÑ ÀÌ»ó¸¸ µÇ¸é ¹«Àû±Ç ´ÜÀıÁ¡
+	if (Root && child >= 2)						// í˜„ ì •ì ì´ ë£¨íŠ¸ì¼ ê²½ìš°ì—” ìì‹ì´ ë‘˜ ì´ìƒë§Œ ë˜ë©´ ë¬´ì ê¶Œ ë‹¨ì ˆì 
 		isCutVertex[cur] = true;
 
 	return order;
@@ -52,5 +52,6 @@ int main()
 	cout << ans.size() << "\n";
 	for (int i : ans)
 		cout << i << " ";
+
 	return 0;
 }
