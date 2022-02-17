@@ -3,7 +3,7 @@
 using namespace std;
 
 int T, N;
-pair<long long, long long> magnet[10];      // (위치, 질량)으로 저장
+pair<double, double> magnet[10];      // (위치, 질량)으로 저장
 
 double solve(int left)
 {
@@ -18,7 +18,7 @@ double solve(int left)
         for (int i = left + 1; i < N; i++)
             F2 += magnet[i].second / (middle - magnet[i].first) / (middle - magnet[i].first);
 
-        if (abs(l - r) < 1e-12)             // 좌표값 오차가 10^-12보다 작아지면 종료
+        if (abs(l - r) < 1e-12)       // 좌표값 오차가 10^-12보다 작아지면 종료
             return middle;
         else {
             if (F1 > F2)
