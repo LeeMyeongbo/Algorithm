@@ -1,18 +1,21 @@
 ﻿#include <iostream>
 #include <queue>
+#define MAX 1<<30
 using namespace std;
 
-int T, N, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 }, dij[100][100];
+int T, N, dr[] = { 0, 0, 1, -1 }, dc[] = { 1, -1, 0, 0 };
 char map[100][101];
-priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
 
 int solve()
 {
-    pq.push({ 0, {0, 0} });
-    dij[0][0] = 0;
+    priority_queue<pair<int, pair<int, int>>> pq;
+    int dij[100][100] = { 0, };
+    for (int i = 0; i < N; i++)
+        fill(dij[i], dij[i] + N, MAX);
 
+    pq.push({ 0, {0, 0} });
     while (!pq.empty()) {
-        int sum = pq.top().first;
+        int sum = -pq.top().first;
         pair<int, int> cur = pq.top().second;
         pq.pop();
 
@@ -22,9 +25,9 @@ int solve()
         for (int d = 0; d < 4; d++) {
             int r = cur.first + dr[d];
             int c = cur.second + dc[d];
-            if (r >= 0 && r < N && c >= 0 && c < N && (dij[r][c] == -1 || dij[r][c] > sum + map[r][c] - '0')) {
+            if (r >= 0 && r < N && c >= 0 && c < N && dij[r][c] > sum + map[r][c] - '0') {
                 dij[r][c] = sum + map[r][c] - '0';
-                pq.push({ dij[r][c], {r, c} });
+                pq.push({ -dij[r][c], {r, c} });
             }
         }
     }
@@ -37,15 +40,9 @@ int main(int argc, char** argv)
     for (int test_case = 1; test_case <= T; ++test_case) {
         cin >> N;
         for (int i = 0; i < N; i++)
-            fill(dij[i], dij[i] + N, -1);
-
-        for (int i = 0; i < N; i++)
             cin >> map[i];
         
         cout << '#' << test_case << ' ' << solve() << endl;
-
-        while (!pq.empty())
-            pq.pop();
     }
     return 0;
 }
