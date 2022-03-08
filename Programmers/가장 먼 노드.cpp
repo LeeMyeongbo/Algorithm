@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 #include <queue>
@@ -9,13 +9,13 @@ int solution(int n, vector<vector<int>> edge)
 {
     int answer = 0, min_path[20001];
     vector<int> graph[20001];
-    queue<pair<int, int>> q;            // (ÇöÀç À§Ä¡, ÃÖ´Ü °Å¸®)·Î ÀúÀå
+    queue<pair<int, int>> q;            // (í˜„ìž¬ ìœ„ì¹˜, ìµœë‹¨ ê±°ë¦¬)ë¡œ ì €ìž¥
 
     fill(min_path, min_path + 20001, -1);
     q.push({ 1, 0 });
     min_path[1] = 0;
 
-    for (vector<int>& e : edge) {       // °£¼± Á¤º¸ Åä´ë·Î ±×·¡ÇÁ Çü¼º
+    for (vector<int>& e : edge) {       // ê°„ì„  ì •ë³´ í† ëŒ€ë¡œ ê·¸ëž˜í”„ í˜•ì„±
         graph[e[0]].push_back(e[1]);
         graph[e[1]].push_back(e[0]);
     }

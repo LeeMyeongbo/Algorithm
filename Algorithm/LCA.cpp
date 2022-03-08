@@ -31,7 +31,7 @@ int LCA()
         swap(n1, n2);
 
     int diff = depth[n1] - depth[n2];
-    for (int i = 0; diff; i++) {					// n1의 깊이가 n2랑 같을 때까지 위로 올려서 맞춤
+    for (int i = 0; diff; i++) {				// n1의 깊이가 n2랑 같을 때까지 위로 올려서 맞춤
         if (diff % 2)
             n1 = parent[n1][i];
         diff /= 2;
