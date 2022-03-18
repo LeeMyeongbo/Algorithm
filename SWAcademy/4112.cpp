@@ -51,7 +51,6 @@ int main(int argc, char** argv)
             p[n].first = i, p[n].second = j;        // 숫자 별로 좌표 저장
         }
     }
-
     for (int test = 1; test <= T; test++) {
         cin >> a >> b;
         cout << "#" << test << ' ' << solve() << "\n";
