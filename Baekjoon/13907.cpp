@@ -1,48 +1,76 @@
 ﻿#include <iostream>
+#include <vector>
+#include <queue>
+#include <tuple>
+#include <algorithm>
 #include <cstring>
 using namespace std;
 
-int N, ans = 1000000000, dp[20][200][200];       // dp[i][j][k] : 현재 정점 i에서 가중치 1 합이 j, 가중치 2 합이 k일 때 1로 갈 수 있으면 1, 못가면 0, 아직 살피지 않은 곳은 -1
-char weight1[20][21], weight2[20][21];
+int N, M, K, S, D, a, b, w, p[30000], dij[1000][1001];  // dij[i][j] : i개의 간선을 지나 j번 정점에 도달하는 최단 거리 저장
+vector<pair<int, int>> graph[1001], dest;               // graph : (연결된 정점, 거리 합), dest : (D까지의 최소 거리, D에 도달하기까지 거친 간선 수)
 
-int dfs(int cur, int w1, int w2)
+void dijkstra()
 {
-    int& can_go = dp[cur][w1][w2];
-    if (can_go != -1)
-        return can_go;                           // 이미 살핀 곳은 다시 살필 필요 x
+    priority_queue<tuple<int, int, int>> pq;  // (-거리 합, 현재 정점, 거친 간선 수)로 저장
+    memset(dij, -1, sizeof(dij));
+    dij[0][S] = 0;
+    pq.push({ 0, S, 0 });
 
-    if (cur == 1)
-        return can_go = 1;                       // 1에 도착했을 경우에는 dp[1][w1][w2]를 1로 체크
-    
-    can_go = 0;
-    for (int i = 0; i < N; i++)
-        if (weight1[cur][i] != '.' && w1 + weight1[cur][i] - '0' < 200 && w2 + weight2[cur][i] - '0' < 200)
-            can_go = max(can_go, dfs(i, w1 + weight1[cur][i] - '0', w2 + weight2[cur][i] - '0'));
+    while (!pq.empty()) {
+        int sum , cur, cnt;
+        tie(sum, cur, cnt) = pq.top();
+        sum = -sum;
+        pq.pop();
 
-    return can_go;
+        if ((dij[cnt][cur] != -1 && sum > dij[cnt][cur]) || cur == D)
+            continue;
+
+        for (auto& e : graph[cur]) {
+            if (cnt + 1 < 1000 && (dij[cnt + 1][e.first] == -1 || dij[cnt + 1][e.first] > sum + e.second)) {
+                dij[cnt + 1][e.first] = sum + e.second;
+                pq.push({ -dij[cnt + 1][e.first], e.first, cnt + 1 });
+            }
+        }
+    }
+
+    int Max = (int)1e9;
+    for (int i = 1; i < 1000; i++) {                // 거친 간선 수가 많지만 전체 통행료가 더 적으면 저장
+        if (dij[i][D] != -1 && dij[i][D] < Max) {
+            dest.push_back({ dij[i][D], i });
+            Max = dij[i][D];
+        }
+    }
 }
 
 int main()
 {
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-    cin >> N;
-    for (int i = 0; i < N; i++)
-        cin >> weight1[i];
-
-    for (int i = 0; i < N; i++)
-        cin >> weight2[i];
-    
-    memset(dp, -1, sizeof(dp));
-
-    if (!dfs(0, 0, 0))
-        cout << -1;
-    else {
-        for (int i = 0; i < 200; i++) {
-            for (int j = 0; j < 200; j++)
-                if (dp[1][i][j] == 1)
-                    ans = min(ans, i * j);
-        }
-        cout << ans;
+    cin >> N >> M >> K >> S >> D;
+    while (M--) {
+        cin >> a >> b >> w;
+        graph[a].push_back({ b, w });
+        graph[b].push_back({ a, w });
     }
+    for (int i = 0; i < K; i++)
+        cin >> p[i];
+    for (int i = 1; i < K; i++)
+        p[i] += p[i - 1];
+
+    dijkstra();
+
+    cout << dest.back().first << '\n';
+
+    int start = dest.size() - 1;
+    for (int i = 0; i < K; i++) {
+        int result = (int)1e9;
+        for (int j = start; j >= 0; j--) {          // 세금 인상이 누적될수록 굳이 모든 경로들 살필 필요 없이 특정 간선 개수의 경로부터 비교 ㄱㄱ
+            if (result > dest[j].first + dest[j].second * p[i]) {
+                result = dest[j].first + dest[j].second * p[i];
+                start = j;
+            }
+        }
+        cout << result << '\n';
+    }
+
     return 0;
 }
