@@ -1,8 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
 
-int T, N, arr[100000], s[100001];
-char ans[200001];
+int T, n, arr[100000];
 
 int main(int argc, char** argv)
 {
@@ -10,33 +9,33 @@ int main(int argc, char** argv)
     cin >> T;
 
     for (int test_case = 1; test_case <= T; ++test_case) {
-        cin >> N;
-        for (int i = 0; i < N; i++)
+        cin >> n;
+        for (int i = 0; i < n; i++)
             cin >> arr[i];
-        
-        int start = 1, head = 0, ans_idx = 0;
 
-        for (int i = 0; i < N; i++) {
-            if (arr[i] >= start) {
-                s[head++] = start++;
-                ans[ans_idx++] = '+';
-                i--;
+        int ans = 1;
+        bool increasing = false, decreasing = false;    // 수열이 단조증가 중이라면 increasing = true, 단조감소 중이라면 decreasing = true
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i - 1] < arr[i]) {                  // 뒷 자리가 앞 자리보다 클 경우
+                if (!increasing && !decreasing)         // increasing, decreasing 모두 false 라면 increasing을 true로 지정
+                    increasing = true;
+                else if (decreasing) {
+                    ans++;
+                    increasing = decreasing = false;    // decreasing이 true인 상태였다면 개수 1 증가시키고 둘 다 false로 reset
+                }
             }
-            else if (head > 0 && s[head - 1] == arr[i]) {
-                --head;
-                ans[ans_idx++] = '-';
+            else if (arr[i - 1] > arr[i]) {
+                if (!increasing && !decreasing)
+                    decreasing = true;
+                else if (increasing) {
+                    ans++;
+                    increasing = decreasing = false;
+                }
             }
-            else
-                break;
         }
 
-        cout << '#' << test_case << ' ';
-        if (ans_idx == N * 2)
-            for (int i = 0; i < ans_idx; i++)
-                cout << ans[i];
-        else
-            cout << "NO";
-        cout << '\n';
+        cout << '#' << test_case << ' ' << ans << "\n";
     }
     return 0;
 }
