@@ -1,10 +1,9 @@
 #include <iostream>
 #include <cmath>
-#define MAX 1048576                 // 2^20
+#include <vector>
 using namespace std;
 
-int S, N, M, K;
-long long tree[MAX << 1];
+vector<long long> tree;
 
 // left와 right는 현재 살피고 있는 범위(제일 왼쪽에 있는 리프가 1번, 제일 오른쪽에 있는 리프가 S번)
 long long init(int left, int right, int index)
@@ -39,12 +38,16 @@ void update(int index, int diff)
     }
 }
 
-int main()                          // 인덱스 트리는 포화 이진트리 구조!
+int main()                              // 인덱스 트리는 포화 이진트리 구조!
 {
+    int N;
     cin >> N;
-    S = 1 << (int)log2(N) + 1;      // N 이상이면서 N과 가장 가까운 2^k 자연수로 S를 설정
-    for (int i = 0; i < N; i++)     // tree[1] ~ tree[S-1] : 내부노드, tree[S] ~ tree[2*S-1] : 리프노드
-        cin >> tree[S + i];         // 항상 리프에다가 데이터 저장
+
+    int S = 1 << (int)ceil(log2(N));    // N 이상이면서 N과 가장 가까운 2^k 자연수로 S를 설정
+    tree.resize(S << 1, 0);             // 항상 트리의 노드 개수는 2 * S
+
+    for (int i = 0; i < N; i++)         // tree[1] ~ tree[S-1] : 내부노드, tree[S] ~ tree[2*S-1] : 리프노드
+        cin >> tree[S + i];             // 항상 리프에다가 데이터 저장
     
     init(1, S, 1);
 
