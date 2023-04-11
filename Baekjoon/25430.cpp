@@ -1,4 +1,5 @@
-/* 아직 완벽한 코드 x */
+/*  아직 완벽한 코드 아님.
+    수정 예정   */
 #include <iostream>
 #include <vector>
 #include <queue>
