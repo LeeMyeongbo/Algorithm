@@ -1,43 +1,43 @@
 ﻿#include <iostream>
 using namespace std;
 
-int N, map[100][100], cnt, Case;
+int N, map[100][100];
 
-int Solve()
+int Solve()										// 굳이 N과 S 동시에 이동시키지 않아도 됨!
 {
-	for (int r = N - 1; r >= 0; r--) {			// S극으로 이동하는 것은 맨 밑 자성체에서부터 시작해서 밑으로 최대한 내려가며 탐색
-		for (int c = 0; c < N; c++) {
-			if (map[r][c] == 1) {
+	for (int r = N - 1; r >= 0; r--) 			// S극으로 이동하는 것은 맨 밑 자성체에서부터 시작해서 밑으로 최대한 내려가며 탐색
+	{
+		for (int c = 0; c < N; c++)
+			if (map[r][c] == 1) 
+			{
 				map[r][c] = 0;
 				int R = r + 1;
 				while (R < N && !map[R][c])		// 맵을 벗어나게 되거나 다른 자성체 만날 때까지 반복
 					R++;
-				if (R < N)
-					map[R - 1][c] = 1;			// 다른 자성체 만났을 경우에는 바로 위에 위치시킴
+				if (R < N)						// 다른 자성체 만났을 경우
+					map[R - 1][c] = 1;
 			}
-		}
 	}
-	for (int r = 0; r < N; r++) {				// N극으로 이동하는 것은 맨 위 자성체에서부터 시작해서 위로 최대한 올라가며 탐색
-		for (int c = 0; c < N; c++) {
-			if (map[r][c] == 2) {
+	for (int r = 0; r < N; r++) 				// N극으로 이동하는 것은 맨 위 자성체에서부터 시작해서 위로 최대한 올라가며 탐색
+	{
+		for (int c = 0; c < N; c++)
+			if (map[r][c] == 2) 
+			{
 				map[r][c] = 0;
 				int R = r - 1;
 				while (R >= 0 && !map[R][c])	// 맵을 벗어나게 되거나 다른 자성체 만날 때까지 반복
 					R--;
 				if (R >= 0)
-					map[R + 1][c] = 2;			// 다른 자성체 만났을 경우에는 바로 아래에 위치시킴
+					map[R + 1][c] = 2;
 			}
-		}
 	}
-	int cur = 1;
+
+	int cnt = 0;
 	for (int c = 0; c < N; c++)
-		for (int r = 0; r < N; r++) {			// ↓ 방향으로 탐색
-			if (!map[r][c])
-				continue;
-			if (map[r][c] == 2 && cur == 1)		// 자성체가 N -> S로 바뀔 때만 교착상태 개수 증가
+		for (int r = 0; r < N - 1; r++)
+			if (map[r][c] == 1 && map[r + 1][c] == 2)	// ↓ 방향으로 탐색하면서 순서가 N→S 일때만 개수 헤아림
 				cnt++;
-			cur = map[r][c];
-		}
+	
 	return cnt;
 }
 
@@ -45,16 +45,16 @@ int main()
 {
 	ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-	while (true) {
+	for (int t = 0 ; t < 10; )
+	{
 		cin >> N;
-		if (cin.eof())
-			return 0;
 
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < N; j++)
 				cin >> map[i][j];
 
-		cout << "#" << ++Case << " " << Solve() << endl;
-		cnt = 0;
+		cout << '#' << ++t << ' ' << Solve() << '\n';
 	}
+
+	return 0;
 }

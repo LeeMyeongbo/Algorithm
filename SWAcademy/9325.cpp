@@ -7,13 +7,13 @@ using namespace std;
 int T, N, D;
 long long P, A[MAX], Sum[S * 2];                                            // Sum[1] ~ Sum[S - 1] : 내부노드, Sum[S] ~ Sum[2 * S - 1] : 리프노드
 
-long long find(int index, int start, int end, int left, int right)          // start/end : 리프 기준 구하고자 하는 범위, left/right : 리프 기준 현재 범위
+long long search(int index, int start, int end, int left, int right)          // start/end : 리프 기준 구하고자 하는 범위, left/right : 리프 기준 현재 범위
 {
     if (right < start || left > end)
         return 0;
     if (right <= end && left >= start)
         return Sum[index];
-    return max(find(index * 2, start, end, left, (left + right) / 2), find(index * 2 + 1, start, end, (left + right) / 2 + 1, right));
+    return max(search(index * 2, start, end, left, (left + right) / 2), search(index * 2 + 1, start, end, (left + right) / 2 + 1, right));
 }
 
 int solve(int width)
@@ -27,7 +27,7 @@ int solve(int width)
             sum += A[right];
         }
         else {
-            long long Max = find(1, left, right - D + 1, 0, width - 1);     // 현재 [left, right] 구간 중에서 숫자 연속으로 D개 더했을 때 가장 큰 값 찾음   
+            long long Max = search(1, left, right - D + 1, 0, width - 1);     // 현재 [left, right] 구간 중에서 숫자 연속으로 D개 더했을 때 가장 큰 값 찾음   
             if (sum - Max <= P) {                                           // 탐색할 때 반드시 전체 범위(0 ~ width-1)에서 탐색해야 함! (N - D) 아님 주의!
                 ans = max(ans, ++right - left);
                 sum += A[right];

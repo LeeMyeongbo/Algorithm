@@ -9,7 +9,8 @@ double solve(int left)
 {
     double l = magnet[left].first, r = magnet[left + 1].first;
 
-    while (true) {
+    while (true) 
+    {
         double middle = (l + r) / 2;
         double F1 = 0.0, F2 = 0.0;
 
@@ -20,7 +21,8 @@ double solve(int left)
 
         if (abs(l - r) < 1e-12)       // 좌표값 오차가 10^-12보다 작아지면 종료
             return middle;
-        else {
+        else 
+        {
             if (F1 > F2)
                 l = middle;
             else
@@ -32,10 +34,13 @@ double solve(int left)
 
 int main(int argc, char** argv)
 {
+    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cout.precision(10);
+    
     cin >> T;
 
-    for (int test_case = 1; test_case <= T; ++test_case) {
+    for (int test_case = 1; test_case <= T; ++test_case) 
+    {
         cin >> N;
         for (int i = 0; i < N; i++)
             cin >> magnet[i].first;

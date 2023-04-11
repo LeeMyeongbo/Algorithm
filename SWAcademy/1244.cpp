@@ -8,12 +8,15 @@ string arr;
 
 void dfs(int index, int depth)
 {
-    if (depth == change) {
+    if (depth == change) 
+    {
         Max = max(Max, stoi(arr));
         return;
     }
-    for (int first = index; first < arr.length() - 1; first++) {			// 중복조합... 까먹지 않기!!
-        for (int second = first + 1; second < arr.length(); second++) {
+    for (int first = index; first < arr.length() - 1; first++)              // 중복조합
+    {
+        for (int second = first + 1; second < arr.length(); second++) 
+        {
             swap(arr[first], arr[second]);
             dfs(first, depth + 1);
             swap(arr[first], arr[second]);
@@ -23,10 +26,14 @@ void dfs(int index, int depth)
 
 int main(int argc, char** argv)
 {
+    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    
     cin >> T;
-    for (int test_case = 1; test_case <= T; ++test_case) {
+    for (int test_case = 1; test_case <= T; ++test_case) 
+    {
         cin >> arr >> change;
-        if (change > arr.length()) {		// 교환 횟수가 문자 길이보다 길 경우
+        if (change > arr.length())		    // 교환 횟수가 문자 길이보다 길 경우
+        {
             if (change % 2 && arr.length() % 2 || !(change % 2) && !(arr.length() % 2))
                 change = arr.length();		// 문자 길이와 교환 횟수 모두 짝수 혹은 홀수라면 문자 길이만큼만 교환하면 답 나옴
             else
