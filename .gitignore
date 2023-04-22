@@ -1,6 +1,11 @@
 
 # 폴더 제외
-.vscode/
+.vs/
+x64/
 
 # 확장자 제외
 *.exe
+*.sln
+*.vcxproj
+*.filters
+*.user
