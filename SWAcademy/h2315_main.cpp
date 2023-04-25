@@ -82,10 +82,10 @@ static bool run()
     return ok;
 }
 
-int main()
+int main() 
 {
     setbuf(stdout, NULL);
-    freopen("sample_input.txt", "r", stdin);
+    //freopen("sample_input.txt", "r", stdin);
 
     int T, MARK;
     scanf("%d %d", &T, &MARK);
@@ -95,5 +95,6 @@ int main()
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
     }
+
     return 0;
 }
