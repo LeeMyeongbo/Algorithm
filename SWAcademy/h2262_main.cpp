@@ -3,7 +3,6 @@
 #endif
 
 #include <stdio.h>
-#include <time.h>
 
 #define MAX_N (3000)
 
@@ -88,18 +87,15 @@ static bool run()
 int main()
 {
     setbuf(stdout, NULL);
-    freopen("sample_input.txt", "r", stdin);
+    //freopen("sample_input.txt", "r", stdin);
     int T, MARK;
     scanf("%d %d", &T, &MARK);
 
-    clock_t start = clock();
     for (int tc = 1; tc <= T; tc++)
     {
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
     }
-    clock_t end = clock();
 
-    printf("걸린 시간 : %fs\n", ((double)end - start) / CLOCKS_PER_SEC);
     return 0;
 }
