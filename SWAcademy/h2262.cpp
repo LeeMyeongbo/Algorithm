@@ -1,14 +1,34 @@
 ﻿#include <vector>
 #include <queue>
 #include <cstring>
-#include <tuple>
 using namespace std;
 
+struct Node {
+    int prior1, prior2, prior3;
+
+    bool operator<(const Node& n) const {
+        if (prior1 > n.prior1)
+            return true;
+
+        if (prior1 == n.prior1)
+        {
+            if (prior2 > n.prior2)
+                return true;
+
+            if (prior2 == n.prior2)
+                return prior3 > n.prior3;
+
+            return false;
+        }
+
+        return false;
+    }
+};
 const vector<vector<int>> comb = { {0}, {1}, {2}, {0, 1}, {0, 2}, {1, 2}, {0, 1, 2} };
 int n, limitDist, centralcity[3], centralIdx[3001], price[3001], dij[3][3001], distSum[7][3001];     // dij[i][j] : 중심도시 i와 도시 j 사이의 최소 거리
-vector<pair<int, int>> graph[3001];         // graph[i] : (연결된 도시 j 와의 거리, j)로 저장
-priority_queue<pair<int, int>> pq;          // (현재까지의 거리, 현재 도시)로 저장
-priority_queue<tuple<int, int, int>> recommend[7]; // recommend : comb[i] 조합에 해당하는 출근 거리 합 중 한계 거리 이내의 도시만 (가격, 출근 거리 합, 도시 id)로 저장
+vector<pair<int, int>> graph[3001];     // graph[i] : (연결된 도시 j 와의 거리, j)로 저장
+priority_queue<Node> pq;                // (현재까지의 거리, 현재 도시, 출발한 중심 도시 idx)로 저장
+priority_queue<Node> recommend[7];      // recommend : comb[i] 조합에 해당하는 출근 거리 합 중 한계 거리 이내의 도시만 (가격, 출근 거리 합, 도시 id)로 저장
 
 int getCentralCombIdx(int size, int centralList[])
 {
@@ -33,7 +53,7 @@ int getCentralCombIdx(int size, int centralList[])
 void init(int N, int mDownTown[])
 {
     memset(price, 0, sizeof(price));
-    for (unsigned register int i = 1; i <= N; i++)
+    for (register unsigned int i = 1; i <= N; i++)
         graph[i].clear();
 
     n = N;
@@ -48,7 +68,7 @@ void init(int N, int mDownTown[])
 
 void newLine(int M, int mCityIDs[], int mDistances[])
 {
-    for (unsigned register int i = 0; i < M - 1; i++)
+    for (register unsigned int i = 0; i < M - 1; i++)
     {
         pair<int, int> p1 = { mDistances[i], mCityIDs[i + 1] };
         graph[mCityIDs[i]].emplace_back(p1);
@@ -63,27 +83,29 @@ void changeLimitDistance(int mLimitDistance)
     memset(dij, -1, sizeof(dij));
     limitDist = mLimitDistance;
 
-    for (register unsigned int i = 0; i < 3; i++)             // 먼저 0번에서 2번까지 각 중심도시에서 다른 도시까지의 거리 저장
+    register Node n1 = { 0, centralcity[0], 0 }, n2 = { 0, centralcity[1], 1 }, n3 = { 0, centralcity[2], 2 };
+
+    pq.emplace(n1);
+    pq.emplace(n2);
+    pq.emplace(n3);
+    dij[0][centralcity[0]] = dij[1][centralcity[1]] = dij[2][centralcity[2]] = 0;
+    
+    while (!pq.empty())
     {
-        pq.push({ 0, centralcity[i] });
-        dij[i][centralcity[i]] = 0;
+        register Node n = pq.top();
+        pq.pop();
 
-        while (!pq.empty())
+        register int dist = n.prior1, curr = n.prior2, c_idx = n.prior3;
+        if (dist > dij[c_idx][curr])
+            continue;
+
+        for (pair<int, int>& p : graph[curr])
         {
-            unsigned register int dist = -pq.top().first;
-            unsigned register int curr = pq.top().second;
-            pq.pop();
-
-            if (dist > dij[i][curr])
-                continue;
-
-            for (pair<int, int>& p : graph[curr])
+            if (dij[c_idx][p.second] == -1 || dij[c_idx][p.second] > dist + p.first)
             {
-                if (dij[i][p.second] == -1 || dij[i][p.second] > dist + p.first)
-                {
-                    dij[i][p.second] = dist + p.first;
-                    pq.push({ -dij[i][p.second], p.second });
-                }
+                dij[c_idx][p.second] = dist + p.first;
+                n = { dij[c_idx][p.second], p.second, c_idx };
+                pq.emplace(n);
             }
         }
     }
@@ -110,8 +132,8 @@ void changeLimitDistance(int mLimitDistance)
 
             if (distSum[i][city] <= mLimitDistance)
             {
-                tuple<int, int, int> t = { -price[city], -distSum[i][city], -city };
-                recommend[i].emplace(t);
+                Node n = { price[city], distSum[i][city], city };
+                recommend[i].emplace(n);
             }
         }
     }
@@ -120,27 +142,23 @@ void changeLimitDistance(int mLimitDistance)
 int findCity(int mOpt, int mDestinations[])
 {
     register unsigned int i = getCentralCombIdx(mOpt, mDestinations);
-    if (!recommend[i].empty())
+    while (!recommend[i].empty())
     {
-        while (!recommend[i].empty())
+        register Node n = recommend[i].top();
+        recommend[i].pop();
+
+        register int cost = n.prior1, dist = n.prior2, curr = n.prior3;
+        if (cost == price[curr])
         {
-            int cost = -get<0>(recommend[i].top());
-            int dist = -get<1>(recommend[i].top());
-            int curr = -get<2>(recommend[i].top());
-            recommend[i].pop();
+            price[curr]++;
+            n = { price[curr], dist, curr };
+            recommend[i].emplace(n);
 
-            if (cost == price[curr])
-            {
-                price[curr]++;
-                tuple<int, int, int> t = { -price[curr], -dist, -curr };
-                recommend[i].emplace(t);
-
-                return curr;
-            }
-
-            tuple<int, int, int> t = { -price[curr], -dist, -curr };
-            recommend[i].emplace(t);
+            return curr;
         }
+
+        n = { price[curr], dist, curr };
+        recommend[i].emplace(n);
     }
 
     return -1;

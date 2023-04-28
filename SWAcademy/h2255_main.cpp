@@ -4,21 +4,25 @@
 
 #include <stdio.h>
 
-extern void init(int N);
-extern int arrive(int mId);
-extern int leave(int mId);
+extern int init(int N, int sCity[], int eCity[], int mCost[]);
+extern void add(int sCity, int eCity, int mCost);
+extern int cost(int mHub);
 
 /////////////////////////////////////////////////////////////////////////
 
+#define MAX_N 1400
 #define CMD_INIT 1
-#define CMD_ARRIVE 2
-#define CMD_LEAVE 3
+#define CMD_ADD 2
+#define CMD_COST 3
 
-static bool run() {
+static bool run() 
+{
     int q;
     scanf("%d", &q);
 
-    int n, mid;
+    int n;
+    int sCityArr[MAX_N], eCityArr[MAX_N], mCostArr[MAX_N];
+    int sCity, eCity, mCost, mHub;
     int cmd, ans, ret = 0;
     bool okay = false;
 
@@ -26,19 +30,23 @@ static bool run() {
         scanf("%d", &cmd);
         switch (cmd) {
         case CMD_INIT:
-            scanf("%d", &n);
-            init(n);
             okay = true;
-            break;
-        case CMD_ARRIVE:
-            scanf("%d %d", &mid, &ans);
-            ret = arrive(mid);
+            scanf("%d", &n);
+            for (int j = 0; j < n; ++j) {
+                scanf("%d %d %d", &sCityArr[j], &eCityArr[j], &mCostArr[j]);
+            }
+            scanf("%d", &ans);
+            ret = init(n, sCityArr, eCityArr, mCostArr);
             if (ans != ret)
                 okay = false;
             break;
-        case CMD_LEAVE:
-            scanf("%d %d", &mid, &ans);
-            ret = leave(mid);
+        case CMD_ADD:
+            scanf("%d %d %d", &sCity, &eCity, &mCost);
+            add(sCity, eCity, mCost);
+            break;
+        case CMD_COST:
+            scanf("%d %d", &mHub, &ans);
+            ret = cost(mHub);
             if (ans != ret)
                 okay = false;
             break;

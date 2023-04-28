@@ -4,21 +4,25 @@
 
 #include <stdio.h>
 
-extern void init(int N);
-extern int arrive(int mId);
-extern int leave(int mId);
+extern void init(int N, int mId[], int mTime[]);
+extern int add(int mId, int mTime);
+extern int remove(int K);
+extern int produce(int M);
 
 /////////////////////////////////////////////////////////////////////////
 
 #define CMD_INIT 1
-#define CMD_ARRIVE 2
-#define CMD_LEAVE 3
+#define CMD_ADD 2
+#define CMD_REMOVE 3
+#define CMD_PRODUCE 4
 
-static bool run() {
+static bool run() 
+{
     int q;
     scanf("%d", &q);
 
-    int n, mid;
+    int n, mid, mtime, k, m;
+    int midArr[100], mtimeArr[100];
     int cmd, ans, ret = 0;
     bool okay = false;
 
@@ -27,18 +31,27 @@ static bool run() {
         switch (cmd) {
         case CMD_INIT:
             scanf("%d", &n);
-            init(n);
+            for (int j = 0; j < n; ++j) {
+                scanf("%d %d", &midArr[j], &mtimeArr[j]);
+            }
+            init(n, midArr, mtimeArr);
             okay = true;
             break;
-        case CMD_ARRIVE:
-            scanf("%d %d", &mid, &ans);
-            ret = arrive(mid);
+        case CMD_ADD:
+            scanf("%d %d %d", &mid, &mtime, &ans);
+            ret = add(mid, mtime);
             if (ans != ret)
                 okay = false;
             break;
-        case CMD_LEAVE:
-            scanf("%d %d", &mid, &ans);
-            ret = leave(mid);
+        case CMD_REMOVE:
+            scanf("%d %d", &k, &ans);
+            ret = remove(k);
+            if (ans != ret)
+                okay = false;
+            break;
+        case CMD_PRODUCE:
+            scanf("%d %d", &m, &ans);
+            ret = produce(m);
             if (ans != ret)
                 okay = false;
             break;

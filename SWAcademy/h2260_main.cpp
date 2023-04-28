@@ -88,12 +88,12 @@ static bool run()
 int main()
 {
     setbuf(stdout, NULL);
-    // freopen("sample_input.txt", "r", stdin);
+    //freopen("sample_input.txt", "r", stdin);
 
-    int T, MARK;
-    scanf("%d %d", &T, &MARK);
+    int TC, MARK;
+    scanf("%d %d", &TC, &MARK);
 
-    for (int tc = 1; tc <= T; tc++)
+    for (int tc = 1; tc <= TC; ++tc)
     {
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
