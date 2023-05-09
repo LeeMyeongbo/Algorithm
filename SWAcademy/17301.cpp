@@ -51,11 +51,11 @@ int main(int argc, char** argv)
                 special = i;
                 break;
             }
-
             sum -= a_i[i - N];
             sum += a_i[i];
         }
 
+        cout << '#' << test_case << ' ';
         for (register int q = 0; q < Q; q++)
         {
             if (query[q] < special)
