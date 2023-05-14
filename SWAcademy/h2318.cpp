@@ -1,30 +1,28 @@
-﻿#include <cmath>
-#include <vector>
-using namespace std;
+﻿#include <string.h>
 
 struct Result {
     int top;
     int count;
 };
+
 struct Node {
-    long long val, lazy, Max, Min;
-};
-vector<Node> tree;
+    int lazy, max, min;
+} tree[4000000];
 int n;
+long long cnt;
 
 void init(int C)
 {
-    tree = vector<Node>(1 << ((int)ceil(log2(C)) + 1));
-    n = C;
+    memset(tree, 0, sizeof(tree));
+    cnt = 0, n = C;
 }
 
 void prop(int index, int left, int right)
 {
     if (tree[index].lazy)
     {
-        tree[index].val += (right - left + 1) * tree[index].lazy;
-        tree[index].Max += tree[index].lazy;
-        tree[index].Min += tree[index].lazy;
+        tree[index].max += tree[index].lazy;
+        tree[index].min += tree[index].lazy;
 
         if (left != right)
         {
@@ -36,7 +34,7 @@ void prop(int index, int left, int right)
     }
 }
 
-Node update(int index, int left, int right, int r1, int r2, long long diff)
+Node update(int index, int left, int right, int r1, int r2, int diff)
 {
     prop(index, left, right);
     if (left > r2 || right < r1)
@@ -44,9 +42,8 @@ Node update(int index, int left, int right, int r1, int r2, long long diff)
 
     if (left >= r1 && right <= r2)
     {
-        tree[index].val += (right - left + 1) * diff;
-        tree[index].Max += diff;
-        tree[index].Min += diff;
+        tree[index].max += diff;
+        tree[index].min += diff;
 
         if (left != right)
         {
@@ -56,18 +53,20 @@ Node update(int index, int left, int right, int r1, int r2, long long diff)
 
         return tree[index];
     }
-    int mid = (left + right) >> 1;
+    register int mid = (left + right) >> 1;
     Node lnode = update(index << 1, left, mid, r1, r2, diff);
     Node rnode = update((index << 1) + 1, mid + 1, right, r1, r2, diff);
 
-    return tree[index] = { lnode.val + rnode.val, 0, max(lnode.Max, rnode.Max), min(lnode.Min, rnode.Min) };
+    return tree[index] = { 0, lnode.max > rnode.max ? lnode.max : rnode.max, lnode.min < rnode.min ? lnode.min : rnode.min };
 }
 
-Result dropBlocks(int mCol, int mHeight, int mLength)           // Segment Tree with lazy propagation
+Result dropBlocks(int mCol, int mHeight, int mLength)
 {
-    register Node node = update(1, 0, n - 1, mCol, mCol + mLength - 1, mHeight);
-    register int top = node.Max - node.Min;
-    register int count = (node.val - node.Min * n) % 1000000;
+    cnt += mHeight * mLength;
 
+    register Node node = update(1, 0, n - 1, mCol, mCol + mLength - 1, mHeight);
+    register int top = node.max - node.min;
+    register int count = (cnt - n * node.min) % 1000000;
+    
     return { top, count };
 }
