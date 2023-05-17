@@ -52,7 +52,6 @@ static bool run()
         {
             scanf("%d%d", &from, &to);
             erase(from, to);
-
         }
         else if (query == CMD_FIND)
         {
@@ -65,6 +64,7 @@ static bool run()
                 ok = false;
         }
     }
+
     return ok;
 }
 

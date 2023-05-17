@@ -48,24 +48,21 @@ static bool run()
             userAns = minTravelTime(mStartAirport, mEndAirport, mStartTime);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         case CMD_MIN_PRICE:
             scanf("%d %d", &mStartAirport, &mEndAirport);
             userAns = minPrice(mStartAirport, mEndAirport);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         default:
             isCorrect = false;
             break;
         }
     }
+
     return isCorrect;
 }
 

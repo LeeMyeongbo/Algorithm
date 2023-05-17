@@ -41,9 +41,7 @@ static bool run()
         {
             scanf("%d", &N);
             for (int i = 0; i < 3; i++)
-            {
                 scanf("%d", &mDownTown[i]);
-            }
             init(N, mDownTown);
             ok = true;
         }
@@ -53,13 +51,9 @@ static bool run()
 
             scanf("%d%d", &M, &mLimitDistance);
             for (int i = 0; i < M; i++)
-            {
                 scanf("%d", city_id_list + i);
-            }
             for (int i = 0; i < M - 1; i++)
-            {
                 scanf("%d", distance_list + i);
-            }
             newLine(M, city_id_list, distance_list);
             changeLimitDistance(mLimitDistance);
         }
@@ -69,18 +63,15 @@ static bool run()
             scanf("%d", &mOpt);
 
             for (int i = 0; i < mOpt; i++)
-            {
                 scanf("%d", downtown_list + i);
-            }
             ret = findCity(mOpt, downtown_list);
             scanf("%d", &ans);
 
             if (ans != ret)
-            {
                 ok = false;
-            }
         }
     }
+
     return ok;
 }
 

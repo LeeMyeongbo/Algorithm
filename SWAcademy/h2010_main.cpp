@@ -19,7 +19,6 @@ extern int changeEvent(int uid, char ename[], char cname[]);
 extern int getCount(int uid);
 
 /////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
 
 static int mSeed;
 
@@ -41,7 +40,6 @@ static void make_string(char str[], int seed)
 static int run()
 {
     int answer = 100;
-
     int cmd, p1, p2, p3, p4;
     char str1[15], str2[15];
 

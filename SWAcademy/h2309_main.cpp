@@ -40,8 +40,10 @@ static int run()
         {
         case CMD_INIT:
             scanf("%d %d ", &N, &M);
-            for (int i = 0; i < N - 1; i++) scanf("%d", &mType[i]);
-            for (int i = 0; i < N - 1; i++) scanf("%d", &mTime[i]);
+            for (int i = 0; i < N - 1; i++) 
+                scanf("%d", &mType[i]);
+            for (int i = 0; i < N - 1; i++) 
+                scanf("%d", &mTime[i]);
             init(N, M, mType, mTime);
             isOK = 1;
             break;
@@ -73,6 +75,7 @@ static int run()
         }
     }
     destroy();
+
     return isOK;
 }
 

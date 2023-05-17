@@ -55,33 +55,28 @@ static bool run()
             userAns = influencer(mRank);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         case CMD_ADD_PURCHASING_POWER:
             scanf("%d %d", &mID, &mPower);
             userAns = addPurchasingPower(mID, mPower);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         case CMD_ADD_FRIENDSHIP:
             scanf("%d %d", &mID1, &mID2);
             userAns = addFriendship(mID1, mID2);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         default:
             isCorrect = false;
             break;
         }
     }
+
     return isCorrect;
 }
 

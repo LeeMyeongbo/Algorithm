@@ -48,9 +48,7 @@ static bool run()
             res = getScore(mID);
             scanf("%d", &ans);
             if (ans != res)
-            {
                 okay = false;
-            }
             break;
         }
     }

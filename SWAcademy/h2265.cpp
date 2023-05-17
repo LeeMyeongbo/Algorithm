@@ -1,10 +1,17 @@
 ﻿/* boj 3830이랑 비슷... 잘 익히기! */
 
-#include <algorithm>
+#include <utility>
 using namespace std;
 
 int n;
 pair<int, int> player[100001];          // player[i] = {루트(집합 내 번호가 가장 작은 정점), 현재 정점 i의 점수 - 루트 점수}
+
+void init(int N)
+{
+    n = N;
+    for (int i = 1; i <= N; i++)
+        player[i] = { i, 0 };
+}
 
 pair<int, int> findRootNupdate(int v)
 {
@@ -15,13 +22,6 @@ pair<int, int> findRootNupdate(int v)
 
     player[v].first = p.first, player[v].second += p.second;    // 재귀에서 돌아오며 현 정점 v의 루트 갱신 + 차이 누적
     return player[v];
-}
-
-void init(int N)
-{
-    n = N;
-    for (int i = 1; i <= N; i++)
-        player[i] = { i, 0 };
 }
 
 void updateScore(int mWinnerID, int mLoserID, int mScore)       // mWinner와 mLoser의 루트를 찾아서 점수 갱신

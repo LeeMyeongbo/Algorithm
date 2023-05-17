@@ -77,16 +77,12 @@ static bool run()
 			if (mTitle[0] != '$')
 			{
 				scanf("%d %d", &mStartDay, &mEndDay);
-				if (mstrcmp(result.mTitle, mTitle) != 0
-						|| result.mStartDay != mStartDay
-						|| result.mEndDay != mEndDay)
+				if (mstrcmp(result.mTitle, mTitle) != 0 || result.mStartDay != mStartDay || result.mEndDay != mEndDay)
 					okay = false;
  			}
 			else
-			{
 				if (result.mTitle[0] != '\0')
 					okay = false;
-			}
 			break;
 		case CMD_DELETE_SCHEDULE:
 			scanf("%s", mTitle);

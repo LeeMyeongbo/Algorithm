@@ -54,33 +54,28 @@ static bool run()
             userAns = carry(mFrom, mTo, mQuantity);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         case CMD_GATHER:
             scanf("%d %d", &mID, &mQuantity);
             userAns = gather(mID, mQuantity);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         case CMD_SUM:
             scanf("%d", &mID);
             userAns = sum(mID);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         default:
             isCorrect = false;
             break;
         }
     }
+
     return isCorrect;
 }
 

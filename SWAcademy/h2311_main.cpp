@@ -16,7 +16,8 @@ extern int status(int mSchool);
 #define CMD_REMOVE 3
 #define CMD_STATUS 4
 
-static bool run() {
+static bool run() 
+{
     int q;
     scanf("%d", &q);
 
@@ -25,14 +26,15 @@ static bool run() {
     int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) {
+    for (int i = 0; i < q; ++i) 
+    {
         scanf("%d", &cmd);
-        switch (cmd) {
+        switch (cmd) 
+        {
         case CMD_INIT:
             scanf("%d %d", &mcapa, &n);
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < n; ++j)
                 scanf("%d %d", &mxArr[j], &myArr[j]);
-            }
             init(mcapa, n, mxArr, myArr);
             okay = true;
             break;
@@ -59,6 +61,7 @@ static bool run() {
             break;
         }
     }
+
     return okay;
 }
 

@@ -26,14 +26,15 @@ static bool run()
     int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) {
+    for (int i = 0; i < q; ++i) 
+    {
         scanf("%d", &cmd);
-        switch (cmd) {
+        switch (cmd) 
+        {
         case CMD_INIT:
             scanf("%d", &n);
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < n; ++j)
                 scanf("%d %d", &midArr[j], &mtimeArr[j]);
-            }
             init(n, midArr, mtimeArr);
             okay = true;
             break;
@@ -60,6 +61,7 @@ static bool run()
             break;
         }
     }
+
     return okay;
 }
 

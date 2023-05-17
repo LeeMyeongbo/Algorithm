@@ -83,7 +83,6 @@ static bool run()
 
 int main(void) 
 {
-
     setbuf(stdout, NULL);
     //freopen("sample_input.txt", "r", stdin);
 

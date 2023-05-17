@@ -4,28 +4,30 @@
 
 #include <stdio.h>
 
-extern void init();
-extern void loginID(char mID[10]);
-extern int closeIDs(char mStr[10]);
-extern void connectCnt(int mCnt);
-extern int waitOrder(char mID[10]);
+struct Result {
+    int id;
+    int num;
+};
+
+extern void init(int N);
+extern Result reserveSeats(int mID, int mNum);
+extern Result cancelReservation(int mID);
 
 /////////////////////////////////////////////////////////////////////////
 
 #define CMD_INIT	0
-#define CMD_LOGIN	1
-#define CMD_CLOSE	2
-#define CMD_CONNECT	3
-#define CMD_ORDER	4
+#define CMD_RESERVE	1
+#define CMD_CANCEL	2
 
-static bool run() 
+static bool run()
 {
     int q;
     scanf("%d", &q);
 
-    char str[10];
-    int cmd, ans, ret;
+    int cmd, param1, param2;
+    int ans1, ans2;
     bool okay = false;
+    Result res;
 
     for (int i = 0; i < q; ++i) 
     {
@@ -33,31 +35,24 @@ static bool run()
         switch (cmd) 
         {
         case CMD_INIT:
-            init();
+            scanf("%d", &param1);
+            init(param1);
             okay = true;
             break;
 
-        case CMD_LOGIN:
-            scanf("%s", str);
-            loginID(str);
-            break;
-
-        case CMD_CLOSE:
-            scanf("%d %s", &ans, str);
-            ret = closeIDs(str);
-            if (ans != ret)
+        case CMD_RESERVE:
+            scanf("%d %d", &param1, &param2);
+            res = reserveSeats(param1, param2);
+            scanf("%d %d", &ans1, &ans2);
+            if (res.id != ans1 || res.num != ans2)
                 okay = false;
             break;
 
-        case CMD_CONNECT:
-            scanf("%d", &ans);
-            connectCnt(ans);
-            break;
-
-        case CMD_ORDER:
-            scanf("%d %s", &ans, str);
-            ret = waitOrder(str);
-            if (ans != ret)
+        case CMD_CANCEL:
+            scanf("%d", &param1);
+            res = cancelReservation(param1);
+            scanf("%d %d", &ans1, &ans2);
+            if (res.id != ans1 || res.num != ans2)
                 okay = false;
             break;
 
@@ -66,11 +61,10 @@ static bool run()
             break;
         }
     }
-
     return okay;
 }
 
-int main() 
+int main()
 {
     setbuf(stdout, NULL);
     //freopen("sample_input.txt", "r", stdin);

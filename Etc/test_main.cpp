@@ -5,72 +5,64 @@
 #include <stdio.h>
 
 extern void init();
-extern void loginID(char mID[10]);
-extern int closeIDs(char mStr[10]);
-extern void connectCnt(int mCnt);
-extern int waitOrder(char mID[10]);
+extern int add(int mId, int mStart, int mEnd);
+extern int remove(int mId);
+extern int announce(int mDuration, int M);
 
 /////////////////////////////////////////////////////////////////////////
 
-#define CMD_INIT	0
-#define CMD_LOGIN	1
-#define CMD_CLOSE	2
-#define CMD_CONNECT	3
-#define CMD_ORDER	4
+#define CMD_INIT 1
+#define CMD_ADD 2
+#define CMD_REMOVE 3
+#define CMD_ANNOUNCE 4
 
-static bool run() 
+static bool run()
 {
     int q;
     scanf("%d", &q);
 
-    char str[10];
-    int cmd, ans, ret;
+    int mid, mstart, mend, mduration, m;
+    int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) 
+    for (int i = 0; i < q; ++i)
     {
+        if (i == 96)
+            bool db = true;
+
         scanf("%d", &cmd);
-        switch (cmd) 
-        {
+        switch (cmd) {
         case CMD_INIT:
             init();
             okay = true;
             break;
-
-        case CMD_LOGIN:
-            scanf("%s", str);
-            loginID(str);
-            break;
-
-        case CMD_CLOSE:
-            scanf("%d %s", &ans, str);
-            ret = closeIDs(str);
+        case CMD_ADD:
+            scanf("%d %d %d %d", &mid, &mstart, &mend, &ans);
+            ret = add(mid, mstart, mend);
             if (ans != ret)
                 okay = false;
             break;
-
-        case CMD_CONNECT:
-            scanf("%d", &ans);
-            connectCnt(ans);
-            break;
-
-        case CMD_ORDER:
-            scanf("%d %s", &ans, str);
-            ret = waitOrder(str);
+        case CMD_REMOVE:
+            scanf("%d %d", &mid, &ans);
+            ret = remove(mid);
             if (ans != ret)
                 okay = false;
             break;
-
+        case CMD_ANNOUNCE:
+            scanf("%d %d %d", &mduration, &m, &ans);
+            ret = announce(mduration, m);
+            if (ans != ret)
+                okay = false;
+            break;
         default:
             okay = false;
             break;
         }
     }
-
     return okay;
 }
 
-int main() 
+int main()
 {
     setbuf(stdout, NULL);
     //freopen("sample_input.txt", "r", stdin);
@@ -78,7 +70,7 @@ int main()
     int T, MARK;
     scanf("%d %d", &T, &MARK);
 
-    for (int tc = 1; tc <= T; tc++) 
+    for (int tc = 1; tc <= T; tc++)
     {
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);

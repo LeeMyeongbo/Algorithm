@@ -20,6 +20,7 @@ static int hotelID = 0;
 static int roomID = 0;
 static int roomInfo[5] = { 0, };
 static int filterInfo[6] = { 0, };
+
 static int run(int _score)
 {
     int n, score = _score;
@@ -31,7 +32,7 @@ static int run(int _score)
     init(n, roomCnt);
 
     int cmd, user_ans, correct_ans;
-    for (int q = 0;; q++)
+    for (int q = 0; ; q++)
     {
         scanf("%d", &cmd);
         switch (cmd)
@@ -65,14 +66,13 @@ static int run(int _score)
         }
     }
 
-
     return score;
 }
 
 int main()
 {
     setbuf(stdout, NULL);
-    freopen("sample_input.txt", "r", stdin);
+    //freopen("sample_input.txt", "r", stdin);
 
     int tc, score;
     scanf("%d%d", &tc, &score);

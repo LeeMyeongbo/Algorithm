@@ -44,18 +44,18 @@ static bool run()
 
         case REGI:
             scanf("%d %d %d", &time, &uid, &num);
-            for (int m = 0; m < num; m++) {
+            for (int m = 0; m < num; m++)
                 scanf("%d", &gids[m]);
-            }
+
             registerUser(time, uid, num, gids);
             break;
 
         case OFFER:
             scanf("%d %d %d %d %d", &time, &nid, &delay, &gid, &ans);
             ret = offerNews(time, nid, delay, gid);
-            if (ans != ret) {
+            if (ans != ret)
                 okay = false;
-            }
+
             break;
 
         case CANCEL:
@@ -68,20 +68,17 @@ static bool run()
             ret = checkUser(time, uid, retids);
 
             num = ans;
-            if (num > 3) num = 3;
-            for (int m = 0; m < num; m++) {
+            if (num > 3) 
+                num = 3;
+            for (int m = 0; m < num; m++)
                 scanf("%d", &ansids[m]);
-            }
-            if (ans != ret) {
+
+            if (ans != ret)
                 okay = false;
-            }
-            else {
-                for (int m = 0; m < num; m++) {
-                    if (ansids[m] != retids[m]) {
+            else
+                for (int m = 0; m < num; m++)
+                    if (ansids[m] != retids[m])
                         okay = false;
-                    }
-                }
-            }
             break;
 
         default:

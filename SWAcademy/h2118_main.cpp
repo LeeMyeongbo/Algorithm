@@ -19,16 +19,12 @@ extern void updateTeam(int mTeam, int mChangeScore);
 extern int bestSoldier(int mTeam);
 
 /////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
 
 static bool run()
 {
     int numQuery;
-
     int mID, mTeam, mScore, mChangeScore;
-
     int userAns, ans;
-
     bool isCorrect = false;
 
     scanf("%d", &numQuery);
@@ -64,9 +60,7 @@ static bool run()
             userAns = bestSoldier(mTeam);
             scanf("%d", &ans);
             if (userAns != ans)
-            {
                 isCorrect = false;
-            }
             break;
         default:
             isCorrect = false;

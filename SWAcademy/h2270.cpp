@@ -5,36 +5,29 @@ struct Node {
 } tree[1 << 19];
 int n, S = 1 << 18;
 
-void updateTree(int start, int num, int mValue[])
+void update(int index, int diff)
 {
-    for (int i = 0; i < num; i++)
+    while (index)
     {
-        int idx = S + i + start;
-        tree[idx] = { mValue[i], mValue[i], 1 };
+        tree[index].cnt += diff;
 
-        idx >>= 1;
-        while (idx)
-        {
-            tree[idx].cnt++;
+        register int left_cnt = tree[index << 1].cnt;
+        register int right_cnt = tree[(index << 1) + 1].cnt;
+        register int left_Max = tree[index << 1].Max;
+        register int right_Max = tree[(index << 1) + 1].Max;
+        register int left_Min = tree[(index << 1)].Min;
+        register int right_Min = tree[(index << 1) + 1].Min;
 
-            int left_cnt = tree[idx << 1].cnt;
-            int right_cnt = tree[(idx << 1) + 1].cnt;
-            int left_Max = tree[idx << 1].Max;
-            int right_Max = tree[(idx << 1) + 1].Max;
-            int left_Min = tree[(idx << 1)].Min;
-            int right_Min = tree[(idx << 1) + 1].Min;
+        tree[index].Max = left_Max > right_Max ? left_Max : right_Max;
 
-            tree[idx].Max = left_Max > right_Max ? left_Max : right_Max;
+        if (left_cnt && right_cnt)
+            tree[index].Min = left_Min > right_Min ? right_Min : left_Min;
+        else if (left_cnt)
+            tree[index].Min = left_Min;
+        else if (right_cnt)
+            tree[index].Min = right_Min;
 
-            if (left_cnt && right_cnt)
-                tree[idx].Min = left_Min > right_Min ? right_Min : left_Min;
-            else if (left_cnt)
-                tree[idx].Min = tree[idx << 1].Min;
-            else if (right_cnt)
-                tree[idx].Min = tree[(idx << 1) + 1].Min;
-
-            idx >>= 1;
-        }
+        index >>= 1;
     }
 }
 
@@ -51,6 +44,7 @@ Node search(int index, int left, int right, int r1, int r2)
 
     int Max = n1.Max > n2.Max ? n1.Max : n2.Max;
     int Min = 0;
+
     if (n1.cnt && n2.cnt)
         Min = n1.Min > n2.Min ? n2.Min : n1.Min;
     else if (n1.cnt)
@@ -65,21 +59,35 @@ void init(int N, int mValue[])
 {
     memset(tree, 0, sizeof(tree));
 
-    updateTree(0, N, mValue);
+    for (register int i = 0; i < N; i++)
+    {
+        register int idx = S + i;
+        tree[idx] = { mValue[i], mValue[i], 1 };
+
+        idx >>= 1;
+        update(idx, 1);
+    }
     n = N;
 }
 
 void add(int M, int mValue[])
 {
-    updateTree(n, M, mValue);
+    for (register int i = 0; i < M; i++)
+    {
+        register int idx = S + i + n;
+        tree[idx] = { mValue[i], mValue[i], 1 };
+
+        idx >>= 1;
+        update(idx, 1);
+    }
     n += M;
 }
 
-void erase(int mFrom, int mTo)                  // mFrom이 실제로 어느 index를 가리키는 지 찾아서 삭제
+void erase(int mFrom, int mTo)                      // mFrom이 실제로 어느 index를 가리키는 지 찾아서 삭제
 {
-    for (int i = mFrom; i <= mTo; i++)
+    for (register int i = mFrom; i <= mTo; i++)
     {
-        int index = 1, real_idx = mFrom;
+        register int index = 1, real_idx = mFrom;
 
         while (index < S)
         {
@@ -94,35 +102,13 @@ void erase(int mFrom, int mTo)                  // mFrom이 실제로 어느 ind
 
         tree[index] = { 0, 0, 0 };
         index >>= 1;
-
-        while (index)
-        {
-            tree[index].cnt--;
-
-            int left_cnt = tree[index << 1].cnt;
-            int right_cnt = tree[(index << 1) + 1].cnt;
-            int left_Max = tree[index << 1].Max;
-            int right_Max = tree[(index << 1) + 1].Max;
-            int left_Min = tree[(index << 1)].Min;
-            int right_Min = tree[(index << 1) + 1].Min;
-
-            tree[index].Max = left_Max > right_Max ? left_Max : right_Max;
-
-            if (left_cnt && right_cnt)
-                tree[index].Min = left_Min > right_Min ? right_Min : left_Min;
-            else if (left_cnt)
-                tree[index].Min = tree[index << 1].Min;
-            else if (right_cnt)
-                tree[index].Min = tree[(index << 1) + 1].Min;
-
-            index >>= 1;
-        }
+        update(index, -1);
     }
 }
 
 int find(int K)
 {
-    int index = 1, real_idx = K;
+    register int index = 1, real_idx = K;
 
     while (index < S)
     {

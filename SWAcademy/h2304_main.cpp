@@ -16,7 +16,8 @@ extern int install(int M);
 #define CMD_REMOVE 3
 #define CMD_INSTALL 4
 
-static bool run() {
+static bool run() 
+{
     int q;
     scanf("%d", &q);
 
@@ -25,14 +26,15 @@ static bool run() {
     int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) {
+    for (int i = 0; i < q; ++i) 
+    {
         scanf("%d", &cmd);
         switch (cmd) {
         case CMD_INIT:
             scanf("%d", &n);
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < n; ++j)
                 scanf("%d %d", &midArr[j], &mlocArr[j]);
-            }
+
             init(n, midArr, mlocArr);
             okay = true;
             break;
@@ -62,7 +64,8 @@ static bool run() {
     return okay;
 }
 
-int main() {
+int main() 
+{
     setbuf(stdout, NULL);
     //freopen("sample_input.txt", "r", stdin);
 

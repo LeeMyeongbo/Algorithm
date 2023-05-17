@@ -26,15 +26,16 @@ static bool run()
     int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) {
+    for (int i = 0; i < q; ++i) 
+    {
         scanf("%d", &cmd);
-        switch (cmd) {
+        switch (cmd) 
+        {
         case CMD_INIT:
             okay = true;
             scanf("%d", &n);
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < n; ++j)
                 scanf("%d %d %d", &sCityArr[j], &eCityArr[j], &mCostArr[j]);
-            }
             scanf("%d", &ans);
             ret = init(n, sCityArr, eCityArr, mCostArr);
             if (ans != ret)
@@ -55,6 +56,7 @@ static bool run()
             break;
         }
     }
+
     return okay;
 }
 

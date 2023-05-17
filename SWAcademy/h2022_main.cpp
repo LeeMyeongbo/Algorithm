@@ -21,7 +21,6 @@ extern int  readMessage(int cTimestamp, int uID, int mID);
 extern int  deleteMessage(int cTimestamp, int uID, int mID);
 
 /////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
 
 static bool run()
 {
@@ -116,5 +115,6 @@ int main()
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
     }
+
     return 0;
 }

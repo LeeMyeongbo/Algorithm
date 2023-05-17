@@ -14,7 +14,8 @@ extern int leave(int mId);
 #define CMD_ARRIVE 2
 #define CMD_LEAVE 3
 
-static bool run() {
+static bool run() 
+{
     int q;
     scanf("%d", &q);
 
@@ -22,7 +23,8 @@ static bool run() {
     int cmd, ans, ret = 0;
     bool okay = false;
 
-    for (int i = 0; i < q; ++i) {
+    for (int i = 0; i < q; ++i) 
+    {
         scanf("%d", &cmd);
         switch (cmd) {
         case CMD_INIT:
@@ -47,6 +49,7 @@ static bool run() {
             break;
         }
     }
+
     return okay;
 }
 
