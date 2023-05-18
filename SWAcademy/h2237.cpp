@@ -4,13 +4,13 @@
 using namespace std;
 
 struct Node {
-    int energy, cur;                                                // cur = row * n + c
+    int e, pos;                                                     // e : 에너지, pos = row * n + col
 
     bool operator<(const Node& n) const {
-        if (energy == n.energy)
-            return cur > n.cur;
+        if (e == n.e)
+            return pos > n.pos;
 
-        return energy < n.energy;
+        return e < n.e;
     }
 };
 const int dr[] = { 0, 1, 0, -1 }, dc[] = { 1, 0, -1, 0 };           // 동 남 서 북 순서
@@ -75,8 +75,8 @@ int dropMedicine(int mTarget, int mRow, int mCol, int mEnergy)
         register Node node = pq.top();
         pq.pop();
 
-        bacteria[node.cur / n][node.cur % n] = mTarget;
-        mEnergy -= node.energy;
+        bacteria[node.pos / n][node.pos % n] = mTarget;
+        mEnergy -= node.e;
         bacteriaNum[mTarget]++;
 
         if (mEnergy <= 0)
@@ -84,8 +84,8 @@ int dropMedicine(int mTarget, int mRow, int mCol, int mEnergy)
 
         for (register int d = 0; d < 4; d++)
         {
-            register int R = node.cur / n + dr[d];
-            register int C = node.cur % n + dc[d];
+            register int R = node.pos / n + dr[d];
+            register int C = node.pos % n + dc[d];
             if (R >= 0 && R < n && C >= 0 && C < n && !visited[R][C])
             {
                 if (!bacteria[R][C])
@@ -99,7 +99,7 @@ int dropMedicine(int mTarget, int mRow, int mCol, int mEnergy)
             }
         }
     }
-
+    
     return bacteriaNum[mTarget];
 }
 
@@ -132,6 +132,6 @@ int cleanBacteria(int mRow, int mCol)
             }
         }
     }
-
+    
     return bacteriaNum[target];
 }
