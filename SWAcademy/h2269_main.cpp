@@ -4,17 +4,16 @@
 
 #include <stdio.h>
 
-#define CMD_INIT 1
-#define CMD_ADD 2
+#define CMD_INIT            1
+#define CMD_ADD             2
 #define CMD_MIN_TRAVEL_TIME 3
-#define CMD_MIN_PRICE 4
+#define CMD_MIN_PRICE       4
 
 extern void init(int N);
 extern void add(int mStartAirport, int mEndAirport, int mStartTime, int mTravelTime, int mPrice);
 extern int minTravelTime(int mStartAirport, int mEndAirport, int mStartTime);
 extern int minPrice(int mStartAirport, int mEndAirport);
 
-/////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
 static bool run()

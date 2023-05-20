@@ -42,9 +42,7 @@ static bool run()
             Result ret = dropBlocks(mCol, mHeight, mLength);
             scanf("%d %d", &ans_top, &ans_count);
             if (ans_top != ret.top || ans_count != ret.count)
-            {
                 ok = false;
-            }
         }
     }
 
@@ -55,6 +53,7 @@ int main()
 {
     setbuf(stdout, NULL);
     //freopen("sample_input.txt", "r", stdin);
+
     int T, MARK;
     scanf("%d %d", &T, &MARK);
 
@@ -63,5 +62,6 @@ int main()
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
     }
+
     return 0;
 }

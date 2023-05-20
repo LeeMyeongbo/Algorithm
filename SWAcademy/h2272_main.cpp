@@ -59,7 +59,9 @@ static int run()
             break;
         }
     }
+
     destroy();
+
     return isOK;
 }
 
@@ -76,5 +78,6 @@ int main()
         if (run()) printf("#%d %d\n", tc, MARK);
         else printf("#%d %d\n", tc, 0);
     }
+
     return 0;
 }

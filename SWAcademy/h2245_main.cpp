@@ -2,7 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include<stdio.h>
+#include <stdio.h>
 
 #define MAX_N 50000
 #define ABS(a) (((a) < 0) ? -(a) : (a))

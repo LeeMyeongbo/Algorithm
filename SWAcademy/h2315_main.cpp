@@ -11,12 +11,12 @@ extern int moveFront(int);
 extern int selectAndErase(int, int);
 extern int check(int, int);
 
-#define CMD_INIT (100)
-#define CMD_ADD  (200)
-#define CMD_SELECT_AND_MOVE  (300)
-#define CMD_MOVE_FRONT  (400)
-#define CMD_SELECT_AND_ERASE (500)
-#define CMD_CHECK (600)
+#define CMD_INIT                (100)
+#define CMD_ADD                 (200)
+#define CMD_SELECT_AND_MOVE     (300)
+#define CMD_MOVE_FRONT          (400)
+#define CMD_SELECT_AND_ERASE    (500)
+#define CMD_CHECK               (600)
 
 static int N;
 
@@ -58,7 +58,6 @@ static bool run()
 
             if (ret != ans)
                 ok = false;
-
         }
         else if (query == CMD_SELECT_AND_ERASE)
         {
@@ -79,6 +78,7 @@ static bool run()
                 ok = false;
         }
     }
+
     return ok;
 }
 

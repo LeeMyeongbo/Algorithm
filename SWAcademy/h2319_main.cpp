@@ -11,10 +11,10 @@ extern int announce(int mDuration, int M);
 
 /////////////////////////////////////////////////////////////////////////
 
-#define CMD_INIT 1
-#define CMD_ADD 2
-#define CMD_REMOVE 3
-#define CMD_ANNOUNCE 4
+#define CMD_INIT        1
+#define CMD_ADD         2
+#define CMD_REMOVE      3
+#define CMD_ANNOUNCE    4
 
 static bool run() 
 {

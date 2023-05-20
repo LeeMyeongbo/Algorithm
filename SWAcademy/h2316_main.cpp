@@ -21,6 +21,7 @@ extern int checkUser(int mTime, int mUID, int mRetIDs[]);
 static int gids[30];
 static int ansids[3];
 static int retids[3];
+
 static bool run()
 {
     int N, K;

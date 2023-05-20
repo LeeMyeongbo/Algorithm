@@ -22,7 +22,6 @@ extern int changeMeeting(char mMeeting[MAXL], int mStartTime, int mEndTime);
 extern void checkNextMeeting(char mMember[MAXL], int mTime, char mResult[MAXL]);
 
 /////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
 
 static int mstrcmp(const char* a, const char* b)
 {

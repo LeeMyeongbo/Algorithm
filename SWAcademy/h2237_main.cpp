@@ -60,6 +60,7 @@ static bool run()
                 ok = false;
         }
     }
+
     return ok;
 }
 
@@ -76,5 +77,6 @@ int main()
         int score = run() ? MARK : 0;
         printf("#%d %d\n", tc, score);
     }
+
     return 0;
 }

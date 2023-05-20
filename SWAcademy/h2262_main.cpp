@@ -5,16 +5,14 @@
 #include <stdio.h>
 
 #define MAX_N (3000)
+#define CMD_INIT (100)
+#define CMD_ADD  (200)
+#define CMD_FIND (300)
 
 void init(int, int[]);
 void newLine(int, int[], int[]);
 void changeLimitDistance(int);
 int findCity(int, int[]);
-
-
-#define CMD_INIT (100)
-#define CMD_ADD  (200)
-#define CMD_FIND (300)
 
 static int N;
 static int M;
@@ -22,7 +20,6 @@ static int mDownTown[3];
 static int city_id_list[MAX_N + 5];
 static int distance_list[MAX_N + 5];
 static int downtown_list[4];
-
 
 static bool run()
 {

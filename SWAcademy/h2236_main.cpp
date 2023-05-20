@@ -12,16 +12,7 @@
 
 #define MAXL				(61)
 
-struct Trie {
-    Trie* c[4];
-    int cnt, id;
-
-    Trie() {
-        memset(c, NULL, sizeof(c));
-        cnt = 0, id = 0;
-    }
-};
-
+extern struct Trie;
 extern void init();
 extern int addSeq(int mID, int mLen, char mSeq[]);
 extern int searchSeq(int mLen, char mBegin[]);
