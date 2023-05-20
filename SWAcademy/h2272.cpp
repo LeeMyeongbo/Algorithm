@@ -1,118 +1,177 @@
-﻿#include <queue>
+﻿#include <iostream>
+#include <string>
+#include <stdlib.h>
+#include <queue>
 #include <set>
-#include <cstring>
-#include <cmath>
+#define MAX_N 10000
 using namespace std;
 
-struct Node {
-    int time;           // 도시에 도착하는 시간
-    int city;           // 도착하는 도시
-    int tax;            // 세금
+int Storage[MAX_N];							// 현재 상태의 Storage
+int StorageExpected[MAX_N];					// 이동 예상도 
+int IsOccupied[MAX_N];						// 관리자가 배치도
+int InputN, InputM, WorkingOfficer, CurTStamp;
+struct SEvent
+{
+    int tStamp;
+    int type;
+    int city;
+    int tax;
+};
+struct compare {
+    bool operator()(const SEvent a, const SEvent b) const {
+        if (a.tStamp == b.tStamp)
+            return a.type > b.type;     // EXPECT -> ADD -> ARRIVE -> COMEBACK
 
-    bool operator<(const Node& n) const {
-        return time > n.time;
+        return a.tStamp > b.tStamp;     // time 이 큰거 
     }
 };
-set<pair<int, int>> cities[200];                 // cities[i] : (세금이 도시 i에 도착하는 시간, 세금의 양)
-priority_queue<Node> manager;
-priority_queue<pair<int, int>> arrivalTime;
-int cityCnt, managerCnt, ans;
-int reservedCity[200];                           // reservedCity[i] : 도시 i에 관리가 파견되었을 때 예정 도착 시간 저장
+struct compExpected {
+    bool operator()(const pair<int, int>& a, const pair<int, int>& b) const {
+        if (a.first == b.first)
+            return a.second < b.second;			// 곡물의 양이 같으면 도시 ID가 작은 창고가 우선
+
+        return a.first > b.first;				// 곡물의 양이 많은 순서 
+    }
+};
+set <pair<int, int>, compExpected> ExpectPQ;
+set <pair<int, int>>::iterator ExpectIter[MAX_N];
+priority_queue<SEvent, vector<SEvent>, compare> EventQueue;
+enum {
+    EXPECT,
+    ADD,
+    ARRIVE,
+    COMEBACK
+};
 
 void init(int N, int M)
 {
-    ans = 0;
-    cityCnt = N;
-    managerCnt = M;
+    ExpectPQ.clear();
+    EventQueue = {};
+
+    // 도시의 개수 맞큼만 초기화함 
+    for (int i = 0; i < N; ++i)
+    {
+        Storage[i] = 0;
+        StorageExpected[i] = 0;
+        IsOccupied[i] = 0;
+        ExpectIter[i] = ExpectPQ.end();
+    }
+
+    InputN = N;
+    InputM = M;
+
+    CurTStamp = 0;
+    WorkingOfficer = 0;
 }
 
 void destroy()
-{
-    for (register int i = 1; i < cityCnt; i++)
-        cities[i].clear();
-    memset(reservedCity, 0, sizeof(reservedCity));
-    manager = {};
-}
+{ }
 
-void dispatch(int tStamp)
+// 관리 파견을 위한 함수 (tStamp 기준으로 그동안 처리 못한것을 처리함)
+void SendOfficer(int tStamp)
 {
-    while (manager.size() < managerCnt)
+    while (true)
     {
-        int max_tax = 0, city = 0;
-        for (register int i = 1; i < cityCnt; i++)
-        {
-            if (reservedCity[i])
-                continue;
-
-            int tax = 0;
-            for (register auto it = cities[i].begin(); it != cities[i].end(); it++)
-            {
-                if (it->first <= tStamp + i)
-                    tax += it->second;
-                else
-                    break;
-            }
-            if (tax > max_tax)
-                max_tax = tax, city = i;
-        }
-
-        if (city)                                           // 파견할 도시가 있다면
-        {
-            manager.push({ tStamp + city, city });          // 해당 도시 도착 에정 시간 저장하고
-            reservedCity[city] = tStamp + city;             // 파견 중인 도시 표시
-        }
-        else                                                // 파견할 도시가 없다면 break
+        if (WorkingOfficer >= InputM) 
             break;
+        if (ExpectPQ.empty()) 
+            break;
+
+        auto iter = ExpectPQ.begin();
+        int city = iter->second;
+
+        ExpectPQ.erase(iter);
+        ExpectIter[city] = ExpectPQ.end();
+
+        IsOccupied[city] = 1;
+        EventQueue.push({ tStamp + city,ARRIVE, city , });
+        ++WorkingOfficer;
     }
 }
 
-void progress(int tStamp)
+void UpdateExpectPq(int city, int tax)
 {
-    while (!manager.empty() && manager.top().time <= tStamp)
+    if (ExpectIter[city] != ExpectPQ.end())
+        ExpectPQ.erase(ExpectIter[city]);
+
+    ExpectIter[city] = ExpectPQ.end();
+    StorageExpected[city] += tax;
+    if (IsOccupied[city] != 1)
+        ExpectIter[city] = ExpectPQ.insert(ExpectPQ.begin(), { StorageExpected[city] ,city });
+}
+
+// tStamp 시간에 맞도록 처리해야할 일들을 함.  
+void DoProcess(int tStamp)
+{
+    while (true)
     {
-        Node n = manager.top();
-        manager.pop();
+        if (EventQueue.empty()) 
+            break;
+        SEvent event = EventQueue.top();
+        if (event.tStamp > tStamp) 
+            break;
+        EventQueue.pop();
 
-        if (!n.city)                // 수도에 도착했을 경우
+        if (CurTStamp < event.tStamp)
         {
-            ans += n.tax;
-            dispatch(n.time);       // 곧바로 파견 나갈 수 있는지 살핌
+            SendOfficer(CurTStamp);
+            CurTStamp = event.tStamp;
         }
-        else                        // 그 외의 도시에 도착했을 경우
+        switch (event.type)
         {
-            reservedCity[n.city] = 0;
-
-            int tax = 0;
-            for (register auto it = cities[n.city].begin(); it != cities[n.city].end(); )
-            {
-                if (it->first <= n.time)
-                {
-                    tax += it->second;
-                    it = cities[n.city].erase(it);
-                }
-                else break;
-            }
-
-            manager.push({ n.time + n.city, 0, tax });
+        case EXPECT:
+            UpdateExpectPq(event.city, event.tax);
+            break;
+        case ADD:
+            Storage[event.city] += event.tax;
+            break;
+        case ARRIVE:
+            EventQueue.push({ event.tStamp + event.city ,COMEBACK, event.city ,Storage[event.city] });
+            StorageExpected[event.city] -= Storage[event.city];
+            Storage[event.city] = 0;
+            break;
+        case COMEBACK:
+            Storage[0] += event.tax;
+            IsOccupied[event.city] = 0;
+            if (StorageExpected[event.city] > 0)
+                ExpectIter[event.city] = ExpectPQ.insert(ExpectPQ.begin(), { StorageExpected[event.city] ,event.city });
+            --WorkingOfficer;
+            break;
+        default:
+            break;
         }
+    }
+
+    if (CurTStamp < tStamp)
+    {
+        SendOfficer(CurTStamp);
+        CurTStamp = tStamp;
     }
 }
 
 int order(int tStamp, int mCityA, int mCityB, int mTax)
 {
-    while (!manager.empty() && manager.top().time < tStamp)
-        progress(manager.top().time);
+    DoProcess(tStamp);
 
-    cities[mCityB].insert({ tStamp + abs(mCityA - mCityB), mTax });
-    dispatch(max(tStamp + mCityB, tStamp + abs(mCityA - mCityB)) - mCityB);
+    register int tGap = abs(mCityA - mCityB);
+    register int eventStamp = tStamp + tGap - mCityB;
+    if (eventStamp <= tStamp)
+        UpdateExpectPq(mCityB, mTax);
+    else
+        EventQueue.push({ eventStamp ,EXPECT, mCityB ,mTax });
+    EventQueue.push({ tStamp + tGap ,ADD, mCityB ,mTax });
 
-    return ans;
+    SendOfficer(tStamp);
+    CurTStamp = tStamp;
+
+    return Storage[0];
 }
 
 int check(int tStamp)
 {
-    while (!manager.empty() && manager.top().time <= tStamp)
-        progress(manager.top().time);
+    DoProcess(tStamp);
+    SendOfficer(tStamp);
+    CurTStamp = tStamp;
 
-    return ans;
+    return Storage[0];
 }
