@@ -25,14 +25,17 @@ int main()
     cin >> N >> M;
     init();
 
-    while (M--) {
+    while (M--) 
+    {
         cin >> v1 >> v2 >> cost;
         map[v1][v2] = min(map[v1][v2], cost);
     }
     floyd();
 
-    for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= N; j++) {
+    for (int i = 1; i <= N; i++) 
+    {
+        for (int j = 1; j <= N; j++) 
+        {
             if (map[i][j] == INF)
                 cout << "INF" << ' ';
             else

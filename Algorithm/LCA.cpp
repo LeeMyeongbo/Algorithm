@@ -12,10 +12,9 @@ void dfs(int d, int cur, int par)				// 각 정점마다 바로 위(2^0번째) �
     parent[cur][0] = par;
     depth[cur] = d;
 
-    for (int& i : tree[cur]) {
+    for (int& i : tree[cur])
         if (!depth[i])
             dfs(d + 1, i, cur);
-    }
 }
 
 void set_Parent()
@@ -31,7 +30,8 @@ int LCA()
         swap(n1, n2);
 
     int diff = depth[n1] - depth[n2];
-    for (int i = 0; diff; i++) {				// n1의 깊이가 n2랑 같을 때까지 위로 올려서 맞춤
+    for (int i = 0; diff; i++)                  // n1의 깊이가 n2랑 같을 때까지 위로 올려서 맞춤
+    {
         if (diff % 2)                           // diff를 2진법으로 표현했을 때 1이 나오는 자리마다 올려준다 생각
             n1 = parent[n1][i];
         diff /= 2;
@@ -40,12 +40,13 @@ int LCA()
     if (n1 == n2)
         return n1;
     
-    for (int i = n - 1; i >= 0; i--) {			// 최상단 노드로부터 조상이 같아지기 전까지 2^i씩 이동
-        if (parent[n1][i] != parent[n2][i]) {
+    for (int i = n - 1; i >= 0; i--)			// 최상단 노드로부터 조상이 같아지기 전까지 2^i씩 이동
+        if (parent[n1][i] != parent[n2][i]) 
+        {
             n1 = parent[n1][i];
             n2 = parent[n2][i];
         }
-    }
+    
     return parent[n1][0];
 }
 
@@ -55,18 +56,22 @@ int main()
     cin >> N;
     n = (int)log2(N) + 1;
 
-    for (int i = 0; i < N - 1; i++) {
+    for (int i = 0; i < N - 1; i++) 
+    {
         cin >> v1 >> v2;
         tree[v1].push_back(v2);
         tree[v2].push_back(v1);
     }
+
     dfs(1, 1, 0);
     set_Parent();
 
     cin >> M;
-    while (M--) {
+    while (M--) 
+    {
         cin >> n1 >> n2;
         cout << LCA() << "\n";
     }
+
     return 0;
 }

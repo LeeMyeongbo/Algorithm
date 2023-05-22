@@ -17,16 +17,19 @@ int dfs(int cur)
 	int p = order[cur];
 	s.push(cur);
 
-	for (int i : graph[cur]) {			// p를 최솟값으로 갱신
+	for (int i : graph[cur])            // p를 최솟값으로 갱신
+    {
 		if (!order[i])					// 아직 해당 정점을 방문하지 않았을 경우
 			p = min(p, dfs(i));
 		else if (!complete[i])			// 방문은 했는데 강결합 요소 탐색이 완료되지 않았을 경우
 			p = min(p, order[i]);
 	}
 
-	if (p == order[cur]) {
+	if (p == order[cur]) 
+    {
 		vector<int> scc;
-		while (!s.empty()) {
+		while (!s.empty()) 
+        {
 			int v = s.top();
 			s.pop();
 
@@ -36,9 +39,11 @@ int dfs(int cur)
 			if (order[v] == p)			// 자기 자신이 나올 때까지 반복해서 pop
 				break;
 		}
+
 		sort(scc.begin(), scc.end());
 		SCC.push_back(scc);
 	}
+
 	return p;
 }
 
@@ -46,10 +51,12 @@ int main()
 {
 	FAST;
 	cin >> V >> E;
-	for (int e = 0; e < E; e++) {
+	for (int e = 0; e < E; e++) 
+    {
 		cin >> a >> b;
 		graph[a].push_back(b);
 	}
+
 	for (int i = 1; i <= V; i++)
 		if (!complete[i])
 			dfs(i);
@@ -57,10 +64,12 @@ int main()
 	cout << SCC.size() << "\n";
 	sort(SCC.begin(), SCC.end());
 
-	for (auto& scc : SCC) {
+	for (auto& scc : SCC) 
+    {
 		for (int v : scc)
 			cout << v << " ";
 		cout << "\n";
 	}
+
 	return 0;
 }
